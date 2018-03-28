@@ -4,4 +4,4 @@
 04：git status 查看当前的状态
 05：git add .
 06:git commit -m "note"
-07:
+07:git push 
