@@ -1,0 +1,139 @@
+
+.bodyBg{
+	background:url(../image/body.png) no-repeat;  
+    width:100%;  
+    height:100%;  
+    background-size:100% 100%;  
+    position:absolute;  
+    z-index: -1;
+}
+.loginDiv{
+	width: 976px;
+	height: 494px;
+	position: absolute;
+	left: 50%;
+	top:50%;
+	margin-left:-488px;
+	margin-top: -247px;
+}
+.mainTxt{
+	color: #fff;
+	font-size: 28px;
+	position: absolute;
+	right: 0px;
+	top:-20px;
+	font-weight: normal;
+	text-shadow: 3px 3px 6px #2f5475;
+}
+.titDiv{
+	width: 100%;
+	height: 70px;
+}
+.titDiv h2{
+	font-size: 40px;
+	color:#fff;
+	font-weight: normal;
+	float: right;
+	margin-top:18px;
+	text-shadow: 3px 3px 6px #2f5475;
+}
+.titDiv .subTit{
+	color: #fff;
+	text-shadow: 3px 3px 6px #2f5475;
+	font-size: 26px;
+	float:right;
+	margin:33px 0px 0 35px;
+}
+.loginBox{
+	height: 398px;
+	margin-top:16px;
+	position: relative;
+}
+.decTxt{
+	position: absolute;
+	right: 0px;
+	top:20px;
+	text-shadow: 3px 3px 6px #2f5475;
+	font-size: 24px;
+	color: #fff;
+}
+.leftLoginPart{
+	width: 399px;
+	height: 402px;
+	background: url(../image/loginDec.png) no-repeat;
+	position: relative;
+	z-index: 2;
+}
+.logoImg{
+	width: 160px;
+	height: 160px;
+	background: #fff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -80px;
+	margin-top: -80px;
+	border-radius: 50%;
+	box-shadow: 3px 3px 6px #2f88dc;
+}
+.rightLoginPart{
+	width: 576px;
+	height: 322px;
+	background: #fff;
+	border-radius: 6px 6px 6px 0;
+	margin-top: 76px;
+	box-shadow: 3px 3px 6px #2f88dc;
+	position: relative;
+	z-index: 1;
+}
+.comFormDiv{
+	width: 280px;
+	height: 34px;
+	margin:0 auto;
+	font-size: 16px;
+	color: #323232;
+}
+.comFormDiv:nth-of-type(1){
+	margin-top:75px;
+}
+.comFormDiv:nth-of-type(2){
+	margin-top:20px;
+}
+.comFormDiv input{
+	border:1px solid #dddddd;
+	width: 235px;
+	height: 32px;
+	border-radius: 3px;
+	outline: none;
+	padding-left: 5px;
+	color: #323232;
+	font-size: 14px;
+	font-weight: bold;
+}
+/*81b3ff*/
+.comFormDiv input::-webkit-input-placeholder{
+	font-weight: normal;
+}
+.loginBtn{
+	width: 100px;
+	height: 42px;
+	line-height: 42px;
+	background: #43a4ff;
+	color: #fff;
+	font-size: 22px;
+	border:none;
+	border:0px;
+	border-radius: 3px;
+	cursor: pointer;
+	margin:35px 0 0 205px;
+	display: inline-block;
+	text-align: center;
+}
+.loginBtn:hover{
+	background: #3079bd;
+}
+.forgetBtn{
+	font-size: 14px;
+	color: #666;
+	margin: 0px 0 0 20px;
+}

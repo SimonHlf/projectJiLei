@@ -1,0 +1,66 @@
+package cn.windy.module.examination.service.impl;
+
+import cn.windy.module.examination.dao.WindyOrgMapper;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.mybatis.model.WindyOrgQuery;
+import cn.windy.module.examination.service.IWindyOrgService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class WindyOrgService implements IWindyOrgService {
+
+    @Autowired
+    private WindyOrgMapper windyOrgMapper;
+
+
+    /**
+     * 获取全部组织树形菜单
+     * @return
+     */
+    @Override
+    public List<WindyOrg> findAll() {
+        return windyOrgMapper.selectByExample(null);
+    }
+
+    /**
+     * 获取当前登录账号组织树形菜单
+     * @param insId
+     * @return
+     */
+    @Override
+    public List<WindyOrg> findByInsId(Long insId) {
+
+        List<WindyOrg> WindyOrgList = windyOrgMapper.findByInsId(0l);
+
+        WindyOrg windyOrg = windyOrgMapper.selectByPrimaryKey(insId);
+        WindyOrgList.add(windyOrg);
+        WindyOrgList.addAll(windyOrgMapper.findByInsId(insId));
+        return WindyOrgList;
+    }
+
+    @Override
+    public List<WindyOrg> findRemoveZero() {
+        return windyOrgMapper.findRemoveZero();
+    }
+    
+    @Override
+    public Long getById(Long windyOrgId) {
+    	WindyOrg windyOrg=windyOrgMapper.selectByPrimaryKey(windyOrgId);
+    	Long pid=windyOrg.getPid();
+    	
+    	return pid;
+    }
+ 
+    //根据id查找机构
+    @Override
+    public WindyOrg getFormId(Long orgId){
+    	WindyOrg wOrg=windyOrgMapper.selectByPrimaryKey(orgId);
+    	return wOrg;
+    }
+    
+    
+}

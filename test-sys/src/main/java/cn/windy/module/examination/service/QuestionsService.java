@@ -1,0 +1,92 @@
+package cn.windy.module.examination.service;
+
+import java.util.List;
+import java.util.Map;
+
+import cn.windy.module.admin.dto.QuestionsDto;
+import cn.windy.module.examination.mybatis.model.QuesType;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.util.Pagination;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public interface QuestionsService {
+	
+	//列表，条件查询也可用
+	List<Map<String,Object>> getList(List<Long> insIdList,Pagination page,Long orgId,String questionsName,String typeName,String orgName,Long typeId);
+	
+	//计数
+	Long getCount(List<Long> insIdList,Long orgId,String questionsName,String typeName, String orgName,Long typeId);
+
+	List<WindyOrg> getWindyOrgList();
+
+	List<QuesType> quesTypeList(Long orgId);
+
+	void add(Questions questions);
+
+	void delete(String ids);
+
+	Questions getById(Long id);
+
+	void update(Questions questions);
+
+	List<QuesType> getQuestionsType();
+
+	List<QuesType> quesTypeList();
+
+	Map getshitiBili(String bili, Integer paperTotail,Long paperCreatId);
+
+	List<Map<String, Object>> getToZtree(Long typeId);
+
+	List<Long> getQuestionDiGui(Long quesTypeId);
+
+	Map getDiGui(Long pid,Pagination page);
+
+	Map getquestion(Long insPid,Pagination page);
+
+	List<QuesType> getQuesTypeList();
+
+	List<WindyOrg> getWindyOrgLists();
+
+	List<QuesType> getQuesTypeOne(Long orgId);
+
+	List<QuesType> getQuesTypeTwo(Long pid);
+
+	List<Map<String,Object>> getGong(Long quesTypeId,String name, Pagination page);
+
+	Long getCounts(Long quesTypeId,String name);
+
+	List<QuesType> twoZtree(Long windyId);
+
+	
+
+	List<Map<String, Object>> getQuestions(Long quesTypeId,String questionName, Pagination page);
+
+	Long getQuestionsCount(Long pid,String questionName);
+
+	WindyOrg getWindyOrg(Long windyOrgId);
+
+	
+
+	List<Map<String,Object>> getQuestionByType(Long quesTypeId, Pagination page);
+
+	List<Questions> searche(List<Long> questionsIdList);
+
+	List<WindyOrg> searchExcpet(Long windyOrgId);
+
+	List<Questions> getQuestions(Long quesTypeId);
+	
+	//批量导入试题
+	void batchImport(MultipartFile multipartFile,Long pid);
+	
+	List<Questions> getAll(Pagination page,List<Long> list);
+	
+	List<Questions> getAllCount(List<Long> list);
+
+	Long getFn(Long quesTypeId);
+	
+	List<QuestionsDto> getByType(Pagination page,List<Long> list,String name,String attr8);
+	
+	List<Questions> getByTypeCount(List<Long> list,String name);
+}

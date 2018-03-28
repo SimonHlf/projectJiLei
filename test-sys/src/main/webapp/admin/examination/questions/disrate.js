@@ -1,0 +1,478 @@
+function addBef(userWho){
+	
+	$.ajax({
+		url:"examination/questions/choose.jsp",
+		success:function(html){
+			layer.open({
+			 	 type:1,
+			 	 title:"选择类型",
+			 	 skin:'layui-layer-rim',//加上边框
+			 	 area:['260px','160px'],//宽高
+			 	 btn:['确定','取消'],
+			 	 yes:function(index){
+			 		 addDisRate(userWho);
+			 		 layer.close(index);
+			 	 },
+			 	 content:html,
+			 })
+		}
+		
+	})
+}
+
+function addDisRate(s){
+	
+	var types=$("#type").val();
+	s=eval("("+s+")")
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/quesTypeListByS.htm",
+		//data:{types:types},
+		success:function(html){
+			$("#mainContent").html(html);
+		}
+		
+	})
+}
+
+
+//选择试题分类
+function searchType(orgId){
+	$("#typeOneId").find("option").remove();
+	$("#typeOneId").append('<option>--请选择--</option>');
+	$.ajax({
+		url : "QuestionsController/quesTypeList.htm?orgId="+orgId,/* 这是父类的id */
+		success : function(data) {/* 子类的数据 */
+			/* console.log(data) */
+			var data = eval("("+data+")");
+			for(var i=0;i<data.length;i++){
+			$("#typeOneId").append("<option value='"+data[i].id+"'>"+data[i].name+"</option>")
+			}
+			
+		}
+	});
+	
+	
+}
+
+
+//选择二级分类
+function searchTypeTwo(quesTypeId){
+	
+	$.ajax({
+		url : "QuestionsController/quesTypeTwoList.htm?pid="+quesTypeId,
+		success : function(data) {
+			if(data.length!=0){
+				$("#typeTwo").find("select").remove();
+				$("#typeTwo").append("<select id='typeTwoIds' name='typeTwoId' required>" +
+						"<option value=''>--请选择试题类型--</option></select>");
+				
+				$("#typeTwoIds").find("option").remove();
+				$("#typeTwoIds").append('<option>--请选择--</option>');
+				
+				var data = eval("("+data+")");
+				for(var i=0;i<data.length;i++){
+				$("#typeTwoIds").append("<option value='"+data[i].id+"'>"+data[i].name+"</option>")
+				}
+			}
+		
+		}
+	});
+}
+
+//选择三级分类
+function searchTypeThree(quesTypeId){
+	
+	$.ajax({
+		url : "QuestionsController/quesTypeTwoList.htm?orgId="+orgId, 
+		success : function(data) { 
+			if(data.length!=0){
+				$("#typeThree").find("select").remove();
+				$("#typeThree").append("<select id='typeThrees' name='typeThree' required onchange='searchTypeThree(this.options[this.options.selectedIndex].value)'>" +
+						"<option value=''>--请选择试题类型--</option></select>");
+				
+				$("#typeThrees").find("option").remove();
+				$("#typeThrees").append('<option>--请选择--</option>');
+				
+				var data = eval("("+data+")");
+				for(var i=0;i<data.length;i++){
+				$("#typeThrees").append("<option value='"+data[i].id+"'>"+data[i].name+"</option>")
+				}
+			}
+		
+		}
+	});
+}
+
+//选择四级分类
+function searchTypeFour(quesTypeId){
+	
+	$.ajax({
+		url : "QuestionsController/quesTypeTwoList.htm?orgId="+orgId,
+		success : function(data) {
+			if(data.length!=0){
+				$("#typeFour").find("select").remove();
+				$("#typeFour").append("<select id='typeFours' name='typeFour' required>" +
+						"<option value=''>--请选择试题类型--</option></select>");
+				
+				$("#typeFours").find("option").remove();
+				$("#typeFours").append('<option>--请选择--</option>');
+				
+				var data = eval("("+data+")");
+				for(var i=0;i<data.length;i++){
+				$("#typeFours").append("<option value='"+data[i].regionCode+"'>"+data[i].address+"</option>")
+				}
+			}
+		
+		}
+	});
+}
+
+
+
+function searchItem(){
+	var questionName=$("#searchQues").val();
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/getList.htm",
+		data:{questionName:questionName},
+		success:function(html){
+			$("#mainContent").html(html);
+		},
+		error:function(){
+			layer.msg("查询失败");
+		}
+		
+	})
+	
+}
+
+
+function pdsboom1(orgId){
+	
+
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/quesTypeList.htm?orgId="+orgId,
+		success:function(data){
+			data=eval("("+data+")");
+			for(var i=0;i<data.length;i++){
+				$("#typeId").append("<option value='"+data[i].id+"'>"+data[i].name+"</option>")
+			}
+		},error:function(){
+			layer.msg("错误");
+		}
+	})
+}
+
+
+
+
+function yes() {
+	var sttype = $("#sttype").val();
+	if(sttype==''){
+		$("#menuSpan").css({color:'red'});
+	}
+	
+	var obj=document.getElementsByName('answer');
+	var s=''; 
+	for(var i=0; i<obj.length; i++){ 
+		if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中 
+	} 
+	if(s==''){
+		layer.msg('请选择答案'); 
+		return ;
+	}
+	var id=1;
+	var result = required("addDisRateForm");
+	if (result) {
+		$.ajax({
+			type : 'post',
+			url : 'QuestionsController/add.htm',
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			data : new FormData($("#addDisRateForm")[0]),
+			success : function(data) {
+				
+				var result=eval('('+data+')');
+				if(result.result=='true'){
+					layer.msg("添加成功");
+					ajaxLoad("QuestionsController/getList.htm");
+				}else if(result.result=='pictureErroe'){
+					layer.msg("图片格式错误");
+				}
+				/*loadHtml(data);
+				layer.msg("添加完成。");*/
+			},
+			error:function(){
+				layer.msg("网络错误，请稍后再试");
+			}
+		})
+	}
+}
+
+function fanhui(){
+	$("#mainContent").load("QuestionsController/getList.htm");
+}
+
+
+function delDisRate(){
+    var page = $("#disRatePage").val();
+    var ids = "";
+    $(".table input:checked").each(function () {
+        ids += $(this).val() + ",";
+    });
+    if(ids == ""){
+        layer.msg("请选择数据");
+        return;
+    }
+    layer.confirm("确认删除吗?",function(index){
+//    	$.ajax({
+//            method:'post',
+//            url:'QuestionsController/isDel.htm',
+//            data:{ids:ids},
+//            success:function (data) {
+//            	if(results=='true'){
+            		 $.ajax({
+     		            method:'post',
+     		            url:'QuestionsController/delete.htm',
+     		            data:{ids:ids,page:page},
+     		            success:function (data) {
+     		                loadHtml(data);
+     		                layer.close(index)
+     		            }
+     		        })
+            	//}else{
+            	//	if(data==0){//不可以删除
+                //		layer.msg("只能删除本机构试题")
+                //		layer.close(index)
+                //	}else{
+                //        $.ajax({
+        		//            method:'post',
+        		//            url:'QuestionsController/delete.htm',
+        		//            data:{ids:ids,page:page},
+        		//            success:function (data) {
+        		//                loadHtml(data);
+        		//                layer.close(index)
+        		 //           }
+        		       // })
+               // 	}
+            	//}
+         //   }
+       // })
+    });
+}
+
+
+
+
+function updateDisRate(){
+    var page = $("#disRatePage").val();
+    var checks = $(".table input:checked");
+    if(checks.length != 1){
+        layer.msg("请选择一条数据");
+        return;
+    }
+    
+    if(checks.length>0){
+    	$.ajax({
+    		type:"post",
+    		url:"QuestionsController/getWindyOrg.htm?id="+$(checks[0]).val(),
+    		success:function(html){
+    			$("#mainContent").html(html);
+    		}
+    	})
+    }else{
+        layer.msg("请选择数据")
+    }
+}
+
+function yesofUpdate(){
+	var result = required("editDisRateForm");
+	if (result) {
+		$.ajax({
+			type : 'post',
+			url : 'QuestionsController/update.htm',
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			data : new FormData($("#editDisRateForm")[0]),
+			success : function(data) {
+				
+				var result=eval('('+data+')');
+				if(result.result=='true'){
+					layer.msg("修改成功")
+					ajaxLoad("QuestionsController/getList.htm");
+				}else if(result.result=='pictureErroe'){
+					layer.msg("图片格式错误")
+				}
+				/*loadHtml(data);
+				layer.msg("添加完成。");*/
+			},
+			error:function(){
+				layer.msg("网络错误，请稍后再试");
+			}
+		})
+	}
+}
+
+
+//查看详情
+function xiangqing(questionId,page){
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/getDetail.htm",
+		data:{id:questionId,page:page},
+		success:function(html){
+			$("#mainContent").html(html);
+		}
+	})
+	
+}
+
+
+//共享试题查看
+function gongxiang(){
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/searchGong.htm",
+		success:function(html){
+			$("#mainContent").html(html);
+		}
+		
+	})
+	
+	
+}
+
+function daoLiebiao(page){
+	$("#mainContent").load("QuestionsController/getList.htm?page="+page);
+	
+}
+
+
+function addGong(){
+	var idArray = new Array();
+    $(".table input:checked").each(function () {
+        idArray.push($(this).val());
+    });
+    if(idArray.length == 0){
+        layer.msg("请选择数据");
+        return;
+    }
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/addGongBef.htm",
+		success:function(html){
+			layer.open({
+				type:1,
+			 	 title:"选择要添加的到的分类",
+			 	 skin:'layui-layer-rim',//加上边框
+			 	 area:['400px','300px'],//宽高
+			 	 btn:['确定','取消'],
+			 	 yes:function(index){
+			 		 var issuper = $("#issuper").val();
+			 		var treeObj3 = $.fn.zTree.getZTreeObj("treeDemo3");
+			 		var nodes3 = treeObj3.getSelectedNodes();
+			 		if(nodes3.length == 0){
+			 			layer.msg("请选择部门下的分类");
+			 		}
+			 		if(issuper==0){
+			 			if(nodes3[0].level==0 || nodes3[0].level==1){
+			 				layer.msg("请选择题库分类(3级节点)");
+			 				return;
+			 			}else{
+			 				var nid2=nodes3[0].wid;
+					 		var ids = idArray.join(',');
+					 		addgongXiang(ids,nid2);
+					 		layer.close(index);
+			 			}
+			 		}else{
+			 			if(nodes3[0].level==0){
+			 				layer.msg("请选择题库分类(2级节点)");
+			 				return;
+			 			}else{
+			 				var nid2=nodes3[0].wid;
+					 		var ids = idArray.join(',');
+					 		addgongXiang(ids,nid2);
+					 		layer.close(index);
+			 			}
+			 		}
+			 	 },
+			 	 content:html,
+			 })
+			
+			
+		}
+		
+	})
+	
+}
+
+function addgongXiang(ids,nid2){
+	/*var questionsIdList=$("#questionsIdList").val();*/
+
+	
+
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/addGong.htm",
+		data:{questionsIdList:ids,nid2:nid2},
+		success:function(html){
+			$("#mainContent").html(html);
+		}
+		
+	})
+	
+}
+
+
+function chakans(insId){
+	$.ajax({
+		type:"post",
+		url:"QuestionsController/sonList.htm?pid="+insId,
+		success:function(html){
+			$("#quesTypeList").html(html);
+		}
+	})
+}
+
+function yes1() {
+	var sttype1 = $("#sttype1").val();
+	if(sttype1==''){
+		$("#menuSpan").css({color:'red'});
+	}
+	var id=1;
+	var result = required("addDisRateForm1");
+	if (result) {
+		$.ajax({
+			type : 'post',
+			url : 'QuestionsController/save.htm',
+			async : false,
+			cache : false,
+			contentType : false,
+			processData : false,
+			data : new FormData($("#addDisRateForm1")[0]),
+			success : function(data) {
+				var result=eval('('+data+')');
+				if(result.result=='true'){
+					layer.msg("添加成功");
+					ajaxLoad("QuestionsController/getList.htm");
+				}else if(result.result=='pictureErroe'){
+					layer.msg("图片格式错误");
+				}
+			},
+			error:function(){
+				layer.msg("网络错误，请稍后再试");
+			}
+		})
+	}
+}
+
+//下载试题Excel 模板
+function downloadTemplateQuesType(){
+	window.location = "QuestionsController/downloadTemplateQuesType.htm";
+}

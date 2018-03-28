@@ -1,0 +1,75 @@
+package cn.windy.module.examination.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import cn.windy.module.examination.mybatis.model.QuesType;
+import cn.windy.module.examination.mybatis.model.QuesTypeQuery;
+
+public interface QuesTypeMapper {
+    int countByExample(QuesTypeQuery example);
+
+    int deleteByExample(QuesTypeQuery example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(QuesType record);
+
+    int insertSelective(QuesType record);
+
+    List<QuesType> selectByExample(QuesTypeQuery example);
+
+    /**
+     * 机构分类列表
+     * @param insId
+     * @param startRow
+     * @param pageSize
+     * @return
+     */
+    List<Map<String,Object>> getList(@Param("pid")Long pid,@Param("quesTypeIdList") List<Long>quesTypeIdList,@Param("insIdList") List<Long> insIdList,@Param("insId") Long insId,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+    
+    /**
+     * 计数
+     * @param insId
+     * @return
+     */
+    Long getCount(@Param("pid")Long pid,@Param("quesTypeIdList") List<Long>quesTypeIdList,@Param("insIdList") List<Long> insIdList,@Param("insId") Long insId);
+    
+    /**
+     * 题库分类树形用
+     * @param pid
+     * @param startRow
+     * @param pageSize
+     * @return
+     */
+    List<Map<String,Object>> getZtreeFenye(@Param("pid") Long pid,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+    
+    /**
+     * 计数
+     * @param pid
+     * @return
+     */
+    Long getZtreeFenyeCount(@Param("pid") Long pid);
+    //新树形用,超管用
+    List<Map<String,Object>>getZtreeN();
+    //新树形结构用，普通管理员用
+    List<Map<String,Object>> getZtreeNFen(@Param("insId") Long insId);
+    //根据id查找
+    List<Map<String,Object>>getOne(@Param("id")String id);
+    
+    QuesType selectByPrimaryKey(Long id);
+
+    int updateByExampleSelective(@Param("record") QuesType record, @Param("example") QuesTypeQuery example);
+
+    int updateByExample(@Param("record") QuesType record, @Param("example") QuesTypeQuery example);
+
+    int updateByPrimaryKeySelective(QuesType record);
+
+    int updateByPrimaryKey(QuesType record);
+    
+    List<Map<String,Object>> getByWid(@Param("wid")String id);
+    
+    List<Map<String,Object>> getByNotFen(@Param("insId")Long insId);
+}

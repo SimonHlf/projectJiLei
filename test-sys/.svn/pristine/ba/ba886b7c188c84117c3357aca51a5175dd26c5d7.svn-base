@@ -1,0 +1,140 @@
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="v" tagdir="/WEB-INF/tags" %>
+<script src="examination/paperCreat/paperCreat.js"></script>
+ <script>
+	var zTreeObj;
+	var setting = {
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id",
+				pIdKey : "pid",
+				rootPId : 0
+			},
+	    key:{
+	    	url:"###"
+	    }
+		},
+		callback : {
+			onClick : function(event, treeId, treeNode) {
+				
+				$("#menuTable").load("PaperCreatController/getSonZtree.htm?pid=" + treeNode.id);
+			},
+		}
+	};
+	var nodes = ${nodes};
+    zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, nodes);
+</script>
+<style type="text/css">
+	.clearfix{zoom:1;}
+	.clearfix:after{content:"";display:block;overflow:hidden;clear:both;}
+	.groupPar{width:100%;}
+	.fl{float:left;}
+	.formGroup{margin-left:15px;}
+</style>
+<div class="btn-group col-sm-12" style="float:none;padding-left:0px;">
+<div class="groupPar clearfix">
+<div  style="float:left;padding: 10px">
+    <button type="button" onclick="addquertion(${paperCreatId})" class="btn btn-info"><i class="fa fa-plus"></i>添加</button>
+    <button type="button" onclick="fanhuiDaoPaper(${paperCreatId})" class="btn btn-success"><i class="fa fa-minus"></i>返回</button>
+</div>
+<div style="float:left;padding: 10px">
+	<!-- <form id="searchItemForm" method="post"> -->
+		<!-- <div class="row"> -->
+			<!-- <div class="form-group col-lg-4"> -->
+				<%-- <span class="input-group-addon" style="width: 625px;">请选择您要添加到当前试卷的试题，然后点击添加.
+				<c:if test="${danxuanNums<=0}"><span style="color: red;">单选题数量已够。</span></c:if><c:if test="${danxuanNums>0}">您可以添加${danxuanNums}道单选题。</c:if>
+				<c:if test="${duoxianNums<=0}"><span style="color: red;">多选题数量已够。</span></c:if> <c:if test="${duoxianNums>0}">您可以添加${duoxianNums}道多选题。</c:if>
+				<c:if test="${panduanNums<=0}"><span style="color: red;">判断题数量已够。</span></c:if><c:if test="${panduanNums>0}">您可以添加${panduanNums}道判断题。</c:if></span> 
+				
+				<input type="hidden" id="danxuanNums" value="${danxuanNums}" /> <input
+					type="hidden" id="duoxianNums" value="${duoxianNums}" /> <input
+					type="hidden" id="panduanNums" value="${panduanNums}" /> <input
+					type="hidden" id="paperTotail" value="${paperTotail}" /> --%>
+				<%-- <div class=" input-group">
+                        <span class="input-group-addon">按级别名称查找</span>
+                        <input type="text" name="name" value="${disRate.name}" class="form-control" placeholder="按级别名称查找">
+                    </div> --%>
+			<!-- </div> -->
+		<!-- </div> -->
+	<!-- </form> -->
+</div>
+
+</div>
+</div>
+<div class="widget">
+    <div class="widget-body">
+    	<div class="row">
+		<div class="col-lg-2 col-sm-2 col-xs-2">
+			<ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="flip-scroll col-lg-10 col-sm-10 col-xs-10"  id="menuTable">
+            <table class="table table-bordered table-striped table-condensed flip-content">
+                <thead class="flip-content bordered-palegreen">
+                <tr>
+                    <th width="44px;"><v:checkbox/></th>
+                    <th>试题名称 </th>
+                    <th>试题分类</th>
+                    <th>试题类型</th>
+                    <!-- <th>所属机构</th> -->
+                    <!-- <th>是否共享</th> -->
+                    <th>详情</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                	<c:forEach items="${questionsList}" var="questions">
+                		<tr>
+                		<td><v:checkbox value="${questions.id}"/></td>
+                		<td>${questions.name}</td>
+                		<td>${questions.typeName}</td>
+                		<c:if test="${questions.type==0}">
+                			<td>单选题</td>
+                		</c:if>
+                		<c:if test="${questions.type==1}">
+                			<td>多选题</td>
+                		</c:if>
+                		<c:if test="${questions.type==2}">
+                			<td>判断题</td>
+                		</c:if>
+                		
+                		<%-- <c:if test="${questions.is_share==0}">
+                			<td>分享</td>
+                		</c:if>
+                		<c:if test="${questions.is_share==1}">
+                			<td>不分享</td>
+                		</c:if> --%>
+                		
+                		<td><a href="javascript:toxiangqing(${questions.id},${paperCreatId})">详情</a></td>
+                		<td>${questions.creat_time}</td>
+                		
+                	</tr>
+                	</c:forEach>
+                	
+                	
+                </tbody>
+            </table>
+           <input type="hidden" id="disRatePage" value="${page.page}">
+            <v:pagination page="${page}" url="PaperCreatController/toQuestList.htm?1=1&paperCreatId=${paperCreatId}"></v:pagination>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+//查看详情
+/* function xiangqing(questionId,page){
+	$.ajax({
+			type:"post",
+			url:"QuestionsController/getDetail.htm",
+			data:{id:questionId,page:page},
+			success:function(html){
+				
+				$("#mainContent").html(html);
+				 
+			}
+			
+	}) */
+		
+	
+</script>

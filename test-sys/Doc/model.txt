@@ -1,0 +1,16 @@
+ALTER TABLE    ADD (
+     add_user BIGINT,
+     add_time VARCHAR (20),
+     update_user BIGINT,
+     update_time VARCHAR (20),
+     attr0 VARCHAR (128) DEFAULT NULL,
+     attr1 VARCHAR (128) DEFAULT NULL,
+     attr2 VARCHAR (128) DEFAULT NULL,
+     attr3 VARCHAR (128) DEFAULT NULL,
+     attr4 VARCHAR (128) DEFAULT NULL,
+     attr5 VARCHAR (128) DEFAULT NULL,
+     attr6 VARCHAR (128) DEFAULT NULL,
+     attr7 VARCHAR (128) DEFAULT NULL,
+     attr8 VARCHAR (128) DEFAULT NULL,
+     attr9 VARCHAR (128) DEFAULT NULL
+     )

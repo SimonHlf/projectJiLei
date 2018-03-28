@@ -1,0 +1,514 @@
+package cn.windy.module.examination.service.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.lf5.viewer.configure.MRUFileManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import cn.windy.module.util.WindyConstants;
+import cn.windy.module.admin.hibernate.model.User;
+import cn.windy.module.examination.dao.QuesTypeMapper;
+import cn.windy.module.examination.dao.WindyOrgMapper;
+import cn.windy.module.examination.dao.WindyRoleMapper;
+import cn.windy.module.examination.dao.WindyUsersRolesMapper;
+import cn.windy.module.examination.mybatis.model.QuesType;
+import cn.windy.module.examination.mybatis.model.QuesTypeQuery;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.mybatis.model.WindyOrgQuery;
+import cn.windy.module.examination.mybatis.model.WindyRoleQuery;
+import cn.windy.module.examination.mybatis.model.WindyUsersRolesKey;
+import cn.windy.module.examination.mybatis.model.WindyUsersRolesQuery;
+import cn.windy.module.examination.service.QuesTypeService;
+import cn.windy.util.MenuTree;
+import cn.windy.util.Pagination;
+
+@Service("quesTypeService")
+public class QuesTypeServiceImpl implements QuesTypeService {
+
+	 @Autowired
+	 private QuesTypeMapper quesTypeMapper;
+	
+	 @Autowired
+	 private  WindyOrgMapper windyOrgMapper;
+	
+	 @Autowired
+	 private WindyRoleMapper windyRoleMapper;
+	 
+	 @Autowired
+	 private WindyUsersRolesMapper windyUsersRolesMapper;
+	 
+	/**
+	 * 列表
+	 */
+	@Override
+	public List<Map<String,Object>> getList(List<Long>insIdList,Pagination page,Long insId) {
+		List<Map<String,Object>> quesTypeList=new ArrayList<>();
+		if(insIdList!=null && !"".equals(insIdList)){
+			if(insIdList.size()==0){
+				quesTypeList=quesTypeMapper.getList(null,null,null,insId,(page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+			}
+			if(insIdList.size()!=0){
+				quesTypeList=quesTypeMapper.getList(null,null,insIdList,insId,(page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+			}
+		}else {
+			quesTypeList=quesTypeMapper.getList(null,null,null,insId,(page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+		}
+		
+		
+		return quesTypeList;
+	}
+	
+	/**
+	 * 计数
+	 * @param insId
+	 * @return
+	 */
+	@Override
+	public Long getCount(List<Long>insIdList,Long insId) {
+		Long counts=(long)0;
+		
+		if(insIdList==null) {
+			
+				counts=quesTypeMapper.getCount(null,null,null,insId);
+			
+		}
+		
+		if(insIdList!=null) {
+			if(insIdList.size()!=0) {
+				counts=quesTypeMapper.getCount(null,null,insIdList,insId);
+			}
+			if(insIdList.size()==0){
+				counts=quesTypeMapper.getCount(null,null,null,insId);
+			}
+		}
+		
+		
+		return counts;
+	}
+	
+	//ztree用超管
+	@Override
+	public List<QuesType> getAll(){
+		QuesTypeQuery query=new QuesTypeQuery();
+		List<QuesType> quesTypeList=quesTypeMapper.selectByExample(query);
+		
+		return quesTypeList;
+		
+	}
+	
+	//ztree用普管
+	@Override
+	public List<WindyOrg> getByOrg(Long insId){
+		//根据当前管理员的所属的机构id查找机构
+		WindyOrg windyOrg=windyOrgMapper.selectByPrimaryKey(insId);
+		List<WindyOrg> windyOrgLists=new ArrayList<WindyOrg>();
+		windyOrgLists.add(windyOrg);
+		
+		//查找当前机构中的小组
+		/*WindyOrgQuery query2=new WindyOrgQuery();
+		WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+		criteria2.andPidEqualTo(insId);
+		List<WindyOrg> windyOrgList=windyOrgMapper.selectByExample(query2);
+		
+		windyOrgLists.addAll(windyOrgList);*/
+		
+		/*QuesTypeQuery query=new QuesTypeQuery();
+		QuesTypeQuery.Criteria criteria=query.createCriteria();
+		criteria.andInsIdEqualTo(insId);
+		List<QuesType> quesTypeList=quesTypeMapper.selectByExample(query);*/
+		return windyOrgLists;
+	}
+	
+	//查找子集
+	@Override
+	public List<QuesType> getS(Long pid){
+		QuesTypeQuery query=new QuesTypeQuery();
+		QuesTypeQuery.Criteria criteria=query.createCriteria();
+		criteria.andPidEqualTo(pid);
+		List<QuesType> quesTypeList=quesTypeMapper.selectByExample(query);
+		
+		return quesTypeList;
+	}
+	
+	/**
+	 * 题库分类树形用
+	 * @param pid
+	 * @param page
+	 * @return
+	 */
+	@Override
+	public Map getZtreeFenye(Long pid,Pagination page){
+		//根据当前机构Id查找其子机构
+		/*List<Long>windyOrgIdList=getZtreeDigui(pid);*/
+		List<Map<String,Object>> quesTypeList=quesTypeMapper.getList(null,null,null, pid,(page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+		/*List<Map<String,Object>> quesTypeList=quesTypeMapper.getList(windyOrgIdList, null,(page.getPage() - 1) * page.getPageSize(), page.getPageSize());*/
+		Long count=quesTypeMapper.getCount(null,null,null, pid);
+		
+		Map<String,Object> ma=new HashMap<>();
+		ma.put("quesTypeList", quesTypeList);
+		ma.put("count", count);
+		/*List<Map<String,Object>> quesTypeList=quesTypeMapper.getZtreeFenye(pid, (page.getPage() - 1) * page.getPageSize(), page.getPageSize());*/
+		
+		return ma;
+	}
+	
+	//上面方法的递归
+	@Override
+	public List<Long> getZtreeDigui(Long pid){
+		List<Long> windyOrgIdList=new ArrayList<Long>();
+		WindyOrgQuery query2=new WindyOrgQuery();
+		WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+		criteria2.andPidEqualTo(pid);
+		List<WindyOrg>WindyOrgSonList=windyOrgMapper.selectByExample(query2);
+		if(WindyOrgSonList.size()!=0) {
+			for(WindyOrg windyOrg:WindyOrgSonList){
+				getZtreeDigui(windyOrg.getId());
+			}
+		}
+		if(WindyOrgSonList.size()==0){
+			windyOrgIdList.add(pid);
+		}
+		
+		return windyOrgIdList;
+	}
+	
+	
+	@Override
+	public Long getZtreeFenyeCount(Long pid) {
+		Long count=quesTypeMapper.getZtreeFenyeCount(pid);
+		return count;
+	}
+	
+	
+	 /**
+     * ztrr用(超级管理员用),添加前查找包括机务段
+     * @return
+     */
+    @Override
+    public List<WindyOrg> getWindyOrgList() {
+    	List<MenuTree> mtList=new ArrayList<>();
+    	
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andPidEqualTo((long)0);
+    	List<WindyOrg> windyOrgList=windyOrgMapper.selectByExample(query);
+    	
+    	//查看机务段下的车间集合
+    	if(windyOrgList.size()!=0) {
+    		WindyOrgQuery query2=new WindyOrgQuery();
+        	WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+        	criteria2.andPidEqualTo(windyOrgList.get(0).getId());
+        	windyOrgList.addAll(windyOrgMapper.selectByExample(query2));
+    	}
+    	
+    	return windyOrgList;
+	}
+	
+    //添加前查找机构，不包括机务段
+    @Override
+    public List<WindyOrg> getWindyOrg(){
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andPidEqualTo((long)0);
+    	List<WindyOrg>windyOrgList=windyOrgMapper.selectByExample(query);
+    	List<WindyOrg> windyOrgsList=new ArrayList<>();
+    	if(windyOrgList.size()!=0){
+    		WindyOrgQuery query2=new WindyOrgQuery();
+    		WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+    		criteria2.andPidEqualTo(windyOrgList.get(0).getId());
+    		windyOrgsList=windyOrgMapper.selectByExample(query2);
+    	}
+    	return windyOrgsList;
+    }
+    
+    
+    
+    
+    //普通用户登录只显示当前机构
+    @Override
+    public List<WindyOrg> getquesTypeNow(Long insId){
+    	List<WindyOrg> windyOrgList=new ArrayList<WindyOrg>();
+    	windyOrgList.add(windyOrgMapper.selectByPrimaryKey(insId));
+    	return windyOrgList;
+    }
+    
+    
+    //添加前查找所有机构
+    @Override
+    public List<WindyOrg> getAddBef(){
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andPidEqualTo((long)0);
+    	List<WindyOrg> windyOrgList=windyOrgMapper.selectByExample(query);
+    	List<WindyOrg> windyOrgSonList=new ArrayList<WindyOrg>();
+    	if(windyOrgList.size()!=0){
+    		//查看机务段下的车间集合
+        	for(WindyOrg windyOrg:windyOrgList){
+        		WindyOrgQuery query2=new WindyOrgQuery();
+            	WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+            	criteria2.andPidEqualTo(windyOrg.getId());
+            	windyOrgSonList.addAll(windyOrgMapper.selectByExample(query2));
+        	}
+    	}
+    	
+    	return windyOrgSonList;
+    }
+    
+    
+    //普通管理员树形
+    @Override
+    public List<WindyOrg> getWindyOrgSList(Long insId){
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andIdEqualTo(insId);
+    	List<WindyOrg> WindyOrgList=windyOrgMapper.selectByExample(query);
+    	
+    	WindyOrgQuery query2=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+    	criteria2.andPidEqualTo(insId);
+    	List<WindyOrg> windyOrgList2=windyOrgMapper.selectByExample(query2);
+    	
+    	WindyOrgList.addAll(windyOrgList2);
+		return WindyOrgList;
+    	
+    }
+    
+    //递归循机构
+    @Override
+    public List<WindyOrg> deGui(Long insId){
+    	List<WindyOrg> windyOrgList1=new ArrayList<WindyOrg>();
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andPidEqualTo(insId);
+    	List<WindyOrg> windyOrgList=windyOrgMapper.selectByExample(query);
+    	if(windyOrgList.size()!=0){
+    		windyOrgList.addAll(windyOrgList);
+    		for(WindyOrg windyOrg:windyOrgList){
+    			if(deGui(windyOrg.getId()).size()!=0) {
+    				windyOrgList.addAll(deGui(windyOrg.getId()));
+    			}
+    		}
+    		
+    	}
+    	return windyOrgList;
+    }
+    
+    
+    
+    
+    /**
+     * 添加
+     */
+	@Override
+	public void add(QuesType quesType) {
+		quesTypeMapper.insert(quesType);
+		
+	}
+
+	/**
+     * 根据id查找
+     */
+	@Override
+	public QuesType getById(Long id) {
+		
+		return quesTypeMapper.selectByPrimaryKey(id);
+	}
+
+	
+	
+	 /**
+     * 修改
+     */
+	@Override
+	public void update(QuesType quesType) {
+		quesTypeMapper.updateByPrimaryKeySelective(quesType);
+		
+	}
+
+	/**
+     * 批量删除
+     */
+    @Override
+    public void delete(String ids) {
+    	 String[] strs = ids.split(",");
+         List<Long> list = new ArrayList<>();
+         for(String str : strs){
+             list.add(Long.parseLong(str));
+         }
+         QuesTypeQuery query=new QuesTypeQuery();
+         QuesTypeQuery.Criteria criteria=query.createCriteria();
+         criteria.andIdIn(list);
+         quesTypeMapper.deleteByExample(query);
+    }
+	
+    /**
+     * 判断后台登录的是否有权限查看所有机构的考试数据 true为超管
+     * @param userId
+     * @return
+     */
+    @Override
+    public boolean getRole(Long userId) {
+    	
+    	WindyUsersRolesQuery query=new WindyUsersRolesQuery();
+    	WindyUsersRolesQuery.Criteria criteria=query.createCriteria();
+    	criteria.andUidEqualTo(userId);
+    	List<WindyUsersRolesKey> WindyUsersRolesList=windyUsersRolesMapper.selectByExample(query);
+    	if(WindyUsersRolesList.size()!=0){
+    		if("1".equals( windyRoleMapper.selectByPrimaryKey(WindyUsersRolesList.get(0).getRid()).getRemark())){
+    			return true;
+    		}
+    	}
+    	
+    	return false;
+    }
+    
+    
+
+    //树形结构(普通管理)
+	@Override
+	public List<QuesType> getZtrees(Long insId) {
+		QuesTypeQuery query=new QuesTypeQuery();
+		QuesTypeQuery.Criteria criteria=query.createCriteria();
+		criteria.andInsIdEqualTo(insId);
+		List<QuesType> quesTypeList=quesTypeMapper.selectByExample(query);
+		return quesTypeList;
+	}
+
+	//添加页面根据机构查找试题分类
+	@Override
+	public List<QuesType> getQuesType(Long insId){
+		QuesTypeQuery query=new QuesTypeQuery();
+		QuesTypeQuery.Criteria criteria=query.createCriteria();
+		criteria.andInsIdEqualTo(insId);
+		List<QuesType> quesTypeList=quesTypeMapper.selectByExample(query);
+		return quesTypeList;
+	}
+		
+//获取第二个树形
+@Override
+public List<QuesType> twoZtree(Long windyId){
+	QuesTypeQuery query=new QuesTypeQuery();
+	QuesTypeQuery.Criteria criteria=query.createCriteria();
+	criteria.andInsIdEqualTo(windyId);
+	List<QuesType>quesTypeList=quesTypeMapper.selectByExample(query);
+	
+	return quesTypeList;
+}
+
+//查找所有分类
+@Override
+public List<QuesType> getAllType(){
+	QuesTypeQuery qType=new QuesTypeQuery();
+	List<QuesType> qList=quesTypeMapper.selectByExample(qType);
+
+	return qList;
+}
+
+
+
+//根据第二个树形结构查找其子分类
+@Override
+public List<Map<String,Object>>sonList(Long quesTypeId,Pagination page){
+	List<Map<String,Object>> quesTypeList=quesTypeMapper.getList(quesTypeId,null, null, null,(page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+	return quesTypeList;
+}
+ 
+
+//查找当前分类下的子分类
+@Override
+public Map getQuesTypeLists(Long pid,Pagination page) {
+	List<Long>quesTypeIdList=getDigui1(pid);
+	
+	List<Map<String,Object>> quesTypeList=new ArrayList<>();
+	if(quesTypeIdList.size()!=0){
+		quesTypeList=quesTypeMapper.getList(null, quesTypeIdList,null,null, (page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+		Long count=quesTypeMapper.getCount(null, quesTypeIdList,null, null);
+		page.setTotal(count);
+	}
+	
+	
+	
+	Map<String,Object>ma=new HashMap<>();
+	ma.put("quesTypeList", quesTypeList);
+	ma.put("page", page);
+	return ma;
+}
+
+
+
+//递归出所有分类id
+@Override
+public List<Long> getDigui1(Long pid ){
+	List<Long> quesTypeIdList=new ArrayList<>();
+	QuesTypeQuery query=new QuesTypeQuery();
+	QuesTypeQuery.Criteria criteria=query.createCriteria();
+	criteria.andPidEqualTo(pid);
+	List<QuesType> quesTypeList1=quesTypeMapper.selectByExample(query);
+	/*List<Map<String,Object>> quesTypeList1=quesTypeMapper.getList(pid, null, null, null,null);*/
+	if(quesTypeList1.size()==0){
+		return quesTypeIdList;
+		
+	}
+	if(quesTypeList1.size()!=0){
+		for(QuesType quesType:quesTypeList1) {
+			quesTypeIdList.addAll(getDiGui2(quesType.getId()));
+		}
+		
+	}
+	
+	return quesTypeIdList;
+}
+
+@Override
+public List<Long> getDiGui2(Long pid){
+	List<Long> quesTypeIdList=new ArrayList<>();
+	
+	QuesTypeQuery query=new QuesTypeQuery();
+	QuesTypeQuery.Criteria criteria=query.createCriteria();
+	criteria.andPidEqualTo(pid);
+	List<QuesType> quesTypeList2=quesTypeMapper.selectByExample(query);
+	if(quesTypeList2.size()==0) {
+		quesTypeIdList.add(pid);
+		
+	}
+	if(quesTypeList2.size()!=0) {
+		quesTypeIdList.add(pid);
+		for(QuesType quesType:quesTypeList2){
+			quesTypeIdList.addAll(getDiGui2(quesType.getId()));
+		}
+		
+	}
+	
+	
+	return quesTypeIdList;
+}
+
+//TODO
+//第一次到题库分类y用
+@Override
+public List<Map<String ,Object>> getAllFnYe(Pagination page){
+	List<Map<String ,Object>> quesTypeList=quesTypeMapper.getList(null, null, null, null, (page.getPage() - 1) * page.getPageSize(), page.getPageSize());
+	return quesTypeList;
+}
+//第一次到题库分类分页
+@Override
+public Long getAllFeYeCount(){
+	Long counts=quesTypeMapper.getCount(null, null, null, null);
+	
+	return counts;
+}
+
+
+//根据第二个树形结构查找其子分类分页
+ @Override
+ public Long getSonListCount(Long quesTypeId){
+	 Long count=quesTypeMapper.getCount(quesTypeId, null,null,null);
+	
+	 return count;
+ }
+    
+    
+}

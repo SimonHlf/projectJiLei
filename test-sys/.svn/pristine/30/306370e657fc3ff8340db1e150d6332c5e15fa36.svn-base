@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.windy.module.examination.dao.PaperSetMapper" >
+  <resultMap id="BaseResultMap" type="cn.windy.module.examination.mybatis.model.PaperSet" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="paper_id" property="paperId" jdbcType="BIGINT" />
+    <result column="paper_proportion" property="paperProportion" jdbcType="VARCHAR" />
+    <result column="paper_line" property="paperLine" jdbcType="INTEGER" />
+    <result column="paper_totail" property="paperTotail" jdbcType="INTEGER" />
+    <result column="exam_totle" property="examTotle" jdbcType="INTEGER" />
+    <result column="exam_real" property="examReal" jdbcType="INTEGER" />
+    <result column="exam_reset" property="examReset" jdbcType="INTEGER" />
+    <result column="exam_reset_num" property="examResetNum" jdbcType="INTEGER" />
+    <result column="exam_num" property="examNum" jdbcType="INTEGER" />
+    <result column="exam_time" property="examTime" jdbcType="VARCHAR" />
+    <result column="exam_use" property="examUse" jdbcType="INTEGER" />
+    <result column="creat_time" property="creatTime" jdbcType="VARCHAR" />
+    <result column="creat_by" property="creatBy" jdbcType="BIGINT" />
+    <result column="change_time" property="changeTime" jdbcType="BIGINT" />
+    <result column="change_by" property="changeBy" jdbcType="BIGINT" />
+    <result column="attr0" property="attr0" jdbcType="VARCHAR" />
+    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
+    <result column="attr5" property="attr5" jdbcType="VARCHAR" />
+    <result column="attr6" property="attr6" jdbcType="INTEGER" />
+    <result column="attr7" property="attr7" jdbcType="INTEGER" />
+    <result column="attr8" property="attr8" jdbcType="INTEGER" />
+    <result column="attr9" property="attr9" jdbcType="INTEGER" />
+    <result column="attr10" property="attr10" jdbcType="INTEGER" />
+    <result column="attr11" property="attr11" jdbcType="BIGINT" />
+    <result column="attr12" property="attr12" jdbcType="BIGINT" />
+    <result column="attr13" property="attr13" jdbcType="BIGINT" />
+    <result column="attr14" property="attr14" jdbcType="BIGINT" />
+    <result column="attr15" property="attr15" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, paper_id, paper_proportion, paper_line, paper_totail, exam_totle, exam_real, 
+      exam_reset, exam_reset_num, exam_num, exam_time, exam_use, creat_time, creat_by, 
+      change_time, change_by, attr0, attr1, attr2, attr3, attr4, attr5, attr6, attr7, attr8, 
+      attr9, attr10, attr11, attr12, attr13, attr14, attr15
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.windy.module.examination.mybatis.model.PaperSetQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from paper_set
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    id,paper_id,paper_proportion,paper_line,paper_totail,exam_totle,exam_real,exam_reset,exam_reset_num,exam_num,exam_time,exam_use,creat_time,creat_by,change_time,change_by,attr0,attr1,attr2,attr3,attr4,attr5,attr6,attr7,attr8,attr9,attr10,attr11,attr12,attr13,attr14,attr15
+    from paper_set
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 根据试卷Id查找其试卷设置 -->
+  <select id="getPaperSet" resultMap="BaseResultMap">
+  	select ps.*
+  	from paper_set ps
+  	where 1=1
+  	and ps.paper_id
+  	
+  </select> 
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from paper_set
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.windy.module.examination.mybatis.model.PaperSetQuery" >
+    delete from paper_set
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.windy.module.examination.mybatis.model.PaperSet" >
+    insert into paper_set (id, paper_id, paper_proportion, 
+      paper_line, paper_totail, exam_totle, 
+      exam_real, exam_reset, exam_reset_num, 
+      exam_num, exam_time, exam_use, 
+      creat_time, creat_by, change_time, 
+      change_by, attr0, attr1, 
+      attr2, attr3, attr4, 
+      attr5, attr6, attr7, 
+      attr8, attr9, attr10, 
+      attr11, attr12, attr13, 
+      attr14, attr15)
+    values (#{id,jdbcType=BIGINT}, #{paperId,jdbcType=BIGINT}, #{paperProportion,jdbcType=VARCHAR}, 
+      #{paperLine,jdbcType=INTEGER}, #{paperTotail,jdbcType=INTEGER}, #{examTotle,jdbcType=INTEGER}, 
+      #{examReal,jdbcType=INTEGER}, #{examReset,jdbcType=INTEGER}, #{examResetNum,jdbcType=INTEGER}, 
+      #{examNum,jdbcType=INTEGER}, #{examTime,jdbcType=VARCHAR}, #{examUse,jdbcType=INTEGER}, 
+      #{creatTime,jdbcType=VARCHAR}, #{creatBy,jdbcType=BIGINT}, #{changeTime,jdbcType=BIGINT}, 
+      #{changeBy,jdbcType=BIGINT}, #{attr0,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, 
+      #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR}, #{attr4,jdbcType=VARCHAR}, 
+      #{attr5,jdbcType=VARCHAR}, #{attr6,jdbcType=INTEGER}, #{attr7,jdbcType=INTEGER}, 
+      #{attr8,jdbcType=INTEGER}, #{attr9,jdbcType=INTEGER}, #{attr10,jdbcType=INTEGER}, 
+      #{attr11,jdbcType=BIGINT}, #{attr12,jdbcType=BIGINT}, #{attr13,jdbcType=BIGINT}, 
+      #{attr14,jdbcType=BIGINT}, #{attr15,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.windy.module.examination.mybatis.model.PaperSet" >
+    insert into paper_set
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="paperId != null" >
+        paper_id,
+      </if>
+      <if test="paperProportion != null" >
+        paper_proportion,
+      </if>
+      <if test="paperLine != null" >
+        paper_line,
+      </if>
+      <if test="paperTotail != null" >
+        paper_totail,
+      </if>
+      <if test="examTotle != null" >
+        exam_totle,
+      </if>
+      <if test="examReal != null" >
+        exam_real,
+      </if>
+      <if test="examReset != null" >
+        exam_reset,
+      </if>
+      <if test="examResetNum != null" >
+        exam_reset_num,
+      </if>
+      <if test="examNum != null" >
+        exam_num,
+      </if>
+      <if test="examTime != null" >
+        exam_time,
+      </if>
+      <if test="examUse != null" >
+        exam_use,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="creatBy != null" >
+        creat_by,
+      </if>
+      <if test="changeTime != null" >
+        change_time,
+      </if>
+      <if test="changeBy != null" >
+        change_by,
+      </if>
+      <if test="attr0 != null" >
+        attr0,
+      </if>
+      <if test="attr1 != null" >
+        attr1,
+      </if>
+      <if test="attr2 != null" >
+        attr2,
+      </if>
+      <if test="attr3 != null" >
+        attr3,
+      </if>
+      <if test="attr4 != null" >
+        attr4,
+      </if>
+      <if test="attr5 != null" >
+        attr5,
+      </if>
+      <if test="attr6 != null" >
+        attr6,
+      </if>
+      <if test="attr7 != null" >
+        attr7,
+      </if>
+      <if test="attr8 != null" >
+        attr8,
+      </if>
+      <if test="attr9 != null" >
+        attr9,
+      </if>
+      <if test="attr10 != null" >
+        attr10,
+      </if>
+      <if test="attr11 != null" >
+        attr11,
+      </if>
+      <if test="attr12 != null" >
+        attr12,
+      </if>
+      <if test="attr13 != null" >
+        attr13,
+      </if>
+      <if test="attr14 != null" >
+        attr14,
+      </if>
+      <if test="attr15 != null" >
+        attr15,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="paperId != null" >
+        #{paperId,jdbcType=BIGINT},
+      </if>
+      <if test="paperProportion != null" >
+        #{paperProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="paperLine != null" >
+        #{paperLine,jdbcType=INTEGER},
+      </if>
+      <if test="paperTotail != null" >
+        #{paperTotail,jdbcType=INTEGER},
+      </if>
+      <if test="examTotle != null" >
+        #{examTotle,jdbcType=INTEGER},
+      </if>
+      <if test="examReal != null" >
+        #{examReal,jdbcType=INTEGER},
+      </if>
+      <if test="examReset != null" >
+        #{examReset,jdbcType=INTEGER},
+      </if>
+      <if test="examResetNum != null" >
+        #{examResetNum,jdbcType=INTEGER},
+      </if>
+      <if test="examNum != null" >
+        #{examNum,jdbcType=INTEGER},
+      </if>
+      <if test="examTime != null" >
+        #{examTime,jdbcType=VARCHAR},
+      </if>
+      <if test="examUse != null" >
+        #{examUse,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="creatBy != null" >
+        #{creatBy,jdbcType=BIGINT},
+      </if>
+      <if test="changeTime != null" >
+        #{changeTime,jdbcType=BIGINT},
+      </if>
+      <if test="changeBy != null" >
+        #{changeBy,jdbcType=BIGINT},
+      </if>
+      <if test="attr0 != null" >
+        #{attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        #{attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="attr6 != null" >
+        #{attr6,jdbcType=INTEGER},
+      </if>
+      <if test="attr7 != null" >
+        #{attr7,jdbcType=INTEGER},
+      </if>
+      <if test="attr8 != null" >
+        #{attr8,jdbcType=INTEGER},
+      </if>
+      <if test="attr9 != null" >
+        #{attr9,jdbcType=INTEGER},
+      </if>
+      <if test="attr10 != null" >
+        #{attr10,jdbcType=INTEGER},
+      </if>
+      <if test="attr11 != null" >
+        #{attr11,jdbcType=BIGINT},
+      </if>
+      <if test="attr12 != null" >
+        #{attr12,jdbcType=BIGINT},
+      </if>
+      <if test="attr13 != null" >
+        #{attr13,jdbcType=BIGINT},
+      </if>
+      <if test="attr14 != null" >
+        #{attr14,jdbcType=BIGINT},
+      </if>
+      <if test="attr15 != null" >
+        #{attr15,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.windy.module.examination.mybatis.model.PaperSetQuery" resultType="java.lang.Integer" >
+    select count(*) from paper_set
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update paper_set
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.paperId != null" >
+        paper_id = #{record.paperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.paperProportion != null" >
+        paper_proportion = #{record.paperProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paperLine != null" >
+        paper_line = #{record.paperLine,jdbcType=INTEGER},
+      </if>
+      <if test="record.paperTotail != null" >
+        paper_totail = #{record.paperTotail,jdbcType=INTEGER},
+      </if>
+      <if test="record.examTotle != null" >
+        exam_totle = #{record.examTotle,jdbcType=INTEGER},
+      </if>
+      <if test="record.examReal != null" >
+        exam_real = #{record.examReal,jdbcType=INTEGER},
+      </if>
+      <if test="record.examReset != null" >
+        exam_reset = #{record.examReset,jdbcType=INTEGER},
+      </if>
+      <if test="record.examResetNum != null" >
+        exam_reset_num = #{record.examResetNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.examNum != null" >
+        exam_num = #{record.examNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.examTime != null" >
+        exam_time = #{record.examTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examUse != null" >
+        exam_use = #{record.examUse,jdbcType=INTEGER},
+      </if>
+      <if test="record.creatTime != null" >
+        creat_time = #{record.creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatBy != null" >
+        creat_by = #{record.creatBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.changeTime != null" >
+        change_time = #{record.changeTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.changeBy != null" >
+        change_by = #{record.changeBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr0 != null" >
+        attr0 = #{record.attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr1 != null" >
+        attr1 = #{record.attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr2 != null" >
+        attr2 = #{record.attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr3 != null" >
+        attr3 = #{record.attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr4 != null" >
+        attr4 = #{record.attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr5 != null" >
+        attr5 = #{record.attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr6 != null" >
+        attr6 = #{record.attr6,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr7 != null" >
+        attr7 = #{record.attr7,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr8 != null" >
+        attr8 = #{record.attr8,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr9 != null" >
+        attr9 = #{record.attr9,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr10 != null" >
+        attr10 = #{record.attr10,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr11 != null" >
+        attr11 = #{record.attr11,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr12 != null" >
+        attr12 = #{record.attr12,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr13 != null" >
+        attr13 = #{record.attr13,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr14 != null" >
+        attr14 = #{record.attr14,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr15 != null" >
+        attr15 = #{record.attr15,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update paper_set
+    set id = #{record.id,jdbcType=BIGINT},
+      paper_id = #{record.paperId,jdbcType=BIGINT},
+      paper_proportion = #{record.paperProportion,jdbcType=VARCHAR},
+      paper_line = #{record.paperLine,jdbcType=INTEGER},
+      paper_totail = #{record.paperTotail,jdbcType=INTEGER},
+      exam_totle = #{record.examTotle,jdbcType=INTEGER},
+      exam_real = #{record.examReal,jdbcType=INTEGER},
+      exam_reset = #{record.examReset,jdbcType=INTEGER},
+      exam_reset_num = #{record.examResetNum,jdbcType=INTEGER},
+      exam_num = #{record.examNum,jdbcType=INTEGER},
+      exam_time = #{record.examTime,jdbcType=VARCHAR},
+      exam_use = #{record.examUse,jdbcType=INTEGER},
+      creat_time = #{record.creatTime,jdbcType=VARCHAR},
+      creat_by = #{record.creatBy,jdbcType=BIGINT},
+      change_time = #{record.changeTime,jdbcType=BIGINT},
+      change_by = #{record.changeBy,jdbcType=BIGINT},
+      attr0 = #{record.attr0,jdbcType=VARCHAR},
+      attr1 = #{record.attr1,jdbcType=VARCHAR},
+      attr2 = #{record.attr2,jdbcType=VARCHAR},
+      attr3 = #{record.attr3,jdbcType=VARCHAR},
+      attr4 = #{record.attr4,jdbcType=VARCHAR},
+      attr5 = #{record.attr5,jdbcType=VARCHAR},
+      attr6 = #{record.attr6,jdbcType=INTEGER},
+      attr7 = #{record.attr7,jdbcType=INTEGER},
+      attr8 = #{record.attr8,jdbcType=INTEGER},
+      attr9 = #{record.attr9,jdbcType=INTEGER},
+      attr10 = #{record.attr10,jdbcType=INTEGER},
+      attr11 = #{record.attr11,jdbcType=BIGINT},
+      attr12 = #{record.attr12,jdbcType=BIGINT},
+      attr13 = #{record.attr13,jdbcType=BIGINT},
+      attr14 = #{record.attr14,jdbcType=BIGINT},
+      attr15 = #{record.attr15,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.windy.module.examination.mybatis.model.PaperSet" >
+    update paper_set
+    <set >
+      <if test="paperId != null" >
+        paper_id = #{paperId,jdbcType=BIGINT},
+      </if>
+      <if test="paperProportion != null" >
+        paper_proportion = #{paperProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="paperLine != null" >
+        paper_line = #{paperLine,jdbcType=INTEGER},
+      </if>
+      <if test="paperTotail != null" >
+        paper_totail = #{paperTotail,jdbcType=INTEGER},
+      </if>
+      <if test="examTotle != null" >
+        exam_totle = #{examTotle,jdbcType=INTEGER},
+      </if>
+      <if test="examReal != null" >
+        exam_real = #{examReal,jdbcType=INTEGER},
+      </if>
+      <if test="examReset != null" >
+        exam_reset = #{examReset,jdbcType=INTEGER},
+      </if>
+      <if test="examResetNum != null" >
+        exam_reset_num = #{examResetNum,jdbcType=INTEGER},
+      </if>
+      <if test="examNum != null" >
+        exam_num = #{examNum,jdbcType=INTEGER},
+      </if>
+      <if test="examTime != null" >
+        exam_time = #{examTime,jdbcType=VARCHAR},
+      </if>
+      <if test="examUse != null" >
+        exam_use = #{examUse,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=VARCHAR},
+      </if>
+      <if test="creatBy != null" >
+        creat_by = #{creatBy,jdbcType=BIGINT},
+      </if>
+      <if test="changeTime != null" >
+        change_time = #{changeTime,jdbcType=BIGINT},
+      </if>
+      <if test="changeBy != null" >
+        change_by = #{changeBy,jdbcType=BIGINT},
+      </if>
+      <if test="attr0 != null" >
+        attr0 = #{attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        attr1 = #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        attr2 = #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        attr3 = #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        attr4 = #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        attr5 = #{attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="attr6 != null" >
+        attr6 = #{attr6,jdbcType=INTEGER},
+      </if>
+      <if test="attr7 != null" >
+        attr7 = #{attr7,jdbcType=INTEGER},
+      </if>
+      <if test="attr8 != null" >
+        attr8 = #{attr8,jdbcType=INTEGER},
+      </if>
+      <if test="attr9 != null" >
+        attr9 = #{attr9,jdbcType=INTEGER},
+      </if>
+      <if test="attr10 != null" >
+        attr10 = #{attr10,jdbcType=INTEGER},
+      </if>
+      <if test="attr11 != null" >
+        attr11 = #{attr11,jdbcType=BIGINT},
+      </if>
+      <if test="attr12 != null" >
+        attr12 = #{attr12,jdbcType=BIGINT},
+      </if>
+      <if test="attr13 != null" >
+        attr13 = #{attr13,jdbcType=BIGINT},
+      </if>
+      <if test="attr14 != null" >
+        attr14 = #{attr14,jdbcType=BIGINT},
+      </if>
+      <if test="attr15 != null" >
+        attr15 = #{attr15,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.windy.module.examination.mybatis.model.PaperSet" >
+    update paper_set
+    set paper_id = #{paperId,jdbcType=BIGINT},
+      paper_proportion = #{paperProportion,jdbcType=VARCHAR},
+      paper_line = #{paperLine,jdbcType=INTEGER},
+      paper_totail = #{paperTotail,jdbcType=INTEGER},
+      exam_totle = #{examTotle,jdbcType=INTEGER},
+      exam_real = #{examReal,jdbcType=INTEGER},
+      exam_reset = #{examReset,jdbcType=INTEGER},
+      exam_reset_num = #{examResetNum,jdbcType=INTEGER},
+      exam_num = #{examNum,jdbcType=INTEGER},
+      exam_time = #{examTime,jdbcType=VARCHAR},
+      exam_use = #{examUse,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=VARCHAR},
+      creat_by = #{creatBy,jdbcType=BIGINT},
+      change_time = #{changeTime,jdbcType=BIGINT},
+      change_by = #{changeBy,jdbcType=BIGINT},
+      attr0 = #{attr0,jdbcType=VARCHAR},
+      attr1 = #{attr1,jdbcType=VARCHAR},
+      attr2 = #{attr2,jdbcType=VARCHAR},
+      attr3 = #{attr3,jdbcType=VARCHAR},
+      attr4 = #{attr4,jdbcType=VARCHAR},
+      attr5 = #{attr5,jdbcType=VARCHAR},
+      attr6 = #{attr6,jdbcType=INTEGER},
+      attr7 = #{attr7,jdbcType=INTEGER},
+      attr8 = #{attr8,jdbcType=INTEGER},
+      attr9 = #{attr9,jdbcType=INTEGER},
+      attr10 = #{attr10,jdbcType=INTEGER},
+      attr11 = #{attr11,jdbcType=BIGINT},
+      attr12 = #{attr12,jdbcType=BIGINT},
+      attr13 = #{attr13,jdbcType=BIGINT},
+      attr14 = #{attr14,jdbcType=BIGINT},
+      attr15 = #{attr15,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

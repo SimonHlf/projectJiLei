@@ -1,0 +1,49 @@
+<%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="v" tagdir="/WEB-INF/tags" %>
+
+                <table class="table table-bordered table-striped table-condensed flip-content">
+                    <thead class="flip-content bordered-palegreen">
+                    <tr>
+                        <th width="44px;"><v:checkbox/></th>
+                        <th>试题名称 </th>
+                        <!-- <th>试题分类</th> -->
+                        <th>试题类型</th>
+                        <!-- <th>是否共享</th> -->
+                        <th>详情</th>
+                        <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${questionsList}" var="questions">
+                        <tr>
+                            <th width="44px;"><v:checkbox value="${questions.id}"/></th>
+                            <td>${questions.name}</td>
+                            <c:if test="${questions.type==0}">
+                                <td>单选题</td>
+                            </c:if>
+                            <c:if test="${questions.type==1}">
+                                <td>多选题</td>
+                            </c:if>
+                            <c:if test="${questions.type==2}">
+                                <td>判断题</td>
+                            </c:if>
+
+                           <%-- <c:if test="${questions.isShare==0}">
+                            <td>分享</td>
+                            </c:if>
+                            <c:if test="${questions.isShare==1}">
+                                <td>不分享</td>
+                            </c:if> --%>
+
+                            <td><a href="javascript:xiangqing(${questions.id},${page.page})">详情</a></td>
+
+                            <td>${questions.creatTime}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <input type="hidden" id="disRatePage" value="${page.page}">
+                <v:paper page="${page}" url="PaperCreatController/getFenYeOne.htm?1=1&paperCreatId=${paperCreatId}"></v:paper>
+            
+   

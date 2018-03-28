@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.windy.module.examination.dao.PaperRecordMapper" >
+  <resultMap id="BaseResultMap" type="cn.windy.module.examination.mybatis.model.PaperRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="userId" property="userid" jdbcType="BIGINT" />
+    <result column="audioId" property="audioid" jdbcType="INTEGER" />
+    <result column="optionId" property="optionid" jdbcType="VARCHAR" />
+    <result column="optionAnswer" property="optionanswer" jdbcType="VARCHAR" />
+    <result column="decidId" property="decidid" jdbcType="VARCHAR" />
+    <result column="decidAnswer" property="decidanswer" jdbcType="VARCHAR" />
+    <result column="optionMoreAnswerId" property="optionmoreanswerid" jdbcType="VARCHAR" />
+    <result column="optionMoreAnswer" property="optionmoreanswer" jdbcType="VARCHAR" />
+    <result column="option_num" property="optionNum" jdbcType="INTEGER" />
+    <result column="attr0" property="attr0" jdbcType="VARCHAR" />
+    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
+    <result column="attr5" property="attr5" jdbcType="INTEGER" />
+    <result column="attr6" property="attr6" jdbcType="INTEGER" />
+    <result column="attr7" property="attr7" jdbcType="INTEGER" />
+    <result column="attr8" property="attr8" jdbcType="INTEGER" />
+    <result column="attr9" property="attr9" jdbcType="BIGINT" />
+    <result column="attr10" property="attr10" jdbcType="BIGINT" />
+    <result column="attr11" property="attr11" jdbcType="BIGINT" />
+    <result column="attr12" property="attr12" jdbcType="DOUBLE" />
+    <result column="attr13" property="attr13" jdbcType="DOUBLE" />
+    <result column="attr14" property="attr14" jdbcType="VARCHAR" />
+    <result column="attr15" property="attr15" jdbcType="VARCHAR" />
+    <result column="fen" property="fen" jdbcType="DOUBLE" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="optionAnswerOfUser" property="optionanswerofuser" jdbcType="VARCHAR" />
+    <result column="decidAnswerOfUser" property="decidanswerofuser" jdbcType="VARCHAR" />
+    <result column="optionMoreOfUser" property="optionmoreofuser" jdbcType="VARCHAR" />
+    <result column="rightNum" property="rightnum" jdbcType="INTEGER" />
+    <result column="creatTime" property="creattime" jdbcType="VARCHAR" />
+    <result column="attr16" property="attr16" jdbcType="VARCHAR" />
+    <result column="attr17" property="attr17" jdbcType="VARCHAR" />
+    <result column="attr18" property="attr18" jdbcType="VARCHAR" />
+    <result column="attr19" property="attr19" jdbcType="VARCHAR" />
+    <result column="attr20" property="attr20" jdbcType="VARCHAR" />
+    <result column="attr21" property="attr21" jdbcType="VARCHAR" />
+    <result column="attr22" property="attr22" jdbcType="VARCHAR" />
+    <result column="attr23" property="attr23" jdbcType="VARCHAR" />
+    <result column="attr24" property="attr24" jdbcType="VARCHAR" />
+    <result column="attr25" property="attr25" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, userId, audioId, optionId, optionAnswer, decidId, decidAnswer, optionMoreAnswerId, 
+      optionMoreAnswer, option_num, attr0, attr1, attr2, attr3, attr4, attr5, attr6, attr7, 
+      attr8, attr9, attr10, attr11, attr12, attr13, attr14, attr15, fen, type, org_id, 
+      optionAnswerOfUser, decidAnswerOfUser, optionMoreOfUser, rightNum, creatTime, attr16, 
+      attr17, attr18, attr19, attr20, attr21, attr22, attr23, attr24, attr25
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.windy.module.examination.mybatis.model.PaperRecordQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from paper_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    id,userId,audioId,optionId,optionAnswer,decidId,decidAnswer,optionMoreAnswerId,optionMoreAnswer,option_num,attr0,attr1,attr2,attr3,attr4,attr5,attr6,attr7,attr8,attr9,attr10,attr11,attr12,attr13,attr14,attr15,fen,type,org_id,optionAnswerOfUser,decidAnswerOfUser,optionMoreOfUser,rightNum,creatTime,attr16,attr17,attr18,attr19,attr20,attr21,attr22,attr23,attr24,attr25
+    from paper_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 前台考试记录用 -->
+  <select id="getRecord" resultType="java.util.Map">
+  	select pr.*,pr.creatTime recordTime,pc.name paperCreatName,pc.change_time,ps.exam_time,ex.exam_name,ex.id examinationId
+  	from paper_record pr,paper_creat pc,paper_set ps,examination ex
+  	where 1=1
+  	<if test="paperCreatName !=null and paperCreatName !=''">
+  	and	pc.name like '%${paperCreatName}%'
+  	</if>
+  	<!-- <if test="attr19 !=null and attr19 !=''">
+  	and pr.attr19=0
+  	</if> -->
+  	and pr.userId=#{userId}
+  	and pr.attr9=pc.id
+  	and pc.id=ps.paper_id 
+  	and ex.id=pr.attr10
+  	<if test="pageSize !=null and pageSize !=''">
+  	limit #{startRow} , #{pageSize}
+  	</if>
+  </select>
+  
+  
+  
+  <select id="getRecordCount" resultType="java.lang.Long">
+  	select count(*)
+  	from paper_record pr,paper_creat pc,paper_set ps,examination ex
+  	where 1=1
+  	<if test="paperCreatName !=null and paperCreatName !=''">
+  	and	pc.name like '%${paperCreatName}%'
+  	</if>
+  	<if test="attr19 !=null and attr19 !=''">
+  	and pr.attr19=0
+  	</if>
+  	and pr.userId=#{userId}
+  	and pr.attr9=pc.id
+  	and pc.id=ps.paper_id
+    and ex.id=pr.attr10
+  </select>
+  
+  <!--查看用户考试记录-->
+  <select id="getList" resultType="java.util.Map">
+  	select pr.id,fu.nick_name,fu.the_signature,wo.name orgName,pc.name paperCreatName,pr.fen
+  	from paper_record pr,front_user fu,windy_org wo,paper_creat pc,examination ea,exam_personnel ep
+  	where 1=1 
+  	<if test="userName !=null and userName !=''">
+  	and	fu.nick_name like '%${userName}%'
+  	</if>
+  	<if test="userId != null and userId !=''">
+  	and pr.userId=#{userId}
+  	</if>
+  	and ep.is_exam=1
+  	AND fu.user_id=ep.user_id
+  	AND ep.exam_id=ea.id
+  	AND ea.id=pr.attr10
+  	AND pr.attr9=pc.id
+  	AND pc.ins_id=wo.id
+  	limit #{startRow} , #{pageSize}
+  </select>
+  
+  <!--查看用户考试记录计数-->
+  <select id="getListCount" resultType="java.lang.Long" >
+  	select count(*)
+  	from paper_record pr,front_user fu,windy_org wo,paper_creat pc,examination ea,exam_personnel ep
+  	where 1=1
+  	<if test="userName !=null and userName !=''">
+  	and	fu.nick_name like '%${userName}%'
+  	</if>
+  	<if test="userId != null and userId !=''">
+  	and pr.userId=#{userId}
+  	</if>
+  	and ep.is_exam=1
+  	AND fu.user_id=ep.user_id
+  	AND ep.exam_id=ea.id
+  	AND ea.id=pr.attr10
+  	AND pr.attr9=pc.id
+  	AND pc.ins_id=wo.id
+  </select>
+  <!-- 用户还能进行几次考试 -->
+  <select id="getTotestTime" resultType="java.lang.Integer">
+  	select count(*)
+  	from paper_record pr
+  	where 1=1
+  	and pr.userId=#{userId}
+  	and pr.attr9=#{paperCreatId}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from paper_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.windy.module.examination.mybatis.model.PaperRecordQuery" >
+    delete from paper_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.windy.module.examination.mybatis.model.PaperRecord" >
+    insert into paper_record (id, userId, audioId, 
+      optionId, optionAnswer, decidId, 
+      decidAnswer, optionMoreAnswerId, optionMoreAnswer, 
+      option_num, attr0, attr1, 
+      attr2, attr3, attr4, 
+      attr5, attr6, attr7, 
+      attr8, attr9, attr10, 
+      attr11, attr12, attr13, 
+      attr14, attr15, fen, 
+      type, org_id, optionAnswerOfUser, 
+      decidAnswerOfUser, optionMoreOfUser, rightNum, 
+      creatTime, attr16, attr17, 
+      attr18, attr19, attr20, 
+      attr21, attr22, attr23, 
+      attr24, attr25)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{audioid,jdbcType=INTEGER}, 
+      #{optionid,jdbcType=VARCHAR}, #{optionanswer,jdbcType=VARCHAR}, #{decidid,jdbcType=VARCHAR}, 
+      #{decidanswer,jdbcType=VARCHAR}, #{optionmoreanswerid,jdbcType=VARCHAR}, #{optionmoreanswer,jdbcType=VARCHAR}, 
+      #{optionNum,jdbcType=INTEGER}, #{attr0,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, 
+      #{attr2,jdbcType=VARCHAR}, #{attr3,jdbcType=VARCHAR}, #{attr4,jdbcType=VARCHAR}, 
+      #{attr5,jdbcType=INTEGER}, #{attr6,jdbcType=INTEGER}, #{attr7,jdbcType=INTEGER}, 
+      #{attr8,jdbcType=INTEGER}, #{attr9,jdbcType=BIGINT}, #{attr10,jdbcType=BIGINT}, 
+      #{attr11,jdbcType=BIGINT}, #{attr12,jdbcType=DOUBLE}, #{attr13,jdbcType=DOUBLE}, 
+      #{attr14,jdbcType=VARCHAR}, #{attr15,jdbcType=VARCHAR}, #{fen,jdbcType=DOUBLE}, 
+      #{type,jdbcType=INTEGER}, #{orgId,jdbcType=BIGINT}, #{optionanswerofuser,jdbcType=VARCHAR}, 
+      #{decidanswerofuser,jdbcType=VARCHAR}, #{optionmoreofuser,jdbcType=VARCHAR}, #{rightnum,jdbcType=INTEGER}, 
+      #{creattime,jdbcType=VARCHAR}, #{attr16,jdbcType=VARCHAR}, #{attr17,jdbcType=VARCHAR}, 
+      #{attr18,jdbcType=VARCHAR}, #{attr19,jdbcType=VARCHAR}, #{attr20,jdbcType=VARCHAR}, 
+      #{attr21,jdbcType=VARCHAR}, #{attr22,jdbcType=VARCHAR}, #{attr23,jdbcType=VARCHAR}, 
+      #{attr24,jdbcType=VARCHAR}, #{attr25,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.windy.module.examination.mybatis.model.PaperRecord" >
+    insert into paper_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="audioid != null" >
+        audioId,
+      </if>
+      <if test="optionid != null" >
+        optionId,
+      </if>
+      <if test="optionanswer != null" >
+        optionAnswer,
+      </if>
+      <if test="decidid != null" >
+        decidId,
+      </if>
+      <if test="decidanswer != null" >
+        decidAnswer,
+      </if>
+      <if test="optionmoreanswerid != null" >
+        optionMoreAnswerId,
+      </if>
+      <if test="optionmoreanswer != null" >
+        optionMoreAnswer,
+      </if>
+      <if test="optionNum != null" >
+        option_num,
+      </if>
+      <if test="attr0 != null" >
+        attr0,
+      </if>
+      <if test="attr1 != null" >
+        attr1,
+      </if>
+      <if test="attr2 != null" >
+        attr2,
+      </if>
+      <if test="attr3 != null" >
+        attr3,
+      </if>
+      <if test="attr4 != null" >
+        attr4,
+      </if>
+      <if test="attr5 != null" >
+        attr5,
+      </if>
+      <if test="attr6 != null" >
+        attr6,
+      </if>
+      <if test="attr7 != null" >
+        attr7,
+      </if>
+      <if test="attr8 != null" >
+        attr8,
+      </if>
+      <if test="attr9 != null" >
+        attr9,
+      </if>
+      <if test="attr10 != null" >
+        attr10,
+      </if>
+      <if test="attr11 != null" >
+        attr11,
+      </if>
+      <if test="attr12 != null" >
+        attr12,
+      </if>
+      <if test="attr13 != null" >
+        attr13,
+      </if>
+      <if test="attr14 != null" >
+        attr14,
+      </if>
+      <if test="attr15 != null" >
+        attr15,
+      </if>
+      <if test="fen != null" >
+        fen,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="optionanswerofuser != null" >
+        optionAnswerOfUser,
+      </if>
+      <if test="decidanswerofuser != null" >
+        decidAnswerOfUser,
+      </if>
+      <if test="optionmoreofuser != null" >
+        optionMoreOfUser,
+      </if>
+      <if test="rightnum != null" >
+        rightNum,
+      </if>
+      <if test="creattime != null" >
+        creatTime,
+      </if>
+      <if test="attr16 != null" >
+        attr16,
+      </if>
+      <if test="attr17 != null" >
+        attr17,
+      </if>
+      <if test="attr18 != null" >
+        attr18,
+      </if>
+      <if test="attr19 != null" >
+        attr19,
+      </if>
+      <if test="attr20 != null" >
+        attr20,
+      </if>
+      <if test="attr21 != null" >
+        attr21,
+      </if>
+      <if test="attr22 != null" >
+        attr22,
+      </if>
+      <if test="attr23 != null" >
+        attr23,
+      </if>
+      <if test="attr24 != null" >
+        attr24,
+      </if>
+      <if test="attr25 != null" >
+        attr25,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="audioid != null" >
+        #{audioid,jdbcType=INTEGER},
+      </if>
+      <if test="optionid != null" >
+        #{optionid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionanswer != null" >
+        #{optionanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="decidid != null" >
+        #{decidid,jdbcType=VARCHAR},
+      </if>
+      <if test="decidanswer != null" >
+        #{decidanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="optionmoreanswerid != null" >
+        #{optionmoreanswerid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionmoreanswer != null" >
+        #{optionmoreanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="optionNum != null" >
+        #{optionNum,jdbcType=INTEGER},
+      </if>
+      <if test="attr0 != null" >
+        #{attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        #{attr5,jdbcType=INTEGER},
+      </if>
+      <if test="attr6 != null" >
+        #{attr6,jdbcType=INTEGER},
+      </if>
+      <if test="attr7 != null" >
+        #{attr7,jdbcType=INTEGER},
+      </if>
+      <if test="attr8 != null" >
+        #{attr8,jdbcType=INTEGER},
+      </if>
+      <if test="attr9 != null" >
+        #{attr9,jdbcType=BIGINT},
+      </if>
+      <if test="attr10 != null" >
+        #{attr10,jdbcType=BIGINT},
+      </if>
+      <if test="attr11 != null" >
+        #{attr11,jdbcType=BIGINT},
+      </if>
+      <if test="attr12 != null" >
+        #{attr12,jdbcType=DOUBLE},
+      </if>
+      <if test="attr13 != null" >
+        #{attr13,jdbcType=DOUBLE},
+      </if>
+      <if test="attr14 != null" >
+        #{attr14,jdbcType=VARCHAR},
+      </if>
+      <if test="attr15 != null" >
+        #{attr15,jdbcType=VARCHAR},
+      </if>
+      <if test="fen != null" >
+        #{fen,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="optionanswerofuser != null" >
+        #{optionanswerofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="decidanswerofuser != null" >
+        #{decidanswerofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="optionmoreofuser != null" >
+        #{optionmoreofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="rightnum != null" >
+        #{rightnum,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="attr16 != null" >
+        #{attr16,jdbcType=VARCHAR},
+      </if>
+      <if test="attr17 != null" >
+        #{attr17,jdbcType=VARCHAR},
+      </if>
+      <if test="attr18 != null" >
+        #{attr18,jdbcType=VARCHAR},
+      </if>
+      <if test="attr19 != null" >
+        #{attr19,jdbcType=VARCHAR},
+      </if>
+      <if test="attr20 != null" >
+        #{attr20,jdbcType=VARCHAR},
+      </if>
+      <if test="attr21 != null" >
+        #{attr21,jdbcType=VARCHAR},
+      </if>
+      <if test="attr22 != null" >
+        #{attr22,jdbcType=VARCHAR},
+      </if>
+      <if test="attr23 != null" >
+        #{attr23,jdbcType=VARCHAR},
+      </if>
+      <if test="attr24 != null" >
+        #{attr24,jdbcType=VARCHAR},
+      </if>
+      <if test="attr25 != null" >
+        #{attr25,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.windy.module.examination.mybatis.model.PaperRecordQuery" resultType="java.lang.Integer" >
+    select count(*) from paper_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update paper_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=BIGINT},
+      </if>
+      <if test="record.audioid != null" >
+        audioId = #{record.audioid,jdbcType=INTEGER},
+      </if>
+      <if test="record.optionid != null" >
+        optionId = #{record.optionid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionanswer != null" >
+        optionAnswer = #{record.optionanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decidid != null" >
+        decidId = #{record.decidid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decidanswer != null" >
+        decidAnswer = #{record.decidanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionmoreanswerid != null" >
+        optionMoreAnswerId = #{record.optionmoreanswerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionmoreanswer != null" >
+        optionMoreAnswer = #{record.optionmoreanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionNum != null" >
+        option_num = #{record.optionNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr0 != null" >
+        attr0 = #{record.attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr1 != null" >
+        attr1 = #{record.attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr2 != null" >
+        attr2 = #{record.attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr3 != null" >
+        attr3 = #{record.attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr4 != null" >
+        attr4 = #{record.attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr5 != null" >
+        attr5 = #{record.attr5,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr6 != null" >
+        attr6 = #{record.attr6,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr7 != null" >
+        attr7 = #{record.attr7,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr8 != null" >
+        attr8 = #{record.attr8,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr9 != null" >
+        attr9 = #{record.attr9,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr10 != null" >
+        attr10 = #{record.attr10,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr11 != null" >
+        attr11 = #{record.attr11,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr12 != null" >
+        attr12 = #{record.attr12,jdbcType=DOUBLE},
+      </if>
+      <if test="record.attr13 != null" >
+        attr13 = #{record.attr13,jdbcType=DOUBLE},
+      </if>
+      <if test="record.attr14 != null" >
+        attr14 = #{record.attr14,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr15 != null" >
+        attr15 = #{record.attr15,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fen != null" >
+        fen = #{record.fen,jdbcType=DOUBLE},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.orgId != null" >
+        org_id = #{record.orgId,jdbcType=BIGINT},
+      </if>
+      <if test="record.optionanswerofuser != null" >
+        optionAnswerOfUser = #{record.optionanswerofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decidanswerofuser != null" >
+        decidAnswerOfUser = #{record.decidanswerofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionmoreofuser != null" >
+        optionMoreOfUser = #{record.optionmoreofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rightnum != null" >
+        rightNum = #{record.rightnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.creattime != null" >
+        creatTime = #{record.creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr16 != null" >
+        attr16 = #{record.attr16,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr17 != null" >
+        attr17 = #{record.attr17,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr18 != null" >
+        attr18 = #{record.attr18,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr19 != null" >
+        attr19 = #{record.attr19,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr20 != null" >
+        attr20 = #{record.attr20,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr21 != null" >
+        attr21 = #{record.attr21,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr22 != null" >
+        attr22 = #{record.attr22,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr23 != null" >
+        attr23 = #{record.attr23,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr24 != null" >
+        attr24 = #{record.attr24,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr25 != null" >
+        attr25 = #{record.attr25,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update paper_record
+    set id = #{record.id,jdbcType=BIGINT},
+      userId = #{record.userid,jdbcType=BIGINT},
+      audioId = #{record.audioid,jdbcType=INTEGER},
+      optionId = #{record.optionid,jdbcType=VARCHAR},
+      optionAnswer = #{record.optionanswer,jdbcType=VARCHAR},
+      decidId = #{record.decidid,jdbcType=VARCHAR},
+      decidAnswer = #{record.decidanswer,jdbcType=VARCHAR},
+      optionMoreAnswerId = #{record.optionmoreanswerid,jdbcType=VARCHAR},
+      optionMoreAnswer = #{record.optionmoreanswer,jdbcType=VARCHAR},
+      option_num = #{record.optionNum,jdbcType=INTEGER},
+      attr0 = #{record.attr0,jdbcType=VARCHAR},
+      attr1 = #{record.attr1,jdbcType=VARCHAR},
+      attr2 = #{record.attr2,jdbcType=VARCHAR},
+      attr3 = #{record.attr3,jdbcType=VARCHAR},
+      attr4 = #{record.attr4,jdbcType=VARCHAR},
+      attr5 = #{record.attr5,jdbcType=INTEGER},
+      attr6 = #{record.attr6,jdbcType=INTEGER},
+      attr7 = #{record.attr7,jdbcType=INTEGER},
+      attr8 = #{record.attr8,jdbcType=INTEGER},
+      attr9 = #{record.attr9,jdbcType=BIGINT},
+      attr10 = #{record.attr10,jdbcType=BIGINT},
+      attr11 = #{record.attr11,jdbcType=BIGINT},
+      attr12 = #{record.attr12,jdbcType=DOUBLE},
+      attr13 = #{record.attr13,jdbcType=DOUBLE},
+      attr14 = #{record.attr14,jdbcType=VARCHAR},
+      attr15 = #{record.attr15,jdbcType=VARCHAR},
+      fen = #{record.fen,jdbcType=DOUBLE},
+      type = #{record.type,jdbcType=INTEGER},
+      org_id = #{record.orgId,jdbcType=BIGINT},
+      optionAnswerOfUser = #{record.optionanswerofuser,jdbcType=VARCHAR},
+      decidAnswerOfUser = #{record.decidanswerofuser,jdbcType=VARCHAR},
+      optionMoreOfUser = #{record.optionmoreofuser,jdbcType=VARCHAR},
+      rightNum = #{record.rightnum,jdbcType=INTEGER},
+      creatTime = #{record.creattime,jdbcType=VARCHAR},
+      attr16 = #{record.attr16,jdbcType=VARCHAR},
+      attr17 = #{record.attr17,jdbcType=VARCHAR},
+      attr18 = #{record.attr18,jdbcType=VARCHAR},
+      attr19 = #{record.attr19,jdbcType=VARCHAR},
+      attr20 = #{record.attr20,jdbcType=VARCHAR},
+      attr21 = #{record.attr21,jdbcType=VARCHAR},
+      attr22 = #{record.attr22,jdbcType=VARCHAR},
+      attr23 = #{record.attr23,jdbcType=VARCHAR},
+      attr24 = #{record.attr24,jdbcType=VARCHAR},
+      attr25 = #{record.attr25,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.windy.module.examination.mybatis.model.PaperRecord" >
+    update paper_record
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="audioid != null" >
+        audioId = #{audioid,jdbcType=INTEGER},
+      </if>
+      <if test="optionid != null" >
+        optionId = #{optionid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionanswer != null" >
+        optionAnswer = #{optionanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="decidid != null" >
+        decidId = #{decidid,jdbcType=VARCHAR},
+      </if>
+      <if test="decidanswer != null" >
+        decidAnswer = #{decidanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="optionmoreanswerid != null" >
+        optionMoreAnswerId = #{optionmoreanswerid,jdbcType=VARCHAR},
+      </if>
+      <if test="optionmoreanswer != null" >
+        optionMoreAnswer = #{optionmoreanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="optionNum != null" >
+        option_num = #{optionNum,jdbcType=INTEGER},
+      </if>
+      <if test="attr0 != null" >
+        attr0 = #{attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        attr1 = #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        attr2 = #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        attr3 = #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        attr4 = #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        attr5 = #{attr5,jdbcType=INTEGER},
+      </if>
+      <if test="attr6 != null" >
+        attr6 = #{attr6,jdbcType=INTEGER},
+      </if>
+      <if test="attr7 != null" >
+        attr7 = #{attr7,jdbcType=INTEGER},
+      </if>
+      <if test="attr8 != null" >
+        attr8 = #{attr8,jdbcType=INTEGER},
+      </if>
+      <if test="attr9 != null" >
+        attr9 = #{attr9,jdbcType=BIGINT},
+      </if>
+      <if test="attr10 != null" >
+        attr10 = #{attr10,jdbcType=BIGINT},
+      </if>
+      <if test="attr11 != null" >
+        attr11 = #{attr11,jdbcType=BIGINT},
+      </if>
+      <if test="attr12 != null" >
+        attr12 = #{attr12,jdbcType=DOUBLE},
+      </if>
+      <if test="attr13 != null" >
+        attr13 = #{attr13,jdbcType=DOUBLE},
+      </if>
+      <if test="attr14 != null" >
+        attr14 = #{attr14,jdbcType=VARCHAR},
+      </if>
+      <if test="attr15 != null" >
+        attr15 = #{attr15,jdbcType=VARCHAR},
+      </if>
+      <if test="fen != null" >
+        fen = #{fen,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="optionanswerofuser != null" >
+        optionAnswerOfUser = #{optionanswerofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="decidanswerofuser != null" >
+        decidAnswerOfUser = #{decidanswerofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="optionmoreofuser != null" >
+        optionMoreOfUser = #{optionmoreofuser,jdbcType=VARCHAR},
+      </if>
+      <if test="rightnum != null" >
+        rightNum = #{rightnum,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        creatTime = #{creattime,jdbcType=VARCHAR},
+      </if>
+      <if test="attr16 != null" >
+        attr16 = #{attr16,jdbcType=VARCHAR},
+      </if>
+      <if test="attr17 != null" >
+        attr17 = #{attr17,jdbcType=VARCHAR},
+      </if>
+      <if test="attr18 != null" >
+        attr18 = #{attr18,jdbcType=VARCHAR},
+      </if>
+      <if test="attr19 != null" >
+        attr19 = #{attr19,jdbcType=VARCHAR},
+      </if>
+      <if test="attr20 != null" >
+        attr20 = #{attr20,jdbcType=VARCHAR},
+      </if>
+      <if test="attr21 != null" >
+        attr21 = #{attr21,jdbcType=VARCHAR},
+      </if>
+      <if test="attr22 != null" >
+        attr22 = #{attr22,jdbcType=VARCHAR},
+      </if>
+      <if test="attr23 != null" >
+        attr23 = #{attr23,jdbcType=VARCHAR},
+      </if>
+      <if test="attr24 != null" >
+        attr24 = #{attr24,jdbcType=VARCHAR},
+      </if>
+      <if test="attr25 != null" >
+        attr25 = #{attr25,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.windy.module.examination.mybatis.model.PaperRecord" >
+    update paper_record
+    set userId = #{userid,jdbcType=BIGINT},
+      audioId = #{audioid,jdbcType=INTEGER},
+      optionId = #{optionid,jdbcType=VARCHAR},
+      optionAnswer = #{optionanswer,jdbcType=VARCHAR},
+      decidId = #{decidid,jdbcType=VARCHAR},
+      decidAnswer = #{decidanswer,jdbcType=VARCHAR},
+      optionMoreAnswerId = #{optionmoreanswerid,jdbcType=VARCHAR},
+      optionMoreAnswer = #{optionmoreanswer,jdbcType=VARCHAR},
+      option_num = #{optionNum,jdbcType=INTEGER},
+      attr0 = #{attr0,jdbcType=VARCHAR},
+      attr1 = #{attr1,jdbcType=VARCHAR},
+      attr2 = #{attr2,jdbcType=VARCHAR},
+      attr3 = #{attr3,jdbcType=VARCHAR},
+      attr4 = #{attr4,jdbcType=VARCHAR},
+      attr5 = #{attr5,jdbcType=INTEGER},
+      attr6 = #{attr6,jdbcType=INTEGER},
+      attr7 = #{attr7,jdbcType=INTEGER},
+      attr8 = #{attr8,jdbcType=INTEGER},
+      attr9 = #{attr9,jdbcType=BIGINT},
+      attr10 = #{attr10,jdbcType=BIGINT},
+      attr11 = #{attr11,jdbcType=BIGINT},
+      attr12 = #{attr12,jdbcType=DOUBLE},
+      attr13 = #{attr13,jdbcType=DOUBLE},
+      attr14 = #{attr14,jdbcType=VARCHAR},
+      attr15 = #{attr15,jdbcType=VARCHAR},
+      fen = #{fen,jdbcType=DOUBLE},
+      type = #{type,jdbcType=INTEGER},
+      org_id = #{orgId,jdbcType=BIGINT},
+      optionAnswerOfUser = #{optionanswerofuser,jdbcType=VARCHAR},
+      decidAnswerOfUser = #{decidanswerofuser,jdbcType=VARCHAR},
+      optionMoreOfUser = #{optionmoreofuser,jdbcType=VARCHAR},
+      rightNum = #{rightnum,jdbcType=INTEGER},
+      creatTime = #{creattime,jdbcType=VARCHAR},
+      attr16 = #{attr16,jdbcType=VARCHAR},
+      attr17 = #{attr17,jdbcType=VARCHAR},
+      attr18 = #{attr18,jdbcType=VARCHAR},
+      attr19 = #{attr19,jdbcType=VARCHAR},
+      attr20 = #{attr20,jdbcType=VARCHAR},
+      attr21 = #{attr21,jdbcType=VARCHAR},
+      attr22 = #{attr22,jdbcType=VARCHAR},
+      attr23 = #{attr23,jdbcType=VARCHAR},
+      attr24 = #{attr24,jdbcType=VARCHAR},
+      attr25 = #{attr25,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <!-- 考试结果统计 -->
+  <select id="testResults" resultType="java.util.Map">
+    SELECT
+    <choose>
+      <when test="end != 0">
+        pr.*,fu.nick_name,wo.name,pc.name createName
+      </when>
+      <otherwise>
+        COUNT(*) TOTAL
+      </otherwise>
+    </choose>
+    FROM paper_record pr
+    LEFT JOIN front_user fu ON pr.userId = fu.user_id
+    LEFT JOIN windy_org wo ON pr.org_id = wo.id
+    LEFT JOIN paper_creat pc ON pr.attr9 = pc.id
+    WHERE pr.type = 1 AND
+    <choose>
+      <when test="month != null and month != ''">
+           DATE_FORMAT(pr.creatTime,'%Y-%m') <![CDATA[ >= ]]> #{month}
+      </when>
+      <otherwise>
+        DATE_FORMAT(pr.creatTime,'%Y-%m-%d') <![CDATA[ >= ]]>  #{startTime} AND
+        DATE_FORMAT(pr.creatTime,'%Y-%m-%d') <![CDATA[ <= ]]> #{endTime}
+      </otherwise>
+    </choose>
+    <if test="end != 0">
+      LIMIT #{start},#{end}
+    </if>
+  </select>
+
+
+
+  <!-- 统计考试应考未考人数  -->
+  <!--<select id="therealTest" resultType="java.util.Map">
+    SELECT
+    <choose>
+      <when test="end != 0">
+        ps.*,IFNULL(pc.ActualTOTAL,0) ActualTOTAL,
+        pcreat.name createName
+      </when>
+      <otherwise>
+        count(*) TOTAL
+      </otherwise>
+    </choose>
+    FROM paper_set ps
+    LEFT JOIN (SELECT COUNT(*) ActualTOTAL, audioId FROM
+    paper_record WHERE
+    <choose>
+      <when test="month != null and month != ''">
+        DATE_FORMAT(creatTime, '%Y-%m') <![CDATA[ >= ]]> #{month}
+      </when>
+      <otherwise>
+        DATE_FORMAT(creatTime, '%Y-%m-%d') <![CDATA[ >= ]]> #{startTime}
+        AND DATE_FORMAT(creatTime, '%Y-%m-%d') <![CDATA[ <= ]]> #{endTime}
+      </otherwise>
+    </choose>
+    AND TYPE = 1
+    <if test="orgId != null and orgId != ''">
+      AND org_id = #{orgId}
+    </if>
+    GROUP BY audioId) pc
+    ON pc.audioId = ps.paper_id
+    LEFT JOIN paper_creat pcreat
+    ON pcreat.id = ps.paper_id
+    <if test="orgId != null and orgId != ''">
+      WHERE pcreat.ins_id = #{orgId}
+    </if>
+    <if test="end != 0">
+      LIMIT #{start},#{end}
+    </if>
+  </select>-->
+
+  <!-- 统计应考未考列表 -->
+  <select id="therealTest" resultType="java.util.Map">
+    SELECT
+    <choose>
+      <when test="end != 0">
+        ex.*,pc.name creatName,IFNULL(epCount.TotalNumber,0) TotalNumber,
+        IFNULL(prCount.ActualTOTAL,0) ActualTOTAL, IFNULL(passCount.passPeople,0)passPeople,
+        IFNULL(failCount.failPeople,0)failPeople,wo.name orgName
+      </when>
+      <otherwise>
+        COUNT(*) TOTAL
+      </otherwise>
+    </choose>
+    FROM examination ex
+    LEFT JOIN (SELECT COUNT(*) TotalNumber,ep.exam_id FROM exam_personnel ep GROUP BY ep.exam_id) epCount
+    ON ex.id = epCount.exam_id
+    LEFT JOIN (SELECT COUNT(a.userId) ActualTOTAL,a.attr10 FROM (SELECT DISTINCT pr.userId,pr.attr10 FROM paper_record pr) a GROUP BY a.attr10) prCount
+    ON ex.id = prCount.attr10
+    LEFT JOIN (SELECT COUNT(a.userId) passPeople,a.attr10 FROM (SELECT DISTINCT pr.userId,pr.attr10 FROM paper_record pr  WHERE pr.attr6 = 1) a GROUP BY a.attr10) passCount
+    ON ex.id = passCount.attr10
+    LEFT JOIN (SELECT COUNT(a.userId) failPeople,a.attr10 FROM (SELECT DISTINCT pr.userId,pr.attr10 FROM paper_record pr  WHERE pr.attr6 = 0) a GROUP BY a.attr10) failCount
+    ON ex.id = failCount.attr10
+    LEFT JOIN paper_creat pc ON ex.creat_id = pc.id
+    LEFT JOIN windy_org wo ON wo.id = ex.org_id
+    WHERE ex.attr7 = 1
+    <if test="orgId != null and orgId != ''">
+      AND ex.org_id = #{orgId}
+    </if>
+    <choose>
+      <when test="month != null and month != ''">
+        AND DATE_FORMAT(ex.create_time, '%Y-%m') <![CDATA[ >= ]]> #{month}
+      </when>
+      <otherwise>
+        AND DATE_FORMAT(ex.create_time, '%Y-%m-%d') <![CDATA[ >= ]]> #{startTime}
+        AND DATE_FORMAT(ex.create_time, '%Y-%m-%d') <![CDATA[ <= ]]> #{endTime}
+      </otherwise>
+    </choose>
+    ORDER BY ex.id DESC
+    <if test="end != 0">
+      LIMIT #{start},#{end}
+    </if>
+  </select>
+
+  <!-- 应考人数列表 -->
+  <select id="findShouldpeople" resultType="java.util.Map">
+    SELECT
+    <choose>
+      <when test="end != 0">
+        fu.*,wo.name orgName,ex.exam_name
+      </when>
+      <otherwise>
+        COUNT(*) TOTAL
+      </otherwise>
+    </choose>
+    FROM front_user fu
+    LEFT JOIN exam_personnel ep
+    ON fu.user_id = ep.user_id
+    LEFT JOIN windy_org wo ON
+    fu.org_id = wo.id
+    LEFT JOIN examination ex
+    ON ep.exam_id = ex.id
+    WHERE ep.exam_id = #{examId}
+    <if test="end != 0">
+      LIMIT #{start},#{end}
+    </if>
+  </select>
+
+
+  <!-- 实际考试人数列表 -->
+  <select id="findActualpeople" resultType="java.util.Map">
+    SELECT
+    <choose>
+      <when test="end != 0">
+        fu.nick_name,fu.attr0,IFNULL(prl.prFen,0) maxFen,prl.*,wo.name orgName,pc.name creatName,ex.exam_name examName,ps.paper_totail
+      </when>
+      <otherwise>
+        COUNT(*) TOTAL
+      </otherwise>
+    </choose>
+    FROM exam_personnel ep
+    LEFT JOIN front_user fu ON ep.user_id = fu.user_id
+    LEFT JOIN windy_org wo ON fu.org_id = wo.id
+    LEFT JOIN examination ex ON ex.id = ep.exam_id
+    LEFT JOIN paper_creat pc ON ex.creat_id = pc.id
+    LEFT JOIN paper_set ps ON ep.creat_id = ps.paper_id
+    LEFT JOIN (SELECT MAX(pr.fen) prFen,pr.* FROM paper_record pr WHERE pr.attr10 = #{examId} GROUP BY pr.userId) prl
+    ON prl.userId = ep.user_id AND prl.attr10 = ep.exam_id
+    WHERE ex.id = #{examId}
+    <if test="bs != 2">
+      AND prl.attr6 = #{bs}
+    </if>
+    <if test="end != 0">
+      LIMIT #{start},#{end}
+    </if>
+  </select>
+
+
+  <!-- 导出统计列表 -->
+  <select id="importTherealTest" resultType="java.util.Map">
+    SELECT
+    ex.*,pc.name creatName,IFNULL(epCount.TotalNumber,0) TotalNumber,
+    IFNULL(prCount.ActualTOTAL,0) ActualTOTAL, IFNULL(passCount.passPeople,0)passPeople,
+    IFNULL(failCount.failPeople,0)failPeople
+    FROM examination ex
+    LEFT JOIN (SELECT COUNT(*) TotalNumber,ep.exam_id FROM exam_personnel ep GROUP BY ep.exam_id) epCount
+    ON ex.id = epCount.exam_id
+    LEFT JOIN (SELECT COUNT(a.userId) ActualTOTAL,a.attr10 FROM (SELECT DISTINCT pr.userId,pr.attr10 FROM paper_record pr) a GROUP BY a.attr10) prCount
+    ON ex.id = prCount.attr10
+    LEFT JOIN (SELECT COUNT(a.userId) passPeople,a.attr10 FROM (SELECT DISTINCT pr.userId,pr.attr10 FROM paper_record pr  WHERE pr.attr6 = 1) a GROUP BY a.attr10) passCount
+    ON ex.id = passCount.attr10
+    LEFT JOIN (SELECT COUNT(a.userId) failPeople,a.attr10 FROM (SELECT DISTINCT pr.userId,pr.attr10 FROM paper_record pr  WHERE pr.attr6 = 0) a GROUP BY a.attr10) failCount
+    ON ex.id = failCount.attr10
+    LEFT JOIN paper_creat pc ON ex.creat_id = pc.id
+    WHERE ex.attr7 = 1
+    <choose>
+      <when test="month != null and month != ''">
+        AND DATE_FORMAT(ex.create_time, '%Y-%m') <![CDATA[ >= ]]> #{month}
+      </when>
+      <otherwise>
+        AND DATE_FORMAT(ex.create_time, '%Y-%m-%d') <![CDATA[ >= ]]> #{startTime}
+        AND DATE_FORMAT(ex.create_time, '%Y-%m-%d') <![CDATA[ <= ]]> #{endTime}
+      </otherwise>
+    </choose>
+  </select>
+
+
+  <!-- 导出实际考试人数Excel -->
+  <select id="downloadHaveTheTest" resultType="java.util.Map">
+    SELECT
+    fu.nick_name,fu.attr0,IFNULL(prl.prFen,0) maxFen,prl.*,wo.name orgName,pc.name creatName,ex.exam_name examName,ps.paper_totail
+    FROM exam_personnel ep
+    LEFT JOIN front_user fu ON ep.user_id = fu.user_id
+    LEFT JOIN windy_org wo ON fu.org_id = wo.id
+    LEFT JOIN examination ex ON ex.id = ep.exam_id
+    LEFT JOIN paper_creat pc ON ex.creat_id = pc.id
+    LEFT JOIN paper_set ps ON ep.creat_id = ps.paper_id
+    LEFT JOIN (SELECT MAX(pr.fen) prFen,pr.* FROM paper_record pr WHERE pr.attr10 = #{examId} GROUP BY pr.userId) prl
+    ON prl.userId = ep.user_id AND prl.attr10 = ep.exam_id
+    WHERE ex.id = #{examId}
+   /* SELECT fu.nick_name,fu.attr0,pr.*,wo.name orgName,pc.name creatName,ex.exam_name examName
+    FROM front_user fu
+    LEFT JOIN paper_record pr
+    ON fu.user_id = pr.userId
+    LEFT JOIN paper_creat pc
+    ON pc.id = pr.attr9
+    LEFT JOIN windy_org wo
+    ON fu.org_id = wo.id
+    LEFT JOIN examination ex
+    ON pr.attr10 = ex.id
+    WHERE pr.attr10 = #{examId}*/
+  </select>
+
+
+  <!-- 导出(及格/不及格) -->
+  <select id="importPassOrFailExcel" resultType="java.util.Map">
+
+    SELECT
+    fu.nick_name,fu.attr0,IFNULL(prl.prFen,0) maxFen,prl.*,wo.name orgName,pc.name creatName,ex.exam_name examName
+    FROM exam_personnel ep
+    LEFT JOIN front_user fu ON ep.user_id = fu.user_id
+    LEFT JOIN windy_org wo ON fu.org_id = wo.id
+    LEFT JOIN examination ex ON ex.id = ep.exam_id
+    LEFT JOIN paper_creat pc ON ex.creat_id = pc.id
+    LEFT JOIN (SELECT MAX(pr.fen) prFen,pr.* FROM paper_record pr GROUP BY pr.userId) prl
+    ON prl.userId = ep.user_id AND prl.attr10 = ep.exam_id
+    WHERE ex.id = #{examId}
+    AND prl.attr6 = #{cmd}
+
+
+
+/*    SELECT
+    fu.nick_name,fu.attr0,pr.*,wo.name orgName,pc.name creatName,ex.exam_name examName
+    FROM front_user fu
+    LEFT JOIN paper_record pr
+    ON fu.user_id = pr.userId
+    LEFT JOIN paper_creat pc
+    ON pc.id = pr.attr9
+    LEFT JOIN windy_org wo
+    ON fu.org_id = wo.id
+    LEFT JOIN examination ex
+    ON pr.attr10 = ex.id
+    WHERE pr.attr10 = #{examId}
+    AND pr.attr6 = #{cmd}*/
+  </select>
+
+  <!-- 未考人数列表 -->
+  <select id="findNoTestpeopel" resultType="java.util.Map">
+     SELECT
+     <choose>
+       <when test="end != 0">
+         fu.*,wo.name orgName,ex.exam_name,pc.name creatName
+       </when>
+       <otherwise>
+         COUNT(*) TOTAL
+       </otherwise>
+     </choose>
+     FROM exam_personnel ep
+     LEFT JOIN paper_record pr
+     ON ep.user_id = pr.userId AND ep.exam_id = pr.attr10
+     LEFT JOIN front_user fu
+     ON ep.user_id = fu.user_id
+     LEFT JOIN windy_org wo
+     ON fu.org_id = wo.id
+     LEFT JOIN examination ex
+     ON ex.id = ep.exam_id
+     LEFT JOIN paper_creat pc
+     ON pc.id = ep.creat_id
+     WHERE ep.exam_id = #{examId} AND pr.id IS NULL
+     <if test="end != 0">
+       LIMIT #{start},#{end}
+     </if>
+
+  </select>
+
+  <!-- 导出应考人列表 -->
+  <select id="importShouldExamExcel" resultType="java.util.Map">
+    SELECT
+    fu.*,wo.name orgName,ex.exam_name
+    FROM front_user fu
+    LEFT JOIN exam_personnel ep
+    ON fu.user_id = ep.user_id
+    LEFT JOIN windy_org wo ON
+    fu.org_id = wo.id
+    LEFT JOIN examination ex
+    ON ep.exam_id = ex.id
+    WHERE ep.exam_id = #{examId}
+  </select>
+
+  <!-- 导出未考人列表 -->
+  <select id="importNotestExamExcel" resultType="java.util.Map">
+    SELECT
+    fu.*,wo.name orgName,ex.exam_name,pc.name creatName
+    FROM exam_personnel ep
+    LEFT JOIN paper_record pr
+    ON ep.user_id = pr.userId AND ep.exam_id = pr.attr10
+    LEFT JOIN front_user fu
+    ON ep.user_id = fu.user_id
+    LEFT JOIN windy_org wo
+    ON fu.org_id = wo.id
+    LEFT JOIN examination ex
+    ON ex.id = ep.exam_id
+    LEFT JOIN paper_creat pc
+    ON pc.id = ep.creat_id
+    WHERE ep.exam_id = #{examId} AND pr.id IS NULL
+  </select>
+
+
+  <select id="getAll" resultMap="BaseResultMap" resultType="java.util.List">
+     	SELECT * from paper_record 
+  </select>
+
+
+
+</mapper>

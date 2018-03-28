@@ -1,0 +1,51 @@
+.setStyleLabel{position:relative;}
+.setStyleLabel input{opacity:1 !important; left:50px !important; top:-3px;}
+.setStyleLabel span{width:50px;display:inline-block;}
+.rightPart span{margin-right:10px;}
+.rightPart label{margin-right:10px;}
+.rightPart input{width:60px !important;}
+.specSpan{margin-left:-10px;}
+.comNoteTxt{line-height:34px;margin-left:-22px;}
+.setTable{position:relative;margin-left:156px;}
+.setTable tr td{position:relative;}
+.setTable tr td input{float:left;width:40%;height:25px !important;padding-left:3px;}
+.setTable tr td em{font-style:normal;margin-left:10px;}
+.setTable tr td em i{font-style:normal;}
+.quesInpNum{margin-right:5px;}
+.setTable tr td span{float:left;}
+.specTd{cursor:pointer;width:42px;}
+.relDiv{position:relative;}
+.addTrBtn{height:24px;line-height:24px;text-align:center;}
+.selQues{width:100% !important;}
+.selPatternDiv{
+	width:70%;
+	height:auto;display:none;
+	border:1px solid #ccc;
+	position:absolute;
+	left:156px;
+	top:0px;
+	z-index:999;
+	background:#fff;
+}
+.triSpan{width:0px;
+	height:0px;
+	border-width:8px;
+	border-style:solid dashed dashed dashed;
+	border-color:#666 transparent transparent transparent;
+	position:absolute;
+	right:10px;
+	top:15px;
+}
+.addNewBtn{
+	width:46px;
+	height:30px;
+	display:inline-block;
+}
+.delIcon{
+	width:25px;
+	height:25px;
+	position:absolute;
+	left:8px;
+	top:5px;
+}
+.menuTd,.menuTd input .menuTd span{cursor:pointer;}

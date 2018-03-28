@@ -1,0 +1,235 @@
+package cn.windy.module.admin.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.alibaba.fastjson.JSON;
+
+import cn.windy.module.admin.dto.AnalysisDto;
+import cn.windy.module.admin.dto.QuestionsDto;
+import cn.windy.module.admin.hibernate.model.User;
+import cn.windy.module.admin.service.IOrgService;
+import cn.windy.module.examination.mybatis.model.QuesType;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.service.IWindyOrgService;
+import cn.windy.module.examination.service.PaperRecordService;
+import cn.windy.module.examination.service.QuesTypeService;
+import cn.windy.module.examination.service.QuestionsService;
+import cn.windy.module.util.WindyConstants;
+import cn.windy.util.Pagination;
+import cn.windy.util.ZtreeModel;
+
+@Controller
+@RequestMapping("/admin/analysis")
+public class AnalysisController extends AdminBaseController {
+	
+	 //子节点  
+    static  List<QuesType> childMenu=new ArrayList<QuesType>();  
+
+	@Autowired
+	PaperRecordService paperRecordService;
+	@Autowired
+	QuestionsService questionService;
+	@Autowired
+    IOrgService orgService;
+	@Autowired
+	QuesTypeService quesTypeService;
+	@Autowired
+	IWindyOrgService windyOrgService;
+	
+	/**
+	 * 错题统计分析
+	 * @return
+	 */
+	@RequestMapping("/statistice")
+	public String statistics(ModelMap mm,Pagination page,Long orgId){
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		boolean s=quesTypeService.getRole(user.getId());
+		List<Map<String,Object>> windyOrgList = new ArrayList<Map<String,Object>>();
+		List<Long> ids = new ArrayList<Long>();
+		List<AnalysisDto> list = new ArrayList<AnalysisDto>();
+		if(s){
+			windyOrgList = quesTypeService.getWindyOrgLists();
+			ids = quesTypeService.findByZtree(0,user.getUpdateUser().toString(), s);
+		} else {
+			windyOrgList=quesTypeService.getZtreeNFen(user.getUpdateUser());
+			ids = quesTypeService.findByZtree(0,user.getUpdateUser().toString(), s);
+		}
+		String ss=JSON.toJSONString(windyOrgList);
+		mm.put("nodes", ss.replaceAll("icon", "_icon_"));
+		list = paperRecordService.getAll(page,ids);
+	    page.setTotal(questionService.getAllCount(ids).size());
+		mm.put("list", list);
+		mm.put("page", page);
+		mm.put("orgId", orgId);
+		return "admin/examination/analysisCount/list";
+	}
+	
+	@RequestMapping("/sonList")
+	public String sonList(ModelMap mm,Pagination page,Long orgId,Integer level){
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		boolean s=quesTypeService.getRole(user.getId());
+		List<Long> ids = quesTypeService.findByZtree(level, orgId.toString(), s);
+		page.setTotal(questionService.getAllCount(ids).size());
+		mm.put("orgId", orgId);
+		mm.put("list", paperRecordService.getAll(page,ids));
+		mm.put("page",page);
+		mm.put("level", level);
+		return "admin/examination/analysisCount/questionList";
+	}
+	
+	//根据机构查询当前的分类目录           根据父id查找题库类型,并根据类型查找当前类的试题
+	@RequestMapping("/getFatherQuestionType1")
+	public String getFatherQuestionType1(Long pid,ModelMap map,Pagination page,int type) {
+		List<QuesType> listType = quesTypeService.getQuesType(pid);
+		//Ztree
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < listType.size(); i++) {
+			ids.add(listType.get(i).getId());
+		}
+		List<AnalysisDto> list = null;
+        try {
+			
+        	list = paperRecordService.getAll(page,ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		page.setTotal(questionService.getAllCount(ids).size());
+		map.put("list", list);
+		map.put("page", page);
+		map.put("orgId", pid);
+		
+		List<QuesType>quesTypeList=questionService.twoZtree(pid);
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes3", ss.replaceAll("icon", "_icon_"));
+		map.put("type", type);
+		return "admin/examination/questions/ztreeFour";
+	}
+	
+	//根据机构查询当前的分类目录           根据父id查找题库类型,并根据类型查找当前类的试题
+		@RequestMapping("/getFatherQuestionType2")
+		public String getFatherQuestionType2(Long pid,ModelMap map,Pagination page,int type) {
+			List<QuesType> listType = quesTypeService.getQuesType(pid);
+			//Ztree
+			List<Long> ids = new ArrayList<Long>();
+			for (int i = 0; i < listType.size(); i++) {
+				ids.add(listType.get(i).getId());
+			}
+			List<AnalysisDto> list = null;
+	        try {
+				
+	        	list = paperRecordService.getAll(page,ids);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			page.setTotal(questionService.getAllCount(ids).size());
+			map.put("list", list);
+			map.put("page", page);
+			map.put("orgId", pid);
+			
+			List<QuesType>quesTypeList=questionService.twoZtree(pid);
+			String ss=JSON.toJSONString(quesTypeList);
+			map.put("nodes3", ss.replaceAll("icon", "_icon_"));
+			map.put("type", type);
+			return "admin/examination/questions/ztreeFive";
+		}
+	
+	@RequestMapping("/ztree")
+	public String ztree(ModelMap mm,Pagination page){
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		List<ZtreeModel> listZtree = new ArrayList<ZtreeModel>();
+		
+		List<WindyOrg> windyOrgList=quesTypeService.getWindyOrgList();
+		for (int i = 0; i < windyOrgList.size(); i++) {
+			ZtreeModel model = new ZtreeModel();
+			model.setId(windyOrgList.get(i).getId().toString());
+			model.setPid(windyOrgList.get(i).getPid().toString());
+			model.setName(windyOrgList.get(i).getName());
+			listZtree.add(model);
+		}
+		List<QuesType> list = quesTypeService.getAll();
+		for (int i = 0; i < list.size(); i++) {
+			ZtreeModel model = new ZtreeModel();
+			model.setId(list.get(i).getId().toString());
+			model.setPid(list.get(i).getPid().toString());
+			model.setName(list.get(i).getName());
+			listZtree.add(model);
+		}
+		String ss=JSON.toJSONString(listZtree);
+		mm.put("nodes", ss.replaceAll("icon", "_icon_"));
+		List<QuesType> quesList = quesTypeService.getZtrees(user.getUpdateUser());
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < quesList.size(); i++) {
+			ids.add(quesList.get(i).getId());
+		}
+		List<AnalysisDto> list1 = null;
+        try {
+			
+        	list1 = paperRecordService.getAll(page,ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		page.setTotal(questionService.getAllCount(ids).size());
+		mm.put("list", list);
+		mm.put("page", page);
+		return "admin/examination/analysisCount/list";
+	}
+	
+	
+	public List<QuesType> treeQuesTypeList(List<QuesType> list,Long id){
+		QuesType questype = quesTypeService.getById(id);
+		list.add(questype);
+		List<QuesType> departments = quesTypeService.getS(id);  
+		for (QuesType quesType2 : departments) {
+			treeQuesTypeList(list,quesType2.getId());
+		}
+		return list;
+	}
+	
+	
+	//根据机构查询当前的分类目录           根据父id查找题库类型,并根据类型查找当前类的试题
+	@RequestMapping("/getFatherQuestionType")
+	public String getFatherQuestionType(Long pid,ModelMap map,Pagination page,int type) {
+		List<QuesType> listType = quesTypeService.getQuesType(pid);
+		//Ztree
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < listType.size(); i++) {
+			ids.add(listType.get(i).getId());
+		}
+		List<AnalysisDto> list = null;
+        try {
+			
+        	list = paperRecordService.getAll(page,ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		page.setTotal(questionService.getAllCount(ids).size());
+		map.put("list", list);
+		map.put("page", page);
+		map.put("orgId", pid);
+		
+		List<QuesType>quesTypeList=questionService.twoZtree(pid);
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes3", ss.replaceAll("icon", "_icon_"));
+		map.put("type", type);
+		return "admin/examination/questions/ztreeThere";
+	}
+	
+	@RequestMapping("/findById")
+	public String findById(Long id,ModelMap mm){
+		Questions ques = questionService.getById(id);//试题
+		QuesType quesType = quesTypeService.getById(ques.getQuesId());//题库分类
+		WindyOrg org = windyOrgService.getFormId(quesType.getInsId());//所属部门
+		mm.put("ques", ques);
+		mm.put("quesType", quesType);
+		mm.put("org", org);
+		return "admin/examination/analysisCount/detail";
+	}
+}

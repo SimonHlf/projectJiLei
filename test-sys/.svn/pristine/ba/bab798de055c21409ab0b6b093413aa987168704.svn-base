@@ -1,0 +1,155 @@
+package cn.windy.module.examination.dao;
+
+import cn.windy.module.admin.dto.AnalysisDto;
+import cn.windy.module.examination.mybatis.model.PaperRecord;
+import cn.windy.module.examination.mybatis.model.PaperRecordQuery;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+public interface PaperRecordMapper {
+    int countByExample(PaperRecordQuery example);
+
+    int deleteByExample(PaperRecordQuery example);
+
+    int deleteByPrimaryKey(Long id);
+ 
+    int insert(PaperRecord record);
+
+    int insertSelective(PaperRecord record);
+
+    List<PaperRecord> selectByExample(PaperRecordQuery example);
+    
+    //<!-- 前台考试记录用 -->
+    List<Map<String,Object>> getRecord(@Param("attr19") String attr19,@Param("userId") Long userId,@Param("paperCreatName") String paperCreatName,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+    //计数
+    Long getRecordCount(@Param("attr19") String attr19,@Param("userId") Long userId,@Param("paperCreatName") String paperCreatName);
+    
+    //后台查看用户考试信息
+    List<Map<String,Object>> getList(@Param("userId") Long userId,@Param("userName")String userName,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+  //后台查看用户考试信息计数
+    Long getListCount(@Param("userId") Long userId,@Param("userName")String userName);
+  //考试结束后用户还能进行几次考试
+    Integer getTotestTime(@Param("userId")Long userId,@Param("paperCreatId")Long paperCreatId);
+    
+    PaperRecord selectByPrimaryKey(Long id);
+
+    int updateByExampleSelective(@Param("record") PaperRecord record, @Param("example") PaperRecordQuery example);
+
+    int updateByExample(@Param("record") PaperRecord record, @Param("example") PaperRecordQuery example);
+
+    int updateByPrimaryKeySelective(PaperRecord record);
+
+    int updateByPrimaryKey(PaperRecord record);
+
+    /**
+     * 考试结果统计
+     * @param start 分页
+     * @param end 分页
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @param month 区间月份
+     * @param orgId
+     * @return
+     */
+    List<Map<String,Object>> testResults(@Param("start") Integer start,@Param("end") Integer end,
+                                         @Param("startTime")String startTime,@Param("endTime")String endTime,
+                                         @Param("month") String month,@Param("orgId")Long orgId);
+
+
+    /**
+     * 应考未考人数统计
+     * @param start
+     * @param end
+     * @param startTime
+     * @param endTime
+     * @param month
+     * @param orgId
+     * @return
+     */
+    List<Map<String,Object>> therealTest(@Param("start") Integer start,@Param("end") Integer end,
+                                         @Param("startTime")String startTime,@Param("endTime")String endTime,
+                                         @Param("month") String month,@Param("orgId") Long orgId);
+
+
+    /**
+     * 应考人数列表
+     * @param start
+     * @param end
+     * @param examId
+     * @return
+     */
+    List<Map<String,Object>> findShouldpeople(@Param("start")Integer start,@Param("end")Integer end,@Param("examId")Long examId);
+
+
+    /**
+     * 实际考试人数列表
+     * @param start
+     * @param end
+     * @param examId
+     * @param bs 0不及格 1及格  2实际考试列表
+     * @return
+     */
+    List<Map<String,Object>> findActualpeople(@Param("start")Integer start,
+                                              @Param("end")Integer end,
+                                              @Param("examId")Long examId,
+                                              @Param("bs")Integer bs);
+
+
+    /**
+     * 未考人数列表
+     * @param start
+     * @param end
+     * @param examId
+     * @return
+     */
+    List<Map<String,Object>> findNoTestpeopel(@Param("start")Integer start,@Param("end")Integer end,@Param("examId")Long examId);
+
+
+    /**
+     * 导出统计列表
+     * @param month
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    List<Map<String,Object>> importTherealTest(@Param("month")String month,@Param("startTime")String startTime,@Param("endTime")String endTime);
+
+    /**
+     * 导出考试实考人数考试信息
+     * @param examId
+     * @return
+     */
+    List<Map<String,Object>> downloadHaveTheTest(@Param("examId")Long examId);
+
+    /**
+     * 导出(及格/不及格)
+     * @param cmd 0不及格 1及格
+     * @param examId
+     * @return
+     */
+    List<Map<String,Object>> importPassOrFailExcel(@Param("cmd")Integer cmd,@Param("examId")Long examId);
+
+    /**
+     * 查询所有记录
+     * @return
+     */
+    List<PaperRecord> getAll();
+
+    /**
+     * 导出应考人列表
+     * @param examId
+     * @return
+     */
+    List<Map<String,Object>> importShouldExamExcel(@Param("examId")Long examId);
+
+    /**
+     * 导出未考人列表
+     * @param examId
+     * @return
+     */
+    List<Map<String,Object>> importNotestExamExcel(@Param("examId")Long examId);
+
+}

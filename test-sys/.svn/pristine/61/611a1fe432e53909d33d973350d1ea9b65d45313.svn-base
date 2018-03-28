@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.windy.module.examination.dao.WindyOrgMapper" >
+  <resultMap id="BaseResultMap" type="cn.windy.module.examination.mybatis.model.WindyOrg" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="BIGINT" />
+    <result column="creatatime" property="creatatime" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="attr0" property="attr0" jdbcType="VARCHAR" />
+    <result column="attr1" property="attr1" jdbcType="VARCHAR" />
+    <result column="attr2" property="attr2" jdbcType="VARCHAR" />
+    <result column="attr3" property="attr3" jdbcType="VARCHAR" />
+    <result column="attr4" property="attr4" jdbcType="VARCHAR" />
+    <result column="attr5" property="attr5" jdbcType="VARCHAR" />
+    <result column="attr6" property="attr6" jdbcType="INTEGER" />
+    <result column="attr7" property="attr7" jdbcType="INTEGER" />
+    <result column="attr8" property="attr8" jdbcType="INTEGER" />
+    <result column="attr9" property="attr9" jdbcType="INTEGER" />
+    <result column="attr10" property="attr10" jdbcType="INTEGER" />
+    <result column="attr11" property="attr11" jdbcType="BIGINT" />
+    <result column="attr12" property="attr12" jdbcType="BIGINT" />
+    <result column="attr13" property="attr13" jdbcType="BIGINT" />
+    <result column="attr14" property="attr14" jdbcType="BIGINT" />
+    <result column="attr15" property="attr15" jdbcType="BIGINT" />
+    <result column="add_user" property="addUser" jdbcType="BIGINT" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      id, name, code, pid, creatatime, remark, attr0, attr1, attr2, attr3, attr4, attr5, 
+      attr6, attr7, attr8, attr9, attr10, attr11, attr12, attr13, attr14, attr15, add_user, 
+      add_time, update_user, update_time
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.windy.module.examination.mybatis.model.WindyOrgQuery" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from windy_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null" >
+      limit #{startRow} , #{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    id,name,code,pid,creatatime,remark,attr0,attr1,attr2,attr3,attr4,attr5,attr6,attr7,attr8,attr9,attr10,attr11,attr12,attr13,attr14,attr15,add_user,add_time,update_user,update_time
+    from windy_org
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+   <select id="searchExcpet" resultMap="BaseResultMap">
+  	select q.*
+  	from windy_org q
+  	where 1=1
+  	<if test="windyOrgId !=null and windyOrgId !=''">
+  	and q.id!=#{windyOrgId}
+  	and q.pid!=#{windyOrgId}
+  	</if>
+  	
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from windy_org
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.windy.module.examination.mybatis.model.WindyOrgQuery" >
+    delete from windy_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.windy.module.examination.mybatis.model.WindyOrg" >
+    insert into windy_org (id, name, code, 
+      pid, creatatime, remark, 
+      attr0, attr1, attr2, 
+      attr3, attr4, attr5, 
+      attr6, attr7, attr8, 
+      attr9, attr10, attr11, 
+      attr12, attr13, attr14, 
+      attr15, add_user, add_time, 
+      update_user, update_time)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=BIGINT}, #{creatatime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{attr0,jdbcType=VARCHAR}, #{attr1,jdbcType=VARCHAR}, #{attr2,jdbcType=VARCHAR}, 
+      #{attr3,jdbcType=VARCHAR}, #{attr4,jdbcType=VARCHAR}, #{attr5,jdbcType=VARCHAR}, 
+      #{attr6,jdbcType=INTEGER}, #{attr7,jdbcType=INTEGER}, #{attr8,jdbcType=INTEGER}, 
+      #{attr9,jdbcType=INTEGER}, #{attr10,jdbcType=INTEGER}, #{attr11,jdbcType=BIGINT}, 
+      #{attr12,jdbcType=BIGINT}, #{attr13,jdbcType=BIGINT}, #{attr14,jdbcType=BIGINT}, 
+      #{attr15,jdbcType=BIGINT}, #{addUser,jdbcType=BIGINT}, #{addTime,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=BIGINT}, #{updateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.windy.module.examination.mybatis.model.WindyOrg" >
+    insert into windy_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="creatatime != null" >
+        creatatime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="attr0 != null" >
+        attr0,
+      </if>
+      <if test="attr1 != null" >
+        attr1,
+      </if>
+      <if test="attr2 != null" >
+        attr2,
+      </if>
+      <if test="attr3 != null" >
+        attr3,
+      </if>
+      <if test="attr4 != null" >
+        attr4,
+      </if>
+      <if test="attr5 != null" >
+        attr5,
+      </if>
+      <if test="attr6 != null" >
+        attr6,
+      </if>
+      <if test="attr7 != null" >
+        attr7,
+      </if>
+      <if test="attr8 != null" >
+        attr8,
+      </if>
+      <if test="attr9 != null" >
+        attr9,
+      </if>
+      <if test="attr10 != null" >
+        attr10,
+      </if>
+      <if test="attr11 != null" >
+        attr11,
+      </if>
+      <if test="attr12 != null" >
+        attr12,
+      </if>
+      <if test="attr13 != null" >
+        attr13,
+      </if>
+      <if test="attr14 != null" >
+        attr14,
+      </if>
+      <if test="attr15 != null" >
+        attr15,
+      </if>
+      <if test="addUser != null" >
+        add_user,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="creatatime != null" >
+        #{creatatime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="attr0 != null" >
+        #{attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        #{attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="attr6 != null" >
+        #{attr6,jdbcType=INTEGER},
+      </if>
+      <if test="attr7 != null" >
+        #{attr7,jdbcType=INTEGER},
+      </if>
+      <if test="attr8 != null" >
+        #{attr8,jdbcType=INTEGER},
+      </if>
+      <if test="attr9 != null" >
+        #{attr9,jdbcType=INTEGER},
+      </if>
+      <if test="attr10 != null" >
+        #{attr10,jdbcType=INTEGER},
+      </if>
+      <if test="attr11 != null" >
+        #{attr11,jdbcType=BIGINT},
+      </if>
+      <if test="attr12 != null" >
+        #{attr12,jdbcType=BIGINT},
+      </if>
+      <if test="attr13 != null" >
+        #{attr13,jdbcType=BIGINT},
+      </if>
+      <if test="attr14 != null" >
+        #{attr14,jdbcType=BIGINT},
+      </if>
+      <if test="attr15 != null" >
+        #{attr15,jdbcType=BIGINT},
+      </if>
+      <if test="addUser != null" >
+        #{addUser,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.windy.module.examination.mybatis.model.WindyOrgQuery" resultType="java.lang.Integer" >
+    select count(*) from windy_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update windy_org
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=BIGINT},
+      </if>
+      <if test="record.creatatime != null" >
+        creatatime = #{record.creatatime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr0 != null" >
+        attr0 = #{record.attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr1 != null" >
+        attr1 = #{record.attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr2 != null" >
+        attr2 = #{record.attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr3 != null" >
+        attr3 = #{record.attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr4 != null" >
+        attr4 = #{record.attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr5 != null" >
+        attr5 = #{record.attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attr6 != null" >
+        attr6 = #{record.attr6,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr7 != null" >
+        attr7 = #{record.attr7,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr8 != null" >
+        attr8 = #{record.attr8,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr9 != null" >
+        attr9 = #{record.attr9,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr10 != null" >
+        attr10 = #{record.attr10,jdbcType=INTEGER},
+      </if>
+      <if test="record.attr11 != null" >
+        attr11 = #{record.attr11,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr12 != null" >
+        attr12 = #{record.attr12,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr13 != null" >
+        attr13 = #{record.attr13,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr14 != null" >
+        attr14 = #{record.attr14,jdbcType=BIGINT},
+      </if>
+      <if test="record.attr15 != null" >
+        attr15 = #{record.attr15,jdbcType=BIGINT},
+      </if>
+      <if test="record.addUser != null" >
+        add_user = #{record.addUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update windy_org
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=BIGINT},
+      creatatime = #{record.creatatime,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      attr0 = #{record.attr0,jdbcType=VARCHAR},
+      attr1 = #{record.attr1,jdbcType=VARCHAR},
+      attr2 = #{record.attr2,jdbcType=VARCHAR},
+      attr3 = #{record.attr3,jdbcType=VARCHAR},
+      attr4 = #{record.attr4,jdbcType=VARCHAR},
+      attr5 = #{record.attr5,jdbcType=VARCHAR},
+      attr6 = #{record.attr6,jdbcType=INTEGER},
+      attr7 = #{record.attr7,jdbcType=INTEGER},
+      attr8 = #{record.attr8,jdbcType=INTEGER},
+      attr9 = #{record.attr9,jdbcType=INTEGER},
+      attr10 = #{record.attr10,jdbcType=INTEGER},
+      attr11 = #{record.attr11,jdbcType=BIGINT},
+      attr12 = #{record.attr12,jdbcType=BIGINT},
+      attr13 = #{record.attr13,jdbcType=BIGINT},
+      attr14 = #{record.attr14,jdbcType=BIGINT},
+      attr15 = #{record.attr15,jdbcType=BIGINT},
+      add_user = #{record.addUser,jdbcType=BIGINT},
+      add_time = #{record.addTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.windy.module.examination.mybatis.model.WindyOrg" >
+    update windy_org
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=BIGINT},
+      </if>
+      <if test="creatatime != null" >
+        creatatime = #{creatatime,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="attr0 != null" >
+        attr0 = #{attr0,jdbcType=VARCHAR},
+      </if>
+      <if test="attr1 != null" >
+        attr1 = #{attr1,jdbcType=VARCHAR},
+      </if>
+      <if test="attr2 != null" >
+        attr2 = #{attr2,jdbcType=VARCHAR},
+      </if>
+      <if test="attr3 != null" >
+        attr3 = #{attr3,jdbcType=VARCHAR},
+      </if>
+      <if test="attr4 != null" >
+        attr4 = #{attr4,jdbcType=VARCHAR},
+      </if>
+      <if test="attr5 != null" >
+        attr5 = #{attr5,jdbcType=VARCHAR},
+      </if>
+      <if test="attr6 != null" >
+        attr6 = #{attr6,jdbcType=INTEGER},
+      </if>
+      <if test="attr7 != null" >
+        attr7 = #{attr7,jdbcType=INTEGER},
+      </if>
+      <if test="attr8 != null" >
+        attr8 = #{attr8,jdbcType=INTEGER},
+      </if>
+      <if test="attr9 != null" >
+        attr9 = #{attr9,jdbcType=INTEGER},
+      </if>
+      <if test="attr10 != null" >
+        attr10 = #{attr10,jdbcType=INTEGER},
+      </if>
+      <if test="attr11 != null" >
+        attr11 = #{attr11,jdbcType=BIGINT},
+      </if>
+      <if test="attr12 != null" >
+        attr12 = #{attr12,jdbcType=BIGINT},
+      </if>
+      <if test="attr13 != null" >
+        attr13 = #{attr13,jdbcType=BIGINT},
+      </if>
+      <if test="attr14 != null" >
+        attr14 = #{attr14,jdbcType=BIGINT},
+      </if>
+      <if test="attr15 != null" >
+        attr15 = #{attr15,jdbcType=BIGINT},
+      </if>
+      <if test="addUser != null" >
+        add_user = #{addUser,jdbcType=BIGINT},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.windy.module.examination.mybatis.model.WindyOrg" >
+    update windy_org
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=BIGINT},
+      creatatime = #{creatatime,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      attr0 = #{attr0,jdbcType=VARCHAR},
+      attr1 = #{attr1,jdbcType=VARCHAR},
+      attr2 = #{attr2,jdbcType=VARCHAR},
+      attr3 = #{attr3,jdbcType=VARCHAR},
+      attr4 = #{attr4,jdbcType=VARCHAR},
+      attr5 = #{attr5,jdbcType=VARCHAR},
+      attr6 = #{attr6,jdbcType=INTEGER},
+      attr7 = #{attr7,jdbcType=INTEGER},
+      attr8 = #{attr8,jdbcType=INTEGER},
+      attr9 = #{attr9,jdbcType=INTEGER},
+      attr10 = #{attr10,jdbcType=INTEGER},
+      attr11 = #{attr11,jdbcType=BIGINT},
+      attr12 = #{attr12,jdbcType=BIGINT},
+      attr13 = #{attr13,jdbcType=BIGINT},
+      attr14 = #{attr14,jdbcType=BIGINT},
+      attr15 = #{attr15,jdbcType=BIGINT},
+      add_user = #{addUser,jdbcType=BIGINT},
+      add_time = #{addTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findByInsId" resultMap="BaseResultMap">
+    SELECT * FROM windy_org WHERE pid = #{insId}
+  </select>
+
+  <!-- 去除机务点 -->
+  <select id="findRemoveZero" resultMap="BaseResultMap">
+    SELECT * FROM windy_org WHERE pid = 4
+  </select>
+
+  <!-- 获取车间下的小组集合 -->
+  <select id="findOrgListByOrgPid" resultMap="BaseResultMap">
+    SELECT * FROM windy_org WHERE pid = #{orgId}
+  </select>
+
+</mapper>

@@ -1,0 +1,715 @@
+package cn.windy.module.examination.controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import cn.windy.util.FileDownLoadUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.alibaba.fastjson.JSON;
+
+import cn.windy.module.admin.dto.QuestionsDto;
+import cn.windy.module.admin.hibernate.model.User;
+import cn.windy.module.core.controller.BaseController;
+import cn.windy.module.examination.mybatis.model.QuesType;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.service.QuesTypeService;
+import cn.windy.module.examination.service.QuestionsService;
+import cn.windy.module.util.WindyConstants;
+import cn.windy.util.Pagination;
+
+@Controller
+@RequestMapping("/admin/QuestionsController")
+public class QuestionsController extends BaseController{
+	
+	@Autowired
+	private QuestionsService questionsService;
+	
+	@Autowired
+	private QuesTypeService quesTypeService;
+	
+	/**
+	 * 
+	 * @param page
+	 * @param questionsName
+	 * @param typeName
+	 * @param orgName
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/getList")
+	public String getList(String quesTypeIdList,Pagination page,String questionName, String typeName, String orgName ,ModelMap map) {
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据 为true则是超管
+		boolean s=quesTypeService.getRole(user.getId());
+		List<Long> insIdLists=new ArrayList<Long>();
+		if(quesTypeIdList!=null && !"".equals(quesTypeIdList)) {
+			String[] sss=quesTypeIdList.split(",");
+			for(String si:sss) {
+				insIdLists.add(Long.valueOf(si));
+			}
+		}
+		String result="false";
+		if(s) {
+			result="true";
+			//树形结构用
+			List<WindyOrg> windyOrgList=quesTypeService.getWindyOrgList();
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			
+			map.put("result", result);
+			map.put("name", questionName);
+			map.put("userWho", "true");
+			
+			List<QuesType> listQues = quesTypeService.getAll();
+			//Ztree
+			List<Long> ids = new ArrayList<Long>();
+			for (int i = 0; i < listQues.size(); i++) {
+				ids.add(listQues.get(i).getId());
+			}
+			List<QuestionsDto> list1 = null;
+	        try {
+	        	list1 = questionsService.getByType(page,ids,questionName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	        page.setTotal(questionsService.getByTypeCount(ids,questionName).size());
+			
+			map.put("list", list1);
+			map.put("page", page);
+		}else {
+			List<WindyOrg> windyOrgList=quesTypeService.getWindyOrgList();
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			map.put("result", result);
+			List<QuesType> listQues = quesTypeService.getAll();
+			List<Long> ids = new ArrayList<Long>();
+			for (int i = 0; i < listQues.size(); i++) {
+				ids.add(listQues.get(i).getId());
+			}
+			List<QuestionsDto> list1 = null;
+	        try {
+	        	list1 = questionsService.getByType(page,ids,questionName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	        page.setTotal(questionsService.getByTypeCount(ids,questionName).size());
+	        map.put("name", questionName);
+			map.put("list", list1);
+			map.put("page", page);
+		}
+		
+		return "admin/examination/questions/list";
+	}
+	
+	//树形分页
+	@RequestMapping("/getByFenYe")
+	public String getByFenYe(String quesTypeIdList,Pagination page,ModelMap map){
+		List<Long> insIdLists=new ArrayList<Long>();
+		if(quesTypeIdList!=null && !"".equals(quesTypeIdList)) {
+			String[] sss=quesTypeIdList.split(",");
+			for(String si:sss) {
+				insIdLists.add(Long.valueOf(si));
+			}
+		}
+		
+		List<Map<String,Object>> questionList=questionsService.getList(insIdLists, page, null, null, null, null, null);
+		page.setTotal(questionsService.getCount(insIdLists, null, null, null, null, null));
+		map.put("list", questionList);
+		map.put("page", page);
+		return "admin/examination/questions/tbody";
+	} 
+	
+	
+	//根据机构查询当前的分类目录           根据父id查找题库类型,并根据类型查找当前类的试题
+	@RequestMapping("/getFatherQuestionType")
+	public String getFatherQuestionType(Long pid,ModelMap map,Pagination page,String name) {
+		List<QuesType> listType = quesTypeService.getQuesType(pid);
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < listType.size(); i++) {
+			ids.add(listType.get(i).getId());
+		}
+		List<QuestionsDto> list1 = null;
+        try {
+        	list1 = questionsService.getByType(page,ids,name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        page.setTotal(questionsService.getByTypeCount(ids,name).size());
+		
+		map.put("list", list1);
+		map.put("page", page);
+		map.put("pid", pid);
+		map.put("name", name);
+		List<QuesType>quesTypeList=questionsService.twoZtree(pid);
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+		
+		return "admin/examination/questions/ztreeTwo";
+	}
+	
+	public List<QuesType> treeQuesTypeList(List<QuesType> list,Long id){
+		QuesType questype = quesTypeService.getById(id);
+		list.add(questype);
+		List<QuesType> departments = quesTypeService.getS(id);  
+		for (QuesType quesType2 : departments) {
+			treeQuesTypeList(list,quesType2.getId());
+		}
+		return list;
+	}
+	
+	//根据分类查询当前试题
+	@RequestMapping("/sonList")
+	public String sonList(Long pid,Pagination page,String questionName,ModelMap map,String name) {
+		List<QuesType> list2 = new ArrayList<QuesType>();
+		//Ztree
+		List<QuesType> quesList = treeQuesTypeList(list2,pid);
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < quesList.size(); i++) {
+			ids.add(quesList.get(i).getId());
+		}
+		List<QuestionsDto> list1 = null;
+        try {
+        	list1 = questionsService.getByType(page,ids,name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        page.setTotal(questionsService.getByTypeCount(ids,name).size());
+		
+		map.put("pid", pid);
+		map.put("list", list1);
+		map.put("page", page);
+		map.put("name", name);
+		return "admin/examination/questions/questionsList";
+	}
+	
+	/**
+	 * 添加或修改前查找所有机构(超级管理员用)
+	 * @return
+	 */
+	@RequestMapping("/getWindyOrgList")
+	public String getWindyOrgList(ModelMap map,Integer types){
+		//用于前台判断是否要展示查找所有机构的下拉框让超管选择，普通管理员不显示
+		String result="false";
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据，true为超管
+		boolean s=quesTypeService.getRole(user.getId());
+		if(s) {
+			//所有机构
+			List<WindyOrg> windyOrgList=questionsService.getWindyOrgLists();
+			result="true";
+			map.put("windyOrgList", windyOrgList);
+			map.put("result", result);
+			//树形结构用
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+		}else {
+			List<WindyOrg> windyOrgList=quesTypeService.getWindyOrgList();
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			List<QuesType> quesTypeList=questionsService.getQuesTypeOne(user.getUpdateUser());
+			map.put("quesTypeList", quesTypeList);
+			map.put("orgId", user.getUpdateUser());
+			map.put("result", result);
+		}	
+		
+		return "admin/examination/questions/add";
+	}
+	
+	/**
+     * 再根据机构id查找其一级分类
+     * @param orgId
+     * @return
+     */
+	@RequestMapping("/quesTypeList")
+	@ResponseBody
+	public List<QuesType> quesTypeList(Long orgId){
+		List<QuesType> quesTypeList =questionsService.getQuesTypeOne(orgId);
+		
+		return quesTypeList;
+	}
+	
+	//根据一级分类查找二级分类
+	@RequestMapping("/quesTypeTwoList")
+	@ResponseBody
+	public List<QuesType>quesTypeTwoList(Long pid){
+		List<QuesType> quesTypeList=questionsService.getQuesTypeTwo(pid);
+		
+		return quesTypeList;
+	}
+	
+	
+	/**
+	 * 根据机构id查找其分类(各个机构管理人员用)
+	 * @return
+	 */
+	@RequestMapping("/quesTypeListByS")
+	public String quesTypeListByS(ModelMap map){
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		String result="false";
+		//判断后台登录的是否有权限查看所有机构的考试数据，true为超管
+		boolean s=quesTypeService.getRole(user.getId());
+		if(s) {
+			result = "true";
+			//所有机构
+			List<WindyOrg> windyOrgList=questionsService.getWindyOrgLists();
+			result="true";
+			map.put("windyOrgList", windyOrgList);
+			map.put("result", result);
+			//树形结构用
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			map.put("issuper", 0);
+		}else {
+			List<WindyOrg> windyOrgList=quesTypeService.getquesTypeNow(user.getUpdateUser());
+			List<QuesType>quesTypeList=quesTypeService.twoZtree(windyOrgList.get(0).getId());
+			String ss=JSON.toJSONString(quesTypeList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			map.put("result", result);
+			map.put("quesTypeList", quesTypeList);
+			map.put("orgId", user.getUpdateUser());
+			map.put("issuper", 1);
+		}	
+		return "admin/examination/questions/add";
+	}
+	
+	/**
+	 * 添加
+	 * @param questions
+	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
+	 */
+	//TODO
+	@RequestMapping("/add")
+	@ResponseBody
+	public Map add(Questions questions,@RequestParam("headImages") MultipartFile picture,
+			@RequestParam("headImages1") MultipartFile picture1,
+			@RequestParam("headImagesA") MultipartFile pictureA,
+			@RequestParam("headImagesB") MultipartFile pictureB,
+			@RequestParam("headImagesC") MultipartFile pictureC,
+			@RequestParam("headImagesD") MultipartFile pictureD,
+			Long typeOneId,Long typeTwoId,Long typeThree,Long typeFour,Integer types,HttpServletRequest request) throws IllegalStateException, IOException {
+		if(typeFour!=null && !"".equals(typeFour)) {
+			questions.setQuesId(typeFour);
+		}else if((typeFour==null || "".equals(typeFour)) && (typeThree!=null && !"".equals(typeThree)) ){
+			questions.setQuesId(typeThree);
+		}else if((typeThree==null || "".equals(typeThree))&& (typeTwoId!=null && !"".equals(typeTwoId))){
+			questions.setQuesId(typeTwoId);
+		}else if((typeTwoId==null || "".equals(typeTwoId)) && (typeOneId!=null && !"".equals(typeOneId))){
+			questions.setQuesId(typeOneId);
+		}
+		
+		String pathUrl = request.getSession().getServletContext().getRealPath("");// 存放的路径
+    	String result="false";
+    	Map<String,Object> mm=new HashMap<>();
+    	if(!picture.isEmpty()) {//图片
+    		pic(picture, mm, result, pathUrl, questions,0);
+    	}
+    	if(!picture1.isEmpty()){
+    		pic(picture1, mm, result, pathUrl, questions,1);
+    	}
+    	if(!pictureA.isEmpty()){
+    		pic(pictureA, mm, result, pathUrl, questions,2);
+    	}
+    	if(!pictureB.isEmpty()){
+    		pic(pictureB, mm, result, pathUrl, questions,3);
+    	}
+    	if(!pictureC.isEmpty()){
+    		pic(pictureC, mm, result, pathUrl, questions,4);
+    	}
+    	if(!pictureD.isEmpty()){
+    		pic(pictureD, mm, result, pathUrl, questions,5);
+    	}
+				
+		questionsService.add(questions);
+		result="true";
+		mm.put("result", result);
+		return mm;
+	}
+	
+	@RequestMapping("/save")
+	@ResponseBody
+	public Map save(Questions questions,@RequestParam("headImages") MultipartFile picture,
+			@RequestParam("headImages1") MultipartFile picture1,
+			Long typeOneId,Long typeTwoId,Long typeThree,Long typeFour,Integer types,HttpServletRequest request){
+		if(typeFour!=null && !"".equals(typeFour)) {
+			questions.setQuesId(typeFour);
+		}else if((typeFour==null || "".equals(typeFour)) && (typeThree!=null && !"".equals(typeThree)) ){
+			questions.setQuesId(typeThree);
+		}else if((typeThree==null || "".equals(typeThree))&& (typeTwoId!=null && !"".equals(typeTwoId))){
+			questions.setQuesId(typeTwoId);
+		}else if((typeTwoId==null || "".equals(typeTwoId)) && (typeOneId!=null && !"".equals(typeOneId))){
+			questions.setQuesId(typeOneId);
+		}
+		
+		String pathUrl = request.getSession().getServletContext().getRealPath("");// 存放的路径
+    	String result="false";
+    	Map<String,Object> mm=new HashMap<>();
+    	if(!picture.isEmpty()) {//图片
+    		pic(picture, mm, result, pathUrl, questions,0);
+    	}
+    	if(!picture1.isEmpty()) {//图片
+    		pic(picture1, mm, result, pathUrl, questions,1);
+    	}
+		questionsService.add(questions);
+		result="true";
+		mm.put("result", result);
+		return mm;
+	}
+	
+	public void pic(MultipartFile picture,Map<String, Object> mm,String result,String pathUrl,Questions questions,Integer type){
+		String filename = picture.getOriginalFilename();
+		// 获取扩展名
+		String extensionName = filename.substring(filename.lastIndexOf(".") + 1);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("jpg", "jpg");
+		map.put("jpeg", "jpeg");
+		map.put("png", "png");
+		map.put("bmp", "bmp");
+		map.put("gif", "gif");
+		// 文件后缀判断
+		if (!map.containsKey(extensionName)) {
+			result = "pictureErroe";
+			mm.put("result", result);
+			// 文件读入
+		} else {
+			String newfileName = UUID.randomUUID().toString();// 创建随机的图片名称
+			String pictureurl = "image/" + newfileName + "." + extensionName;// 图片的全路径
+			if(type==0){
+				questions.setImage(pictureurl);// 图片只有地址没有名称
+			}else if(type==1){
+				questions.setName(pictureurl);
+			}else if(type==2){
+				questions.setOptionA(pictureurl);
+			}else if(type==3){
+				questions.setOptionB(pictureurl);
+			}else if(type==4){
+				questions.setOptionC(pictureurl);
+			}else if(type==5){
+				questions.setOptionD(pictureurl);
+			}
+			pathUrl = pathUrl.substring(0, pathUrl.lastIndexOf(File.separator));
+			File fi = new File(pathUrl + "\\image\\" + newfileName + "." + extensionName);
+			try {
+				picture.transferTo(fi);// 文件写入
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * 删除
+	 * @param ids
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	public String delete(String ids,ModelMap map) {
+		questionsService.delete(ids);
+		return getList(null,new Pagination(),null,null,null,map);
+	}
+	
+	/**
+	 * 修改前查找所有机构
+	 * @return
+	 */
+	@RequestMapping("/getWindyOrg")
+	public String getWindyOrg(ModelMap map,Long id){
+		//用于前台判断是否要展示查找所有机构的下拉框让超管选择，普通管理员不显示
+		String result="false";
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据，true为超管
+		boolean s=quesTypeService.getRole(user.getId());
+		if(s) {
+			result="true";
+			List<WindyOrg> windyOrgList=questionsService.getWindyOrgList();
+			map.put("windyOrgList", windyOrgList);
+		}
+		
+		List<QuesType> quesTypeList=questionsService.getQuestionsType();
+		Questions questions =questionsService.getById(id);
+		
+		Long insId=quesTypeService.getById(questions.getQuesId()).getInsId();
+		
+		map.put("insId", insId);
+		map.put("quesTypeList", quesTypeList);
+		map.put("questions", questions);
+		map.put("result", result);
+		return "admin/examination/questions/edit";
+	}
+	//TODO
+	//修改试题
+	@RequestMapping("/update")
+	@ResponseBody
+	public Map update(Questions questions,@RequestParam(required = false, value = "headImages") MultipartFile picture,
+			@RequestParam(required = false, value = "headImagesA") MultipartFile pictureA,
+			@RequestParam(required = false, value = "headImagesB") MultipartFile pictureB,
+			@RequestParam(required = false, value = "headImagesC") MultipartFile pictureC,
+			@RequestParam(required = false, value = "headImagesD") MultipartFile pictureD,
+			HttpServletRequest request) throws IllegalStateException, IOException {
+		String pathUrl = request.getSession().getServletContext().getRealPath("");// 存放的路径
+    	String result="false";
+    	Map<String,Object> mm=new HashMap<>();
+    	
+    	if(!picture.isEmpty()) {//图片
+    		pic(picture, mm, result, pathUrl, questions,0);
+    	}
+    	if(!pictureA.isEmpty()){
+    		pic(pictureA, mm, result, pathUrl, questions,2);
+    	}
+    	if(!pictureB.isEmpty()){
+    		pic(pictureB, mm, result, pathUrl, questions,3);
+    	}
+    	if(!pictureC.isEmpty()){
+    		pic(pictureC, mm, result, pathUrl, questions,4);
+    	}
+    	if(!pictureD.isEmpty()){
+    		pic(pictureD, mm, result, pathUrl, questions,5);
+    	}
+		questionsService.update(questions);
+		result="true";
+		mm.put("result", result);
+		return mm;
+	}
+	
+	/**
+	 * 查看试题详情
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/getDetail")
+	public String getDetail(Long id,Integer page,ModelMap map) {
+		
+		Questions questions =questionsService.getById(id);
+		String questTypeName=quesTypeService.getById(questions.getQuesId()).getName();
+		map.put("questions", questions);
+		map.put("questTypeName", questTypeName);
+		map.put("page", page);
+		return "admin/examination/questions/detail";
+	}
+	//查看共享试题
+	//TODO
+	@RequestMapping("/searchGong")
+	public String searchGong(Pagination page, Long pid, String name,ModelMap map){
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		WindyOrg windyOrg=questionsService.getWindyOrg(user.getUpdateUser());
+		
+		//树形结构用
+		/* List<MenuTree> zTreeList=quesTypeService.getZtrees(null); */
+		List<WindyOrg> windyOrgList=new ArrayList<>();
+		boolean s=quesTypeService.getRole(user.getId());	//判断是否是管理员
+		if(s){
+			windyOrgList=quesTypeService.getWindyOrgList();	//获取所有部门
+		}else {
+			windyOrgList=questionsService.searchExcpet(windyOrg.getId());	//获取部门
+		}
+		
+		String ss = JSON.toJSONString(windyOrgList);
+		map.put("nodes", ss.replaceAll("icon", "_icon_"));
+		
+		List<Map<String,Object>> questionsList=questionsService.getGong(pid, name, page);
+		page.setTotal(questionsService.getCounts(pid, name));
+		map.put("questionsList", questionsList);
+		map.put("page", page);
+		return "admin/examination/questions/enjoyQues";
+	}
+	//，查看共享菜单，查找机构下的分类
+	@RequestMapping("/getTwo")
+	public String getTwo(Long pid,ModelMap map){
+		List<QuesType>quesTypeList=questionsService.twoZtree(pid);
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+		
+		
+		return "admin/examination/questions/enjoyZtreeTwo";
+	}
+	
+	//根据分类查找试题
+	@RequestMapping("/getQuestions")
+	public String getQuestions(Long quesTypeId,ModelMap map,Pagination page){
+		page.setTotal(questionsService.getCounts(quesTypeId, null));
+		map.put("page", page);
+		map.put("list", questionsService.getQuestionByType(quesTypeId,page));
+		return "admin/examination/questions/enjoyQuesList";
+	}
+	
+	
+	//添加共享试题前查找机构
+	@RequestMapping("/addGongBef")
+	public String addGongBef(String questionsIdList,ModelMap map) {
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据 为true则是超管
+		boolean s=quesTypeService.getRole(user.getId());
+		if(s){
+			/*List<MenuTree> zTreeList=quesTypeService.getZtrees(null);*/
+			List<WindyOrg> windyOrgList=quesTypeService.getWindyOrgList();
+			/*List<QuesType> QuesType1List=quesTypeService.getAll();*/
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			
+		}
+		if(!s){
+			//树形结构用
+			List<WindyOrg> windyOrgList=quesTypeService.getquesTypeNow(user.getUpdateUser());
+			/*List<QuesType> QuesType1List=quesTypeService.getByOrg(user.getUpdateUser());*/
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+		}
+		
+		map.put("questionsIdList", questionsIdList);
+		return "admin/examination/questions/enjoyAddZtree";
+	}
+	
+	//根据机构查找分类
+	@RequestMapping("/getAddQuestionTwoZtree")
+	public String getAddQuestionTwoZtree(Long orgId,ModelMap map) {
+		List<QuesType>quesTypeList=questionsService.twoZtree(orgId);
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+		return "admin/examination/questions/enjoyAddZTwotree";
+	}
+	
+	
+	//添加共享试题前查找机构
+	@RequestMapping("/addGong")
+	public String addGong(ModelMap map,String questionsIdList,Long nid2){
+		String []s=questionsIdList.split(",");
+		List<Long>ids=new ArrayList<>();
+		for(String ss:s){
+			ids.add(Long.valueOf(ss));
+		}
+		//查找选定的共享试题
+		List<Questions> questionsList = questionsService.searche(ids);
+		//查找当前分类下的试题
+		List<Questions> qList = questionsService.getQuestions(nid2);
+		//确定要添加的共享试题试题
+		List<Questions> questionsAddList = new ArrayList<>(); 
+		//判断共享试题是否已经添加
+		if(CollectionUtils.isEmpty(qList)) {
+			for(Questions questionss : questionsList){
+				questionsAddList.add(questionss);
+			}
+		}else {
+			for(Questions questionss : questionsList){
+				boolean has = false;
+				for(Questions questions : qList){
+					if(questionss.getName().equals(questions.getName())){
+						has = true;
+						break;
+					}
+				}
+				if(!has) {
+					questionsAddList.add(questionss);
+				}
+			}
+		}
+		
+		/*List<Questions>QuestionsLists=new ArrayList<>();*/
+		for(Questions questions:questionsAddList) {
+			questions.setId(null);
+			questions.setQuesId(nid2);
+			questionsService.add(questions);
+		}
+		
+		/*List<WindyOrg>windyOrgList=questionsService.getWindyOrgLists();
+		map.put("windyOrgList", windyOrgList);*/
+		return getList(null,new Pagination(),null,null,null,map);
+	}
+
+
+	/**
+	 * 批量导入试题
+	 * @param mm
+	 * @return
+	 */
+	@RequestMapping("/batchImport")
+	public String batchImport(ModelMap mm,@RequestParam(value = "file",required = false) MultipartFile multipartFile,Long pid){
+		questionsService.batchImport(multipartFile,pid);
+		return getList(null,new Pagination(),null,null,null,mm);
+	}
+
+	/**
+	 * 下载试题模板
+	 * @return
+	 */
+	@RequestMapping("/downloadTemplateQuesType")
+	public String downloadTemplateQuesType(){
+		String pathUrl = getRequest().getSession().getServletContext().getRealPath("");
+		String ServerUrl = pathUrl + File.separator + "file" + File.separator + "批量导入试题模板.xlsx";
+		try {
+			FileDownLoadUtil.downLoad(getResponse(),ServerUrl,"批量导入试题模板.xlsx");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@RequestMapping("isDel")
+	@ResponseBody
+	public int isDel(String ids){
+		String isflag = null;
+		User user=(User) getSession(WindyConstants.SESSION_USER);//用户信息
+		String[] list = ids.split(",");
+		QuesType type = null;
+		Questions question = null;
+		for (int i = 0; i < list.length; i++) {
+			if(Long.parseLong(list[i])!=-2){
+				question = questionsService.getById(Long.parseLong(list[i]));//试题信息
+				type = quesTypeService.getById(question.getQuesId());//试题分类信息
+				if(user.getUpdateUser()!=type.getInsId()){
+					isflag = "0";
+					break;
+				}
+			}
+		}
+		if("0".equals(isflag)){
+			return 0;
+		}else{
+			return 1;
+		}
+	}
+	
+	@RequestMapping("/getFatherQuestionType1")
+	public String getFatherQuestionType1(Long pid,ModelMap map,Pagination page,String name) {
+		List<QuesType> listType = quesTypeService.getQuesType(pid);
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < listType.size(); i++) {
+			ids.add(listType.get(i).getId());
+		}
+		List<QuestionsDto> list1 = null;
+        try {
+        	list1 = questionsService.getByType(page,ids,name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        page.setTotal(questionsService.getByTypeCount(ids,name).size());
+		
+		map.put("list", list1);
+		map.put("page", page);
+		map.put("pid", pid);
+		map.put("name", name);
+		List<QuesType>quesTypeList=questionsService.twoZtree(pid);
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+		
+		return "admin/examination/questions/ztreeTwo1";
+	}
+}

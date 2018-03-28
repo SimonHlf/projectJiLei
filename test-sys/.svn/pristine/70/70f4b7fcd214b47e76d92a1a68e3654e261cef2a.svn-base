@@ -1,0 +1,831 @@
+<html id="body">
+<%@page pageEncoding="utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+	<meta charset="UTF-8">
+	<title>考试开始</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/reset.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/web/module/exam/css/exam.css"/>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_547918_39n6uhr143877gb9.css"/>
+	<link id="layuicss-layer" rel="stylesheet" href="http://localhost:8080/windy-devs/admin/assets/layui/css/modules/layer/default/layer.css?v=3.1.0" media="all">
+	<link id="layuicss-laydate" rel="stylesheet" href="http://localhost:8080/windy-devs/admin/assets/layui/css/modules/laydate/default/laydate.css?v=5.0.7" media="all">
+</head>
+<body>
+	<!-- header -->
+	<div class="header">
+		<div class="innerHeader w1100 clearfix">
+			<h3 class="fl">${setting.attr3}</h3>
+			<div class="rightPart fr">
+				<span>${frontUser.nickName}，你好！欢迎来到${setting.attr3}</span>
+				<span class="oneBlank">|</span>
+				<a href="javascript:exit()">退出系统</a>
+			</div>
+		</div>
+	</div>
+	<div class="mainCon w1100 clearfix">
+		<div class="leftMainPart fl">
+			<!-- quesType -->
+			<div class="quesType">
+				<strong class="typeStrong">单选题</strong>
+				<span class="totalSpan">共${danxuanToList.size()}题，合计${danxuantiZong}分</span>
+			</div>
+			<!-- 单选 -->
+			<c:forEach items="${danxuanToList}" var="danxuanTo">
+				<div id="quesList_${danxuanTo.id}" class="quesList">
+					<div class="quesTit clearfix">
+						<!-- 题号 -->
+						<span class="quesNum fl">${danxuanTo.attr7}</span>
+						<!-- 题干 -->
+						<div class="quesTitCon fl">
+							<p>(${danxuantiFen}分)${danxuanTo.name}</p>
+						</div>
+						<c:if test="${danxuanTo.image!=null && danxuanTo.image!=''}">
+							<div class="quesTitCon hasImgTitCon fl">
+								<img src="/${danxuanTo.image}" style="width: 250px;height: 240px;"/>
+							</div>
+						</c:if>
+						
+					</div>
+					<div id="quesSelCon_${danxuanTo.id}" class="quesSelCon">
+						<ul>
+							<li class="danxuan">
+								<label for="${danxuanTo.id}_1">
+									<span></span>
+									<input type="radio" id="${danxuanTo.id}_1" name="${danxuanTo.id}_option_radio" onclick="selectSingleAnswer(this,${danxuanTo.id})" class="comSelInp" />
+									<p class="fl">A、${danxuanTo.optionA}</p>
+								</label>
+							</li>
+							<li class="danxuan">
+								<label for="${danxuanTo.id}_2">
+									<span></span>
+									<input type="radio" id="${danxuanTo.id}_2" name="${danxuanTo.id}_option_radio" onclick="selectSingleAnswer(this,${danxuanTo.id})" class="comSelInp" />
+									<p class="fl">B、${danxuanTo.optionB}</p>
+								</label>
+							</li>
+							<li class="danxuan">
+								<label for="${danxuanTo.id}_3">
+									<span></span>
+									<input type="radio" id="${danxuanTo.id}_3" name="${danxuanTo.id}_option_radio" onclick="selectSingleAnswer(this,${danxuanTo.id})" class="comSelInp" />
+									<p class="fl">C、${danxuanTo.optionC}</p>
+								</label>
+							</li>
+							<li class="danxuan">
+								<label for="${danxuanTo.id}_4">
+									<span></span>
+									<input type="radio" id="${danxuanTo.id}_4" name="${danxuanTo.id}_option_radio" onclick="selectSingleAnswer(this,${danxuanTo.id})" class="comSelInp" />
+									<p class="fl">D、${danxuanTo.optionD}</p>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<!-- quesType -->
+			<div class="quesType">
+				<strong class="typeStrong">多选题</strong>
+				<span class="totalSpan">共${duoxianToList.size()}题，合计${duoxuantiZong}分</span>
+			</div>
+			<c:forEach items="${duoxianToList}" var="duoxianTo">
+				<div id="quesList_${duoxianTo.id}" class="quesList">
+					<div class="quesTit clearfix">
+						<!-- 题号 -->
+						<span class="quesNum fl">${duoxianTo.attr7}</span>
+						<!-- 题干 -->
+						<div class="quesTitCon fl">
+							<p>(${duoxuantiFen}分)${duoxianTo.name}</p>
+						</div>
+						<c:if test="${duoxianTo.image!=null && duoxianTo.image!=''}">
+							<div class="quesTitCon hasImgTitCon fl">
+								<img src="/${duoxianTo.image}" style="width: 250px;height: 240px;"/>
+							</div>
+						</c:if>
+					</div>
+					<div id="quesSelCon_${duoxianTo.id}" class="quesSelCon">
+						<ul>
+							<li class="duoxuan">
+								<label for="${duoxianTo.id}_1">
+									<span></span>
+									<input type="checkbox" id="${duoxianTo.id}_1" name="answer_option_checkbox" onclick="selectMultAnswer(this,${duoxianTo.id})" class="comSelInp" />
+									<p class="fl">A、${duoxianTo.optionA}</p>
+								</label>
+							</li>
+							<li class="duoxuan">
+								<label for="${duoxianTo.id}_2">
+									<span></span>
+									<input type="checkbox" id="${duoxianTo.id}_2" name="answer_option_checkbox" onclick="selectMultAnswer(this,${duoxianTo.id})" class="comSelInp" />
+									<p class="fl">B、${duoxianTo.optionB}</p>
+								</label>
+							</li>
+							<li class="duoxuan">
+								<label for="${duoxianTo.id}_3">
+									<span></span>
+									<input type="checkbox" id="${duoxianTo.id}_3" name="answer_option_checkbox" onclick="selectMultAnswer(this,${duoxianTo.id})" class="comSelInp" />
+									<p class="fl">C、${duoxianTo.optionC}</p>
+								</label>
+							</li>
+							<li class="duoxuan">
+								<label for="${duoxianTo.id}_4">
+									<span></span>
+									<input type="checkbox" id="${duoxianTo.id}_4" name="answer_option_checkbox" onclick="selectMultAnswer(this,${duoxianTo.id})" class="comSelInp" />
+									<p class="fl">D、${duoxianTo.optionD}</p>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</c:forEach>
+			
+			<!-- quesType -->
+			<div class="quesType">
+				<strong class="typeStrong">判断题</strong>
+				<span class="totalSpan">共${panduanToList.size()}题，合计${panduantiZong}分</span>
+			</div>
+			<c:forEach items="${panduanToList}" var="panduanTo">
+				<div id="quesList_${panduanTo.id}" class="quesList">
+					<div class="quesTit clearfix">
+						<!-- 题号 -->
+						<span class="quesNum fl">${panduanTo.attr7}</span>
+						<!-- 题干 -->
+						<div class="quesTitCon fl">
+							<p>(${panduantiFen}分)${panduanTo.name}</p>
+						</div>
+						<c:if test="${panduanTo.image!=null && panduanTo.image!=''}">
+							<div class="quesTitCon hasImgTitCon fl">
+								<img src="/${panduanTo.image}" style="width: 250px;height: 240px;"/>
+							</div>
+						</c:if>
+					</div>
+					<div id="quesSelCon_${panduanTo.id}" class="quesSelCon">
+						<ul>
+							<li class="panduan">
+								<label for="${panduanTo.id}_1">
+									<span></span>
+									<input type="radio" id="${panduanTo.id}_1" name="${panduanTo.id}_panduan_radio" onclick="selJudgeAns(this,${panduanTo.id})" class="comSelInp" />
+									<p class="fl">A、正确</p>
+								</label
+								>
+							</li>
+							<li class="panduan">
+								<label for="${panduanTo.id}_2">
+									<span></span>
+									<input type="radio" id="${panduanTo.id}_2" name="${panduanTo.id}_panduan_radio" onclick="selJudgeAns(this,${panduanTo.id})" class="comSelInp" />
+									<p class="fl">B、错误</p>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</c:forEach>
+			
+		</div>
+		<div class="rightMainPart noFixed">
+			<div class="timeRemain">
+				<p class="remainP">剩余时间</p>
+				<div class="reaminDiv">
+					<strong id="countDownStrong" class="alt-1"></strong>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 答题卡层  -->
+	<div class="quesCard_begin">
+		<p class="remainP">答题卡</p>
+		<div id="parCard" class="quesTypeCard">
+			<div id="sonCard" class="scroller">
+				<!-- 单选题 -->
+				<div class="comQuesType">
+					<p class="comTypeTit">单选题</p>
+					<ul class="clearfix">
+						<c:forEach items="${danxuanToList}" var="danxuanTo">
+							<li><a id="singleSelCardA_${danxuanTo.id}" href="#quesList_${danxuanTo.id}">${danxuanTo.attr7}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- 多选题 -->
+				<div class="comQuesType">
+					<p class="comTypeTit">多选题</p>
+					<ul class="clearfix">
+						<c:forEach items="${duoxianToList}" var="duoxianTo">
+							<li><a id="multiSelCardA_${duoxianTo.id}" href="#quesList_${duoxianTo.id}">${duoxianTo.attr7} </a></li>
+						</c:forEach>
+					</ul>
+				</div>
+				<!-- 判断题 -->
+				<div class="comQuesType">
+					<p class="comTypeTit">判断题</p>
+					<ul class="clearfix">
+						<c:forEach items="${panduanToList}" var="panduanTo">
+							<li><a id="judgeSelA_${panduanTo.id}" href="#quesList_${panduanTo.id}">${panduanTo.attr7}</a></li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  div>${setting.attr6 }</div-->
+	<div class="layer"></div>
+	<!-- 考试注意事项 -->
+	<div class="attenDiv">
+		<strong>考试注意事项</strong>
+		<p>一、注意答题时间,本次考试时间为<span id="examTime"></span>分钟</p>
+		<p>二、考试坐姿要端正，保证面部能被摄像头抓取。</p>
+		<p>三、切勿心存侥幸。</p>
+		<button id="examBtn" class="goExamBtn">开始开始</button>
+	</div>
+	<!-- 底部交卷和返回 -->
+	<div class="handPaper w1100">
+		<a class="handBtn" href="javascript:void(0)" onclick="tijiao()">交卷</a>
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/web/jsPlugin/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/web/jsPlugin/scrollBar.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/web/module/exam/time/jquery.countdown.js"></script>
+
+	<script type="text/javascript">
+		var cliWid = $(window).width();
+		var testTime='${testTime}';
+		$(function(){
+			$(".quesCard_begin").css({"right":parseInt((cliWid-1000)/2)});
+			createScrollBar();
+			$(".layer").show();
+			$(".attenDiv").show();
+			testTime=eval("("+testTime+")");
+			$("#examTime").html(testTime);
+			$("#countDownStrong").html(toHourMinute(testTime,"noFullScreen"));
+			checkTitCon();
+			console.log(cliWid)
+		});
+		function checkTitCon(){
+			if($(".hasImgTitCon").length != 0){
+				$(".hasImgTitCon").each(function(i){
+					$(".hasImgTitCon").eq(i).prev().addClass("noBorTitCon");
+				});
+			}
+		}
+		document.getElementById("examBtn").onclick=function(){     
+		    var elem = document.getElementById("body");      
+		    requestFullScreen(elem);
+		    $(".layer").hide();
+		    $(".attenDiv").hide();
+		    testTime=eval("("+testTime+")");
+		    $("#countDownStrong").html(toHourMinute(testTime,"hasFullScreen"));
+		    
+			window.jQuery(function($) {
+				"use strict";
+				$('time').countDown({
+					with_separators : false
+				});
+				$('.alt-1').countDown({
+					css_class : 'countdown-alt-1'
+				});
+			});
+		}; 
+		function requestFullScreen(element) {         
+		    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullScreen;    
+		    
+		    if (requestMethod) {      
+		        requestMethod.call(element);    
+		    } else if (typeof window.ActiveXObject !== "undefined") {      
+		        var wscript = new ActiveXObject("WScript.Shell");    
+		        if (wscript !== null) {    
+		            wscript.SendKeys("{F11}");    
+		        }    
+		    }  
+
+		} 
+		function createScrollBar(){
+			var parHei = $("#parCard").height();
+			var sonHei = $("#sonCard").height();
+			var oScroll = "<div id='scrollParent' class='parentScroll'><div id='scrollSon' class='sonScrollBar'></div></div>";
+			if(sonHei > parHei){//动态创建模拟滚动条
+				$("#parCard").append(oScroll);
+				scrollBar("parCard","sonCard","scrollParent","scrollSon",10);
+			}
+		}
+		// 将分钟数量转换为小时和分钟字符串
+		function toHourMinute(minutes,options){
+			if(options == "noFullScreen"){
+				return (Math.floor(minutes/60) + "小时" + (minutes%60) + "分" );
+			}else{
+				return (Math.floor(minutes/60) + ":" + (minutes%60));
+			}
+		}
+		//单选
+		function selectSingleAnswer(obj,index){
+			$("#quesSelCon_" + index).find("span").removeClass("active");
+			$("#selIcon_"+index).remove();
+			$(obj).prev().addClass("active").append("<i id=selIcon_"+ index +" class='iconfont icon-successful'></i>");
+			$("#singleSelCardA_" + index).parent().addClass("active");
+		}
+		//多选
+		function selectMultAnswer(obj,index){
+			if(obj.checked){//选中
+				$(obj).prev().addClass("active").append("<i class='iconfont icon-successful'></i>");
+				$("#multiSelCardA_" + index).parent().addClass("active");
+			}else{
+				$(obj).prev().removeClass("active");
+				$(obj).prev().find('i').remove();
+				if(!$(obj).parent().parent().siblings().find("input").is(':checked')){
+					$("#multiSelCardA_" + index).parent().removeClass("active");
+				}
+			}
+		}
+		//判断题 
+		function selJudgeAns(obj,index){
+			$("#quesSelCon_" + index).find("span").removeClass("active");
+			$("#selIcon_"+index).remove();
+			$(obj).prev().addClass("active").append("<i id=selIcon_"+ index +" class='iconfont icon-successful'></i>");;
+			$("#judgeSelA_" + index).parent().addClass("active");
+		}
+		$(window).resize(function(){
+			var tmpCliWid = $(window).width();
+			cliWid = tmpCliWid;
+			$(".quesCard_begin").css({"right":parseInt((cliWid-1000)/2)});
+		});
+		$(window).scroll(function(){
+			var scrollTop = $(window).scrollTop();
+			if(scrollTop >= 74){
+				$(".rightMainPart").removeClass("noFixed").addClass('hasFixed');
+				if($(".hasFixed").length > 0){
+					$(".hasFixed").css({'right':parseInt((cliWid-1000)/2)});
+				}
+			}else{
+				$(".rightMainPart").removeClass("hasFixed").addClass('noFixed');
+			}
+		});
+		document.onkeydown = function(e){
+		    e = window.event || e;  
+		    var keycode = e.keyCode || e.which; 
+		    if(keycode == 116 || keycode == 122 || keycode == 123){  
+		        if(window.event){// ie  
+		            try{e.keyCode = 0;}catch(e){}  
+		            e.returnValue = false;  
+		        }else{// firefox  
+		            e.preventDefault();  
+		        }  
+		     }
+		}
+		//禁止右键弹出菜单 
+		document.oncontextmenu = function(){
+		   return false;
+		}
+	    function exit() {
+	        if (window.confirm("确定要退出登陆吗?")) {
+	            window.location = "${pageContext.request.contextPath}/web/module/login/exit.jsp";
+	        }
+	    }
+
+		
+		
+		
+function tijiaos(){
+			
+			//所有选中的radio选框的下标数组
+			var n=[];
+			//总radio选框的下标数组
+			var m=[];
+			//计数
+			var f=-1;
+			
+			//计算单选题个数及数组
+			
+			$(".danxuan input[type=radio]").each(function(){
+				
+				f+=1;
+				m.push(f);
+			});
+			var o=m.length
+			for(var i=0;i<o;i++){
+				 if($(".danxuan input[type=radio]").eq(i).is(':checked')){
+							n.push(i);
+				}
+			}
+			
+			//所有选中的check选框个数
+			var cn=[];
+			//所有check选框个数
+			var cm=[];
+			//check选框计数
+			var cf=-1;
+			//计选多选题选框个数及数组
+			$(".duoxuan input[type=checkbox]").each(function(){
+				cf+=1;
+				cm.push(cf);
+			});
+			//单选的选框个数
+			var danxuanNum='${danxuanNum}';
+			var danxuanNums=danxuanNum*4;
+			//多选题的选框个数
+			var duoxuanNum='${duoxuanNum}';
+			var duoxuanNums=duoxuanNum*4;
+			for(var j=0;j<duoxuanNums;j++){
+				if($(".duoxuan input[type=checkbox]").eq(j).is(':checked')){
+					cn.push(j);
+				}
+			}   
+			
+			//计选判断题选框个数及数组
+			$(".panduan input[type=radio]").each(function(){
+				f+=1;
+				m.push(f);
+			});
+			//判断题选框个数
+			var panduanNum='${panduanNum}';
+			var panduanNums=panduanNum*2
+			for(var j=0;j<panduanNums;j++){
+				if($(".panduan input[type=radio]").eq(j).is(':checked')){
+					n.push(j+danxuanNums);
+				}
+			}
+			/* alert("判断题个数"+panduanNum);
+			alert("选的"+n);
+			alert("总共"+m); */
+			
+			var zr=Number(danxuanNum)+Number(panduanNum);
+			var rnum=Number(zr)-Number(n.length);
+			
+			var zc=duoxuanNum;
+			/* var znum=Number(zc)-Number(cn.length); */
+			
+			
+			var duoEmtay=0;
+			var duoa=0;
+			
+			
+			var jishu=0;
+			
+			for(var i=0;i<cm.length;i=i+4){
+				
+				for(var j=0;j<=4;j++){
+					
+					if(j<4){
+						
+						if((i+j)==cn[jishu]){
+							duoEmtay+=1;
+							jishu++;
+							
+						}
+					};
+					
+					if(j==4){
+						
+						if(duoEmtay==0){
+							duoa++;
+						}
+					};
+				}
+				duoEmtay=0;
+			} 
+		
+			var num=Number(rnum)+Number(duoa);
+			/* alert(duoa);
+			alert(num); */
+			 
+			
+				
+				//radio
+				var nn="";
+				for(var i=0;i<n.length;i++){
+					nn+=n[i]+",";
+				}
+				var mm="";
+				for(var i=0;i<m.length;i++){
+					mm+=m[i]+",";
+				}
+				
+				//check
+				var cnn="";
+				for(var i=0;i<cn.length;i++){
+					cnn+=cn[i]+",";
+				}
+				var cmm="";
+				for(var i=0;i<cm.length;i++){
+					cmm+=cm[i]+",";
+				}
+				/* alert("aaaaaaaaaaaaaa") */
+				/* alert(nn);
+				
+				
+				alert(mm);
+				alert(cnn);
+				alert(cmm); */
+				
+				//单选题
+				/* var danxuanToList='${danxuanToList}'; */
+				var danxuanIdList='${danxuanIdList}';
+				//多选题
+				/* var duoxianToList='${danxuanToList}'; */
+				var duoxuanIdList='${duoxuanIdList}'
+				//判断题
+				/* var panduanToList='${danxuanToList}'; */
+				var panduanIdList='${panduanIdList}'
+				//单选题数量
+				var danxuanNum='${danxuanNum}';
+				
+				//多选题数量
+				var duoxuanNum='${duoxuanNum}';
+				//判断题数量
+				var panduanNum='${panduanNum}';
+				var danxuantiZong='${danxuantiZong}';
+				var duoxuantiZong='${duoxuantiZong}';
+				var panduantiZong='${panduantiZong}';
+				var paperCreatId='${paperCreatId}';
+				//考试时间
+				/* var testTime='${testTime}' */
+				//分数线
+				var line='${line}'
+				/* alert(danxuanIdList+"yyyyyyyyyyyyyyyyy")
+				alert(duoxuanIdList+"yyyyyyyyyyyyyyyyy")
+				alert(panduanIdList+"yyyyyyyyyyyyyyyyy") */
+				//是否显示答案
+				 var isShow='${isShow}'; 
+				//考试id
+				var examId='${examId}';
+				
+				var danxuantiFen='${danxuantiFen}';
+				
+				var duoxuantiFen='${duoxuantiFen}';
+				
+				var panduantiFen='${panduantiFen}';
+				
+				console.log(examId)
+			/* $.ajax({
+				url:'www.baidu.com',
+				success:function(th){
+					alert(111);
+				}
+			}) */
+				/*  window.location.href="submitTest.htm?nn="+nn+"&mm="+mm+"&cnn="+cnn+"&cmm="+cmm+"&danxuanIdList="+danxuanIdList+
+						"&duoxuanIdList="+duoxuanIdList+"&panduanIdList="+panduanIdList+"&danxuanNum="+danxuanNum+"&duoxuanNum="+duoxuanNum+
+						"&panduanNum="+panduanNum+"&danxuantiZong="+danxuantiZong+"&duoxuantiZong="+duoxuantiZong+"&panduantiZong="+panduantiZong+
+						"&paperCreatId="+paperCreatId+"&line="+line+"&isShow="+isShow+"&examId="+examId; */ 
+				/* alert("dddd") 
+				/* window.location.href="www.baidu.com"; */
+			 $.ajax({
+					type:"post",
+					url:"submitTest.htm",
+					
+					data:{nn:nn,mm:mm,cnn:cnn,cmm:cmm,danxuanIdList:danxuanIdList,duoxuanIdList:duoxuanIdList,panduanIdList:panduanIdList,
+						danxuanNum:danxuanNum,duoxuanNum:duoxuanNum,panduanNum:panduanNum,danxuantiZong:danxuantiZong,duoxuantiZong:duoxuantiZong,
+						panduantiZong:panduantiZong,paperCreatId:paperCreatId,line:line,isShow:isShow,examId:examId,danxuantiFen:danxuantiFen,duoxuantiFen:danxuantiFen,panduantiFen:danxuantiFen},
+					success:function(html){
+						
+						/* var par=JSON.parse(html); */
+				
+						
+						$(".attenDiv").show().html("<p style=''>"+ html +"</p>" + "<button id='backBtn' onclick='fanhuiLieBiao()' class='goExamBtn' >返回列表</button>");
+						$(".layer").show();
+						
+						/*layer.open({
+						 	 type:1,
+						 	 title:"选择类型",
+						 	 skin:'layui-layer-rim',//加上边框
+						 	 area:['260px','160px'],//宽高
+						 	 btn:['确定','取消'],
+						 	 yes:function(index){
+						 		 addDisRate(userWho);
+						 		 layer.close(index);
+						 	 },
+						 	 content:html,
+						 	 zIndex:999999
+						 })*/
+					}
+					
+				})  
+				
+			 
+		}
+		
+
+		/* function timeOver(){
+			alert("时间到了请教卷")
+		} */
+
+		function tijiao(){
+			
+			//所有选中的radio选框的下标数组
+			var n=[];
+			//总radio选框的下标数组
+			var m=[];
+			//计数
+			var f=-1;
+			
+			//计算单选题个数及数组
+			
+			$(".danxuan input[type=radio]").each(function(){
+				
+				f+=1;
+				m.push(f);
+			});
+			var o=m.length
+			for(var i=0;i<o;i++){
+				 if($(".danxuan input[type=radio]").eq(i).is(':checked')){
+							n.push(i);
+				}
+			}
+			
+			//所有选中的check选框个数
+			var cn=[];
+			//所有check选框个数
+			var cm=[];
+			//check选框计数
+			var cf=-1;
+			//计选多选题选框个数及数组
+			$(".duoxuan input[type=checkbox]").each(function(){
+				cf+=1;
+				cm.push(cf);
+			});
+			//单选的选框个数
+			var danxuanNum='${danxuanNum}';
+			var danxuanNums=danxuanNum*4;
+			//多选题的选框个数
+			var duoxuanNum='${duoxuanNum}';
+			var duoxuanNums=duoxuanNum*4;
+			for(var j=0;j<duoxuanNums;j++){
+				if($(".duoxuan input[type=checkbox]").eq(j).is(':checked')){
+					cn.push(j);
+				}
+			}   
+			
+			//计选判断题选框个数及数组
+			$(".panduan input[type=radio]").each(function(){
+				f+=1;
+				m.push(f);
+			});
+			//判断题选框个数
+			var panduanNum='${panduanNum}';
+			var panduanNums=panduanNum*2
+			for(var j=0;j<panduanNums;j++){
+				if($(".panduan input[type=radio]").eq(j).is(':checked')){
+					n.push(j+danxuanNums);
+				}
+			}
+			/* alert("判断题个数"+panduanNum);
+			alert("选的"+n);
+			alert("总共"+m); */
+			
+			var zr=Number(danxuanNum)+Number(panduanNum);
+			var rnum=Number(zr)-Number(n.length);
+			
+			var zc=duoxuanNum;
+			/* var znum=Number(zc)-Number(cn.length); */
+			
+			
+			var duoEmtay=0;
+			var duoa=0;
+			
+			
+			var jishu=0;
+			
+			for(var i=0;i<cm.length;i=i+4){
+				
+				for(var j=0;j<=4;j++){
+					
+					if(j<4){
+						
+						if((i+j)==cn[jishu]){
+							duoEmtay+=1;
+							jishu++;
+							
+						}
+					};
+					
+					if(j==4){
+						
+						if(duoEmtay==0){
+							duoa++;
+						}
+					};
+				}
+				duoEmtay=0;
+			} 
+		
+			var num=Number(rnum)+Number(duoa);
+			/* alert(duoa);
+			alert(num); */
+			 var res = window.confirm("您还有"+num+"道题没有做,您确定要提交吗?"); 
+			 if(res){ 
+				
+				//radio
+				var nn="";
+				for(var i=0;i<n.length;i++){
+					nn+=n[i]+",";
+				}
+				var mm="";
+				for(var i=0;i<m.length;i++){
+					mm+=m[i]+",";
+				}
+				
+				//check
+				var cnn="";
+				for(var i=0;i<cn.length;i++){
+					cnn+=cn[i]+",";
+				}
+				var cmm="";
+				for(var i=0;i<cm.length;i++){
+					cmm+=cm[i]+",";
+				}
+				/* alert("aaaaaaaaaaaaaa") */
+				/* alert(nn);
+				
+				
+				alert(mm);
+				alert(cnn);
+				alert(cmm); */
+				
+				//单选题
+				/* var danxuanToList='${danxuanToList}'; */
+				var danxuanIdList='${danxuanIdList}';
+				//多选题
+				/* var duoxianToList='${danxuanToList}'; */
+				var duoxuanIdList='${duoxuanIdList}'
+				//判断题
+				/* var panduanToList='${danxuanToList}'; */
+				var panduanIdList='${panduanIdList}'
+				//单选题数量
+				var danxuanNum='${danxuanNum}';
+				
+				//多选题数量
+				var duoxuanNum='${duoxuanNum}';
+				//判断题数量
+				var panduanNum='${panduanNum}';
+				var danxuantiZong='${danxuantiZong}';
+				var duoxuantiZong='${duoxuantiZong}';
+				var panduantiZong='${panduantiZong}';
+				var paperCreatId='${paperCreatId}';
+				//考试时间
+				/* var testTime='${testTime}' */
+				//分数线
+				var line='${line}'
+				/* alert(danxuanIdList+"yyyyyyyyyyyyyyyyy")
+				alert(duoxuanIdList+"yyyyyyyyyyyyyyyyy")
+				alert(panduanIdList+"yyyyyyyyyyyyyyyyy") */
+				//是否显示答案
+				 var isShow='${isShow}'; 
+				//考试id
+				var examId='${examId}';
+				
+				var danxuantiFen='${danxuantiFen}';
+				
+				var duoxuantiFen='${duoxuantiFen}';
+				
+				var panduantiFen='${panduantiFen}';
+				
+				console.log(examId)
+			/* $.ajax({
+				url:'www.baidu.com',
+				success:function(th){
+					alert(111);
+				}
+			}) */
+				/*  window.location.href="submitTest.htm?nn="+nn+"&mm="+mm+"&cnn="+cnn+"&cmm="+cmm+"&danxuanIdList="+danxuanIdList+
+						"&duoxuanIdList="+duoxuanIdList+"&panduanIdList="+panduanIdList+"&danxuanNum="+danxuanNum+"&duoxuanNum="+duoxuanNum+
+						"&panduanNum="+panduanNum+"&danxuantiZong="+danxuantiZong+"&duoxuantiZong="+duoxuantiZong+"&panduantiZong="+panduantiZong+
+						"&paperCreatId="+paperCreatId+"&line="+line+"&isShow="+isShow+"&examId="+examId; */ 
+				/* alert("dddd") 
+				/* window.location.href="www.baidu.com"; */
+			 $.ajax({
+					type:"post",
+					url:"submitTest.htm",
+					
+					data:{nn:nn,mm:mm,cnn:cnn,cmm:cmm,danxuanIdList:danxuanIdList,duoxuanIdList:duoxuanIdList,panduanIdList:panduanIdList,
+						danxuanNum:danxuanNum,duoxuanNum:duoxuanNum,panduanNum:panduanNum,danxuantiZong:danxuantiZong,duoxuantiZong:duoxuantiZong,
+						panduantiZong:panduantiZong,paperCreatId:paperCreatId,line:line,isShow:isShow,examId:examId,danxuantiFen:danxuantiFen,duoxuantiFen:danxuantiFen,panduantiFen:danxuantiFen},
+					success:function(html){
+						
+						/* var par=JSON.parse(html); */
+				
+						
+						$(".attenDiv").show().html("<p style='margin-top:68px;text-align:center;'>"+ html +"</p>" + "<button id='backBtn' onclick='fanhuiLieBiao()' class='goExamBtn' style='margin-top:35px;'>返回列表</button>");
+						$(".layer").show();
+						
+						/*layer.open({
+						 	 type:1,
+						 	 title:"选择类型",
+						 	 skin:'layui-layer-rim',//加上边框
+						 	 area:['260px','160px'],//宽高
+						 	 btn:['确定','取消'],
+						 	 yes:function(index){
+						 		 addDisRate(userWho);
+						 		 layer.close(index);
+						 	 },
+						 	 content:html,
+						 	 zIndex:999999
+						 })*/
+					}
+					
+				})  
+				
+			 } 
+		}
+		
+		 function fanhuiLieBiao(){
+			 window.opener.location.reload();
+			 window.close();
+			 //window.close();
+			//window.location.href="${pageContext.request.contextPath}/PaperCreatFontCountroller/toMain.htm";
+		} 
+		
+	</script>
+</body>
+</html>

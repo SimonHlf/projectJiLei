@@ -1,0 +1,86 @@
+package cn.windy.module.admin.controller;
+
+import cn.windy.module.admin.hibernate.model.Org;
+import cn.windy.module.admin.service.IOrgService;
+import cn.windy.util.Pagination;
+import cn.windy.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("/admin/org")
+public class OrgController extends AdminBaseController {
+
+    @Autowired
+    IOrgService orgService;
+
+    @RequestMapping("/list")
+    public String list(Org org, Pagination page, ModelMap mm){
+        //tree
+        StringBuffer nodesJson = new StringBuffer();
+        List<Org> listAll = orgService.findAll(null);
+        String template = "{id:%d,pId:%d,name:'%s'}";
+        for (Org o : listAll) {
+            nodesJson.append(",");
+            nodesJson.append(String.format(template,o.getId(),o.getPid(), o.getName()));
+        }
+        if(nodesJson.toString().startsWith(","))
+            mm.put("nodes",nodesJson.substring(1));
+
+        if(!StringUtil.isBlank(org.getName())){
+            org.addCondition("name",true,"and",true);
+        }
+        mm.put("list",orgService.find(org,page));
+        page.setTotal(orgService.count(org));
+        mm.put("page",page);
+        return "admin/admin/org/list";
+    }
+
+    /**
+     * 点击树型结构时有效
+     * @param menu
+     * @param page
+     * @param mm
+     * @return
+     */
+    @RequestMapping("/listByPid")
+    public String listByPid(Org menu, Pagination page, ModelMap mm){
+        if(menu.getPid()!=null){
+            menu.addCondition("pid",true,"and",false);
+        }
+        mm.put("list",orgService.find(menu,page));
+        page.setTotal(orgService.count(menu));
+        mm.put("page",page);
+        return "admin/admin/org/table";
+    }
+
+    @RequestMapping("/del")
+    public String add(String ids, ModelMap mm){
+        orgService.delete(ids);
+        return list(new Org(),new Pagination(),mm);
+    }
+
+    @RequestMapping("/add")
+    public String add(Org menu, ModelMap mm){
+        if(menu.getPid()==null) menu.setPid(0L);
+        orgService.add(menu);
+        return list(new Org(),new Pagination(),mm);
+    }
+
+    @RequestMapping("/edit")
+    public String edit(Org menu, ModelMap mm){
+        mm.put("org",orgService.findById(menu.getId()));
+        return "admin/admin/org/edit";
+    }
+    
+    @RequestMapping("/details")
+    public String details(Org menu,ModelMap mm){
+    	mm.put("org", orgService.findById(menu.getId()));
+    	return "admin/admin/org/details";
+    	
+    }
+}

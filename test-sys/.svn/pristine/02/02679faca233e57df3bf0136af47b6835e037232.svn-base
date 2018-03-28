@@ -1,0 +1,38 @@
+#jdbc 114.115.150.144  3506    root  root
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost:3306/test-sys?characterEncoding=utf8
+jdbc.username=root
+jdbc.password=123456
+
+#hibernate
+hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+hibernate.show_sql=true                                                                                                                                      
+hibernate.format_sql=true
+
+#------------------------------------------------------------------------------------
+# ������c3p0������
+#------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
+# c3p0���������ã���ֹ8СʱʧЧ����28800
+#------------------------------------------------------------------------------------
+#idleConnectionTestaPeriodҪС��MySQL��wait_timeout
+jdbc.c3p0.testConnectionOnCheckout=false
+jdbc.c3p0.testConnectionOnCheckin=true
+jdbc.c3p0.idleConnectionTestPeriod=3600
+
+jdbc.c3p0.initialPoolSize=10
+jdbc.c3p0.minPoolSize=5
+jdbc.c3p0.maxPoolSize=100
+jdbc.c3p0.maxIdleTime=3600
+
+#-----------------------------------------------------------------------------------
+# java redis
+#-----------------------------------------------------------------------------------
+
+#duan xin
+accessKeyId=LTAILwerpoNR9o0f
+accessKeySecret=3dFl5hx5DsfhAsJwJCmVjyqslHwCg1
+signName=\u963F\u91CC\u4E91\u77ED\u4FE1\u6D4B\u8BD5\u4E13\u7528
+templateCode=SMS_81640003
+
+

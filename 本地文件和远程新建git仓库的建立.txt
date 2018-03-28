@@ -1,0 +1,7 @@
+01：git init
+02:git remote add origin url 远程的github的ssh地址   ->把当前的文件夹和远程的github地址对应起来
+03：拉取一下代码 git pull origin master 将远程代码拉取到本地
+04：git status 查看当前的状态
+05：git add .
+06:git commit -m "note"
+07:

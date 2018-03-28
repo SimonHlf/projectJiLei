@@ -1,0 +1,527 @@
+package cn.windy.module.examination.controller;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.SimpleFormatter;
+
+import org.beetl.ext.fn.GetValueFunction;
+import org.hibernate.query.criteria.internal.expression.SubqueryComparisonModifierExpression;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+
+import cn.windy.module.admin.hibernate.model.User;
+import cn.windy.module.core.controller.BaseController;
+import cn.windy.module.examination.dao.QuesTypeMapper;
+import cn.windy.module.examination.dao.WindyOrgMapper;
+import cn.windy.module.examination.mybatis.model.QuesType;
+import cn.windy.module.examination.mybatis.model.QuesTypeQuery;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.service.QuesTypeService;
+import cn.windy.module.examination.service.QuestionsService;
+import cn.windy.module.util.WindyConstants;
+import cn.windy.util.DateUtil;
+import cn.windy.util.Pagination;
+import cn.windy.util.StringUtil;
+
+@Controller
+@RequestMapping("/admin/QuesTypeController")
+public class QuesTypeController extends BaseController{
+	@Autowired
+	private QuesTypeService quesTypeService;
+	
+	@Autowired
+	private QuesTypeMapper quesTypeMapper;
+	
+	@Autowired
+	private QuestionsService questionsService;
+	
+	@Autowired
+	private WindyOrgMapper windyOrgMapper;
+	
+	/**
+	 * 列表
+	 * @param page
+	 * @param insId
+	 * @param map
+	 */
+	@RequestMapping("/getList")
+	public String getList(String insIdList,Pagination page,ModelMap map) {
+		//tree
+        StringBuffer nodesJson = new StringBuffer();
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据
+		boolean s=quesTypeService.getRole(user.getId());
+		
+		List<Long> insIdLists=new ArrayList<Long>();
+		if(insIdList!=null && !"".equals(insIdList)){
+			String []ss=insIdList.split(",");
+			for(String sd:ss) {
+				insIdLists.add(Long.valueOf(sd));
+			}
+			
+		}
+		String result="false";
+		if(s==true){
+			result="true";
+			//树形结构用
+			/*List<MenuTree> zTreeList=quesTypeService.getZtrees(null);*/
+			List<Map<String,Object>> windyOrgList=quesTypeService.getWindyOrgLists();
+			/*List<QuesType> QuesType1List=quesTypeService.getAll();*/
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			
+			/*List<QuesType> QuesType1List=quesTypeService.getAll();
+			String ss=JSON.toJSONString(QuesType1List);*/
+			map.put("result", result);
+			map.put("list", quesTypeService.getList(insIdLists,page, null));
+			page.setTotal(quesTypeService.getCount(insIdLists,null));
+			map.put("page",page);
+		}else {
+			
+			List<WindyOrg> windyOrgList=quesTypeService.getquesTypeNow(user.getUpdateUser());
+			/*List<QuesType>quesTypeList=quesTypeService.twoZtree(windyOrgList.get(0).getId());*/
+			//查找普通管理员的机构及其分类
+			List<Map<String,Object>> quesTypeList=quesTypeService.getZtreeNFen(user.getUpdateUser());
+			String ss=JSON.toJSONString(quesTypeList);
+			map.put("paperTypeName", windyOrgList.get(0).getName());
+			map.put("insId", windyOrgList.get(0).getId());
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			map.put("result", result);
+			map.put("list", quesTypeService.getList(insIdLists,page, user.getUpdateUser()));
+			page.setTotal(quesTypeService.getCount(insIdLists,user.getUpdateUser()));
+			map.put("page",page);
+		}
+		
+		return "admin/examination/quesType/list";
+	}
+	@RequestMapping("/getMainFenYe")
+	public String getMainFenYe(Long insId,Pagination page,ModelMap map){
+		if(windyOrgMapper.selectByPrimaryKey(insId).getPid()==0) {
+			List<Map<String,Object>> quesTypeLists=quesTypeService.getList(null, page, null);
+			Long count=quesTypeService.getCount(null, null);
+			page.setTotal(count);
+			List<QuesType> qList=quesTypeService.getAllType();
+			String ss=JSON.toJSONString(qList);
+			map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+			map.put("list", quesTypeLists);
+			map.put("page", page);
+			map.put("insId", insId);
+			return "admin/examination/quesType/ztreeOneFenYe";
+		};
+		
+		List<Map<String,Object>> quesTypesList=quesTypeService.getList(null,page,insId);
+		Long count=quesTypeService.getCount(null, insId);
+		page.setTotal(count);
+		map.put("insId", insId);
+		map.put("list", quesTypesList);
+		map.put("page", page);
+		return "admin/examination/quesType/mainTable";
+	}
+	
+	
+	
+	//树形分页用
+	@RequestMapping("/getByFenYe")
+	public String getByFenYe(Long pid,Pagination page,ModelMap map) {
+		/*List<Long> insIdList=new ArrayList<Long>();
+		if(insIdLists!=null && !"".equals(insIdLists)){
+			String[] sss=insIdLists.split(",");
+			for(String si:sss){
+				insIdList.add(Long.valueOf(si));
+			}
+		}*/
+		List<Map<String,Object>> quesTypeList=quesTypeService.getList(null, page, pid);
+		page.setTotal(quesTypeService.getCount(null, pid));
+		
+		map.put("quesTypeList", quesTypeList);
+		map.put("page", page);
+		
+		return "admin/examination/quesType/table";
+	}
+	
+	//查找子集
+	@RequestMapping("/listByPid")
+	public String listByPid(Long pid,Pagination page,ModelMap map) {
+		Map ma=quesTypeService.getZtreeFenye(pid,page);
+		List<Map<String,Object>> quesTypeList=(List<Map<String, Object>>) ma.get("quesTypeList");
+		Long count=(Long) ma.get("count");
+		page.setTotal(count);
+		map.put("page", page);
+		map.put("pid", pid);
+		map.put("quesTypeList", quesTypeList);
+		
+		return "admin/examination/quesType/table";
+	}
+	
+	//根据机构id查找以下分类
+
+	@RequestMapping("/getQuesTypeByOrg")
+	public String getQuesTypeByOrg(String pid,Pagination page,ModelMap map){
+		Map<String, Object> zTree=quesTypeService.getOne(pid);
+		Long qupid=(Long) zTree.get("qupid");
+		Long wid=(Long)zTree.get("wid");
+		BigInteger opids=(BigInteger)zTree.get("opid");
+		Integer opid=opids.intValue();
+		List<Map<String,Object>>quesTypeLists=new ArrayList<>();
+		if(qupid==null){
+			Long count=null;
+			if(opid== 0){
+				quesTypeLists=quesTypeService.getList(null,page, null);
+				count=quesTypeService.getCount(null, null);
+			}else {
+				quesTypeLists=quesTypeService.getList(null, page, wid);
+				count=quesTypeService.getCount(null, wid);
+			}
+			page.setTotal(count);
+		}
+		if(qupid!=null) {
+			Map<String,Object> ma=quesTypeService.getQuesTypeLists(wid, page);
+			quesTypeLists=(List<Map<String, Object>>) ma.get("quesTypeList");
+			page=(Pagination) ma.get("page");
+		}
+		
+		map.put("list", quesTypeLists);
+		map.put("page", page);
+		map.put("pid", pid);
+		
+		return "admin/examination/quesType/ztreeTwoFenYe";
+	}
+	
+	//上面的分页
+	@RequestMapping("/getQuesTypeByOrgFenYe")
+	public String getQuesTypeByOrgFenYe(String pid,Pagination page,ModelMap map ) {
+		Map<String, Object> zTree=quesTypeService.getOne(pid);
+		Long qupid=(Long) zTree.get("qupid");
+		Long wid=(Long)zTree.get("wid");
+		BigInteger opids=(BigInteger)zTree.get("opid");
+		Integer opid=opids.intValue();
+		List<Map<String,Object>>quesTypeLists=new ArrayList<>();
+		if(qupid==null){
+			Long count=null;
+			if(opid== 0){
+				quesTypeLists=quesTypeService.getList(null,page, null);
+				count=quesTypeService.getCount(null, null);
+			}else {
+				quesTypeLists=quesTypeService.getList(null, page, wid);
+				count=quesTypeService.getCount(null, wid);
+			}
+			page.setTotal(count);
+		}
+		if(qupid!=null) {
+			Map<String,Object> ma=quesTypeService.getQuesTypeLists(wid, page);
+			quesTypeLists=(List<Map<String, Object>>) ma.get("quesTypeList");
+			page=(Pagination) ma.get("page");
+		}
+		
+		map.put("list", quesTypeLists);
+		map.put("page", page);
+		map.put("pid", pid);
+		
+		return "admin/examination/quesType/ztreeTwoFenYe";
+	}
+
+//	@RequestMapping("/getQuesTypeByOrg")
+//	public String getQuesTypeByOrg(String pid){
+//		quesTypeService.getOne(pid);
+//		if(){
+//			
+//		}
+//		if() {
+//			
+//		}
+//		
+//		
+//		
+//		return
+//	}
+
+	
+	
+	//TODO
+	//TODO
+	//TODO
+	//获取第二个树形
+	@RequestMapping("/twoZtree")
+	public String twoZtree(Long pid,Pagination page,ModelMap map) {
+		if(windyOrgMapper.selectByPrimaryKey(pid).getPid()==0) {
+			List<Map<String,Object>> quesTypeLists=quesTypeService.getList(null, page, null);
+			Long count=quesTypeService.getCount(null, null);
+			page.setTotal(count);
+			
+			List<QuesType> qList=quesTypeService.getAllType();
+			String ss=JSON.toJSONString(qList);
+			map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+			map.put("list", quesTypeLists);
+			map.put("page", page);
+			map.put("pid", pid);
+			return "admin/examination/quesType/ztreeTwo";
+		};
+		
+		List<QuesType>quesTypeList=quesTypeService.twoZtree(pid);
+		List<Map<String,Object>> quesTypeLists=quesTypeService.getList(null, page, pid);
+		Long count=quesTypeService.getCount(null, pid);
+		page.setTotal(count);
+		
+		String ss=JSON.toJSONString(quesTypeList);
+		map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+		map.put("list", quesTypeLists);
+		map.put("page", page);
+		map.put("pid", pid);
+		return "admin/examination/quesType/ztreeTwo";
+	}
+	
+	//
+	@RequestMapping("/getFenyeToMain")
+	public String getFenyeToMain(Long pid,Pagination page,ModelMap map){
+		List<Map<String,Object>> quesTypeLists=quesTypeService.getList(null, page, pid);
+		
+		map.put("list", quesTypeLists);
+		map.put("page", page);
+		return "admin/examination/quesType/ztreeTwoFenYe";
+	}
+	
+	//首次查看题库分类
+	@RequestMapping("/getAllFnYe")
+	public String getAllFnYe(Pagination page,ModelMap map) {
+		List<Map<String ,Object>> quesTypeList=quesTypeService.getAllFnYe(page);
+		Long counts=quesTypeService.getAllFeYeCount();
+		page.setTotal(counts);
+		map.put("quesTypeList", quesTypeList);
+		map.put("page", page);
+		return "admin/examination/quesType/quesTypeList";
+	}
+	
+	//机构点击分页
+	@RequestMapping("/getOne")
+	public String getOne(Pagination page,ModelMap map){
+		List<Map<String,Object>> quesTypeList=quesTypeService.getAllFnYe(page);
+		Long count=quesTypeService.getAllFeYeCount();
+		page.setTotal(count);
+		map.put("page", page);
+		map.put("list", quesTypeList);
+		return "admin/examination/quesType/ztreeOneFenYe";
+	}
+	
+	
+	//根据第二个树形结构查找其子分类
+	@RequestMapping("/sonList")
+	public String sonList(Long pid,Pagination page,ModelMap map){
+		QuesType quesType=quesTypeService.getById(pid);
+		
+		Map<String,Object> ma=quesTypeService.getQuesTypeLists(pid, page);
+		List<Map<String,Object>> quesTypeLists=(List<Map<String, Object>>) ma.get("quesTypeList");
+		page=(Pagination) ma.get("page");
+		
+		/*Long count=quesTypeService.getSonListCount(pid);
+		page.setTotal(count);*/
+		
+		map.put("quesTypeList", quesTypeLists);
+		map.put("page", page);
+		
+		return "admin/examination/quesType/quesTypeList";
+	}
+	
+	
+	/**
+	 * 添加或修改前查找所有机构(超级管理员用)
+	 * @return
+	 */
+	@RequestMapping("/addBefore")
+	public String addBefore(ModelMap map,Long orgId,String types,Long indFIds) {
+		
+		
+		/*User user=(User) getSession(WindyConstants.SESSION_USER);*/
+		//判断后台登录的是否有权限查看所有机构的考试数据，true为超管
+		/*boolean s=quesTypeService.getRole(user.getId());
+		String result="false";*/
+		/*if(s==true){
+			
+			List<WindyOrg> WindyOrgList=quesTypeService.getAddBef();
+			result="true";
+			map.put("WindyOrgList", WindyOrgList);
+		}
+		if(s==false){
+			List<QuesType> quesTypeList=quesTypeService.getQuesType(user.getUpdateUser());
+			map.put("quesTypeList", quesTypeList);
+		}*/
+		map.put("types", types);
+		map.put("orgId", orgId);
+		map.put("indFIds", indFIds);
+		return "admin/examination/quesType/add";
+	}
+	
+	
+	/*@RequestMapping("/addZtree")
+	public String addZtree(Long orgId,String types) {
+		
+		
+		
+		return
+	}*/
+	
+	
+	
+	//添加页面根据机构查找试题分类,用于添加父级分类
+	@RequestMapping("/getquesType")
+	@ResponseBody
+	public List<QuesType> getquesType(Long insId){
+		List<QuesType> quesTypeList=quesTypeService.getQuesType(insId);
+		return quesTypeList;
+	}
+	
+	
+	/**
+	 * 添加
+	 * @param quesType
+	 */
+	//TODO
+	@RequestMapping("/add")
+	public String add(QuesType quesType,Pagination page,String types,Long orgId,Long indFIds,ModelMap mm) {
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据，true为超管
+		boolean s=quesTypeService.getRole(user.getId());
+		if(s) {
+			if("true".equals(types)) {
+				quesType.setPid((long)0);
+				quesType.setInsId(orgId);
+			}
+			if("false".equals(types)) {
+				quesType.setPid(orgId);
+				quesType.setInsId(indFIds);
+			}
+			quesType.setCreatTime(DateUtil.getDate());
+			quesTypeService.add(quesType);
+		}else {
+			if("true".equals(types)){
+				quesType.setPid((long)0);
+				quesType.setInsId(orgId);
+			}
+			if("false".equals(types)){
+				quesType.setPid(orgId);
+				quesType.setInsId(indFIds);
+			}
+			
+			quesType.setCreatTime(DateUtil.getDate());
+			quesType.setInsId(user.getUpdateUser());
+			quesTypeService.add(quesType);
+		}
+		return getList(null,page,mm);
+		
+	}
+	
+	/**
+	 * 删除
+	 * @param ids
+	 * @param page
+	 * @param mm
+	 * @return
+	 */
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Map<String,Object> delete(Long ids,Pagination page,ModelMap mm) {
+		Map<String,Object> map = new HashMap<>();
+		List<QuesType> quesTypeList=questionsService.getQuesTypeTwo(ids);
+		
+		if(quesTypeList != null && quesTypeList.size() >0){
+			map.put("result", "fail");
+			map.put("msg", "该分类下有子类无法删除");
+			return map;
+		}
+		
+		List<Questions> qList = questionsService.getQuestions(ids);
+		if(qList != null && qList.size() >0){
+			map.put("result", "fail");
+			map.put("msg", "该分类下有考试题无法删除");
+			return map;
+		}
+		quesTypeService.delete(ids.toString());
+		map.put("result", "ok");
+		map.put("msg", "删除成功");
+		return map;
+	}
+
+	@RequestMapping("/getFn")
+	public Long getFn(Long quesTypeId){
+		Long quesTypePid=questionsService.getFn(quesTypeId);
+		return quesTypePid;
+	}
+	
+	
+	
+	/**
+	 * 修改前查找
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/updateBefore")
+	public String updateBefore(Long id,ModelMap map) {
+		QuesType quesType =quesTypeService.getById(id);
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据，true为超管
+		boolean s=quesTypeService.getRole(user.getId());
+		String result="false";
+		if(s) {
+			List<WindyOrg> WindyOrgList=quesTypeService.getAddBef();
+			List<QuesType>quesTypeList=quesTypeService.getQuesType(quesType.getInsId());
+			result="true";
+			map.put("quesTypeList", quesTypeList);
+			map.put("WindyOrgList", WindyOrgList);
+		}
+		if(!s){
+			List<QuesType> quesTypeList=quesTypeService.getQuesType(user.getUpdateUser());
+			map.put("quesTypeList", quesTypeList);
+			
+		}
+		map.put("result", result);
+		map.put("quesType", quesType);
+		return "admin/examination/quesType/edit";
+	}
+	
+	/**
+	 * 修改
+	 * @param quesType
+	 * @param page
+	 * @param mm
+	 * @return
+	 */
+	@RequestMapping("/update")
+	public String update(QuesType quesType,Pagination page,ModelMap mm) {
+		quesTypeService.update(quesType);
+		
+		return getList(null,page,mm);
+	}
+	
+	@RequestMapping("/getOrgToQuesType")
+	public String getOrgToQuesType(Long orgId,Pagination page,ModelMap map){
+		List<Map<String, Object>> quesTypeList=quesTypeService.getList(null, page, orgId);
+		map.put("list", quesTypeList);
+		map.put("page",page);
+		map.put("orgIds", orgId);
+		return "admin/examination/quesType/puguanyong";
+	}
+	
+	//删除后返回用,修改也可用
+	@RequestMapping("/getTypeLists")
+	public String getTypeList(ModelMap map,Pagination page){
+		List<Map<String,Object>> quesTypeList=quesTypeService.getList(null, page,null);
+		Long count=quesTypeService.getCount(null, null);
+		page.setTotal(count);
+		map.put("page", page);
+		map.put("quesTypeList",quesTypeList);
+		
+		return "admin/examination/quesType/quesTypeList";
+		
+	}
+	
+}

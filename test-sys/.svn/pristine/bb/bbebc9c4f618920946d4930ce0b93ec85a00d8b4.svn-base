@@ -1,0 +1,782 @@
+package cn.windy.module.examination.service.impl;
+
+import cn.windy.module.admin.dto.AnalysisDto;
+import cn.windy.module.examination.dao.FrontUserMapper;
+import cn.windy.module.examination.dao.PaperRecordMapper;
+import cn.windy.module.examination.dao.PaperSetMapper;
+import cn.windy.module.examination.dao.QuestionsMapper;
+import cn.windy.module.examination.dao.WindyOrgMapper;
+import cn.windy.module.examination.mybatis.model.FrontUser;
+import cn.windy.module.examination.mybatis.model.FrontUserQuery;
+import cn.windy.module.examination.mybatis.model.PaperRecord;
+import cn.windy.module.examination.mybatis.model.PaperSet;
+import cn.windy.module.examination.mybatis.model.PaperSetQuery;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.QuestionsQuery;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.mybatis.model.WindyOrgQuery;
+import cn.windy.module.examination.service.PaperRecordService;
+import cn.windy.util.Pagination;
+import cn.windy.util.StringUtil;
+
+import java.awt.print.Paper;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+@Service
+public class PaperRecordServiceImpl implements PaperRecordService {
+
+    @Autowired
+    private PaperRecordMapper paperRecordMapper;
+
+    @Autowired
+    private WindyOrgMapper windyOrgMapper;
+    
+    @Autowired
+    private FrontUserMapper frontUserMapper;
+   
+    @Autowired
+	private QuestionsMapper questionsMapper;
+    
+    @Autowired
+    private PaperSetMapper paperSetMapper;
+    
+    //获取机构列表（超管用）
+    @Override
+    public List<WindyOrg> getWindyOrg(){
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	List<WindyOrg> windyOrgList=windyOrgMapper.selectByExample(query);
+    	/*WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andPidEqualTo((long)0);
+    	List<WindyOrg> windyOrgList=windyOrgMapper.selectByExample(query);
+    	
+    	if(windyOrgList.size()!=0) {
+    		WindyOrgQuery query2=new WindyOrgQuery();
+        	WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+        	criteria2.andPidEqualTo(windyOrgList.get(0).getId());
+        	windyOrgList.addAll(windyOrgMapper.selectByExample(query2));
+    	}*/
+    	
+    	return windyOrgList;
+    }
+    
+    
+    //获取机构列表（普通管理员用）
+    @Override
+    public List<WindyOrg> getWindyOrgs(Long insId){
+    	WindyOrg windyOrg=windyOrgMapper.selectByPrimaryKey(insId);
+    	List<WindyOrg>WindyOrgList=new ArrayList<WindyOrg>();
+    	WindyOrgList.add(windyOrg);
+    	
+    	WindyOrgQuery query=new WindyOrgQuery();
+    	WindyOrgQuery.Criteria criteria=query.createCriteria();
+    	criteria.andPidEqualTo(insId);
+    	WindyOrgList.addAll(windyOrgMapper.selectByExample(query));
+    	
+    	return WindyOrgList;
+    }
+    
+    
+    //根据机构查询考生                                      
+    @Override
+    public List<FrontUser> getFrontUser(Long insId){
+    	FrontUserQuery query=new FrontUserQuery();
+    	FrontUserQuery.Criteria criteria=query.createCriteria();
+    	criteria.andOrgIdEqualTo(insId);
+    	List<FrontUser> frontUserList=frontUserMapper.selectByExample(query);
+    	
+    	return frontUserList;
+    } 
+
+    //根据考生Id查找考生考试记录
+    @Override
+    public List<Map<String, Object>> userRecordList(Long userId,String userName, Pagination page){
+    	List<Map<String, Object>> userRecordList=paperRecordMapper.getList(userId,userName,(page.getPage()-1)*page.getPageSize(), page.getPageSize());
+    	
+    	return userRecordList;
+    }
+    
+    //根据考生Id查找考生考试记录计数
+    @Override
+    public Long getCount(Long userrId,String userName) {
+    	Long count=paperRecordMapper.getListCount(userrId, userName);
+    	
+    	return count;
+    }
+    
+    //查看考试记录详情
+    @Override
+    public Map toDetail(Long  recordId){
+    	Map map=new HashMap<String,Object>();
+		
+		PaperRecord paperRecord=paperRecordMapper.selectByPrimaryKey(recordId);
+		//一共答对的题数
+		 Integer rightNum=paperRecord.getRightnum();
+		map.put("rightNum", rightNum);
+		 
+		 
+		//用户总得分
+		Double zongDeFen=paperRecord.getFen();
+		map.put("zongDeFen", zongDeFen);
+		
+		//单选题答对的数量
+		Integer danxuanRighrNum=null;
+		List<Integer> danxuanRighrList=new ArrayList<Integer>();
+		if(paperRecord.getAttr1()!=null && !"".equals(paperRecord.getAttr1())) {
+			String [] danxuanRi=paperRecord.getAttr1().split(",");
+			danxuanRighrNum=danxuanRi.length;
+			//单选题答对的题号list
+			
+			if(danxuanRi.length!=0 && danxuanRi!=null) {
+				for(String dans:danxuanRi){
+					danxuanRighrList.add(Integer.valueOf(dans));
+				}
+			}
+		}
+		map.put("danxuanRighrNum", danxuanRighrNum);
+		map.put("danxuanRighrList", danxuanRighrList);
+		
+		
+		
+		//单选题答错的数量
+		List<Integer> danxuanWrongList=new ArrayList<Integer>();
+		Integer danxuanWrongNum=null;
+		if(paperRecord.getAttr4()!=null && !"".equals(paperRecord.getAttr4())) {
+			String [] danxuanWr=paperRecord.getAttr4().split(",");
+			danxuanWrongNum=danxuanWr.length;
+			//单选题答错的题号list
+			if(danxuanWr.length!=0) {
+				for(String danss:danxuanWr) {
+					danxuanWrongList.add(Integer.valueOf(danss));
+				}
+			}
+		}
+		map.put("danxuanWrongNum", danxuanWrongNum);
+		map.put("danxuanWrongList", danxuanWrongList);
+		
+		//多选题答对的数量
+		List<Integer> duoxuanRightList=new ArrayList<Integer>();
+		Integer duoxuanRightNum=null;
+		if(!StringUtil.isBlank(paperRecord.getAttr2())) {
+			String [] duoxuanRi=paperRecord.getAttr2().split(",");
+			duoxuanRightNum=duoxuanRi.length;
+			//多选题答对题号list
+			if(duoxuanRi.length!=0) {
+				for(String duos:duoxuanRi) {
+					duoxuanRightList.add(Integer.valueOf(duos));
+				}
+			}
+		}
+		map.put("duoxuanRightNum", duoxuanRightNum);
+		map.put("duoxuanRightList", duoxuanRightList);
+		
+		
+		//多选题答错的数量
+		List<Integer> duoxuanWrongList=new ArrayList<Integer>();
+		Integer duoxuanWrongNum=null;
+		if(paperRecord.getAttr14()!=null && !"".equals(paperRecord.getAttr14())) {
+			String [] duoxuanWr=paperRecord.getAttr14().split(",");
+			duoxuanWrongNum=duoxuanWr.length;
+			//多选题答错题号list
+			if(duoxuanWr.length!=0) {
+				for(String duoss:duoxuanWr) {
+					duoxuanWrongList.add(Integer.valueOf(duoss));
+				}
+			}
+		}
+		map.put("duoxuanWrongNum", duoxuanWrongNum);
+		map.put("duoxuanWrongList", duoxuanWrongList);
+		
+		
+		//判断题答对的数量
+		List<Integer>panduanRightList=new ArrayList<Integer>();
+		Integer panduanRightNum=null;
+		if(paperRecord.getAttr3()!=null && !"".equals(paperRecord.getAttr3())) {
+			String [] panduanRi=paperRecord.getAttr3().split(",");
+			panduanRightNum=panduanRi.length;
+			//判断题答对题号的list
+			if(panduanRi.length!=0) {
+				for(String pans:panduanRi){
+					panduanRightList.add(Integer.valueOf(pans));
+				}
+			}
+		}
+		
+		map.put("panduanRightNum", panduanRightNum);
+		map.put("panduanRightList", panduanRightList);
+		
+		
+		//判断题答错的数量
+		List<Integer>panduanWrongList=new ArrayList<Integer>();
+		Integer panduanWrongNum=null;
+		if(paperRecord.getAttr15()!=null && !"".equals(paperRecord.getAttr15())) {
+			String [] panduanWr=paperRecord.getAttr15().split(",");
+			panduanWrongNum=panduanWr.length;
+			//判断题答错的题号list
+			if(panduanWr.length!=0) {
+				for(String panss:panduanWr) {
+					panduanWrongList.add(Integer.valueOf(panss));
+				}
+			}
+			
+		}
+		
+		map.put("panduanWrongNum", panduanWrongNum);
+		map.put("panduanWrongList", panduanWrongList);
+		
+		//TODO
+				//TODO
+				//TODO
+				PaperSetQuery paperSetQuery=new PaperSetQuery();
+				PaperSetQuery.Criteria criteria8=paperSetQuery.createCriteria();
+				criteria8.andPaperIdEqualTo(paperRecord.getAttr9());
+				List<PaperSet>paperSetList=paperSetMapper.selectByExample(paperSetQuery);
+				Integer danxuanFen=0;
+				Integer duoxuanFen=0;
+				Integer panduanFen=0;
+				if(paperSetList.size()!=0){
+					//单选题分值
+					danxuanFen=paperSetList.get(0).getAttr6();
+					//多选题分值
+					duoxuanFen=paperSetList.get(0).getAttr7();
+					//判断题分值
+					panduanFen=paperSetList.get(0).getAttr8();
+					
+				}
+				map.put("danxuanFen", danxuanFen);
+				map.put("duoxuanFen", duoxuanFen);
+				map.put("panduanFen", panduanFen);
+		
+		
+		
+		//获取单选题列表
+		Integer danxuantihao=0;
+		List<Long> danxuantiIdLists=new ArrayList<Long>();
+		String[] danxuantiIdList=paperRecord.getOptionid().split(",");
+		if(danxuantiIdList.length!=0) {
+			for(String id:danxuantiIdList) {
+				danxuantiIdLists.add(Long.valueOf(id));
+			}
+		}
+		
+		QuestionsQuery query=new QuestionsQuery();
+		QuestionsQuery.Criteria criteria=query.createCriteria();
+		criteria.andIdIn(danxuantiIdLists);
+		List<Questions> danxuantiList=questionsMapper.selectByExample(query);
+		//获取单选题总分值
+		Integer danxuanZnum=danxuantiList.size();
+		Integer countFen=danxuanFen*danxuanZnum;
+		//试题序号
+		Integer danxuanXuhao=0;
+		String[] userDanxuan=paperRecord.getOptionanswerofuser().split(",");
+		if(danxuantiList.size()!=0) {
+			for(int i=0;i<danxuantiList.size();i++){
+				/*countFen+=danxuantiList.get(i).getAttr6();*/
+				danxuanXuhao+=1;
+				danxuantiList.get(i).setAttr7(danxuanXuhao);
+				//把用户选的答案放入list
+				danxuantiList.get(i).setAttr0(userDanxuan[i]);
+			}
+		}
+		
+		map.put("danxuantiList", danxuantiList);
+		map.put("countFen", countFen);
+		
+		//获取多选题列表
+		List<Long> duoxuanIdLists=new ArrayList<Long>();
+		String[] duoxuanIdList=paperRecord.getOptionmoreanswerid().split(",");
+		if(duoxuanIdList.length!=0) {
+			for(String id:duoxuanIdList) {
+				duoxuanIdLists.add(Long.valueOf(id));
+			}
+		}
+		
+		QuestionsQuery query2=new QuestionsQuery();
+		QuestionsQuery.Criteria criteria2=query2.createCriteria();
+		criteria2.andIdIn(duoxuanIdLists);
+		List<Questions> duoxuantiList=questionsMapper.selectByExample(query2);
+		//获取多选题总分值
+		Integer duoxuanZnum=duoxuantiList.size();
+		Integer duoCountFen=duoxuanFen*duoxuanZnum;
+		//多选题序号
+		Integer duoxuanXuhao=0;
+		String[] userDuoxuan=paperRecord.getOptionmoreofuser().split(",");
+		if(duoxuantiList.size()!=0) {
+			for(int i=0;i<duoxuantiList.size();i++) {
+				/*duoCountFen+=duoxuantiList.get(i).getAttr6();*/
+				duoxuanXuhao+=1;
+				duoxuantiList.get(i).setAttr7(duoxuanXuhao);
+				//把用户选的答案放入list
+				duoxuantiList.get(i).setAttr0(userDuoxuan[i]);
+			}
+		}
+		
+		map.put("duoxuantiList", duoxuantiList);
+		map.put("duoCountFen", duoCountFen);
+		
+		
+		//获取判断题列表
+		List<Long> panduanIdLists=new ArrayList<Long>();
+		String[] panduanIdList=paperRecord.getDecidid().split(",");
+		if(panduanIdList.length!=0) {
+			for(String id:panduanIdList) {
+				panduanIdLists.add(Long.valueOf(id));
+			}
+		}
+		
+		QuestionsQuery query3=new QuestionsQuery();
+		QuestionsQuery.Criteria criteria3=query3.createCriteria();
+		criteria3.andIdIn(panduanIdLists);
+		List<Questions> panduantiList=questionsMapper.selectByExample(query3);
+		//获取判断题总分值
+		Integer panduanZnum=panduantiList.size();
+		Integer panCountFen=panduanFen*panduanZnum;
+		//判断题序号
+		Integer panduanXuhao=0;
+		String[] userPanduan=paperRecord.getDecidanswerofuser().split(",");
+		if(panduantiList.size()!=0) {
+			for(int i=0;i<panduantiList.size();i++){
+				/*panCountFen+=panduantiList.get(i).getAttr6();*/
+				panduanXuhao+=1;
+				panduantiList.get(i).setAttr7(panduanXuhao);
+				//把用户选的答案放入list
+				panduantiList.get(i).setAttr0(userPanduan[i]);
+				
+			}
+		}
+		
+		map.put("panduantiList", panduantiList);
+		map.put("panCountFen", panCountFen);
+    	
+    	return map;
+    }
+
+    private class ValueComparator implements Comparator<Map.Entry<String,Integer>>  
+    {  
+        public int compare(Map.Entry<String,Integer> m,Map.Entry<String,Integer> n)  
+        {  
+            return n.getValue()-m.getValue();  
+        }  
+    } 
+
+	@Override
+	public List<AnalysisDto> getAll(Pagination page,List<Long> lists) {
+		List<AnalysisDto> listDto = new ArrayList<AnalysisDto>();
+		List<PaperRecord> list = paperRecordMapper.getAll();//所有考试记录
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		DecimalFormat df=new DecimalFormat("0.00");
+		//错误总数
+		for (int i = 0; i < list.size(); i++) {
+			//单选题出错总数
+			String[] attr16 = list.get(i).getAttr16().split(",");
+			for (int j = 0; j < attr16.length; j++) {
+				if(map.get(attr16[j])==null){
+					map.put(attr16[j], 1);
+				}else{
+					int count = Integer.parseInt(map.get(attr16[j]).toString());
+					map.put(attr16[j], ++count);
+				}
+			}
+			//判断题出错总数
+			String[] attr18 = list.get(i).getAttr18().split(",");
+			for (int j = 0; j < attr18.length; j++) {
+				if(map.get(attr18[j])==null){
+					map.put(attr18[j], 1);
+				}else{
+					int count = Integer.parseInt(map.get(attr18[j]).toString());
+					map.put(attr18[j], ++count);
+				}
+			}
+			//多选题出错总数
+			String[] attr17 = list.get(i).getAttr17().split(",");
+			for (int j = 0; j < attr17.length; j++) {
+				if(map.get(attr17[j])==null){
+					map.put(attr17[j], 1);
+				}else{
+					int count = Integer.parseInt(map.get(attr17[j]).toString());
+					map.put(attr17[j], ++count);
+				}
+			}
+		}
+		List<Map.Entry<String,Integer>> list1=new ArrayList<>(); 
+		list1.addAll(map.entrySet());  
+		ValueComparator vc=new ValueComparator();  
+		//排序
+		List<AnalysisDto> listDto1 = new ArrayList<AnalysisDto>();
+		Collections.sort(list1,vc); 
+		for(Iterator<Map.Entry<String,Integer>> it=list1.iterator();it.hasNext();){  
+            Entry<String, Integer> i = it.next();
+            AnalysisDto dto = new AnalysisDto();
+            dto.setId(Long.parseLong(i.getKey()));
+            dto.setCount(i.getValue());
+            listDto1.add(dto);
+        } 
+		//所有的考试id
+		List<Long> ids = new ArrayList<Long>();
+		for (int i = 0; i < listDto1.size(); i++) {
+			ids.add(listDto1.get(i).getId());
+		}
+		//试题所有id
+		List<Questions> listQuest1 = questionsMapper.getAlls();
+		for (int i = 0; i < listQuest1.size(); i++) {
+			if(!ids.contains(listQuest1.get(i))){
+				ids.add(listQuest1.get(i).getId());
+			}
+		}
+		String listId = ids.toString().substring(1, ids.toString().length()-1);
+		System.out.println(listId);
+		List<Questions> listQuest = questionsMapper.getAll((page.getPage()-1)*page.getPageSize(), page.getPageSize(),lists,listId);//所有题库记录
+		Map<String,Integer> map1 = new HashMap<String,Integer>();
+		for (int i = 0; i < list.size(); i++) {
+			//单选题出错总数
+			String[] optionId = list.get(i).getOptionid().split(",");
+			for (int j = 0; j < optionId.length; j++) {
+				if(map1.get(optionId[j])==null){
+					map1.put(optionId[j], 1);
+				}else{
+					int count = Integer.parseInt(map1.get(optionId[j]).toString());
+					map1.put(optionId[j], ++count);
+				}
+			}
+			//判断题出错总数
+			String[] decidId = list.get(i).getDecidid().split(",");
+			for (int j = 0; j < decidId.length; j++) {
+				if(map1.get(decidId[j])==null){
+					map1.put(decidId[j], 1);
+				}else{
+					int count = Integer.parseInt(map1.get(decidId[j]).toString());
+					map1.put(decidId[j], ++count);
+				}
+			}
+			//多选题出错总数
+			String[] more = list.get(i).getOptionmoreanswerid().split(",");
+			for (int j = 0; j < more.length; j++) {
+				if(map1.get(more[j])==null){
+					map1.put(more[j], 1);
+				}else{
+					int count = Integer.parseInt(map1.get(more[j]).toString());
+					map1.put(more[j], ++count);
+				}
+			}
+		}
+		for (int i = 0; i < listQuest.size(); i++) {
+			AnalysisDto dto = new AnalysisDto();
+			dto.setName(listQuest.get(i).getName());
+			dto.setId(listQuest.get(i).getId());
+			for(String key : map.keySet()){ 
+				if(listQuest.get(i).getId()==Integer.parseInt(key)){
+					try {
+						Integer errorCount = map.get(key); 
+						Integer count = map1.get(key);
+						dto.setCountErrir(errorCount);
+						dto.setCount(map1.get(key));
+						dto.setCountTrue(count-errorCount);
+						dto.setCorrectRate(Double.parseDouble(df.format((float)dto.getCountTrue()/dto.getCount()*100)));
+						dto.setErrorRate(Double.parseDouble(df.format((float)dto.getCountErrir()/dto.getCount()*100)));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+	        }
+			listDto.add(dto);
+		}
+		return listDto;
+	}
+
+	//根据机构id查找用户集合(机务段用)
+	@Override
+	public List<FrontUser>getUser(Long insId){
+		WindyOrgQuery query=new WindyOrgQuery();
+		WindyOrgQuery.Criteria criteria=query.createCriteria();
+		criteria.andPidEqualTo(insId);
+		List<WindyOrg> wListTow=windyOrgMapper.selectByExample(query);
+		
+		List<FrontUser> frontUserList=new ArrayList<>();
+		List<WindyOrg> wListThree=new ArrayList<>();
+		for(WindyOrg wOrg:wListTow){
+			WindyOrgQuery query2=new WindyOrgQuery();
+			WindyOrgQuery.Criteria criteria2=query2.createCriteria();
+			criteria2.andPidEqualTo(wOrg.getId());
+			wListThree.addAll(windyOrgMapper.selectByExample(query2));
+		}
+		
+		for(WindyOrg windyOrgThree:wListThree){
+			FrontUserQuery query2=new FrontUserQuery();
+			FrontUserQuery.Criteria criteria2=query2.createCriteria();
+			criteria2.andOrgIdEqualTo(windyOrgThree.getId());
+			frontUserList.addAll(frontUserMapper.selectByExample(query2));
+			
+		}
+		
+		/**/
+		return frontUserList;
+	}
+	
+	//根据机构id查找用户集合(机构和组班用)
+	@Override
+	public List<FrontUser>getUserTwo(Long insId){
+		WindyOrgQuery query=new WindyOrgQuery();
+		WindyOrgQuery.Criteria criteria=query.createCriteria();
+		criteria.andPidEqualTo(insId);
+		List<WindyOrg> wListTow=windyOrgMapper.selectByExample(query);
+		List<FrontUser> frontUserList=new ArrayList<>();
+		
+		if(wListTow.size()==0){
+			FrontUserQuery query2=new FrontUserQuery();
+			FrontUserQuery.Criteria criteria2=query2.createCriteria();
+			criteria2.andOrgIdEqualTo(insId);
+			frontUserList.addAll(frontUserMapper.selectByExample(query2));
+		}
+		if(wListTow.size()!=0){
+			for(WindyOrg windyOrgThree:wListTow){
+				FrontUserQuery query2=new FrontUserQuery();
+				FrontUserQuery.Criteria criteria2=query2.createCriteria();
+				criteria2.andOrgIdEqualTo(windyOrgThree.getId());
+				frontUserList.addAll(frontUserMapper.selectByExample(query2));
+				
+			}
+		}
+		
+		return frontUserList;
+	}
+	
+	//根据机构考生考试记录
+	@Override
+	public List<Map<String, Object>> getUserRecord(Long orgId,Long userId,Pagination page){
+		WindyOrgQuery query=new WindyOrgQuery();
+		WindyOrgQuery.Criteria criteria=query.createCriteria();
+		criteria.andPidEqualTo(orgId);
+		List<WindyOrg> wListTowList=windyOrgMapper.selectByExample(query);
+		List<Map<String, Object>> userRecodList=new ArrayList<>();
+		if(wListTowList.size()!=0){
+			for(WindyOrg windyOrg:wListTowList){
+				userRecodList.addAll(frontUserMapper.getOne(windyOrg.getId(), userId,(page.getPage()-1)*page.getPageSize(),page.getPageSize()));
+			}
+			
+		}
+		if(wListTowList.size()==0){
+			userRecodList=frontUserMapper.getOne(orgId, userId,(page.getPage()-1)*page.getPageSize(),page.getPageSize());
+		}
+		
+		return userRecodList;
+	}
+	
+	
+	@Override
+	public PaperRecord getById(Long userRecordId) {
+		PaperRecord paperRecord=paperRecordMapper.selectByPrimaryKey(userRecordId);
+		return paperRecord;
+		
+	}
+	
+	//获取用户考试试题
+	@Override
+	public Map getshiti(Long paperCreatId,PaperRecord paperRecord){
+		//得到单选题id
+		String [] danxuanTiId=paperRecord.getOptionid().split(",");
+		List<Long> danxuantiIdList=new ArrayList<>();
+		for(String dan:danxuanTiId){
+			danxuantiIdList.add(Long.valueOf(dan));
+		}
+		QuestionsQuery query=new QuestionsQuery();
+		QuestionsQuery.Criteria criteria=query.createCriteria();
+		criteria.andIdIn(danxuantiIdList);
+		//获取单选题集合
+		List<Questions> questionsList=questionsMapper.selectByExample(query);
+		String[] danxuan=paperRecord.getOptionanswerofuser().split(",");
+		//把用户所选答案放入集合
+		for(int i=0; i<questionsList.size();i++){
+			questionsList.get(i).setAttr0(danxuan[i]);
+			
+		}
+		
+		//============================================
+		
+		//得到多选题id
+		String[] duoxuanTiId=paperRecord.getOptionmoreanswerid().split(",");
+		List<Long> duoxuanIdList=new ArrayList<>();
+		for(String duo:duoxuanTiId){
+			duoxuanIdList.add(Long.valueOf(duo));
+		}
+		QuestionsQuery query2=new QuestionsQuery();
+		QuestionsQuery.Criteria criteria2=query2.createCriteria();
+		criteria2.andIdIn(duoxuanIdList);
+		//获取多选题集合
+		List<Questions> duoxuantiList=questionsMapper.selectByExample(query2);
+		//把用户所选答案放入集合
+		String[] duoxuan=paperRecord.getOptionmoreofuser().split(",");
+		for(int i=0; i<duoxuantiList.size();i++){
+			duoxuantiList.get(i).setAttr0(duoxuan[i]);
+			
+		}
+		
+		//============================================
+		
+		//得到判断题id
+		String[] panduanTiId=paperRecord.getDecidid().split(",");
+		List<Long> panduanIdList=new ArrayList<>();
+		for(String pan:panduanTiId){
+			panduanIdList.add(Long.valueOf(pan));
+		}
+		QuestionsQuery query3=new QuestionsQuery();
+		QuestionsQuery.Criteria criteria3=query3.createCriteria();
+		criteria3.andIdIn(panduanIdList);
+		//获取判断题集合
+		List<Questions> panduantiList=questionsMapper.selectByExample(query3);
+		//把用户所选答案放入集合
+		String[] panduan=paperRecord.getDecidanswerofuser().split(",");
+
+		for(int i=0; i<panduantiList.size();i++){
+			panduantiList.get(i).setAttr0(panduan[i]);
+		}
+		
+		//用户共答对的题数
+		Integer Rightnum=paperRecord.getRightnum();
+		//共的分数
+		double Fen=paperRecord.getFen();
+		
+		//单选题答对的题号集合
+		Integer danduanDuiNumList=null;
+		String danxuantiDuiList=null;
+		String [] danduanDuiNum=null;
+		if(!"".equals(paperRecord.getAttr1()) && paperRecord.getAttr1()!=null) {
+			 danxuantiDuiList=paperRecord.getAttr1();
+			 danduanDuiNum=paperRecord.getAttr1().split(",");
+			//单选题答对的数量
+			 danduanDuiNumList=danduanDuiNum.length;
+		}else {
+			danduanDuiNumList=0;
+		}
+		//单选题答错的题号集合
+		Integer danduanCuoNumList=null;
+		String danxuantiCuoList=null;
+		String [] danduanCuoNum=null;
+		if(!"".equals(paperRecord.getAttr4()) && paperRecord.getAttr4()!=null) {
+			 danxuantiCuoList=paperRecord.getAttr4();
+			 danduanCuoNum=paperRecord.getAttr4().split(",");
+			//单选题答错的数量
+			danduanCuoNumList=danduanCuoNum.length;
+		}else {
+			danduanCuoNumList=0;
+		}
+		
+		
+		//多选题答对的题号集合
+		String duoxuanDuiList = paperRecord.getAttr2();
+		String[] duoxuanDuiNum = paperRecord.getAttr2().split(",");
+		// 多选题答对的数量
+		Integer duoxuanDuiNumList=null;
+		if(!"".equals(paperRecord.getAttr2()) && paperRecord.getAttr2()!=null) {
+			 duoxuanDuiNumList = duoxuanDuiNum.length;
+		}else {
+			 duoxuanDuiNumList = 0;
+		}
+		// 多选题答错的题号集合
+		String duoxuanCuoList = paperRecord.getAttr14();
+		String[] duoxuanCuoNum = paperRecord.getAttr14().split(",");
+		// 多选题答错的数量
+		Integer duoxuanCuoNumList=null;
+		if(!"".equals(paperRecord.getAttr14()) && paperRecord.getAttr14()!=null) {
+			 duoxuanCuoNumList = duoxuanCuoNum.length;
+		}else {
+			 duoxuanCuoNumList =0;
+		}
+		
+		
+		
+		//判断题答对的题号集合
+		String panduanDuiList = paperRecord.getAttr3();
+		String[] panduanDuiNum = paperRecord.getAttr3().split(",");
+		// 判断题答对的数量
+		Integer panduanDuiNumList=null;
+		if(!"".equals(paperRecord.getAttr3()) && paperRecord.getAttr3()!=null) {
+			 panduanDuiNumList = panduanDuiNum.length;
+		}else {
+			 panduanDuiNumList =0;
+		}
+		
+		//判断题答错的题号集合
+		String panduanCuoList = paperRecord.getAttr15();
+		String[] panduanCuoNum = paperRecord.getAttr15().split(",");
+		//判断题答错的数量
+		Integer panduanCuoNumList=null;
+		if(!"".equals(paperRecord.getAttr15()) && paperRecord.getAttr15()!=null) {
+			 panduanCuoNumList = panduanCuoNum.length;
+		}else {
+			 panduanCuoNumList =0;
+		}
+		
+		
+		
+		Map map=new HashMap<>();
+		
+		//用户共答对的题数
+		map.put("Rightnum", Rightnum);
+		//共的分数
+		map.put("Fen", Fen);
+		//单选题答对的题号集合
+		map.put("danduanDuiNum", danxuantiDuiList);
+		//单选题答对的数量
+		map.put("danduanDuiNumList", danduanDuiNumList);
+		//单选题答错的题号集合
+		map.put("danduanCuoNum", danxuantiCuoList);
+		//单选题答错的数量
+		map.put("danduanCuoNumList", danduanCuoNumList);
+		
+		//多选题答对的题号集合
+		map.put("duoxuanDuiNum", duoxuanDuiList);
+		// 多选题答对的数量
+		map.put("duoxuanDuiNumList", duoxuanDuiNumList);
+		// 多选题答错的题号集合
+		map.put("duoxuanCuoNum", duoxuanCuoList);
+		// 多选题答错的数量
+		map.put("duoxuanCuoNumList", duoxuanCuoNumList);
+		
+		//判断题答对的题号集合
+		map.put("panduanDuiNum", panduanDuiList);
+		// 判断题答对的数量
+		map.put("panduanDuiNumList", panduanDuiNumList);
+		//判断题答错的题号集合
+		map.put("panduanCuoNum", panduanCuoList);
+		//判断题答错的数量
+		map.put("panduanCuoNumList", panduanCuoNumList);
+		
+		
+		//单选题
+		map.put("questionsList", questionsList);
+		//多选题
+		map.put("duoxuantiList", duoxuantiList);
+		//判断题
+		map.put("panduantiList", panduantiList);
+		
+		
+		return map;
+		
+	}
+	
+	//取出机构的名字
+	@Override
+	public String getName(Long orgId){
+		WindyOrg qindyOrg=windyOrgMapper.selectByPrimaryKey(orgId);
+		return qindyOrg.getName();
+	}
+	
+	
+	
+	
+	
+}

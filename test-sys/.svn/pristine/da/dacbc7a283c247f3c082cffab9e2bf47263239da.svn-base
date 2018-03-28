@@ -1,0 +1,405 @@
+function jumpaddExamination() {
+   var ztreeObj =  $.fn.zTree.getZTreeObj("treeDemo");
+   var nodes = ztreeObj.getSelectedNodes();
+   if(nodes.length == 0){
+       layer.msg("请选中部门");
+       return;
+   }
+   if(nodes[0].pid == 0){
+       layer.msg("请选中部门");
+       return;
+   }
+
+   edit("examination/examination/add.jsp",
+       "addExaminationForm",
+       "ExaminationController/addExam.htm?orgId="+nodes[0].id,
+       "添加考试",
+       "ExaminationController/list.htm",
+       "考试列表")
+    // ajaxLoad("ExaminationController/jumpAddExam.htm?cmd="+ 1,"添加考试",this);
+    /*openDialog("examination/examination/addType.jsp", function (index) {
+        var checkdType = $("#examType option:selected").val();
+        layer.close(index);
+        //选中的考试类型 1为考试 2位练习
+        ajaxLoad("ExaminationController/jumpAddExam.htm?cmd=" + checkdType, "添加考试", this);
+        /!*   if(checkdType == 1){
+               ajaxLoad("ExaminationController/add.jsp","添加考试",this);
+           } else {
+               ajaxLoad("examination/examination/AddExamPractice.jsp","添加练习",this);
+           }*!/
+    }, "选择考试类型", 300);*/
+    //ajaxLoad("examination/examination/add.jsp","添加考试",this);
+
+}
+
+//暂不用
+function addExamination(ids) {
+    $.ajax({
+        type: 'post',
+        url: 'ExaminationController/addExam.htm?ids=' + ids,
+        data: new FormData($("#addExaminationForm")[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            layer.msg("添加成功");
+            layer.closeAll();
+            loadHtml(data);
+        },
+        error: function () {
+            alert("网络错误，请稍后再试");
+        }
+    })
+}
+
+//添加考试
+function addExam() {
+    var result = required("addExaminationForm");
+    if (result) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/addExam.htm',
+            data: new FormData($("#addExaminationForm")[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                layer.msg("添加成功");
+                loadHtml(data);
+            },
+            error: function () {
+                alert("网络错误，请稍后再试");
+            }
+        })
+    }
+}
+
+//添加考试弹出选择考生列表框  暂不用
+function openAddFrontUser(cmd, examId) {
+    var result = required("addExaminationForm");
+    var orgId = $("#orgId option:selected").val();
+    // var orgId = $("#orgId").val();
+    var url = "ExaminationController/jumpAddFrontUser.htm?cmd=" + cmd + "&orgId=" + orgId;
+    if (examId) {
+        url += "&examId=" + examId;
+    }
+    if (result) {
+        $.ajax({
+            type: 'post',
+            url: url,
+            success: function (data) {
+                layer.open({
+                    type: 1,
+                    title: "添加考生",
+                    skin: 'layui-layer-rim',//加上边框
+                    area: ['900px', '500px'],//宽高
+                    btn: ['确定', '取消'],
+                    yes: function (index) {
+                        var ids = "-1";
+                        var zeroIds = "-1";
+                        if (cmd != 1) {
+                            $(".table input").each(function () {
+                                zeroIds = zeroIds + "," + $(this).val();
+                            })
+                        }
+
+                        $(".table input:checked").each(function () {
+                            ids = ids + "," + $(this).val();
+                        })
+                        /*if(ids == "-1" || ids == "-1,-2"){
+                            layer.msg("请选择考生");
+                            return;
+                        }*/
+                        if (cmd == 1) {
+                            addExamination(ids);
+                        } else {
+                            updateExamination(ids, zeroIds);
+                        }
+                    },
+                    content: data,
+                })
+            }
+        })
+    }
+}
+
+
+//考试列表点击添加考生
+function openExamOrFrontUser(cmd, examId,orgId) {
+    var result = required("addExaminationForm");
+    // var orgId = $("#orgId option:selected").val();
+    // var orgId = $("#orgId").val();
+/*    var url = "ExaminationController/jumpAddFrontUser.htm?cmd=" + cmd + "&orgId=" + orgId;
+    if (examId) {
+        url += "&examId=" + examId;
+    }*/
+    if (result) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/jumpAddFrontUser.htm',
+            data:{
+                cmd:cmd,
+                orgId:orgId,
+                examId:examId
+            },
+            success: function (data) {
+                layer.open({
+                    type: 1,
+                    title: "添加考生",
+                    skin: 'layui-layer-rim',//加上边框
+                    area: ['900px', '550px'],//宽高
+                    btn: ['保存', '取消'],
+                    yes: function (index) {
+                        var ids = "-1";
+                        var zeroIds = "-1";
+                        if (cmd != 1) {
+                            //未选中
+                            $("#noCheckTable input").not("input:checked").each(function () {
+                                zeroIds = zeroIds + "," + $(this).val();
+                            })
+                        }
+                        // alert(zeroIds);
+                        //选中
+                        $("#checkedTable input").each(function () {
+                            ids = ids + "," + $(this).val();
+                        })
+                        // alert(ids);
+                        /*if(ids == "-1" || ids == "-1,-2"){
+                            layer.msg("请选择考生");
+                            return;
+                        }*/
+                        $.ajax({
+                            type:'post',
+                            url:'ExaminationController/ExamOrFrontUser.htm',
+                            data:{
+                                ids:ids,
+                                examId:examId,
+                                zeroIds:zeroIds
+                            },
+                            success:function(data){
+                                layer.confirm("操作成功，是否关闭添加用户页面？",{icon: 3, title:'提示'},function(index1){
+                                    loadHtml(data);
+                                    layer.closeAll();
+                                },function(index1){
+                                    loadHtml(data);
+                                    layer.close(index1);
+                                })
+                            },
+                            error:function(){
+                                alert("网络错误，请稍后再试");
+                            }
+                        })
+                    },
+                    content: data,
+                })
+            }
+        })
+    }
+}
+
+function findById() {
+    var checks = $(".table input:checked");
+    if (checks.length != 1) {
+        layer.msg("请选择一条数据");
+        return;
+    }
+    ajaxLoad("ExaminationController/findById.htm?id=" + $(checks[0]).val(), "修改考试", this);
+
+}
+
+//保存考试信息
+function saveExaminationForm() {
+    var result = required("updateExaminationForm");
+    if (result) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/saveExaminatinForm.htm',
+            data: new FormData($("#updateExaminationForm")[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                layer.msg("保存成功");
+                loadHtml(data);
+            },
+            error: function () {
+                alert("网络错误，请稍后再试");
+            }
+        })
+    }
+}
+
+function deleteExam() {
+    var ids = "-1";
+    $(".table input:checked").each(function () {
+        ids = ids + "," + $(this).val();
+    })
+    if (ids == "-1") {
+        layer.msg("请选择数据");
+        return;
+    }
+    layer.confirm("确定要删除吗?", function (index) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/delete.htm',
+            data: {
+                ids: ids
+            },
+            success: function (data) {
+                layer.msg("删除成功");
+                layer.close(index);
+                loadHtml(data);
+            },
+            error: function () {
+                alert("网络错误，请稍后再试");
+            }
+        })
+    })
+}
+
+function updateExamination(ids, zeroIds) {
+    $.ajax({
+        type: 'post',
+        url: 'ExaminationController/update.htm?ids=' + ids + '&zeroIds=' + zeroIds,
+        data: new FormData($("#updateExaminationForm")[0]),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            layer.msg("修改成功");
+            layer.closeAll();
+            loadHtml(data);
+        },
+        error: function () {
+            alert("网络错误，请稍后再试");
+        }
+    })
+}
+
+
+//添加练习考试
+function addExamPractice() {
+    var result = required("addExamPractionForm");
+    if (result) {
+        layer.confirm("确定要添加这场练习考试吗?", function (index) {
+            $.ajax({
+                type: 'post',
+                url: 'ExaminationController/addExamPraction.htm',
+                data: new FormData($("#addExamPractionForm")[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    layer.msg("添加成功");
+                    loadHtml(data);
+                },
+                error: function () {
+                    alert("网络错误，请稍后再试");
+                }
+            })
+        })
+    }
+}
+
+//保存练习考试
+function saveExamPractice() {
+    var result = required("editExamPractionForm");
+    if (result) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/saveExaminatinForm.htm',
+            data: new FormData($("#editExamPractionForm")[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                layer.msg("保存成功");
+                loadHtml(data);
+            },
+            error: function () {
+                alert("网络错误，请稍后再试");
+            }
+        })
+    }
+}
+
+//启用不启用试卷
+function EnableorNotEnable(cmd, examId) {
+    var msg = "";
+    if (cmd == 1) {
+        msg = "确定要启用这场考试吗?";
+    } else {
+        msg = "确地要不启用这场考试吗?";
+    }
+    var examPage = $("#examPage").val();
+    layer.confirm(msg, function (index) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/EnableorNotEnable.htm',
+            data: {
+                cmd: cmd,
+                examId: examId,
+                page: examPage
+            },
+            success: function (data) {
+                layer.msg("操作成功");
+                loadHtml(data);
+            },
+            error: function () {
+                alert("网络错误，请稍后再试");
+            }
+        })
+    })
+
+}
+
+//答案显示或不显示
+function AnswerDisplay(cmd, examId) {
+    var msg = "";
+    if (cmd == 1) {
+        msg = "确定要显示这场考试的答案吗?";
+    } else {
+        msg = "确定要不显示这场考试的答案吗?";
+    }
+    var examPage = $("#examPage").val();
+    layer.confirm(msg, function (index) {
+        $.ajax({
+            type: 'post',
+            url: 'ExaminationController/AnswerDisplay.htm',
+            data: {
+                cmd: cmd,
+                examId: examId,
+                page: examPage
+            },
+            success: function (data) {
+                layer.msg("操作成功");
+                loadHtml(data);
+            },
+            error: function () {
+                alert("网络错误，请稍后再试");
+            }
+        })
+    })
+}
+
+
+function searchExam() {
+    var examName = $("#examName").val();
+    $.ajax({
+        type: 'post',
+        url: 'ExaminationController/list.htm',
+        data: {
+            examName: examName
+        },
+        success: function (data) {
+            loadHtml(data);
+        }
+    })
+}
+
+
+//考试详情
+function Examdetails(examId){
+    var page = $("#examPage").val();
+    ajaxLoad("ExaminationController/Examdetails.htm?examId="+examId+"&page="+page,"考试详情",this);
+}

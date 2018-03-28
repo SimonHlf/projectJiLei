@@ -1,0 +1,249 @@
+<%@page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="v" tagdir="/WEB-INF/tags" %>
+<script src="examination/frontuser/frontuser.js"></script>
+<style type="text/css">
+    .clearfix {
+        zoom: 1;
+    }
+
+    .clearfix:after {
+        content: "";
+        display: block;
+        overflow: hidden;
+        clear: both;
+    }
+
+    .groupPar {
+        width: 100%;
+    }
+
+    .fl {
+        float: left;
+    }
+
+    .formGroup {
+        margin-left: 15px;
+    }
+</style>
+<div class="btn-group col-sm-12" style="float:none;padding-left:0px;">
+    <div class="groupPar clearfix">
+        <!-- <div class="btnGroup fl">
+            <button type="button" onclick="addFrontUser()" class="btn btn-info"><i class="fa fa-plus"></i>添加</button>
+            <button type="button" onclick="delDisRate()" class="btn btn-danger"><i class="fa fa-minus"></i> 删除</button>
+            <button type="button" onclick="updateDisRate()" class="btn btn-primary"><i class="fa fa-pencil"></i> 修改</button>
+
+         </div> -->
+        <!-- <div class="formGroup fl">
+            <form action="" id="ImportFrontUserExcelForm">
+                <input id="lefile" type="file" name="file" style="display: none">
+                <div class="input-append fl">
+                    <input id="photoCover" name="file" class="input-large" type="text" style="height: 30px;">
+                    <a class="btn" onclick="$('input[id=lefile]').click();">选择 Excel 文件</a>
+                </div>
+                <button type="button" onclick="uploadBtn()" class="btn btn-primary fl">
+                    <i class="fa fa-pencil"></i> 导入
+                </button>
+                <button type="button" onclick="ImportFrongUserExcelHelp()" class="btn btn-warning"><i class="fa fa-question"></i> 导入 Excel 说明</button>
+            </form>
+        </div> -->
+    </div>
+    <script type="text/javascript">
+        $('input[id=lefile]').change(function () {
+            $('#photoCover').val($(this).val());
+        });
+        var User = function () {
+            //点击上传按钮
+            uploadBtn = function () {
+                var photoCover = $("#photoCover").val();
+                if (!photoCover) {
+                    layer.msg("请选择excel,再上传");
+                } else if (photoCover.lastIndexOf(".xls") < 0) {//可判断以.xls和.xlsx结尾的excel
+                    layer.msg("只能上传Excel文件");
+                } else {
+                    var treeObj = $.fn.zTree.getZTreeObj("menuTree");
+                    var nodes = treeObj.getSelectedNodes();
+                    if(nodes.length === 0){//没有点击节点
+                        layer.msg("请选中机构节点导入");
+                        return;
+                    }
+                    var level = nodes[0].level;//节点等级 0为根节点 依次递增
+                    if(level != 2){
+                        layer.msg("请选择部门下小组导入");
+                        return;
+                    }
+                    var url = '${pageContext.request.contextPath}/admin/frontuser/importFrontUserExcel.htm?pid=' + nodes[0].id;
+                    var formData = new FormData($('#ImportFrontUserExcelForm')[0]);
+                    user.sendAjaxRequest(url, 'POST', formData);
+                }
+            };
+            this.sendAjaxRequest = function (url, type, data) {
+                $.ajax({
+                    url: url,
+                    type: type,
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        layer.msg("考生导入成功.");
+//                        alert("excel上传成功");
+                        loadHtml(result);
+                    },
+                    error: function () {
+                        alert("考生导入失败.");
+                    }
+                });
+            };
+        }
+        var user;
+        $(function () {
+            user = new User();
+        });
+
+        var zTreeObj;
+        var setting = {
+            data : {
+                simpleData : {
+                    enable : true,
+                    idKey : "id",
+                    pIdKey : "pid",
+                    rootPId : 0
+                },
+                key:{
+                    url:"###"
+                }
+            },
+            callback : {
+                onClick : function(event, treeId, treeNode) {
+                    if(treeNode.pid != 0){
+                        $("#menuTable").load("frontuser/ztreeMenuTable.htm?orgId="+treeNode.id);
+                    }
+                },
+            }
+        };
+        var nodes = ${nodes};
+        $.fn.zTree.init($("#menuTree"), setting, nodes);
+    </script>
+    <div style="margin-top:6px;margin-top: 0px; float: left;padding: 5px;width: 320px;">
+        <form id="searchFrontUserForm" method="post">
+            <div class="row">
+                <%--<div class="form-group col-lg-4" style="padding-right: 10px;">
+                    <div class=" input-group ">
+                        <!-- <span class="input-group-addon">考生姓名</span> -->
+                        <input type="text" name="nickName" id="nickName" value="${nickName}" class="form-control" placeholder="考生姓名">
+                    </div>
+                </div>--%>
+                <%--<div class="form-group col-lg-4" style="padding-left: 8px;">
+                    <div class=" input-group " >
+                        <!-- <span class="input-group-addon">考生编号</span> -->
+                        <input type="text" name="theSignature" value="${theSignature}" class="form-control" placeholder="考生编号">
+                    </div>
+                </div>--%>
+                <div class="form-group col-lg-4" style="padding-left: 8px;">
+                    <div class=" input-group ">
+                        <input type="text" name="attr0" id="attr0" value="${attr0}" class="form-control" placeholder="考生工号">
+                    </div>
+                </div>
+                <button type="button" onclick="searchFrontUser()" class="btn btn-success"><i class="fa fa-search"></i>
+                    	查询
+                </button>
+            </div>
+        </form>
+    </div>
+    <div style="float: left;padding: 5px">
+        <button type="button" onclick="addFrontUser()" class="btn btn-info"><i class="fa fa-plus"></i>添加</button>
+        <button type="button" onclick="delFrontUser()" class="btn btn-danger"><i class="fa fa-minus"></i> 删除</button>
+        <button type="button" onclick="updateFrontUser()" class="btn btn-primary"><i class="fa fa-pencil"></i> 修改</button>
+        <button type="button" onclick="recoveryPassword()" class="btn btn-warning"><i class="fa fa-pencil"></i> 恢复默认密码</button>
+        <button type="button" onclick="openSearch('searchdiv')" class="btn btn-success"><i class="fa fa-search"></i> 导入考生</button>
+    </div>
+</div>
+<div class="search-div" id="searchdiv" style="display: none;margin-left: 25px">
+    <%--<form action="" class="form-horizontal">--%>
+        <div class="row search-row">
+            <form action="" id="ImportFrontUserExcelForm">
+                <input id="lefile" type="file" name="file" style="display: none">
+                <div class="input-append fl">
+                    <input id="photoCover" name="file" class="input-large" type="text" style="height: 30px;">
+                    <a class="btn" onclick="$('input[id=lefile]').click();">选择 Excel 文件</a>
+                </div>
+                <button type="button" onclick="uploadBtn()" class="btn btn-primary fl">
+                    <i class="fa fa-pencil"></i> 批量导入
+                </button>
+                &nbsp;
+                <button type="button" onclick="downloadTemplate()" class="btn btn-info"><i class="fa fa-download"></i> 模板下载 </button>
+                <%--<button type="button" onclick="ImportFrongUserExcelHelp()" class="btn btn-warning"><i
+                        class="fa fa-question"></i> 导入 Excel 说明
+                </button>--%>
+            </form>
+        </div>
+    <%--</form>--%>
+</div>
+
+<div class="widget">
+    <div class="widget-body">
+        <div class="row">
+            <div class="col-lg-2 col-sm-2 col-xs-2">
+                <ul id="menuTree" class="ztree"></ul>
+            </div>
+            <div class="flip-scroll col-lg-10 col-sm-10 col-xs-10" id="menuTable">
+
+                <%-- <c:if test="${not empty attr0}"> --%>
+                    <table class="table table-bordered table-striped table-condensed flip-content">
+                        <thead class="flip-content bordered-palegreen">
+                        <tr>
+                            <th width="44px;"><v:checkbox/></th>
+                            <th>考生手机号</th>
+                            <th>考生姓名</th>
+                            <th>工号</th>
+                            <th>性别</th>
+                            <th>出生日期</th>
+                            <th>头像</th>
+                            <th>所属部门</th>
+                            <th>注册时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${list}" var="frontUser">
+                            <tr>
+                                <td><v:checkbox value="${frontUser.user_id}"/></td>
+                                <td title="${frontUser.cell_phone}">${frontUser.cell_phone}</td>
+                                <td title="${frontUser.nick_name}">${frontUser.nick_name}</td>
+                                <td title="${frontUser.attr0}">${frontUser.attr0}</td>
+                                <c:if test="${frontUser.sex==1}">
+                                    <td>男</td>
+                                </c:if>
+                                <c:if test="${frontUser.sex==0}">
+                                    <td>女</td>
+                                </c:if>
+                                <c:if test="${empty frontUser.sex }">
+                                    <td>信息暂缺</td>
+                                </c:if>
+                                <td title="${frontUser.birthday}">${frontUser.birthday}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty frontUser.head_portrait}">
+                                            <img style="width: 50px;height: 50px" src="${pageContext.request.contextPath}/admin/assets/img/mourentouxiang.jpg" onclick="open_(this)" alt="">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="/${frontUser.head_portrait}" style="width: 50px;height: 50px" alt="暂无图片"
+                                                 onclick="open_(this)">
+                                        </c:otherwise>
+                                    </c:choose>
+                                        <%--<img src="/${frontUser.head_portrait}" style="width: 50px;height: 50px" alt="暂无图片"
+                                             onclick="open_(this)">--%>
+                                </td>
+                                <td>${frontUser.name}</td>
+                                <td title="${frontUser.reg_time}">${frontUser.reg_time}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                    <v:pagination page="${page}" url="frontuser/list.htm?1=1"></v:pagination>
+                <%-- </c:if> --%>
+            </div>
+        </div>
+
+    </div>
+</div>

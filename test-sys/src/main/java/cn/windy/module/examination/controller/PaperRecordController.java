@@ -1,0 +1,563 @@
+package cn.windy.module.examination.controller;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import cn.windy.module.examination.service.IFrontUserService;
+import cn.windy.module.examination.service.PaperCreatService;
+
+import org.hibernate.boot.model.IdGeneratorStrategyInterpreter.GeneratorNameDeterminationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.alibaba.fastjson.JSON;
+import com.jacob.com.Dispatch;
+
+import cn.windy.module.admin.hibernate.model.User;
+import cn.windy.module.core.controller.BaseController;
+import cn.windy.module.examination.mybatis.model.FrontUser;
+import cn.windy.module.examination.mybatis.model.PaperRecord;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+import cn.windy.module.examination.service.PaperRecordService;
+import cn.windy.module.examination.service.QuesTypeService;
+import cn.windy.module.examination.service.impl.WindyOrgService;
+import cn.windy.module.util.WindyConstants;
+import cn.windy.module.util.WordDemo;
+import cn.windy.util.FileDownLoadUtil;
+import cn.windy.util.MenuTree;
+import cn.windy.util.Pagination;
+import cn.windy.util.StringUtil;
+
+@Controller
+@RequestMapping("/admin/paperRecordController")
+public class PaperRecordController extends BaseController {
+
+	@Autowired
+	private PaperRecordService paperRecordService; 
+	
+	@Autowired
+	private QuesTypeService quesTypeService;
+
+	@Autowired
+	private IFrontUserService frontUserService;
+
+	@Autowired
+	private WindyOrgService windyOrgService;
+	@Autowired
+	private  PaperCreatService paperCreatService;
+	
+	@RequestMapping("/getList")
+	public String getList(Pagination page,String name,ModelMap map){
+		User user=(User) getSession(WindyConstants.SESSION_USER);
+		//判断后台登录的是否有权限查看所有机构的考试数据
+		boolean s=quesTypeService.getRole(user.getId());
+		List<Map<String,Object>>userRecodList=null;
+		Long counts=null;
+		if(s) {
+			List<WindyOrg> windyOrgList=paperRecordService.getWindyOrg();
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			
+			userRecodList=frontUserService.userRecod(null,null, page);
+			counts=frontUserService.getOneCount(null, null);
+			page.setTotal(counts);
+			
+		}
+		if(!s) {
+			List<WindyOrg> windyOrgList=paperRecordService.getWindyOrgs(user.getUpdateUser());
+			String ss=JSON.toJSONString(windyOrgList);
+			map.put("nodes", ss.replaceAll("icon", "_icon_"));
+			
+			userRecodList=frontUserService.userRecod(user.getUpdateUser(),null, page);
+			counts=frontUserService.getOneCount(user.getUpdateUser(), null);
+			page.setTotal(counts);
+		}
+		map.put("list", userRecodList);
+		map.put("page",page);
+		return "admin/examination/PaperRecord/list";
+	}
+	
+	//首次跳传分页
+	@RequestMapping("/getOne")
+	public String getOne(Pagination page,ModelMap map){
+		List<Map<String,Object>>userRecodList=frontUserService.userRecod(null,null, page);
+		Long counts=frontUserService.getOneCount(null, null);
+		page.setTotal(counts);
+		
+		map.put("userRecodList", userRecodList);
+		map.put("page", page);
+		return "admin/examination/PaperRecord/oneDetailList";
+	}
+	
+	
+	//TODO
+	//查找考生树形
+	@RequestMapping("/getUser")
+	public String getUser(Long insId,ModelMap map,Pagination page,Integer level){
+		Long pid=windyOrgService.getFormId(insId).getPid();
+		List<MenuTree> mtList=new ArrayList<>();
+		List<FrontUser>frontUserList=new ArrayList<>();
+		List<Map<String,Object>>userRecodList=null;
+		Long counts=null;
+		//如果是机务段查找
+		if(pid==0){
+			frontUserList=paperRecordService.getUser(insId);
+			
+			userRecodList=frontUserService.userRecod(null,null, page);
+			counts=frontUserService.getOneCount(null, null);
+			page.setTotal(counts);
+			 
+			
+		}
+		//如果是车间查找
+		if(pid!=0){
+			 frontUserList=paperRecordService.getUserTwo(insId);
+			 
+			 userRecodList=paperRecordService.getUserRecord(insId,null, page);
+			counts=frontUserService.getOneCount(insId, null);
+			page.setTotal(counts);
+		}
+		
+		for(FrontUser frontUser:frontUserList){
+			MenuTree mTree=new MenuTree();
+			mTree.setId(frontUser.getUserId());
+			mTree.setPid((long)0);
+			mTree.setName(frontUser.getNickName());
+			mtList.add(mTree);
+		}
+		map.put("list", userRecodList);
+		map.put("page", page);
+		String ss=JSON.toJSONString(mtList);
+		map.put("nodes2", ss.replaceAll("icon", "_icon_"));
+		return "admin/examination/PaperRecord/ztreeTwo";
+	}
+	
+	//机构分页2
+	@RequestMapping("/getTwo")
+	public String getTwo(Long insId,Pagination page,ModelMap map){
+		Long pid=windyOrgService.getFormId(insId).getPid();
+		List<Map<String,Object>>userRecodList=new ArrayList<>();
+		Long counts=(long)0;
+		if(pid==0) {
+			userRecodList=frontUserService.userRecod(null,null, page);
+			counts=frontUserService.getOneCount(null, null);
+			page.setTotal(counts);
+		}
+		if(pid!=0){
+			userRecodList=frontUserService.userRecod(insId,null, page);
+			counts=frontUserService.getOneCount(insId, null);
+			page.setTotal(counts);
+		}
+		
+		
+		map.put("list", userRecodList);
+		map.put("page", page);
+		map.put("insId", insId);
+		return "admin/examination/PaperRecord/twoDetailList";
+	}
+	
+	
+	@RequestMapping("/getDetail")
+	public String getDetail(Long userId,Pagination page,ModelMap map){
+		List<Map<String,Object>> list = frontUserService.ExamineeRecord(page,userId);
+		Pagination pagination = new Pagination();
+		pagination.setPageSize(0);
+		page.setTotal((Long) frontUserService.ExamineeRecord(pagination,userId).get(0).get("TOTAL"));
+
+		map.put("list",list);
+//		List<Map<String, Object>> userRecordList=paperRecordService.userRecordList(userId, null, page);
+//		page.setTotal(paperRecordService.getCount(userId, null));
+		
+		map.put("page", page);
+//		map.put("userRecordList", userRecordList);
+		map.put("userId", userId);
+		return "admin/examination/PaperRecord/paperRecordDetailList";
+		
+	}
+	
+	@RequestMapping("/seeDetail")
+	public String seeDetail(Long recordId,ModelMap mm){
+		Map map=paperRecordService.toDetail(recordId);
+		//一共答对的题数
+		Integer rightNum=(Integer) map.get("rightNum");
+		mm.put("rightNum", rightNum);
+				
+		//用户总得分
+		Double zongDeFen=(Double) map.get("zongDeFen");
+		mm.put("zongDeFen", zongDeFen);
+				
+		//单选题答对的数量
+		Integer danxuanRighrNum=(Integer) map.get("danxuanRighrNum");
+		mm.put("danxuanRighrNum", danxuanRighrNum);
+				
+				//单选题答对的题号list
+				List<Integer> danxuanRighrList=(List<Integer>) map.get("danxuanRighrList");
+				mm.put("danxuanRighrList", danxuanRighrList);
+				
+				//单选题答错的数量
+				Integer danxuanWrongNum=(Integer) map.get("danxuanWrongNum");
+				mm.put("danxuanWrongNum", danxuanWrongNum);
+				
+				//单选题答错的题号list
+				List<Integer> danxuanWrongList=(List<Integer>) map.get("danxuanWrongList");
+				mm.put("danxuanWrongList", danxuanWrongList);
+				
+				//多选题答对的数量
+				Integer duoxuanRightNum=(Integer) map.get("duoxuanRightNum");
+				mm.put("duoxuanRightNum", duoxuanRightNum);
+				
+				//多选题答对题号list
+				List<Integer> duoxuanRightList=(List<Integer>) map.get("duoxuanRightList");
+				mm.put("duoxuanRightList", duoxuanRightList);
+				
+				//多选题答错的数量
+				Integer duoxuanWrongNum=(Integer) map.get("duoxuanWrongNum");
+				mm.put("duoxuanWrongNum", duoxuanWrongNum);
+				
+				//多选题答错题号list
+				List<Integer> duoxuanWrongList=(List<Integer>) map.get("duoxuanWrongList");
+				mm.put("duoxuanWrongList", duoxuanWrongList);
+				
+				//判断题答对的数量
+				Integer panduanRightNum=(Integer) map.get("panduanRightNum");
+				mm.put("panduanRightNum", panduanRightNum);
+				
+				//判断题答对题号的list
+				List<Integer>panduanRightList=(List<Integer>) map.get("panduanRightList");
+				mm.put("panduanRightList", panduanRightList);
+				
+				//判断题答错的数量
+				Integer panduanWrongNum=(Integer) map.get("panduanWrongNum");
+				mm.put("panduanWrongNum", panduanWrongNum);
+				
+				//判断题答错的题号list
+				List<Integer>panduanWrongList=(List<Integer>) map.get("panduanWrongList");
+				mm.put("panduanWrongList", panduanWrongList);
+				
+				//获取单选题列表
+				List<Questions> danxuantiList=(List<Questions>) map.get("danxuantiList");
+				mm.put("danxuanToLists", danxuantiList);
+				//获取单选题总分值
+				Integer countFen=(Integer) map.get("countFen");
+				mm.put("countFen", countFen);
+				
+				//获取多选题列表
+				List<Questions> duoxuantiList=(List<Questions>) map.get("duoxuantiList");
+				mm.put("duoxianToLists", duoxuantiList);
+				//获取多选题总分值
+				Integer duoCountFen=(Integer) map.get("duoCountFen");
+				mm.put("duoCountFen", duoCountFen);
+				
+				//获取判断题列表
+				List<Questions> panduantiList=(List<Questions>) map.get("panduantiList");
+				mm.put("panduanToLists", panduantiList);
+				//获取判断题总分值
+				Integer panCountFen=(Integer) map.get("panCountFen");
+				mm.put("panCountFen", panCountFen);
+				FrontUser frontUser = (FrontUser) getSession(WindyConstants.SESSION_FRONTUSER);
+				mm.put("frontUser",frontUser);
+		return "admin/examination/PaperRecord/endExamDetail";
+	}
+	
+	//导出考生考试结果
+	@RequestMapping("/outWord")
+	public void outWord(Long userRecordId,HttpServletRequest req,HttpSession session,HttpServletResponse response) throws IOException{
+		PaperRecord paperRecord =paperRecordService.getById(userRecordId);
+		//获取试卷id
+		Long paperCreatId=paperRecord.getAttr9();
+		
+		Long orgId=paperCreatService.getById(paperCreatId).getInsId();
+		//用于取出部门名字
+		String name=paperRecordService.getName(orgId);
+		
+		
+		Map mm=paperRecordService.getshiti(paperCreatId, paperRecord);
+//TODO
+		//TODO
+		//TODO
+		//用户共答对的题数
+		Integer Rightnum=(Integer) mm.get("Rightnum");
+		//共的分数
+		double Fen=(double) mm.get("Fen");
+		//单选题答对的题号集合
+		String  danduanDuiNum=(String) mm.get("danduanDuiNum");
+		//单选题答对的数量
+		Integer danduanDuiNumList=(Integer) mm.get("danduanDuiNumList");
+		//单选题答错的题号集合
+		String  danduanCuoNum=(String) mm.get("danduanCuoNum");
+		//单选题答错的数量
+		Integer danduanCuoNumList=(Integer) mm.get("danduanCuoNumList");
+		
+		//多选题答对的题号集合
+		String duoxuanDuiNum=(String) mm.get("duoxuanDuiNum");
+		// 多选题答对的数量
+		Integer duoxuanDuiNumList=(Integer) mm.get("duoxuanDuiNumList");
+		// 多选题答错的题号集合
+		String duoxuanCuoNum=(String) mm.get("duoxuanCuoNum");
+		// 多选题答错的数量
+		Integer duoxuanCuoNumList=(Integer) mm.get("duoxuanCuoNumList");
+		
+		//判断题答对的题号集合
+		String panduanDuiNum=(String) mm.get("panduanDuiNum");
+		// 判断题答对的数量
+		Integer panduanDuiNumList=(Integer) mm.get("panduanDuiNumList");
+		//判断题答错的题号集合
+		String panduanCuoNum=(String) mm.get("panduanCuoNum");
+		//判断题答错的数量
+		Integer panduanCuoNumList=(Integer) mm.get("panduanCuoNumList");
+	
+		//单选题
+		List<Questions> questionsList=(List<Questions>) mm.get("questionsList");
+		//多选题
+		List<Questions> duoxuantiList=(List<Questions>) mm.get("duoxuantiList");
+		//判断题
+		List<Questions> panduantiList=(List<Questions>) mm.get("panduantiList");
+		
+		
+		
+		
+		
+		//获取当前系统路径分隔符
+	       /* String s=File.separator;*/
+	        String pathUrl=req.getSession().getServletContext().getRealPath("");
+	        String pathUrls=new File(pathUrl).getParentFile().getAbsolutePath();
+	        /*String pathUrls=pathUrl.substring(0,pathUrl.lastIndexOf("\\"));*/
+	        System.out.println(pathUrl+"============================");
+	        
+			WordDemo wordDemo = new WordDemo(false);
+			String openfile=pathUrls+"\\"+"file"+"\\"+"jiwu.docx";
+			String outfile=pathUrl+"\\"+"file"+"\\"+"kaoshis.doc";
+			System.out.println(openfile+"=============++++++++++++++++++");
+			/*wordDemo.createNewDocument();*/
+			wordDemo.openDocument(openfile);
+			wordDemo.find(wordDemo.getSelection(), "{车间}");
+			wordDemo.replaceAll(wordDemo.getSelection(), "{车间}",name);
+			wordDemo. moveEnd();
+			wordDemo.enterDown(1);//回车,向下移动一行
+			Dispatch.call(wordDemo.getSelection(), "TypeParagraph");// 插入一个空行
+			
+			wordDemo.insertText("一、单选题");
+			/*wordDemo.find(wordDemo.getSelection(),"{单选题}");
+			wordDemo.replaceAll(wordDemo.getSelection(),"{单选}", "一、单选题");*/
+			/*wordDemo.moveRight(5);*/
+			wordDemo.enterDown(1);//回车,向下移动一行
+			//单选题
+			int danxuanCount=0;
+			for(Questions questions:questionsList){
+				danxuanCount+=1;
+				//获取试题题目
+				wordDemo.insertText(danxuanCount+"、"+questions.getName()+"(___)");
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				
+				if(questions.getImage()!=null && !"".equals(questions.getImage())){
+					wordDemo.insertImage(pathUrls+"\\"+questions.getImage());//放入图片地址
+				}
+				
+				//选项A
+				wordDemo.insertText("A、"+questions.getOptionA());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项B
+				wordDemo.insertText("B、"+questions.getOptionB());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项C
+				wordDemo.insertText("C、"+questions.getOptionC());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项D
+				wordDemo.insertText("D、"+questions.getOptionD());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				
+				if(questions.getAnswer()!=questions.getAttr0()){
+					wordDemo.insertText("本题答案:"+questions.getAnswer());
+					if("E".equals(questions.getAttr0())) {
+						wordDemo.insertText("你选择的答案：您未选择答案");
+					}else {
+						wordDemo.insertText("你选择的答案："+questions.getAttr0());
+					}
+					
+				}
+				
+			}
+			
+			Dispatch.call(wordDemo.getSelection(), "TypeParagraph");// 插入一个空行
+			
+			
+			wordDemo.insertText("二、多选题");
+			/*wordDemo.find(wordDemo.getSelection(),"{多选题}");
+			wordDemo.replaceAll(wordDemo.getSelection(),"{多选}", "二、多选题");*/
+			wordDemo.enterDown(1);//回车,向下移动一行
+			
+			//多选题
+			int duoxuantiCount=0;
+			for(Questions duoxuanti:duoxuantiList){
+				duoxuantiCount+=1;
+				//获取试题题目
+				wordDemo.insertText(duoxuantiCount+"、"+duoxuanti.getName()+"(_____)");
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				
+				if(duoxuanti.getImage()!=null && !"".equals(duoxuanti.getImage())){
+					wordDemo.insertImage(pathUrls+"\\"+duoxuanti.getImage());//放入图片地址
+				}
+				//选项A
+				wordDemo.insertText("A、"+duoxuanti.getOptionA());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项B
+				wordDemo.insertText("B、"+duoxuanti.getOptionB());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项C
+				wordDemo.insertText("C、"+duoxuanti.getOptionC());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项D
+				wordDemo.insertText("D、"+duoxuanti.getOptionD());
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				if(duoxuanti.getAnswer()!=duoxuanti.getAttr0()){
+					wordDemo.insertText("本题答案:"+duoxuanti.getAnswer());
+					if("EEEE".equals(duoxuanti.getAttr0())) {
+						wordDemo.insertText("你选择的答案：你未选择答案");
+					}else {
+						wordDemo.insertText("你选择的答案："+duoxuanti.getAttr0());
+					}
+					
+				}
+			}
+			
+			Dispatch.call(wordDemo.getSelection(), "TypeParagraph");// 插入一个空行
+			
+			wordDemo.insertText("三、判断题");
+			/*wordDemo.find(wordDemo.getSelection(),"{判断题}");
+			wordDemo.replaceAll(wordDemo.getSelection(),"{判断}", "二、判断题");*/
+			wordDemo.enterDown(1);//回车,向下移动一行
+			
+			//判断题
+			int panduantiCount=0;
+			for(Questions panudanti:panduantiList){
+				panduantiCount+=1;
+				//获取试题题目
+				wordDemo.insertText(panduantiCount+"、"+panudanti.getName()+"(_____)");
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				
+				if(panudanti.getImage()!=null && !"".equals(panudanti.getImage())){
+					wordDemo.insertImage(pathUrls+"\\"+panudanti.getImage());//放入图片地址
+				}
+				
+				//选项A
+				wordDemo.insertText("A、对");
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				//选项B
+				wordDemo.insertText("B、错");
+				/*wordDemo.enterDown(1);*///回车,向下移动一行
+				if(panudanti.getAnswer()!=panudanti.getAttr0()){
+					
+					if("0".equals(panudanti.getAnswer())) {
+						wordDemo.insertText("本题答案:A");
+					}else {
+						wordDemo.insertText("本题答案:B");
+					}
+					
+					
+					if("2".equals(panudanti.getAttr0())) {
+						wordDemo.insertText("你选择的答案：您未选择答案");
+					}else if("0".equals(panudanti.getAttr0())){
+						wordDemo.insertText("你选择的答案：A");
+					}else {
+						wordDemo.insertText("你选择的答案：B");
+					}
+					
+				}
+			}
+			Dispatch.call(wordDemo.getSelection(), "TypeParagraph");// 插入一个空行
+			wordDemo.enterDown(1);//回车,向下移动一行
+			if(Rightnum!=null && !"".equals(Rightnum)) {
+				wordDemo.insertText("您共答对了"+Rightnum+"道题");
+			}else {
+				wordDemo.insertText("您共答对了"+0+"道题");
+			}
+			if(!"".equals(Fen)) {
+				wordDemo.insertText("本次考试成绩"+Fen);
+			}else {
+				wordDemo.insertText("本次考试成绩"+0);
+			}
+			int danDuiInt = danduanDuiNumList != null && danduanDuiNumList != 0 ? danduanDuiNumList : 0;
+			int danCuoInt = danduanCuoNumList != null && danduanCuoNumList != 0 ? danduanCuoNumList : 0;
+			wordDemo.insertText("单选题:正确"+danDuiInt+"道，错误"+danCuoInt+"道");
+			int duoDuiInt = duoxuanDuiNumList != null && duoxuanDuiNumList != 0 ? duoxuanDuiNumList : 0;
+			int duoCuoInt = duoxuanCuoNumList != null && duoxuanCuoNumList != 0 ? duoxuanCuoNumList : 0;
+			wordDemo.insertText("多选题：正确"+duoDuiInt+"道，错误"+duoCuoInt+"道");
+			int panDuiInt = panduanDuiNumList != null && panduanDuiNumList != 0 ? panduanDuiNumList : 0;
+			int panCuoInt = panduanCuoNumList != null && panduanCuoNumList != 0 ? panduanCuoNumList : 0;
+			wordDemo.insertText("判断题：正确"+panDuiInt+"道，错误"+panCuoInt+"道");
+			
+			Dispatch.call(wordDemo.getSelection(), "TypeParagraph");// 插入一个空行
+			wordDemo.enterDown(1);//回车,向下移动一行
+			
+			wordDemo.insertText("正确题号");
+			if(StringUtil.isBlank(danduanDuiNum)){
+				wordDemo.insertText("单选题:您的单选题全答错了");
+			}else{
+				wordDemo.insertText("单选题:"+danduanDuiNum);
+			}
+			
+			if(StringUtil.isBlank(duoxuanDuiNum)){
+				wordDemo.insertText("多选题：您的多选题全答错了");
+			}else {
+				wordDemo.insertText("多选题："+duoxuanDuiNum);
+			}
+			
+			if(StringUtil.isBlank(panduanDuiNum)){
+				wordDemo.insertText("判断题：你的判断题全答错了");
+			}else {
+				wordDemo.insertText("判断题："+panduanDuiNum);
+			}
+			
+			
+			Dispatch.call(wordDemo.getSelection(), "TypeParagraph");// 插入一个空行
+			wordDemo.enterDown(1);//回车,向下移动一行
+			
+			wordDemo.insertText("错误题号");
+			if(StringUtil.isBlank(danduanCuoNum)){
+				wordDemo.insertText("单选题:您的单选题都答对了");
+			}else {
+				wordDemo.insertText("单选题:"+danduanCuoNum);
+			}
+			
+			if(StringUtil.isBlank(duoxuanCuoNum)){
+				wordDemo.insertText("多选题：您的多选题都答对了");
+			}else {
+				wordDemo.insertText("多选题："+duoxuanCuoNum);
+			}
+			
+			if(StringUtil.isBlank(panduanCuoNum)){
+				wordDemo.insertText("判断题：您的判断题都答对了");
+			}else {
+				wordDemo.insertText("判断题："+panduanCuoNum);
+			}
+			
+			
+			String Fname=paperCreatService.getOneWindyOrg();
+			
+			wordDemo.save(outfile);
+			/*wordDemo.closeDocument();*/
+			wordDemo.close();
+			String fileName=outfile;
+			String downloadFilename=Fname+name+"考试"+".doc";
+			FileDownLoadUtil.downLoad(response, fileName, downloadFilename);
+			
+			File file=new File(fileName);
+			if(file.exists()){
+				file.delete();
+			}
+		
+		
+	}
+	
+}

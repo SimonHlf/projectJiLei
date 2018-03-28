@@ -1,0 +1,35 @@
+package cn.windy.module.examination.service;
+
+import cn.windy.module.examination.mybatis.model.WindyOrg;
+
+import java.util.List;
+
+public interface IWindyOrgService {
+
+
+    /**
+     * 获取全部组织树形菜单
+     * @return
+     */
+    List<WindyOrg> findAll();
+
+
+    /**
+     * 获取当前登录账号组织树形菜单
+     * @param insId
+     * @return
+     */
+    List<WindyOrg> findByInsId(Long insId);
+
+    /**
+     * 获取去除机务段
+     */
+    List<WindyOrg> findRemoveZero();
+
+
+	Long getById(Long windyOrgId);
+
+
+	WindyOrg getFormId(Long orgId);
+
+}

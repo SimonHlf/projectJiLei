@@ -1,0 +1,78 @@
+package cn.windy.module.examination.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
+import cn.windy.module.admin.dto.QuestionsDto;
+import cn.windy.module.examination.mybatis.model.Questions;
+import cn.windy.module.examination.mybatis.model.QuestionsQuery;
+
+public interface QuestionsMapper {
+    int countByExample(QuestionsQuery example);
+
+    int deleteByExample(QuestionsQuery example);
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(Questions record);
+
+    int insertSelective(Questions record);
+
+    List<Questions> selectByExample(QuestionsQuery example);
+    
+    //列表，条件查询也可用
+    //List<Map<String,Object>> getList(@Param("quesTypeIdList") List<Long> quesTypeIdList,@Param("orgId") Long orgId ,@Param("questionsName") String questionsName,@Param("typeName") String typeName,@Param("orgName") String orgName,@Param("typeId") Long typeId,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+    //计数
+    //Long getCount(@Param("quesTypeIdList") List<Long> quesTypeIdList,@Param("orgId") Long orgId ,@Param("questionsName") String questionsName,@Param("typeName") String typeName,@Param("orgName") String orgName,@Param("typeId") Long typeId);
+    
+    //列表，条件查询也可用
+    List<Map<String,Object>> getList(Map<String, Object> paramMap);
+    //计数
+    Long getCount(Map<String, Object> paramMap);
+
+    //树形用
+    List<Map<String,Object>> getZtreeList(@Param("insIdList") List<Long> insIdList,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+    //树形用计数
+    Long getZtreeListCount(@Param("insIdList") List<Long> insIdList);
+    
+    //試卷添加試題用
+    List<Map<String,Object>> getListss(@Param("orgId") Long orgId ,@Param("questionsName") String questionsName,@Param("typeName") String typeName,@Param("orgName") String orgName,@Param("typeId") Long typeId);
+    
+    
+    //查找当前试卷固定试题
+    List<Questions> getPaperQuestion(@Param("typeId") Long typeId,@Param("optionOneList") List<Long> optionOneList,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+    //查找当前试卷固定试题计数
+    Long getPaperQuestionCount(@Param("typeId") Long typeId,@Param("optionOneList") List<Long> optionOneList);
+    //添加前查看本机构题库
+    List<Questions>getquestionToAddBe(@Param("insId") Long insId);
+//    //分享试题列表
+//    List<Map<String,Object>> getGong(@Param("quesTypeId") Long quesTypeId,@Param("orgName")String orgName,@Param("name")String name,@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);
+//    //分享试题列表计数
+//    Long getGongCount(@Param("quesTypeId") Long quesTypeId,@Param("orgName")String orgName,@Param("name")String name);
+    
+    //分享试题列表
+    List<Map<String,Object>> getGong(Map<String, Object> paramMap);
+    //分享试题列表计数
+    Long getGongCount(Map<String, Object> paramMap);
+    
+    Questions selectByPrimaryKey(Long id);
+    
+    
+    
+    int updateByExampleSelective(@Param("record") Questions record, @Param("example") QuestionsQuery example);
+
+    int updateByExample(@Param("record") Questions record, @Param("example") QuestionsQuery example);
+
+    int updateByPrimaryKeySelective(Questions record);
+
+    int updateByPrimaryKey(Questions record);
+    
+    List<Questions> getAll(@Param("start")Integer start,@Param("end")Integer end,@Param("list")List<Long> list);
+    List<Questions> getAllCount(List<Long> list);
+    
+    List<Questions> getByType(@Param("start")Integer start,@Param("end")Integer end,@Param("list")List<Long> list,@Param("name")String name);
+    
+    List<Questions> getByTypeCount(@Param("list")List<Long> list,@Param("name")String name);
+}

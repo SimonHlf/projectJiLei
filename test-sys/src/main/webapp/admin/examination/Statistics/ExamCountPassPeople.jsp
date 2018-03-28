@@ -1,0 +1,62 @@
+<%@page pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="v" tagdir="/WEB-INF/tags" %>
+<script src="examination/PaperRecord/paperRecord.js"></script>
+<%-- 实考 --%>
+<%--<button type="button" onclick="updateDisRate()" class="btn btn-primary">--%>
+<%--<i class="fa fa-pencil"></i> 导出 Excel--%>
+<%--</button>--%>
+<button type="button" onclick="importPassOrFailExcel(1,${examId})" class="btn btn-primary">
+    <i class="fa fa-download"></i> 导出 Excel
+</button>
+<div class="widget-body">
+    <div class="flip-scroll">
+        <table class="table table-bordered table-striped table-condensed flip-content">
+            <thead class="flip-content bordered-palegreen">
+            <tr>
+                <th>考试名称</th>
+                <th>试卷名称</th>
+                <th>所属机构</th>
+                <th>考生名称</th>
+                <th>考生工号</th>
+                <th>考试时间</th>
+                <th>试卷分数</th>
+                <th>考试分数</th>
+                <th>是否及格</th>
+                <th>详情</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${list}" var="have">
+                <tr>
+                    <td title="${have.examName}">${have.examName}</td>
+                    <td title="${have.creatName}">${have.creatName}</td>
+                    <td title="${have.orgName}">${have.orgName}</td>
+                    <td title="${have.nick_name}">${have.nick_name}</td>
+                    <td title="${have.attr0}">${have.attr0}</td>
+                    <td title="${have.creatTime}">${have.creatTime}</td>
+                    <td title="${have.attr5}">${have.attr5}</td>
+                    <td title="${have.fen}">${have.fen}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${have.attr6 == 0}">
+                                不及格
+                            </c:when>
+                            <c:otherwise>
+                                及格
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td><a href="javascript:details(${have.id})">详情</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+        <v:pagination page="${page}" url="statistics/TherealDetails.htm?cmd=${cmd}&examId=${examId}&mark=${mark}&currPage=${currPage}"/>
+        <div>
+            <button type="button" onclick="LoadHtmlList(${mark},${currPage})"
+                    class="btn btn-default"> 返回
+            </button>
+        </div>
+    </div>
+</div>

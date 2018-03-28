@@ -1,0 +1,30 @@
+package cn.windy.module.admin.service;
+
+import cn.windy.module.admin.hibernate.model.Org;
+import cn.windy.module.core.service.IBaseService;
+import cn.windy.util.Pagination;
+
+import java.util.List;
+import java.util.Map;
+
+public interface IOrgService extends IBaseService<Org> {
+
+    /**
+     * 获取当前登陆的部门/机构
+     * @param orgId
+     * @return
+     */
+    List<Org> findThisOrgRole(Long orgId);
+
+
+//    List<Org> findSelect
+    
+    /**
+     * 获取机构的所有子级
+     * @param id
+     * @return
+     */
+    List<Org> findByChild(Long id);
+
+
+}

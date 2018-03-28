@@ -1,0 +1,399 @@
+@import url('../../../css/commonHeader.css');
+.detailExamDiv{
+	border-bottom: 2px solid #317fd5;
+	color: #444;
+	padding-bottom: 10px;
+	margin-bottom: -20px;
+}
+.detailExamDiv h1{
+	font-size: 34px;
+	font-weight: normal;
+	padding:10px 0 5px;
+}
+.detailExamDiv p{
+	float: left;
+	font-size: 18px;
+	margin-right: 40px;
+}
+.leftMainPart{
+	padding-bottom: 20px;
+}
+.quesType{
+	width: 720px;
+	height: 60px;
+	line-height: 60px;
+	border:1px solid #d8d8d8;
+	margin-top:30px;
+}
+.typeStrong{
+	font-size: 20px;
+	color: #333;
+	font-weight: normal;
+	margin: 0 15px 0 16px;
+}
+.totalSpan{
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	padding:0 8px;
+	background: #317ed5;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 4px;
+}
+.quesList{
+	width: 690px;
+	margin:0 auto 10px;
+}
+.quesTit{
+	margin-bottom: 10px;
+}
+.quesNum{
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	background: #317ed6;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 50%;
+	margin-top:18px;
+	display: inline-block;
+}
+.quesTitCon{
+	width: 640px;
+	min-height: 50px;
+	border-bottom: 1px solid #e2e2e2;
+	color: #666666;
+	font-size: 16px;
+	margin-left: 18px;
+	padding:5px 0;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	-moz-align-items:center;
+	align-items: center;
+}
+.hasImgTitCon{
+	padding-bottom:10px;
+	margin-left:40px;
+}
+.noBorTitCon{
+	border-bottom:none !important;
+}
+.quesSelCon,
+.endExamDiv{
+	margin-left: 42px;
+}
+.quesSelCon{
+	width: 640px;
+}
+.endExamDiv{
+	width: 600px;
+}
+.quesSelCon li{
+	width: 100%;
+	min-height: 32px;
+}
+.quesSelCon li label{
+	width: 100%;
+	min-height: 32px;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.quesSelCon li label.noCursor input{
+	cursor: default !important;
+}
+.quesSelCon li label input{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	cursor: pointer;
+	z-index: 3;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.quesSelCon li label p{
+	font-size: 14px;
+	color: #878787;
+	float:left;
+	width: 610px;
+}
+.quesSelCon li label:hover p{
+	color:#317ed6;
+}
+.nowSelColor{
+	color:#317ed6 !important;
+}
+.quesSelCon li label.noCursor:hover p{
+	color: #878787;
+}
+.quesSelCon li label span{
+	width: 20px;
+	height: 20px;
+	border:1px solid #a5a5a5;
+	border-radius: 50%;
+	margin:2px 8px 0 0;
+	float:left;
+	position:relative;
+}
+.icon-successful{
+	position:absolute;
+	left:2px;
+	top:-2px;
+	color:#3380d8;
+}
+.duoxuan label span{
+	border-radius:0px !important;
+}
+.quesSelCon li label span.active{
+	border:1px solid #3380d8;
+}
+.quesSelCon li label span.error{
+	background: #ff4747;
+}
+.endExamDiv{
+	background: #e2e2e2;
+	margin-top:10px;
+	padding:20px;
+}
+.endExamDiv p{
+	font-size: 16px;
+}
+.endExamDiv p.ansTit{
+	color: #333;
+}
+.endExamDiv p.ansP{
+	color: #ff2b2b;
+}
+.rightMainPart{
+	width: 245px;
+	background: #fff;
+}
+.noFixed{
+	margin-top: 30px;
+	float: right;
+}
+.hasFixed{
+	position: fixed;
+	top: 0px;
+}
+.timeRemain{
+	height: 120px;
+	width: 243px;
+	border: 1px solid #3380d8;
+	margin:0px 0 20px;
+}
+.remainP{
+	height: 60px;
+	line-height: 60px;
+	background: #3380d8;
+	color: #fff;
+	font-size: 20px;
+	text-indent: 20px;
+}
+.reaminDiv{
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	font-size: 38px;
+	color: #3380d8;
+}
+.myExamResult,
+.examcomment{
+	width: 243px;
+	border: 1px solid #d8d8d8;
+}
+.myResult,
+.myComment{
+	padding-top: 20px;
+}
+.marginTopP{
+	margin-top: 10px;
+}
+.comQuesType{
+	padding:0 20px;
+	margin:10px 0;
+}
+.comTypeTit{
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 5px;
+}
+.comQuesType li{
+	float:left;
+	margin-right: 18px;
+	margin-bottom: 10px;
+}
+.comQuesType li a{
+	width: 20px;
+	height: 20px;
+	border:1px solid #d8d8d8;
+	display: inline-block;
+	line-height: 20px;
+	font-size: 16px;
+	text-align: center;
+	color: #333;
+}
+.comQuesType li:hover a{
+	color: #3380d8;
+}
+.comQuesType li.active a{
+	background: #3380d8;
+	color: #fff;
+}
+.myResult p.comSummaryP{
+	text-align: center;
+	font-size: 14px;
+	color: #333;
+	height: 30px;
+	line-height: 30px;
+}
+.myResult p.comSummaryP span{
+	color: #3380d8;
+}
+.myExamNum strong{
+	font-size: 24px;
+	color: #3380d8;
+}
+.quesResultCard{
+	margin-top: 20px;
+}
+.quesResultCard a{
+	cursor:default;
+}
+.quesResultCard p.titResP{
+	font-size: 22px;
+	color: #333;
+	text-align: center;
+}
+.errResult li.err a{
+	background: #ff4747;
+	color: #fff;
+}
+.examcomment{
+	margin-top: 20px;
+}
+.myComment p{
+	color: #333;
+	font-size: 16px;
+	padding:0 20px 20px;
+}
+.handPaper{
+	text-align: center;
+	margin-bottom: 15px;
+}
+.handPaper a.backPerBtn{
+	width: 125px;
+	background: #3e8eea;
+	color: #fff;
+}
+.handPaper a{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 18px;
+}
+.handBtn{
+	background: #3e8eea;
+	color: #fff;
+}
+.handBtn:hover,
+.handPaper a.backPerBtn:hover{
+	background: #3079bd;
+}
+.quesCard_begin{
+	width:243px;
+	height:380px;
+	border:1px solid #d8d8d8;
+	position:fixed;
+	right:0px;
+	bottom:0px;
+}
+#parCard{
+	height:320px;
+	background:#fff;
+	position:relative;
+	overflow:hidden;
+}
+.scroller{
+	width:100%;
+	position:absolute;
+	left:0;
+	top:0px;
+}
+.parentScroll,
+.sonScrollBar{
+	width:5px;
+	position:absolute;
+	right:0px;
+	top:0px;
+	border-radius:20px;
+}
+.parentScroll{
+	height:100%;
+}
+.sonScrollBar{
+	height:50px;
+	background:#ccc;
+}
+.waterMarkPic{
+	width: 778px;
+	height: 527px;
+	background: url(../image/waterMark.png) no-repeat;
+	position: absolute;
+	left: 50%;
+	margin-left: -410px;
+	top: 200px;
+	z-index: -1;
+	opacity: 0.7;
+	transform: rotate(10deg);
+	display: none;
+}
+.attenDiv{
+	width:400px;
+	height:186px;
+	background:#fff;
+	position:fixed;
+	left:50%;
+	margin-left: -200px;
+	top:50%;
+	margin-top: -93px;
+	border-radius: 6px;
+	z-index: 1000;
+}
+.attenDiv strong{
+	width:100%;
+	height: 35px;
+	line-height: 35px;
+	display: inline-block;
+	text-align: center;
+	font-size: 16px;
+	color: #333;
+}
+.attenDiv p{
+	font-size: 14px;
+	color: #333;
+	line-height: 30px;
+	text-indent: 10px;
+}
+.goExamBtn{
+	width:120px;
+	height:40px;
+	line-height: 40px;
+	border:none;
+	background: #3380d8;
+	color:#fff;
+	font-size: 16px;
+	border-radius: 4px;
+	margin:5px 0 5px 140px;
+	cursor: pointer;
+}
+.goExamBtn:hover{
+	background: #2c69af;
+}

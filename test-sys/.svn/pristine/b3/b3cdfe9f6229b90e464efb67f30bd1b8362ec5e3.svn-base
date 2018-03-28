@@ -1,0 +1,316 @@
+﻿<%@page pageEncoding="utf-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>${setting.name}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <jsp:include page="assets/inc_css.jsp"></jsp:include>
+    <style>
+        #mainContent img {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<%@include file="assets/loading.jsp" %>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <h1 style="float:left">${setting.name}</h1>
+                    <div class="sidebar-collapse" id="sidebar-collapse" style="position:static;float:left;">
+                        <i class="collapse-icon fa fa-bars"></i>
+                    </div>
+                </a>
+            </div>
+            <%@include file="assets/top_left.jsp" %>
+        </div>
+    </div>
+</div>
+<div class="main-container container-fluid">
+    <div class="page-container">
+        <div class="page-sidebar" id="sidebar">
+            <!-- div class="sidebar-header-wrapper">
+                <input type="text" class="searchinput" /> <i
+                    class="searchicon fa fa-search"></i>
+                <div class="searchhelper">直接查询菜单</div>
+            </div -->
+            <%@include file="assets/left_nav.jsp" %>
+        </div>
+
+        <div class="page-content">
+            <div class="page-breadcrumbs">
+                <ul class="breadcrumb">
+                    <li><i class="fa fa-home"></i> <a href="javascript:ajaxLoad('admin/doc.htm','',this)">首页</a></li>
+                    <li class="active" id="breadcrumbName"></li>
+                </ul>
+            </div>
+            <div class="page-body" style="background:#fff;">
+                <div class="row" id="mainContent">
+                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <div class="widget-header bordered-bottom bordered-themeprimary">
+                                <i class="widget-icon fa fa-tasks themeprimary"></i>
+                                <span class="widget-caption themeprimary">
+                                    <c:choose>
+                                        <c:when test="${empty lableList}">
+                                            暂无考试
+                                        </c:when>
+                                        <c:otherwise>
+                                            近${lableList.size()}场考试
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                                <p style="text-align:center;line-height:33px;"><%--近半年最高分最低分比较--%></p>
+                            </div>
+                            <!--Widget Header-->
+                            <div class="widget-body">
+                                <div class="widget-main no-padding">
+                                    <div id="BarEcharts" style="width: 600px; height: 400px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-xs-12">
+                        <div class="widget">
+                            <div class="widget-header bordered-bottom bordered-themeprimary">
+                                <i class="widget-icon fa fa-tasks themeprimary"></i>
+                                <span class="widget-caption themeprimary">
+                                    <c:choose>
+                                        <c:when test="${empty lineNameList}">
+                                            暂无考试
+                                        </c:when>
+                                        <c:otherwise>
+                                            近${lableList.size()}场考试优秀人数
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                                <p style="text-align:center;line-height:33px;"><%--达标分析统计图--%></p>
+                            </div>
+                            <!--Widget Header-->
+                            <div class="widget-body">
+                                <div class="widget-main no-padding">
+                                    <div id="PieEcharts" style="width: 600px; height: 400px;">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%--<div class="widget-body">
+                        <div class="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed flip-content">
+                                <thead class="flip-content bordered-palegreen">
+                                    <tr>
+                                        <th>考试名称</th>
+                                        <th>所属机构</th>
+                                        <th>试卷名称</th>
+                                        <th>应考人数(人)</th>
+                                        <th>开始考试时间</th>
+                                        <th>结束考试时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${examList}" var="exam">
+                                    <tr>
+                                        <td>${exam.exam_name}</td>
+                                        <td>${exam.orgName}</td>
+                                        <td>${exam.creatName}</td>
+                                        <td>${exam.AnswerTOTAL}</td>
+                                        <td>${exam.start_time}</td>
+                                        <td>${exam.end_time}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>--%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<jsp:include page="assets/inc_js.jsp"></jsp:include>
+</body>
+</html>
+<script>
+
+    //饼形图
+    /*  $(function(){
+          var myChart = echarts.init(document.getElementById('PieEcharts'));
+          option = {
+              title : {
+                  text: '及格率统计',
+                  x:'center'
+              },
+              tooltip : {
+                  trigger: 'item',
+                  formatter: "{a} <br/>{b} : {c} ({d}%)"
+              },
+              legend: {
+                  orient: 'vertical',
+                  left: 'left',
+                  data: ['及格','不及格']
+              },
+              series : [
+                  {
+                      name: '及格率',
+                      type: 'pie',
+                      radius : '55%',
+                      center: ['50%', '60%'],
+                      data:[
+<%--{value:'${list[1]}', name:'及格'},--%>
+                        <%--{value:'${list[0]}', name:'不及格'}--%>
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    })*/
+
+    //柱状图
+    $(function () {
+        var lableList = "${lableList}";
+        var totalList = '${totalList}';
+        var passList = '${passList}';
+        var myChart = echarts.init(document.getElementById('BarEcharts'));
+        option = {
+            title: {
+                text: '近${lableList.size()}场考试及格人数'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['蒸发量', '降水量']
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {show: false, readOnly: false},
+                    magicType: {show: false, type: ['line', 'bar']},
+                    restore: {show: false},
+                    saveAsImage: {show: false}
+                }
+            },
+            calculable: true,
+            xAxis: [
+                {
+                    type: 'category',
+                    data: eval('(' + lableList + ')')/*['2017-08','2017-09','2017-10','2017-11','2017-12','2018-01']*/
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value'
+                }
+            ],
+            series: [
+                {
+                    name: '及格人数',
+                    type: 'bar',
+                    data: eval('(' + passList + ')')/*[ 23.2, 25.6, 36.7, 30.6, 12.2, 32.6]*/,
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                },
+                {
+                    name: '应考人数',
+                    type: 'bar',
+                    data: eval('(' + totalList + ')')/*[80.7, 90.7, 95.6, 82.2, 84.7, 81.8]*/,
+                    markPoint: {
+                        data: [
+                            {name: '年最高', value: 182.2, xAxis: 7, yAxis: 183},
+                            {name: '年最低', value: 2.3, xAxis: 11, yAxis: 3}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    })
+
+
+    //折线图
+    $(function () {
+       var lineNameList = "${lineNameList}";
+       var scoreList = '${scoreList}';
+        var myChart = echarts.init(document.getElementById('PieEcharts'));
+        option = {
+            title: {
+                text: '近${lableList.size()}场考试优秀人数'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            toolbox: {
+                show: false,
+                feature: {
+                    dataZoom: {
+                        yAxisIndex: 'none'
+                    },
+                    dataView: {readOnly: false},
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: eval('('+lineNameList+')')/*['周一', '周二', '周三']*/
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'line',
+                    data: eval('('+scoreList+')')/*[30, 11, 15]*/,
+                    markPoint: {
+                        data: [
+                            {type: 'max', name: '最大值'},
+                            {type: 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine: {
+                        data: [
+                            {type: 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    })
+</script>

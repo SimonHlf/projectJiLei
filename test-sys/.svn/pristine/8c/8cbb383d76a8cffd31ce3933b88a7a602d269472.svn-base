@@ -1,0 +1,91 @@
+function xiagnqing(){
+	var html="examination/PaperRecord/add.jsp";
+	
+	$("#mainContent").load(html);
+} 
+
+function fanhui(){
+	var html="examination/PaperRecord/list.jsp";
+	$("#mainContent").load(html);
+	
+}
+
+function addDisRate(){
+	/*$.ajax({
+		type:"post",
+		url:"QuesTypeController/addBefore.htm",
+		success:function(html){
+			alert(html); 
+			$("#mainContent").html(html);
+			 
+		}
+		
+	})*/
+	
+   var page = $("#disRatePage").val();
+    edit("QuesTypeController/addBefore.htm",
+        "addDisRateForm",
+        "QuesTypeController/add.htm",
+        "添加题库分类",
+        "QuesTypeController/getList.htm",
+        '题库分类列表');
+}
+
+
+
+
+
+function delDisRate(){
+    var page = $("#disRatePage").val();
+    var ids = "-1";
+    $(".table input:checked").each(function () {
+        ids = ids + "," + $(this).val();
+    });
+    if(ids == "-1"){
+        layer.msg("请选择数据");
+        return;
+    }
+    layer.confirm("确认删除吗?",function(index){
+        $.ajax({
+            method:'post',
+            url:'QuesTypeController/delete.htm',
+            data:{ids:ids,page:page},
+            success:function (data) {
+                loadHtml(data);
+                layer.close(index)
+            }
+        })
+    });
+}
+
+function updateDisRate(){
+    var page = $("#disRatePage").val();
+    var checks = $(".table input:checked");
+    if(checks.length != 1){
+        layer.msg("请选择一条数据");
+        return;
+    }
+    edit('QuesTypeController/updateBefore.htm?id=' + $(checks[0]).val(),
+        "editDisRateForm",
+        "QuesTypeController/update.htm?page="+page,
+        "修改题库分类",
+        "QuesTypeController/getList.htm?page="+page,
+        '题库分类列');
+}
+
+function details(recordId){
+	window.open("paperRecordController/seeDetail.htm?recordId="+recordId,'_blank','fullscreen=yes,menubar=no,scrollbars=yes,location=yes,status=no');
+	
+//	$.ajax({
+//		type:"post",
+//		url:"paperRecordController/seeDetail.htm?recordId="+recordId,
+//		success:function(html){
+//			
+//		}
+//		
+//	})
+	
+	
+	
+}
+
