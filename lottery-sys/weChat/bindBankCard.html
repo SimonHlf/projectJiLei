@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>绑定银行卡</title>
+	<link rel="stylesheet" href="../../css/aui.css"/>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_535570_6u90gnv3u6hzd7vi.css"/>
+	<link rel="stylesheet" href="css/setPassword.css"/>
+	<link rel="stylesheet" href="../footer/footer.css"/>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav headerNav">
+        <a class="aui-pull-left aui-btn" tapmode onclick="history.go(-1)" href="javascript:void(0)">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">绑定银行卡</div>
+    </header>
+    <!-- mainCon -->
+    <div class="comInpBox">
+    	<ul>
+    		<li>
+                <div class="txtDiv">
+                   	选<span class="twoBlank"></span>择<span class="twoBlank"></span>银<span class="twoBlank"></span>行：
+                </div>
+                <div class="inpDiv">
+                    <input id="selBankInp" type="text" disabled placeholder="请选择开户行">
+                    <i class="iconfont icon-jiantou arrowIcon"></i>
+                </div>
+            </li>
+            <li>
+                <div class="txtDiv">
+                   	开<span class="oneBlank"></span>户<span class="oneBlank"></span>省：
+                </div>
+                <div class="inpDiv">
+                    <input id="bankLocaInp" type="text" disabled placeholder="请选择省份">
+                    <i class="iconfont icon-jiantou arrowIcon"></i>
+                </div>
+            </li>
+            <li>
+                <div class="txtDiv">
+                   	开户人姓名：
+                </div>
+                <div class="inpDiv">
+                    <input id="personNameInp" type="text" placeholder="请输入开户人姓名">
+                </div>
+            </li>
+            <li>
+                <div class="txtDiv">
+                   	银<span class="twoBlank"></span>行<span class="twoBlank"></span>卡<span class="twoBlank"></span>号：
+                </div>
+                <div class="inpDiv">
+                    <input id="bankNumInp" type="text" placeholder="请输入银行卡号">
+                </div>
+            </li>
+            <li>
+                <div class="txtDiv">
+                   	支<span class="twoBlank"></span>行<span class="twoBlank"></span>名<span class="twoBlank"></span>称：
+                </div>
+                <div class="inpDiv">
+                    <input id="bankNameZhiInp" type="text" placeholder="请输入支行名称">
+                </div>
+            </li>
+    	</ul>
+    	<a href="javascript:void(0)" tapmode onclick="saveBank()" class="aui-btn aui-btn-block comAuiBtn">确定</a>
+    </div>
+	<!-- footer -->
+	<footer class="footer">
+		<ul class="clearfix">
+			<li>
+				<a href="#">
+					<p id="balance">¥90.00</p>
+					<p>余额</p>
+				</a>
+			</li>
+			<li><a href="#">
+				<p><i class="iconfont icon-chongzhi"></i></p>
+				<p>充值</p>
+			</a></li>
+			<li><a href="#">
+				<p><i class="iconfont icon-tixian"></i></p>
+				<p>充值</p>
+			</a></li>
+			<li><a href="#">
+				<p><i class="iconfont icon-touzhujilu"></i></p>
+				<p>下注记录</p>
+			</a></li>
+			<li class="active"><a href="#">
+				<p><i class="iconfont icon-wode"></i></p>
+				<p>个人中心</p>
+			</a></li>
+		</ul>
+	</footer>
+	<script type="text/javascript" src="../../jsPlugin/jquery.min.js"></script>
+	<script type="text/javascript" src="../../jsPlugin/aui-dialog.js"></script>
+	<script type="text/javascript">
+		$(function(){
+
+		});
+		function saveBank(){
+			var selBankInpVal = $("#selBankInp").val();
+			var bankLocaInpVal = $("#bankLocaInp").val();
+			var personNameInpVal = $("#personNameInp").val();
+			var bankNumInpVal = $("#bankNumInp").val();
+			var bankNameZhiInpVal = $("#bankNameZhiInp").val();
+			if(selBankInpVal == ""){
+				dialog('开户行名称不能为空');
+                return;
+			}else if(bankLocaInpVal == ""){
+                dialog('开户省不能为空');
+                return;
+			}else if(personNameInpVal == ""){
+                 dialog('开户人姓名不能为空');
+                return;
+			}else if(bankNumInpVal == ""){
+                dialog('银行卡号不能为空');
+                return;
+			}else if(bankNameZhiInpVal == ""){
+				dialog('支行名称不能为空');
+                return;
+			}else{
+
+			}
+		}
+	</script>
+</body>
+</html>

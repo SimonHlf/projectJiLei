@@ -1,0 +1,75 @@
+.header{
+	height: 9rem;
+	background: #cf3e46;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-webkit-justify-content: center;
+	-webkit-align-items: center;
+}
+.imgBox{
+	width: 4rem;
+	height: 4rem;
+	background: pink;
+}
+.header p{
+	font-weight: bold;
+	color: #fff;
+	font-size: 0.8rem;
+}
+.header p:nth-of-type(1){
+	margin:10px 0 5px 0;
+}
+.listUl{
+	border-top:1px solid #e1e1e1;
+}
+.listUl li.listUlLi{
+	line-height: 40px;
+	min-height: 40px;
+	border-bottom:1px solid #e1e1e1;
+}
+.listUl li.listUlLi p{color:#333;text-indent: 0.8rem;}
+.listUl li.listUlLi p a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	margin-left:-0.8rem;
+	color:#333;
+}
+.listUl li.listUlLi p i{
+	margin-right: 10px;
+	color: #cf3d47;
+}
+.icon-personalInfo{
+	font-size: 1rem;
+}
+.icon-gonggao{font-size: 0.9rem;}
+.oneBlank{
+	width: 30px;
+	display: inline-block;
+}
+.listUl li.listUlLi li{
+	height: 40px;
+	line-height: 40px;
+	border-bottom:1px solid #e1e1e1;
+	background: #f7f7f7;
+}
+.listUl li.listUlLi li:last-child{
+	border-bottom: none;
+}
+.sonListUl{
+	display: none;
+}
+.listUl li.listUlLi li a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	text-indent: 40px;
+	color:#706f6f;
+	font-size: 0.7rem;
+}
+.listUl li.listUlLi li a i{
+	float: right;
+	margin-right:10px;
+}

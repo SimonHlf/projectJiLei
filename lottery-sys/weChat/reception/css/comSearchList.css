@@ -1,0 +1,139 @@
+.searchRes{
+	width: 100%;
+	background: #fff;
+	margin-top: 10px;
+}
+.listNav li,
+.searListDiv li p{
+	height: 1.75rem;
+	line-height: 1.75rem;
+	float: left;
+	text-align: center;
+	font-size: 0.7rem;
+	color: #696969;
+	vertical-align: middle;
+}
+.listNav li{
+	font-size: 0.6rem;
+	background: #f7f7f7;
+}
+.accChangeNav li:nth-of-type(1),
+.accChangeList li p:nth-of-type(1){
+	width:40%;
+}
+.accChangeNav li:nth-of-type(2),
+.accChangeList li p:nth-of-type(2),
+.accChangeNav li:nth-of-type(3),
+.accChangeList li p:nth-of-type(3){
+	width:25%;
+}
+.accChangeNav li:nth-of-type(4),
+.accChangeList li p:nth-of-type(4){
+	width:10%;
+}
+.temProNav li:nth-of-type(1),
+.temProList li p:nth-of-type(1){
+	width:20%;
+}
+
+.temProNav li:nth-of-type(2),
+.temProNav li:nth-of-type(3),
+.temProNav li:nth-of-type(4),
+.temProNav li:nth-of-type(5),
+.temProNav li:nth-of-type(6),
+.temProList li p:nth-of-type(2),
+.temProList li p:nth-of-type(3),
+.temProList li p:nth-of-type(4),
+.temProList li p:nth-of-type(5),
+.temProList li p:nth-of-type(6){
+	width:16%;
+}
+.betListNav li:nth-of-type(1),
+.betList li p:nth-of-type(1),
+.betListNav li:nth-of-type(2),
+.betList li p:nth-of-type(2){
+	width: 15%;
+}
+
+.betListNav li:nth-of-type(3),
+.betList li p:nth-of-type(3){
+	width: 20%;
+}
+.betListNav li:nth-of-type(4),
+.betList li p:nth-of-type(4){
+	width: 20%;
+}
+.betListNav li:nth-of-type(5),
+.betList li p:nth-of-type(5){
+	width: 20%;
+}
+.betListNav li:nth-of-type(6),
+.betList li p:nth-of-type(6){
+	width: 10%;
+}
+
+.temProNav li:nth-of-type(1){
+	width:20%;
+}
+.chargeListNav li:nth-of-type(1),
+.chargeList li p:nth-of-type(1){
+	width: 35%;
+}
+.chargeListNav li:nth-of-type(2),
+.chargeList li p:nth-of-type(2){
+	width: 30%;
+}
+.chargeListNav li:nth-of-type(3),
+.chargeList li p:nth-of-type(3){
+	width: 25%;
+}
+.chargeListNav li:nth-of-type(4),
+.chargeList li p:nth-of-type(4){
+	width: 10%;
+}
+.icon-chakan{
+	font-size: 0.9rem !important;
+	color: #cf3e46;
+}
+.searListDiv li{
+	height: 1.75rem;
+	line-height: 1.75rem;
+}
+.searListDiv li p{
+	font-size: 0.6rem;
+}
+.betList li p span:last-child{
+	color: #cf3e46;
+	margin-left: 5px;
+}
+.moneySpan{
+	color:#cf3e46;
+}
+.weizhong{
+	color:#999 !important;
+}
+.yizhong{
+	color:green !important;
+}
+.botClose i{
+	font-size: 1.2rem;
+	color: #666;
+}
+.detilRecordDiv{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:#fff;
+	z-index:11;
+	-webkit-transition:0.5s;
+    transition:0.5s;
+    -webkit-transform:translateX(100%);
+    transform:translateX(100%);
+}
+.headerNav1{
+	background:#cf3e46;
+}
+.aui-list-item-label{color:#757575 !important;text-align: right;}
+.aui-list-item-input p{color:#212121;}

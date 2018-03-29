@@ -1,0 +1,132 @@
+body{
+    overflow:hidden;
+}
+#bankWrapper{
+    width: 100%;
+   /* height: 100%;*/
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    -webkit-transition:0.5s;
+    transition:0.5s;
+    -webkit-transform:translateX(100%);
+    transform:translateX(100%);
+}
+#bankRel{
+    width: 100%;
+    overflow:auto;
+    position: relative;
+}
+.bankScroller{
+    width:100%;
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+.bankMidWinDiv li{
+    width:100%;
+    height:39px;
+    line-height:40px;
+    position:relative;
+    border-bottom:1px solid #ddd;
+    text-indent:45px;
+    color:#333;
+    background:#fff;
+    font-size:0.7rem;
+}
+.bankMidWinDiv li .comBankIcon{
+    width:30px;
+    height:30px;
+    background:url(../../images/bankIcon.png) no-repeat;
+    position:absolute;
+    left:10px;
+    top:5px;
+    background-size:cover;
+}
+.bankMidWinDiv li .icbcIcon{
+    background-position:0 -30px;
+}
+.bankMidWinDiv li .abcIcon{
+    background-position:0 -60px;
+}
+.bankMidWinDiv li .ccbIcon{
+    background-position:0 -90px;
+}
+.bankMidWinDiv li .cmbIcon{
+    background-position:0 -330px;
+}
+.bankMidWinDiv li .bocIcon{
+    background-position:0 -120px;
+}
+.bankMidWinDiv li .psbcIcon{
+    background-position:0 -150px;
+}
+.bankMidWinDiv li .commIcon{
+    background-position:0 -270px;
+}
+.bankMidWinDiv li .citicIcon{
+    background-position:0 -360px;
+}
+.bankMidWinDiv li .cmbcIcon{
+    background-position:0 -240px;
+}
+.bankMidWinDiv li .cebIcon{
+    background-position:0 -420px;
+}
+.bankMidWinDiv li .cibIcon{
+    background-position:0 -210px;
+}
+.bankMidWinDiv li .spdbIcon{
+    background-position:0 -300px;
+}
+.bankMidWinDiv li .gdbIcon{
+    background-position:0 -390px;
+}
+.bankMidWinDiv li .hxbankIcon{
+    background-position:0 -180px;
+}
+.bankMidWinDiv li .com_BankRdio{
+    width:100%;
+    height:40px;
+    position:absolute;
+    right:0px;
+    top:0px;
+    z-index:5;
+    opacity:0;
+    -webkit-tap-highlight-color:transparent;
+}
+.bankMidWinDiv li .comCirSpan,
+.bankMidWinDiv li b{
+    position:absolute;
+    border-radius:50%;
+}
+.bankMidWinDiv li .comCirSpan{
+    width:23px;
+    height:23px;
+    border:1px solid #ddd;
+    z-index:1;
+    right:10px;
+    top:8px;
+}
+.bankMidWinDiv li b{
+    width: 10px;
+    height: 10px;
+    background: #cf3e46;
+    border-radius: 50%;
+    position: absolute;
+    left: 6px;
+    top: 5px;
+}
+.selBankBtn{
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #cf3e46;
+    border-top: 1px solid #ccc;
+    background: #fff;
+    z-index: 5;
+}
