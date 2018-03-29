@@ -1,0 +1,72 @@
+@import "../util.scss";
+
+#main{
+    width:100%;
+    padding-top:pxToRem(72px);
+    overflow: auto;
+    padding-bottom: pxToRem(15px);
+    &::-webkit-scrollbar{
+        display:none;
+    }
+    .mainBox{
+        margin:0 pxToRem(11px) pxToRem(5px) pxToRem(4px);
+        @include flexBox;
+        @include flex-direction("row");
+        .mainLeft{
+            width:pxToRem(112px);
+            height: pxToRem(112px);
+            margin-right:pxToRem(16px);
+            padding-bottom: pxToRem(18px);
+            img{
+                width:100%;
+                height:100%;
+            }
+        }
+        .mainRight{
+            @include flex(1);
+            .mainText{
+                margin-top:pxToRem(5px);
+                width:pxToRem(178px);
+                white-space:nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-bottom: pxToRem(40px);
+                color:#000000;
+                font-size:pxToRem(10px);
+            }
+            .discount{
+                width:pxToRem(40px);
+                height:pxToRem(20px);
+                border:solid #ce5348 pxToRem(1px);
+                text-align:center;
+                line-height: pxToRem(20px);
+                color:#ce5348;
+                font-size:pxToRem(12px);
+                margin-bottom: pxToRem(5px);
+            }
+            .pointSum{
+                font-size:pxToRem(16px);
+                color:#a82415;
+                height:pxToRem(24px);
+                line-height:pxToRem(24px);
+                
+            }
+            .saveMoney{
+                height:pxToRem(20px);
+                line-height:pxToRem(20px);
+                font-size:pxToRem(12px);
+                color:#9f9f9f;
+                border-bottom: solid #d9d9d9 pxToRem(1px);
+                padding-bottom: pxToRem(16px);
+            }
+            .proPrice{
+                height: pxToRem(18px);
+                padding-bottom: pxToRem(16px);
+                border-bottom: solid #d9d9d9 pxToRem(1px);
+                font-size:pxToRem(16px);
+                color:#a52520
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,143 @@
+@import "../../util.scss";
+#container{
+    width:100%;
+    height:100%;
+    max-width:pxToRem(640px);
+    margin:0 auto;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+#main{
+    margin-top:pxToRem(70px);
+    width:100%;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        display:none;
+    }
+    .orderLists{
+        width:100%;
+        li{
+            @include flexBox;
+            height:pxToRem(114px);
+            @include flex-direction('column');
+            .top{
+                width:100%;
+                height: pxToRem(24px);
+                .left{
+                    padding-left:pxToRem(10px);
+                    padding-right:pxToRem(15px);
+                    line-height:pxToRem(24px);
+                        .spanImg{
+                            display:inline-block;
+                            width:pxToRem(18px);
+                            height:pxToRem(17px);
+                            padding-top:pxToRem(3px);
+                            float:left;
+                            img{
+                                width:100%;
+                                height:100%;
+                            }
+                        }
+                        .spanTxt{
+                            display:inline-block;
+                            margin-left:pxToRem(5px);
+                            font-size:pxToRem(10px);
+                            
+                        }
+                        p{
+                            display:inline-block;
+                            float:right;
+                            font-size:pxToRem(10px);
+                            span{
+                                float:right;
+                                margin-left:pxToRem(5px);
+                            }
+                        }
+                   
+                }
+            }
+            .txt{
+                color:#000000;
+                .orderMsg{
+                @include flex(1);
+                background:#eeeeee;
+                @include flexBox;
+                @include flex-direction('row');
+                padding:pxToRem(5px) pxToRem(15px) pxToRem(8px) pxToRem(12px);
+                .imgBox{
+                    width:pxToRem(45px);
+                    height:pxToRem(45px);
+                    img{
+                        width:100%;
+                        height:100%;
+                    }
+                }
+                .centerMsg{
+                    @include flex(1);
+                    margin-left:pxToRem(5px);
+                    p:nth-of-type(1){
+                        font-size:pxToRem(10px);
+                        padding-bottom: pxToRem(10px);
+                    }
+                    p:nth-of-type(2){
+                        font-size:pxToRem(10px);
+                        color:#898989;
+                    }
+                }
+                .rightMsg{
+                    width:pxToRem(90px);
+                    text-align:right;
+//                  p:nth-of-type(1){
+//                      font-size:pxToRem(10px);
+//                      
+//                  }
+//                   p:nth-of-type(2){
+//                       font-size:pxToRem(10px);
+//                       color:#999999;
+//                       padding-bottom:pxToRem(10px);
+//                   }
+                     p{
+                         font-size:pxToRem(10px);
+                         color:#999999;
+                         margin-top:pxToRem(35px);
+                     }
+                }
+            }
+            }
+            
+            .orderNum{
+                width:100%;
+                height:pxToRem(22px);
+                p{
+                    font-size:pxToRem(10px);
+                    padding-right:pxToRem(18px);
+                    text-align:right;
+                    line-height:pxToRem(22px);
+                    border-bottom:pxToRem(1px) #efefef solid;
+                }
+            }
+            .btm{
+                width:100%;
+                height:pxToRem(26px);
+                p{
+                    padding-left:pxToRem(10px);
+                    padding-top:pxToRem(4px);
+                    display: inline-block;
+                    font-size:pxToRem(10px);
+                    padding-right:pxToRem(18px);
+                    float: right;
+                }
+            }
+        }
+    }
+    
+    
+} 
+   .kong{
+        width:100%;
+        height:pxToRem(5px);
+        background:#eeeeee;
+    }
+ 

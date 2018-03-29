@@ -1,0 +1,130 @@
+@import "../util.scss";
+#shaiX{
+    width:100%;
+    height:pxToRem(534px);
+    @include flexBox;
+    @include flex-direction('row');
+    top:pxToRem(38px);
+    max-width: pxToRem(640px);
+    z-index:998;
+    position:fixed;
+    right:pxToRem(-1200px);
+    margin:0 auto;
+    overflow-y: auto;
+   &::-webkit-scrollbar-{
+       display:none;
+   }
+    .shaiLeft{
+        width:pxToRem(36px);
+        height:100%;
+        background:rgba(0,0,0,0.5);
+        filter:alpha(opacity=50);
+        .iconBox{
+            width:pxToRem(20px);
+            height:pxToRem(20px);
+            font-size:pxToRem(16px);
+            color:#FFFFFF;
+            display:inline-block;
+            text-align:center;
+            line-height:pxToRem(20px);
+            background:#000000;
+            border-radius:50%;
+            margin-left:pxToRem(10px);
+            margin-top:pxToRem(10px);
+        }
+    }
+    .shaiRight{
+        overflow: auto;
+        &::-webkit-scrollbar {
+        display:none;
+        }
+        @include flex(1);
+        height:100%;
+        background:#FFFFFF;
+        .tit{
+            margin:pxToRem(10px) pxToRem(13px) pxToRem(5px) pxToRem(15px);
+            h4{
+                font-weight: normal;
+                font-size:pxToRem(14px);
+                padding-bottom:pxToRem(10px);
+                }
+            .titTop{
+                @include flexBox;
+                @include flex-direction('row');
+                padding-bottom: pxToRem(5px);
+                span:nth-of-type(1){
+                    display:inline-block;
+                    @include flex(1);
+                    @include flex-center;
+                    font-size:pxToRem(12px);
+                    border-radius:pxToRem(5px);
+                    background:#dfe4e7;
+                    color:#000000;
+                    
+                }
+                span:nth-of-type(2){
+                    display:inline-block;
+                    width:pxToRem(30px);
+                    @include flex-center;
+                    font-size:pxToRem(20px);
+                    
+                }
+                 span:nth-of-type(3){
+                    display:inline-block;
+                    @include flex(1);
+                    @include flex-center;
+                    font-size:pxToRem(12px);
+                    border-radius:pxToRem(5px);
+                    background:#dfe4e7;
+                    color:#000000;
+                }
+                
+            }
+            .titBtm{
+                @include flexBox;
+                //@include flex-direction("row");
+                flex-wrap:wrap;
+                -webkit-flex-wrap: wrap;
+                span{
+                    display:inline-block;
+                   // @include flex(1);
+                    @include flex-center;
+                    border-radius:pxToRem(5px);
+                    background:#dfe4e7;
+                    color:#000000;
+                    width:25%;
+                    margin-left:pxToRem(5px);
+                    margin-right:pxToRem(5px);
+                    margin-bottom:pxToRem(10px);
+                    font-size:pxToRem(12px);
+                    padding:pxToRem(5px);
+                }
+            }
+        }
+        
+        .btm{
+            width:88.75%;
+            @include flexBox;
+            @include flex-direction('row');
+            height:pxToRem(38px);
+            background:#FFFFFF;
+            position:absolute;
+            bottom:0;
+            //left:pxToRem(36px);
+            border-top:#dadada pxToRem(1px) solid;
+            span{
+                display:inline-block;
+                @include flex-center;
+                font-size:pxToRem(16px);
+                @include flex(1);
+            }
+            span:nth-of-type(2){
+                background:#c92106;
+                color:#FFFFFF;
+            }
+        }
+    }
+}
+
+ 
+  

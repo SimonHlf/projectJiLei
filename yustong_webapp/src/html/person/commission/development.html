@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>玉商通</title>
+		<link rel="stylesheet" type="text/css" href="../../../../dist/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../../../../dist/css/com/headercom1.css">
+		<link rel="stylesheet" type="text/css" href="../../../../dist/css/person/commission/development.css">
+		<link rel="stylesheet" type="text/css" href="../../../jslib/swiper/css/swiper-3.4.1.min.css" />
+		<script src="../../../js/jquery-1.11.0.js"></script>
+		<script src="../../../jslib/swiper/js/swiper-3.4.1.min.js"></script>
+		<script src="../../../js/kind/culture/artistsmsg.js"></script>
+		<script src="../../../js/com/com.js"></script>
+	</head>
+	<body>
+		<!--------------------------佣金管理-佣主发展---------------------------->
+		<div id="container">
+			<header id="aboutHeader">
+				<div class="aBack">
+					<a href="#"><em class="iconfont">&#xe600;</em></a>
+				</div>
+				<div class="aUs">佣金管理</div>
+				<div class="aMore">
+					<em class="iconfont">&#xe617;</em>
+				</div>
+			</header>
+			<!---------------------------nav-------------------------------->
+			<nav id="nav">
+			<ul class="navlists">
+				<li >
+					<a href="revenue.html">佣金收益</a>
+				</li>
+				<li class='active'>
+					<a href="development.html">佣主发展</a>
+				</li>
+				<li>
+					<a href="masterrecord.html">佣金记录</a>
+				</li>
+				<li>
+					<a href="promotion.html">推广二维码</a>
+				</li>
+			</ul>
+		</nav>
+			<!----------------------------morelistss--------------------------->
+			<ul id="moreCon">
+				<li class="active">
+					<a href="/src/html/home/index.html">
+						<em class="iconfont">&#xe6d9;</em><span>首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="/src/html/kind/prokind/kind.html">
+						<em class="iconfont">&#xe601;</em><span>分类搜索</span>
+					</a>
+				</li>
+				<li>
+					<a href="index.html">
+						<em class="iconfont">&#xe636;</em><span>购物车</span>
+					</a>
+				</li>
+				<li>
+					<a href="index.html">
+						<em class="iconfont">&#xe607;</em><span>个人中心</span>
+					</a>
+				</li>
+			</ul>
+			<!-------------------------------main区--------------------------->
+			<div id="main">
+				<div class="mainTop">
+					<div class="top">
+						<p><span><img src="../../../image/person/development1.jpg"/></span><span>代理受益人数<b>8</b>人</span></p>
+						<p><span><img src="../../../image/person/development2.jpg"/></span><span>一级代理人数<b>11</b>人</span></p>
+					</div>
+					<div class="btm">
+						<p><span><img src="../../../image/person/development3.jpg"/></span><span>二级代理人数<b>88</b>人</span></p>
+						<p><span><img src="../../../image/person/development4.jpg"/></span><span>三级代理人数<b>888</b>人</span></p>
+					</div>
+				</div>
+				<!--------------------------------kong-------------------------------------->
+				<div class='kong'></div>
+				<!---------------------------------折线区---------------------------------------->
+				<div class="line">
+					<div class="lineBox"></div>
+					<form class="msg">
+						<p>
+						  	<label for="account">账户</label>
+				            <input class="inpt" id="account" type="text" />
+						</p>
+						<p>
+							<label for="vip">会员昵称</label>
+				            <input class="inpt" id="vip" type="text" />
+						</p>
+						<p>
+						   <label for="dai">代理级别</label>
+				            <select id="dai">
+				            	<option value="一级">一级</option>
+				            	<option value="二级">二级</option>
+				            	<option value="三级">三级</option>
+				            </select>
+						</p>
+						<p>
+						    <label for="date">时间</label>
+				            <select id="date">
+				            	<option value="最近七天">最近七天</option>
+				            	<option value="最近十五天">最近十五天</option>
+				            	<option value="最近七天">最近七天</option>
+				            	<option value="最近七天">最近七天</option>
+				            	<option value="最近七天">最近七天</option>
+				            	<option value="最近七天">最近七天</option>
+				            	<option value="最近七天">最近七天</option>
+				            </select>
+						</p>
+					</form>
+					<div class="btn">
+						<button>点击查询</button>
+					</div>
+				</div>
+				<!-----------------------查询结果--------------------------------->
+				<div class="findResult">
+					<div class="txt">查询结果</div>
+					<ul class="dataLists">
+						<li>
+							<div class="dataTop">
+								<p><b>自己账户(代理级别)</b><span>注:申请进入时间</span><span>2018/2/28</span><span>14:12:03</span></p>
+							</div>
+							<div class="dataBtm">
+								<div class="left">
+									会员昵称
+								</div>
+								<div class="right">
+									<p>上级:</p>
+									<p>下级:</p>
+								</div>
+							</div>
+							<div class="kong"></div>
+						</li>
+						<li>
+							<div class="dataTop">
+								<p><b>自己账户(代理级别)</b><span>注:申请进入时间</span><span>2018/2/28</span><span>14:12:03</span></p>
+							</div>
+							<div class="dataBtm">
+								<div class="left">
+									会员昵称
+								</div>
+								<div class="right">
+									<p>上级:</p>
+									<p>下级:</p>
+								</div>
+							</div>
+							<div class="kong"></div>
+						</li>
+						<li>
+							<div class="dataTop">
+								<p><b>自己账户(代理级别)</b><span>注:申请进入时间</span><span>2018/2/28</span><span>14:12:03</span></p>
+							</div>
+							<div class="dataBtm">
+								<div class="left">
+									会员昵称
+								</div>
+								<div class="right">
+									<p>上级:</p>
+									<p>下级:</p>
+								</div>
+							</div>
+							<div class="kong"></div>
+						</li>
+					</ul>
+					<!-----------------------收益总人数------------------------------>
+					<!--<div class="txt">受益总人数</div>
+					<ul class="dataLists">
+						<li>
+							<div class="dataTop">
+								<p><b>自己账户(代理级别)</b><span>注:申请进入时间</span><span>2018/2/28</span><span>14:12:03</span></p>
+							</div>
+							<div class="dataBtm">
+								<div class="left">
+									会员昵称
+								</div>
+								<div class="right">
+									<p>上级:</p>
+									<p>下级:</p>
+								</div>
+							</div>
+							<div class="kong"></div>
+						</li>
+						<li>
+							<div class="dataTop">
+								<p><b>自己账户(代理级别)</b><span>注:申请进入时间</span><span>2018/2/28</span><span>14:12:03</span></p>
+							</div>
+							<div class="dataBtm">
+								<div class="left">
+									会员昵称
+								</div>
+								<div class="right">
+									<p>上级:</p>
+									<p>下级:</p>
+								</div>
+							</div>
+							<div class="kong"></div>
+						</li>
+						<li>
+							<div class="dataTop">
+								<p><b>自己账户(代理级别)</b><span>注:申请进入时间</span><span>2018/2/28</span><span>14:12:03</span></p>
+							</div>
+							<div class="dataBtm">
+								<div class="left">
+									会员昵称
+								</div>
+								<div class="right">
+									<p>上级:</p>
+									<p>下级:</p>
+								</div>
+							</div>
+							<div class="kong"></div>
+						</li>
+					</ul>-->
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

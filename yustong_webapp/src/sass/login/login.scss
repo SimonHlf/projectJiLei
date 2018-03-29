@@ -1,0 +1,95 @@
+@import "../util.scss";
+#container{
+    width:100%;
+    height:100%;
+    max-width:pxToRem(640px);
+    margin:0 auto;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+#main{
+    width:100%;
+    margin-top:pxToRem(39px);
+    .logoBox{
+        padding:pxToRem(22px) 36.25%;
+        height:pxToRem(88px);
+        img{
+            width:100%;
+            height:100%;
+        }
+    }
+    .logoMsg{
+        padding:pxToRem(10px) pxToRem(12px) pxToRem(10px) pxToRem(30px);
+        p{
+            height:pxToRem(38px);
+            @include flexBox;
+            margin-bottom: pxToRem(5px);
+            @include flex-direction('row');
+            position:relative;
+            label{
+                font-size:pxToRem(16px);
+                color:#d0402c;
+                width:pxToRem(64px);
+                text-align:center;
+                line-height: pxToRem(40px);
+            }
+            input{
+                border:none;
+                @include flex(1);
+                border-bottom:pxToRem(1px) solid #e8a094;
+                height:100%;
+                outline: none;
+                font-size:pxToRem(14px);
+                color:#959595;
+            }
+            button{
+                position:absolute;
+                right:0;
+                top:pxToRem(2px);
+                padding:pxToRem(5px) pxToRem(4px);
+                border:none;
+                border:pxToRem(1px) solid #d55641;
+                color:#d55641;
+                font-size:pxToRem(14px);
+                background:#FFFFFF;
+            }
+        }
+    }
+    .btnBox{
+        padding: pxToRem(0px) pxToRem(12px) pxToRem(0px) pxToRem(30px);
+        @include flexBox;
+        @include flex-direction('row');
+        a{
+            color:#9c9c9c;
+            font-size:pxToRem(14px);
+            padding:pxToRem(17px) 0px;
+        }
+        .toRegister{
+            @include flex(1);
+            text-align: left;
+        }
+        .forgetPwd{
+            @include flex(1);
+            text-align: right;
+        }
+    }
+    .btn{
+        width:100%;
+        padding:pxToRem(20px) 0px;
+        text-align: center;
+        button{
+            width:71.25%;
+            height:pxToRem(34px);
+            text-align:center;
+            line-height: pxToRem(34px);
+            color:#FFFFFF;
+            font-size:pxToRem(16px);
+            background:#c92106;
+            border:none;
+            border-radius:pxToRem(15px);
+            outline: none;
+        }
+    }
+}

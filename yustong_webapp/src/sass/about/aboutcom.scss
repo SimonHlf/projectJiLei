@@ -1,0 +1,96 @@
+@import "../util.scss";
+#aboutHeader{
+    width:100%;
+    max-width: pxToRem(640px);
+    margin:0 auto;
+    height:pxToRem(38px);
+    @include flexBox;
+    @include flex-direction('row');
+    border-bottom:#ebebeb pxToRem(1px) solid;
+    position:fixed;
+    z-index:9999;
+    background:#FFFFFF;
+    top:0;
+    .aBack{
+        @include flex(1);
+        @include flex-center;
+        .iconfont{
+            color:#000000;
+            font-size:pxToRem(21px);
+            bold:900;
+        }
+    }
+    .aUs{
+        @include flex(1);
+        @include flex-center;
+        font-size:pxToRem(18px);
+    }
+    .aMore{
+        @include flex(1);
+        @include flex-center;
+    }
+}
+#moreCon{
+    width:pxToRem(110px);
+    @include flexBox;
+    @include flex-direction('column');
+    position:absolute;
+    right:0;
+    display:none;
+    top:pxToRem(45px);
+    height:pxToRem(158px);
+    border-radius:pxToRem(10px);
+    background:rgba(255,255,255,0.8);
+    filter:alpha(opacity=80);
+    border:#ece8e9 pxToRem(1px) solid;
+    z-index:999;
+    li{
+        @include flex(1);
+       padding:pxToRem(8px) pxToRem(6px) pxToRem(0px) pxToRem(10px);
+       a{
+           color:#000000;
+          .iconfont{
+              margin-right:pxToRem(5px);
+              display:inline-block;
+              font-size:pxToRem(22px);
+          } 
+          span{
+              display:inline-block;
+              font-size:pxToRem(16px);
+              border-bottom:#cecac7 pxToRem(1px) solid;
+              width:70%;
+              padding-bottom:pxToRem(4px);
+              text-align:center;
+              
+          }
+       }
+    }
+   
+}
+#nav{
+    width:100%;
+    height:pxToRem(32px);
+    position:fixed;
+    top:pxToRem(39px);
+    background:#FFFFFF;
+    max-width:pxToRem(640px);
+    z-index:998;
+    border-bottom:#ebebeb pxToRem(1px) solid;
+     .navlists{
+         height:100%;
+         margin:0 pxToRem(16px) 0 pxToRem(20px);
+         @include flexBox;
+         @include flex-direction('row');
+         li{
+             @include flex(1);
+             @include flex-center;
+             a{
+                 font-size:pxToRem(12px);
+                 color:#000000;
+             }
+         }
+         .active{
+             border-bottom:#c21000 pxToRem(2px) solid;
+         }
+     }
+}

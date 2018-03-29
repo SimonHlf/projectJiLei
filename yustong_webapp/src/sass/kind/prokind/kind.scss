@@ -1,0 +1,99 @@
+@import "../../util.scss";
+#container{
+width:100%;
+max-width:pxToRem(640px);
+margin:0 auto;
+height:100%;
+}
+#main{
+    width:100%;
+    height:100%;
+    @include flexBox;
+    padding-top:pxToRem(38px);
+    @include flex-direction('row');
+    background:#ececec;
+    .kindLists{
+        width:pxToRem(80px);
+        background:#FFFFFF;
+        margin-right:pxToRem(5px);
+        height:pxToRem(530px);
+        overflow:auto ;
+        &::-webkit-scrollbar{
+            display:none;
+        }
+        border-left:pxToRem(1px) #d8d8d8 solid;
+        border-right:pxToRem(1px) #d8d8d8 solid;
+        .lists{
+            width:100%;
+            @include flexBox;
+            @include flex-direction('column');
+            li{
+                @include flex(1);
+                @include flex-center;
+                height:pxToRem(45px);
+                border-bottom:#d8d8d8 pxToRem(1px) solid;
+                a{
+                    font-size:pxToRem(14px);
+                    color:#000000;
+                }
+            }
+            .active{
+                a{
+                color:#ac2827;
+                }
+            }
+        }
+    }
+    .proCon{
+        @include flex(1);
+        height:pxToRem(530px);
+        overflow:auto ;
+        &::-webkit-scrollbar{
+            display:none;
+        }
+        .banner{
+            width:98%;
+            height:pxToRem(88px);
+            padding-top:pxToRem(5px);
+            padding-right:pxToRem(2px);
+            img{
+                width:100%;
+                height:100%;
+            }
+        }
+        .pro{
+           margin:pxToRem(0px) pxToRem(5px);
+           p{
+              font-size:pxToRem(14px);
+              height:pxToRem(26px);
+              line-height: pxToRem(26px);
+           }
+           .proImg{
+                width:100%;
+                background:#FFFFFF;
+                @include flexBox;
+                -webkit-flex-wrap: wrap;
+                flex-wrap: wrap;
+                padding-top:pxToRem(5px);
+                padding-left:pxToRem(4px);
+                a{
+                    @include flex-center;
+                    display:inline-block;
+                    padding:pxToRem(10px) pxToRem(8px);
+                    .imgDiv{
+                        text-align:center;
+                        img{
+                            
+                        }
+                    }
+                    p{
+                        font-size:pxToRem(8px);
+                        color:#000000;
+                    }
+                }
+           }
+           
+        }
+    }
+    
+}

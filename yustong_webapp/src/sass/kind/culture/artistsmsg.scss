@@ -1,0 +1,107 @@
+@import "../../util.scss";
+#container{
+    width:100%;
+    height:100%;
+    margin:0 auto;
+    overflow: auto;
+    &::-webkit-scrollbar{
+        display:none;
+    }
+}
+#artMain{
+    margin-top:pxToRem(40px);
+    width:94%;
+    padding:3%;
+    .artPht{
+        @include flexBox;
+        height:pxToRem(126px);
+        @include flex-direction('row');
+        .phtBox{
+            width:pxToRem(124px);
+            height:pxToRem(124px);
+            img{
+                width:100%;
+                height:100%;
+            }
+        }
+        .artJs{
+            @include flex(1);
+            margin-left:pxToRem(20px);
+            .title{
+                font-size:pxToRem(18px);
+                color:#bc3118;
+                margin-bottom: pxToRem(40px);
+            }
+            .artName{
+                font-size:pxToRem(20px);
+                height:pxToRem(30px);
+                line-height:pxToRem(30px);
+            }
+            .level{
+                font-size:pxToRem(16px);
+                color:#979797;
+            }
+        }
+    }
+    .perTitle{
+        width:100%;
+        height:pxToRem(40px);
+        line-height: pxToRem(40px);
+        .perText{
+            font-size:pxToRem(16px);
+        }
+    }
+    .personMsg{
+        width:100%;
+        .content{
+            line-height: pxToRem(16px);
+            font-size:pxToRem(12px);
+            color:#979797;
+        }
+    }
+    
+    .txtCon{
+        .txt{
+            width:100%;
+            @include flexBox;
+            @include flex-direction('row');
+            line-height: pxToRem(16px);
+            font-size:pxToRem(12px);
+            color:#979797;
+            td:nth-of-type(1){
+                width:20%;
+            }
+            td:nth-of-type(2){
+                @include flex(1);
+            }
+        }
+    }
+    .honorLists{
+        width:100%;
+        .honorItem{
+            line-height: pxToRem(16px);
+            font-size:pxToRem(12px);
+            color:#979797;
+            span{
+                margin-right:pxToRem(15px);
+            }
+        }
+    }
+    .artZp{
+        width:100%;
+        @include flexBox;
+        flex-wrap:wrap;
+        justify-content: space-between;
+        li{
+            width:49%;
+            height:auto;
+            a{
+                width:100%;
+                img{
+                  width:100%;
+                  height:auto;  
+                }
+            }
+        }
+    }
+}

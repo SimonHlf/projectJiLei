@@ -1,0 +1,98 @@
+@import "../util.scss";
+#aboutHeader{
+    width:100%;
+    max-width: pxToRem(640px);
+    margin:0 auto;
+    height:pxToRem(38px);
+    @include flexBox;
+    @include flex-direction('row');
+    border-bottom:#ebebeb pxToRem(1px) solid;
+    position:fixed;
+    z-index: 9999;
+    top:0;
+    background:#FFFFFF;
+    .aBack{
+        @include flex(1);
+        @include flex-center;
+        .iconfont{
+            color:#000000;
+            font-size:pxToRem(21px);
+            bold:900;
+        }
+    }
+    .aUs{
+        @include flex(1);
+        @include flex-center;
+        font-size:pxToRem(18px);
+    }
+    .aMore{
+        @include flex(1);
+        @include flex-center;
+    }
+}
+#moreCon{
+    width:pxToRem(110px);
+    @include flexBox;
+    @include flex-direction('column');
+    position:fixed;
+    right:0;
+    display:none;
+    top:pxToRem(45px);
+    height:pxToRem(158px);
+    border-radius:pxToRem(10px);
+    background:rgba(255,255,255,0.8);
+    filter:alpha(opacity=80);
+    border:#ece8e9 pxToRem(1px) solid;
+    z-index:999;
+    li{
+        @include flex(1);
+       padding:pxToRem(8px) pxToRem(6px) pxToRem(0px) pxToRem(10px);
+       a{
+           color:#000000;
+          .iconfont{
+              margin-right:pxToRem(5px);
+              display:inline-block;
+              font-size:pxToRem(22px);
+          } 
+          span{
+              display:inline-block;
+              font-size:pxToRem(16px);
+              border-bottom:#cecac7 pxToRem(1px) solid;
+              width:70%;
+              padding-bottom:pxToRem(4px);
+              text-align:center;
+              
+          }
+       }
+    }
+   
+}
+#nav{
+    width:100%;
+    border-top:#dddddd pxToRem(1px) solid;
+    border-bottom:#dddddd pxToRem(1px) solid;
+    background:#ececec;
+    max-width:pxToRem(640px);
+    position:fixed;
+    top:pxToRem(38px);
+    .youlists{
+        width:100%;
+        @include flexBox;
+        @include flex-direction('row');
+        height:pxToRem(30px);
+        li{
+            @include flex(1);
+            @include flex-center;
+            a{
+                color:#000000;
+                
+            }
+        }
+        .active{
+            a{
+                color:#c9210d;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,88 @@
+@import "../util.scss";
+#container{
+  width: 100%;
+    height: 100%;
+    max-width: pxToRem(640px);
+    margin: 0 auto;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+#nav{
+    width:100%;
+    height:pxToRem(32px);
+     border-bottom:#ebebeb pxToRem(1px) solid;
+     position:fixed;
+     top:pxToRem(39px);
+     background:#FFFFFF;
+     .navlists{
+         height:100%;
+         margin:0 pxToRem(16px) 0 pxToRem(20px);
+         @include flexBox;
+         @include flex-direction('row');
+         li{
+             @include flex(1);
+             @include flex-center;
+             a{
+                 font-size:pxToRem(12px);
+                 color:#000000;
+             }
+         }
+         .active{
+             border-bottom:#c21000 pxToRem(2px) solid;
+         }
+     }
+}
+
+#main{
+    margin-top:pxToRem(70px);
+    width:100%;
+    overflow: auto;
+    padding-bottom: pxToRem(20px);
+    &::-webkit-scrollbar{
+        display:none;
+    }
+    .stip1{
+        height:pxToRem(58px);
+        margin:0 pxToRem(16px) 0 pxToRem(20px);
+        img{
+            width:100%;
+            height:100%;
+        }
+    }
+    .stip2{
+        margin:0 pxToRem(16px) 0 pxToRem(20px);
+        height:pxToRem(396px);
+        img{
+            width:100%;
+            height:100%;
+        }
+    }
+    .stip22{
+        margin:pxToRem(16px) pxToRem(16px) pxToRem(7px) pxToRem(20px);
+        height:pxToRem(28px);
+    }
+    .photoShow{
+        margin:0 pxToRem(16px)  pxToRem(20px);
+        p{
+            height:pxToRem(16px);
+            background:#000000;
+            color:#FFFFFF;
+            margin-bottom:pxToRem(5px);
+            font-size:pxToRem(9px);
+        }
+        .ptpImg{
+            width:100%;
+            @include flexBox;
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            justify-content: space-around;
+            li{
+               // @include flex(1);
+                @include flex-center;
+                margin-bottom:pxToRem(5px);
+            }
+        }
+    }
+}
