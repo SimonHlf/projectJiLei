@@ -1,0 +1,110 @@
+.welcomeDiv{
+	width: 85%;
+	height: 0.35rem;
+	line-height: 0.35rem;
+	text-align: center;
+	margin:0rem auto 0;
+}
+.welcomeDiv h4{
+	color:#444;
+	font-size: 0.16rem;
+}
+.mainNav{
+	width: 85%;
+	margin:20px auto 0;
+}
+.mainNav li{
+	width: 48%;
+	height: 40px;
+	line-height: 40px;
+	float:left;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.mainNav li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	font-weight: 600;
+	font-size: 0.16rem;
+	border-radius: 4px;
+	position: relative;
+}
+.mainNav li a span{
+	position: absolute;
+	left:50%;
+}
+.mainNav li a.accChargeA span{
+	width: 0.22rem;
+	height: 0.22rem;
+	background: url(../images/chongzhi.png) no-repeat;
+	background-size: cover;
+	top:7px;
+	margin-left:-58px;
+}
+.mainNav li a.myElCardA span{
+	width: 0.23rem;
+	height: 0.18rem;
+	background: url(../images/myEleCard.png) no-repeat;
+	background-size: cover;
+	top:10px;
+	margin-left:-58px;
+}
+.mainNav li a.chargeRecA span{
+	width: 0.2rem;
+	height: 0.22rem;
+	background: url(../images/chongzhiRec.png) no-repeat;
+	background-size: cover;
+	top:8px;
+	margin-left:-55px;
+}
+.mainNav li a.chargeEleRecA span{
+	width: 0.22rem;
+	height: 0.21rem;
+	background: url(../images/chargeRecord.png) no-repeat;
+	background-size: cover;
+	top:8px;
+	margin-left:-58px;
+}
+.mainNav li a.helpA span{
+	width: 0.18rem;
+	height: 0.22rem;
+	background: url(../images/help.png) no-repeat;
+	background-size: cover;
+	top:8px;
+	margin-left:-53px;
+}
+.mainNav li a.feedA span{
+	width: 0.23rem;
+	height: 0.21rem;
+	background: url(../images/feed.png) no-repeat;
+	background-size: cover;
+	top:8px;
+	margin-left:-58px;
+}
+.mainNav li a.buyA span{
+	width: 0.21rem;
+	height: 0.21rem;
+	background: url(../images/goBuy.png) no-repeat;
+	background-size: cover;
+	top:8px;
+	margin-left:-55px;
+}
+.mainNav li a.aboutA span{
+	width: 0.22rem;
+	height: 0.22rem;
+	background: url(../images/aboutUs.png) no-repeat;
+	background-size: cover;
+	top:8px;
+	margin-left:-58px;
+}
+.orangColor{
+	background: #f9a32e;
+}
+.blueColor{
+	background:#638ad1;
+}
+.margR{
+	margin-right: 10px;
+}

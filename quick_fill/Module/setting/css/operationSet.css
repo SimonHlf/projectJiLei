@@ -1,0 +1,354 @@
+@import url("../../../css/footer.css");
+@import url("../../../css/comTip.css");
+
+.operationDiv{
+	width:85%;
+	border-top:1px solid #333;
+	position: relative;
+	margin:40px auto 0;
+}
+.areaName{
+	color:#999;
+	margin-top: 20px;
+}
+.chargeSet{
+	width: 1.1rem;
+	height: 0.35rem;
+	line-height: 0.35rem;
+	background: #f9a32e;
+	color:#fff;
+	font-size: 0.14rem;
+	border-radius: 4px;
+	margin-top: 10px;
+	display: inline-block;
+}
+.comSetP{
+	margin-top: 20px;
+}
+.comSetTit{
+	color: #f9a32e;
+}
+.comSetP input.numInp{
+	width: 0.5rem;
+	height: 0.25rem;
+	line-height: 0.25rem;
+	color:#666;
+	border-bottom: 1px solid #dbdbdb;
+	font-size: 0.16rem;
+}
+.tipTxt{
+	color:#999;
+	font-size: 0.14rem;
+	margin-top: 5px;
+}
+.comSetP label{
+	display: inline-block;
+	position: relative;
+	height: 16px;
+}
+.checkSpan{
+	width: 16px;
+	height: 16px;
+	border:1px solid #f9a32e;
+	border-radius: 2px;
+	display:inline-block;
+	float:left;
+	margin:2px 0 0 3px;
+	position:relative;
+}
+.checkSpan_act em{
+	width: 14px;
+	height: 14px;
+	background: url(../images/selIcon.png) no-repeat;
+	position: absolute;
+	left: 1px;
+	top:1px;
+	background-size: cover;
+}
+.timePart{
+	font-size: 0.14rem;
+}
+.startDiv,
+.endDiv{
+	position:relative;
+}
+.timePart span.inputLayer{
+	width:100%;
+	height:0.31rem;
+	background:transparent;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:10;
+}
+.timePart div{
+	margin-top: 6px;
+}
+.timePart div input{
+	width: 80%;
+	height: 0.30rem;
+	line-height: 0.30rem;
+	border-bottom: 1px solid #dbdbdb;
+	font-size: 0.14rem;
+}
+.comSetP ul li{
+	margin-top: 10px;
+	position: relative;
+}
+.comSetP ul li span{
+	width: 20px;
+	display: inline-block;
+}
+.onlyAdd b{
+	width: 27px;
+	height: 30px;
+	background:url(../images/add.png) no-repeat;
+	background-size: cover;
+	display: inline-block;
+}
+.comSetP ul li em.delIcon{
+	width: 18px;
+	height: 18px;
+	background: url(../images/delIcon.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+}
+.comSetP ul li em.delIcon{
+	left: 230px;
+	top: 4px;
+}
+.addSet span{
+	left: 50%;
+	margin-left: -9px;
+	top: 8px;
+}
+.addDisLi{
+	display: inline-block;
+	height: 0.25rem;
+	line-height: 0.25rem;
+	color: #fff;
+	font-size: 0.14rem;
+	border-radius: 4px;
+	background:#638ad1;
+	margin-left: 10px;
+}
+.buttonDiv{
+	margin-top: 20px;
+	text-align: center;
+}
+.buttonDiv button{
+	display: inline-block;
+	width: 100%;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	color:#fff;
+	border-radius: 4px;
+	font-size: 0.16rem;
+	background:#638ad1;
+}
+.comAddDiv{
+	width: 100%;
+	margin:15px auto 0;
+}
+.comAddDiv.firstMargT{
+	margin-top: 25px;
+}
+.comAddDiv input{
+	width: 100%;
+	height: 0.35rem;
+	line-height: 0.35rem;
+	color:#666;
+	border-bottom: 1px solid #dbdbdb;
+	margin-top: 6px;
+	font-size: 0.16rem;
+	text-indent: 15px;
+}
+.comAddDiv input::-webkit-input-placeholder{
+	color:#999;
+}
+.setInfo{
+	width: 60%;
+	height: 0.24rem;
+	line-height: 0.24rem;
+	border:2px solid #638ad1;
+	border-radius: 20px;
+	text-align: center;
+	color: #666;
+	margin:15px auto 0;
+	font-size: 0.14rem;
+}
+.percentDiv{
+	width:100%;
+	height: 0.22rem;
+	line-height: 0.22rem;
+	margin:10px auto 0;
+}
+.percentDiv p{
+	width: 50%;
+	float:left;
+	font-size: 0.14rem;
+	text-align: center;
+}
+.percentDiv p span,
+.percentDiv p input{
+	width:0.3rem;
+	height: 100%;
+	border-bottom: 1px solid #dbdbdb;
+	color: #333;
+	display:inline-block;
+}
+.percentDiv p span{
+	height:0.16rem;
+}
+.mainPercentSet{
+	width: 100%;
+	margin-left: -8.7%;
+	font-size: 0.14rem;
+	margin-top: 15px;
+}
+.mainPercentSet div{
+	text-align: center;
+}
+.nameSet{
+	width: 20%;
+	line-height: 0.32rem;
+}
+.numSet{
+	width: 20%;
+	line-height: 0.32rem;
+}
+.detailSet{
+	width: 50%;
+}
+.addSet{
+	width: 10%;
+	height:100%;
+	line-height: 0.32rem;
+	position: relative;
+	z-index:2;
+}
+.userSetLi{
+	position:relative;
+	overflow:hidden;
+}
+.setNowLayer{
+	width:100%;
+	height:100%;
+	position:absolute;
+	left:0px;
+	top:0px;
+	background:rgba(0,0,0,.8);
+	z-index:10;
+	top:-39px;
+}
+.setNowLayer div{
+	width:33%;
+	height:100%;
+	line-height:0.39rem;
+	color:#fff;
+	float:left;
+	position:relative;
+	text-align:center;
+	font-size:14px;
+}
+.setNowLayer div span{
+	width:2px;
+	height:20px;
+	background:#fff;
+	position:absolute;
+	right:0px;
+	top:10px;
+}
+.setNowLayer div em,
+.addSet span{
+	width:20px;
+	height:20px;
+	position:absolute;
+}
+.setNowLayer div em{
+	left:50%;
+	margin-left:18px;
+	top:9px;
+}
+.addSet span{
+	background:url(../images/setIcon.png) no-repeat;
+	background-size:cover;
+	left:17px;
+	top:6px;
+}
+.setNowLayer div em.editIcon{
+	background:url(../images/editIcon.png) no-repeat;
+	background-size:cover;
+}
+.setNowLayer div em.delIcon{
+	background:url(../images/delIcons.png) no-repeat;
+	background-size:cover;
+}
+.setNowLayer div em.cancelIcon{
+	background:url(../images/cancelIcon.png) no-repeat;
+	background-size:cover;
+}
+.detailSet li,
+.detailSet label,
+.comFlInner label{
+	width: 16%;
+	font-size: 0.12rem;
+	float:left;
+}
+.comFlInner label{
+	width:25%;
+}
+.detailSet label,
+.comFlInner label{
+	display: inline-block;
+	position: relative;
+}
+.detailSet label{
+	line-height: 0.32rem;
+}
+.detailSet label span,
+.comFlInner label span{
+	width: 0.18rem;
+	height: 0.18rem;
+	border:1px solid #666;
+	border-radius: 3px;
+	display: inline-block;
+	margin-top: 0.07rem;
+	position: relative;
+	z-index: 2;
+}
+.detailSet label span{
+	margin-top:0.07rem;
+}
+.comFlInner label span{
+	margin-top:0.1rem;
+}
+.detailSet label span.selAct em,
+.comFlInner label span.selAct em{
+	width: 16px;
+	height: 16px;
+	background: url(../images/selIcon1.png) no-repeat;
+	position: absolute;
+	left: 1px;
+	top:1px;
+	background-size: cover;
+}
+.detailSet label input.checkInp,
+.comFlInner label input.checkInp{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 3;
+	cursor:pointer;
+}
+.listSetDiv{
+	width: 100%;
+}
+.perInpTxt{
+	width: 100%;
+	height:0.21rem;
+	border-bottom:1px solid #dbdbdb;
+	margin-top: 6px;
+}

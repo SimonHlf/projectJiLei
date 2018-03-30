@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的小区</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/myCommunity.css"/>
+	</head>
+	<body>
+		<div class="chargeRecList comList">
+			<strong class="comStrongTit">我的小区</strong>
+			<ul id="ulList" class="specUl clearfix">
+				<li>
+					<div class="innerPar clearfix">
+						<p class="hasVerify">已审核</p>
+						<p class="ellip">广州市 上威工业园</p>
+						<p><span class="triBg"></span></p>
+						<div class="detailDiv">
+							<dl class="moduleUl clearfix">
+								<dd><a href="operationSet.html">运营设置</a></dd>
+								<dd class="marglR"><a href="equipManage.html">设备管理</a></dd>
+								<dd><a href="CheckRate.html">费率查看</a></dd>
+								<dd><a href="deviceStatus.html">设备状态</a></dd>
+								<dd class="marglR"><a href="operationStatis.html">运营统计</a></dd>
+								<dd><a href="registerAccount.html">注册账户</a></dd>
+							</dl>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="innerPar clearfix">
+						<p class="noVerify">未审核</p>
+						<p class="ellip">广州市 上威工业园</p>
+						<p><span class="triBg"></span></p>
+						<div class="detailDiv">
+							<dl class="moduleUl clearfix">
+								<dd><a href="">运营设置</a></dd>
+								<dd class="marglR"><a href="">设备管理</a></dd>
+								<dd><a href="">费率查看</a></dd>
+								<dd><a href="">设备状态</a></dd>
+								<dd class="marglR"><a href="">运营统计</a></dd>
+								<dd><a href="">注册账户</a></dd>
+							</dl>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="addAreaDiv">
+				<button onclick="addCommunity()">添加小区</button>
+			</div>
+		</div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid active"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js"></script>
+		<script src="../reChargeRecord/js/showDetailCon.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				showDetailCon();
+			});
+			//添加小区
+			function addCommunity(){
+				window.location.href = "addCommunity.html";
+			}
+		</script>
+	</body>
+</html>

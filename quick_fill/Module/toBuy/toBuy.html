@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>加盟购买</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/toBuy.css"/>
+	</head>
+	<body>
+		<div class="feedBackDiv">
+			<strong class="comStrongTit">加盟购买</strong>
+			<div class="innerFeed clearfix">
+				<span class="radiusSpan"></span>
+				<div class="feedTxt fl">
+					<p>加盟用户可致电400-6020-662，具体详情请致电后了解，或在淘宝页面搜索店铺“帝能云科技”进入了解。 </p>
+					<p>客服电话工作时间为：</p>
+					<p>周一至周六08:00-18:00</p>	
+				</div>
+				<div class="toBeYunying">
+					<button onclick="showAlert($('.beYunyingDiv'))">成为运营商</button>
+				</div>
+			</div>
+		</div>
+		<div class="layer"></div>
+		<div class="beYunyingDiv">
+			<div class="comInnerDiv">
+				<span>名<em></em>称：</span>
+				<input type="text" placeholder="请输入公司名称"/>
+			</div>
+			<div class="comInnerDiv">
+				<span>联系人：</span>
+				<input type="text" placeholder="请输入联系人姓名"/>
+			</div>
+			<div class="comInnerDiv">
+				<span>电<em></em>话：</span>
+				<input type="text" placeholder="请输入联系电话"/>
+			</div>
+			<div class="comInnerDiv">
+				<span>地<em></em>址：</span>
+				<input type="text" placeholder="请输入地址"/>
+			</div>
+			<p>注：</p>
+			<p>1.请务必正确填写以上信息，以便尽快通过审核。</p>
+			<p>2.提交后请联系厂商。</p>
+			<div class="btnDiv">
+				<button class="comTwoBtn twoBtn_cancel" onclick="closeAlert($('.beYunyingDiv'))">取消</button>
+				<button class="comTwoBtn twoBtn_sure">提交审核</button>
+			</div>
+		</div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid active">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<div class="toast-wrap">
+	    	<span class="toast-msg"></span>
+	    </div> 
+		<script type="text/javascript" src="../../jsPlugin/jquery.min.js" ></script>
+		<script src="../../jsPlugin/tipInfo.js"></script>
+	</body>
+</html>

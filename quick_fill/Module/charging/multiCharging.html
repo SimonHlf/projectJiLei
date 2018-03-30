@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>充电中</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/charging.css"/>
+	</head>
+	<body class="bodyPadBot">
+		<!-- 个人用户信息 -->
+		<div class="perInfos">
+			<div class="perImg fl"></div>
+			<div class="perInfoTxt fl">
+				<strong>XX小区</strong>
+				<p>用户编号：00075</p>
+				<p>赠送用户：20.00元</p>
+				<p>账户余额：100.00元</p>
+			</div>
+			<div class="batteryDiv"></div>
+		</div>
+		<!-- 用户充电 -->
+		<!--
+			判断用户充电状态
+			01：没有充电->扫一扫入口
+			02：一个充电
+			03：多个充电
+		-->
+		<div class="chargingList">
+			<!-- 多个充电 -->
+			<div class="multiCharging">
+				<div class="innerCharge_multi clearfix">
+					<div class="comLeft_multi">
+						<p>充电桩编号</p>
+						<p>000000061</p>
+						<p><span></span>正在充电</p>
+					</div>
+					<div class="comRight_multi">
+						<div class="innerR_multi clearfix">
+							<span class="location fl"></span>
+							<p class="fl">广州市上威工业园 电动自行车充电区</p>
+						</div>
+						<div class="innerR_multi clearfix">
+							<div>
+								<span class="time fl"></span>
+								<p class="fl">2018-02-10 10:25:30</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="innerCharge_multi clearfix">
+					<div class="comLeft_multi">
+						<p>充电桩编号</p>
+						<p>000000061</p>
+						<p><span></span>正在充电</p>
+					</div>
+					<div class="comRight_multi">
+						<div class="innerR_multi clearfix">
+							<span class="location fl"></span>
+							<p class="fl">广州市上威工业园 电动自行车充电区</p>
+						</div>
+						<div class="innerR_multi clearfix">
+							<div>
+								<span class="time fl"></span>
+								<p class="fl">2018-02-10 10:25:30</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="innerCharge_multi clearfix">
+					<div class="comLeft_multi">
+						<p>充电桩编号</p>
+						<p>000000061</p>
+						<p><span></span>正在充电</p>
+					</div>
+					<div class="comRight_multi">
+						<div class="innerR_multi clearfix">
+							<span class="location fl"></span>
+							<p class="fl">广州市上威工业园 电动自行车充电区</p>
+						</div>
+						<div class="innerR_multi clearfix">
+							<div>
+								<span class="time fl"></span>
+								<p class="fl">2018-02-10 10:25:30</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid active"><a class="chargeA" href="charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				calHeightMulti();
+			});
+			//动态根据宽度计算高度 多个充电
+			function calHeightMulti(){
+				var cliWid = $(window).width();
+				$(".comLeft_multi").each(function(i){
+					if(cliWid > 700){
+						$(".comLeft_multi").height($(".comLeft_multi").width() - 55);
+					}else{
+						$(".comLeft_multi").height($(".comLeft_multi").width() - 35);
+					}
+					$(".comLeft_multi p").css({
+						"line-height":$(".comLeft_multi p").height() + 'px'
+					})
+					$(".comRight_multi").height($(".comLeft_multi").height());
+					$(".innerR_multi p").width($(".comRight_multi").width() - $(".innerR_multi span").width());
+				});
+			}
+		</script>
+	</body>
+</html>

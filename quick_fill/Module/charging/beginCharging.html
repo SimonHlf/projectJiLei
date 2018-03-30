@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>开始充电</title>
+<meta name="viewport"
+	content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+<link rel="stylesheet" type="text/css" href="css/beginChaging.css" />
+</head>
+<body class="bodyPadBot">
+	<!-- 个人用户信息 -->
+	<div class="perInfos">
+		<div class="perImg fl">
+			<img src="${sessionScope.fontUser.weImage }"
+				class="avatar aui-img-round">
+		</div>
+		<div class="perInfoTxt fl">
+			<strong>XX小区</strong>
+			<p>用户编号：${sessionScope.fontUser.account }</p>
+			<p>赠送余额：${sessionScope.fontUser.dummyBalance }元</p>
+			<p>账户余额：${sessionScope.fontUser.balance }元</p>
+		</div>
+		<div class="batteryDiv"></div>
+	</div>
+	<!-- 开始充电 -->
+	<div class="beginCharginDiv">
+		<strong class="comStrongTit">开始充电</strong>
+		<div class="innerCharge_sing locSingPar clearfix">
+			<span class="locSpan fl">位<em></em>置：
+			</span>
+			<p class="loacP fl">广州市上威工业园 电动自行车充电区</p>
+		</div>
+		<div class="innerCharge_sing comSingPar clearfix">
+			<span class="fl">电桩编号：</span>
+			<p class="fl">000000016</p>
+		</div>
+		<div class="innerCharge_sing locSingPar clearfix">
+			<span class="fl">收费标准：</span>
+			<p class="loacP fl">
+				开始充电1分钟后显示 <b>(计量模式)</b>
+			</p>
+		</div>
+		<div class="innerCharge_sing comSingPar clearfix">
+			<span class="fl">起始时间：</span>
+			<p class="fl">2018-02-10 18:05:33</p>
+		</div>
+	</div>
+	<!-- 选择充电时长 -->
+	<div class="selChargeTime">
+		<input id="selChargTimeInp" type="hidden" />
+		<ul class="clearfix">
+			<li><label for="fullStopInp"> <span>充满停止</span> <input
+					id="fullStopInp" class="selTimeInp" type="radio" name="selTimeRad"
+					value="0" />
+			</label></li>
+			<li class="marglR"><label for="twoHoursInp"> <span>2小时</span>
+					<input id="twoHoursInp" class="selTimeInp" type="radio"
+					name="selTimeRad" value="2" />
+			</label></li>
+			<li><label for="fourHoursInp"> <span>4小时</span> <input
+					id="fourHoursInp" class="selTimeInp" type="radio" name="selTimeRad"
+					value="4" />
+			</label></li>
+			<li><label for="eightHoursInp"> <span>8小时</span> <input
+					id="eightHoursInp" class="selTimeInp" type="radio"
+					name="selTimeRad" value="8" />
+			</label></li>
+			<li class="marglR"><label for="tenHoursInp"> <span>10小时</span>
+					<input id="tenHoursInp" class="selTimeInp" type="radio"
+					name="selTimeRad" value="10" />
+			</label></li>
+			<li><label for="twelveHoursInp"> <span>12小时</span> <input
+					id="twelveHoursInp" class="selTimeInp" type="radio"
+					name="selTimeRad" value="12" />
+			</label></li>
+		</ul>
+		<div class="beginChargeBtn">
+			<button>开始充电</button>
+		</div>
+	</div>
+	<div class="layer"></div>
+	<!-- 包月用户alert -->
+	<div class="confirmDiv confirmDiv_month">
+		<p style="margin-top: 21px; padding: 0 6px; font-size: .14rem;">提示：本小区已启用包月充电计费，您尚未购买包月业务，点击“购买月卡”扣费成功后即可启用包月业务，如不需要包月业务，请直接点击开始充电</p>
+		<button class="comTwoBtn twoBtn_sure" onclick="buyMothCharge()">购买包月</button>
+		<button class="comTwoBtn twoBtn_other">开始充电</button>
+	</div>
+	<!-- failAlert -->
+	<div class="alertDiv_fail setFailDiv">
+		<p style="margin-top: 50px;">操作失败</p>
+		<div class="decImg"></div>
+		<button ontouchend="closeAlert($('.setFailDiv'))">确定</button>
+	</div>
+	<!-- 包月用户充电提示 -->
+	<div class="alertDiv_fail mouthPayTip">
+		<p style="margin-top: 30px;">包月用户在同一时间内只能充一部电动车</p>
+		<button ontouchend="closeAlert($('.mouthPayTip'))">确定</button>
+	</div>
+	<!-- 跨区使用提示 -->
+	<div class="alertDiv_fail crossArea">
+		<p style="margin-top: 30px;">您现在是跨区使用，将按照本小区的费率收费，费用将从您的基本账户中扣除</p>
+		<button ontouchend="closeAlert($('.crossArea'))">确定</button>
+	</div>
+	<!-- confirm 开始充电 -->
+	<div class="confirmDiv confirmDiv_sure">
+		<p>请确认插头已正确插入插座</p>
+		<p style="margin-top: 15px;">
+			充电计划：<span>充满为止</span>
+		</p>
+		<button class="comTwoBtn twoBtn_cancel"
+			onclick="closeAlert($('.confirmDiv_sure'))">取消</button>
+		<button class="comTwoBtn twoBtn_sure">确定</button>
+	</div>
+	<!-- confirm 包月用户次数用完提示 -->
+	<div class="confirmDiv useOver">
+		<p>您的包月次数已用完，如需继续使用，将按照单次模式计费，费用将从您的账户中扣除！</p>
+		<button class="comTwoBtn twoBtn_cancel"
+			onclick="closeAlert($('.useOver'))">取消</button>
+		<button class="comTwoBtn twoBtn_sure">确定</button>
+	</div>
+	<!-- footer -->
+	<div class="footer">
+		<ul class="clearfix">
+			<li class="fourWid"><a class="homeA" href="../../index.html">
+					<span></span>
+					<p>首页</p>
+			</a></li>
+			<li class="fourWid active"><a class="chargeA"
+				href="charging.html"> <span></span>
+					<p>充电中</p>
+			</a></li>
+			<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+			</a></li>
+			<li class="fourWid"><a class="setA"
+				href="../setting/settting.html"> <span></span>
+					<p>设置</p>
+			</a></li>
+		</ul>
+	</div>
+	<script src="../../jsPlugin/jquery.min.js"></script>
+	<script src="../../jsPlugin/tipInfo.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			calWidSing();
+			getChargeTime();
+		});
+		//计算单个充电下的位置宽度
+		function calWidSing() {
+			$(".loacP").each(
+					function(i) {
+						$(".loacP").width(
+								$(".innerCharge_sing").width()
+										- $(".locSpan").width() - 5);
+					});
+		}
+		//获取充电时长
+		function getChargeTime() {
+			$(".selTimeInp").each(function(i) {
+				$(this).click(function() {
+					$(".selChargeTime li").removeClass("active");
+					$(this).parent().parent().addClass("active");
+					$("#selChargTimeInp").val($(this).val());
+				});
+			});
+		}
+		//购买包月
+		function buyMothCharge() {
+			window.location.href = "monthlyPay.html";
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>添加小区</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/addCommunity.css"/>
+	</head>
+	<body>
+		<div class="addCommunity">
+			<strong class="comStrongTit">添加小区</strong>
+			<div class="comAddDiv firstMargT">
+				<p>所在城市：</p>
+				<p>
+					<input type="text" placeholder="请填写小区所在的地区名称" />
+				</p>
+			</div>
+			<div class="comAddDiv">
+				<p>小区名称：</p>
+				<p>
+					<input type="text" placeholder="请填写小区名称6个汉字以内" maxlength="6" />
+				</p>
+			</div>
+			<div class="comAddDiv">
+				<p>小区地址：</p>
+				<p>
+					<input type="text" placeholder="请填写小区所在地址"/>
+				</p>
+			</div>
+			<div class="comAddDiv">
+				<p>联系电话：</p>
+				<p>
+					<input type="text" placeholder="请填写小区运营商电话"/>
+				</p>
+			</div>
+			<div class="buttonDiv">
+				<button>取消</button>
+				<button>提交审核</button>
+			</div>
+		</div>
+		<div class="layer"></div>
+		<!-- confirm 增加小区审核 -->
+	    <div class="confirmDiv verifyDiv">
+	    	<p>提交审核后请联系厂家，确认提交审核？</p>
+	    	<button class="comTwoBtn twoBtn_cancel" onclick="closeAlert($('.confirmDiv'))">取消</button>
+			<button class="comTwoBtn twoBtn_sure">确定</button>
+	    </div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid active"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js" type="text/javascript"></script>
+		<script src="../../jsPlugin/tipInfo.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){});
+		</script>
+	</body>
+</html>

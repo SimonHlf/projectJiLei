@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* CSS Document */
+html{
+	font-size:625%;
+}
+/** 清除内外边距 **/
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,dl,dt,dd,input,select,textarea{margin:0;padding:0;}
+
+/** 设置默认字体 **/
+body{font-size:0.16rem;font-family: "Helvetica Neue", Helvetica, sans-serif;-webkit-user-select: none;-webkit-text-size-adjust: 100%;}
+
+/** 重置图片元素 **/
+img{border:none;vertical-align:top;display:block;max-width:100%;}
+
+/** 重置列表元素 **/
+li{list-style:none;}
+
+/** 重置超链接元素 **/
+a{text-decoration:none;}
+
+/** 去除textarea、input文本框的resize outline样式 **/
+textarea{resize:none;font-family: "Helvetica Neue", Helvetica, sans-serif;outline: none;}
+input{outline:none;font-family: "Helvetica Neue", Helvetica, sans-serif;}
+
+/**通用浮动类元素 **/
+.fl{float:left;}
+.fr{float:right;}
+
+/*清浮动*/
+.clearfix{zoom:1;}
+.clearfix:after{content:"";display:block;clear:both;}
+/* 多余文字...显示 */
+.ellip{
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+}
+.bodyPadBot{
+	padding-bottom: 0.6rem;
+}
+/* 三角形 */
+.triSpan{
+	width:0px;
+	height:0px;
+	position:absolute;
+}
+/* 清除a标签touchend时默认的灰色背景 */
+a,input{
+	-webkit-tap-highlight-color:transparent;
+}
+.removeAFocBg{
+	-webkit-tap-highlight-color:transparent;
+}
+button,input {
+  /* 解决ios下自带的圆角 */
+  -webkit-appearance: none;
+  border-radius: 0px;
+  border:none;
+}
+button{
+	outline: none;
+}
+.scrollerWrap{
+	width:100%;
+    position:absolute;
+    left:0px;
+    top:0px;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+/* 强制换行 */
+.lineBreak{
+	word-break:break-all;
+	word-wrap:break-word;
+}
+/* 遮罩层 */
+.layer{
+	width:100%;
+	height:100%;
+	display:none;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:980;
+	opacity:0;
+	background:rgba(0,0,0,.6);
+}
+.comStrongTit{
+	position:absolute;
+	background: #fff;
+	left:20px;
+	top:-10px;
+	font-size: 18px;
+	color:#333;
+	padding:0 6px;
+	font-weight:normal;
+}
+.oddColor{
+	background: #f3f4f5;
+}
+.noDataDiv{
+	width:1rem;
+	height:1.2rem;
+	margin:0.5rem auto;
+	text-align:center;
+}
+.noDataDiv span{
+	width:0.8rem;
+	height:0.8rem;
+	background:url(../images/noData.png) no-repeat;
+	background-size:cover;
+	display:inline-block;
+	margin-left:14px;
+}
+.noDataDiv p{
+	font-size:0.16rem;
+	color:#999;
+}

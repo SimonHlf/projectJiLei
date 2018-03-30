@@ -1,0 +1,38 @@
+.perInfos{
+	width: 85%;
+	height: 1.1rem;
+	border:1px solid #b8b8b8;
+	margin:0.30rem auto 0.2rem;
+	border-radius: 3px;
+	box-shadow: 0 0 10px #c4c4c4;
+	position: relative;
+}
+.perImg{
+	width: 0.70rem;
+	height: 0.70rem;
+	border:2px solid #898989;
+	border-radius: 3px;
+	margin:18px 0 0 20px;
+}
+.perInfoTxt{
+	margin:14px 0 0 15px;
+}
+.perInfoTxt strong{
+	font-size: 0.16rem;
+	color:#666;
+	margin-bottom: 0px;
+}
+.perInfoTxt p{
+	color: #777;
+	font-size: 0.14rem;
+	margin-top: 0px;
+}
+.batteryDiv{
+	width: 27px;
+	height: 50px;
+	background: url(../images/battery.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	right: 10px;
+	top:10px;
+}

@@ -1,0 +1,121 @@
+@import url("../../../css/footer.css");
+@import url("../../../css/comTip.css");
+
+body{
+	overflow:hidden;
+}
+.scanBg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background:url(../../charging/images/phoneBg.png) no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+.scanCon{
+	width:100%;
+	position: absolute;
+	left: 0px;
+	bottom: 56px;
+}
+.scanBg img{
+	width: 100%;
+	position:relative;
+	z-index:1;
+}
+.scanCharging{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 56px;
+	color:#666666;
+	text-align: center;
+}
+.settingDiv{
+	width:85%;
+	border:1px solid #444;
+	border-top:none;
+	position: relative;
+	margin:30px auto 0;
+	padding-bottom: 20px;
+}
+.shortSpan,
+.longSpan{height: 1px;
+	overflow: hidden;
+	background:#444;
+	position: absolute;
+	top:0px;
+}
+.shortSpan{
+	width:20px;
+	left: 0px;
+}
+.settingTit{
+	width:99px;
+	height: 20px;
+	background: url(../images/yunyingBg.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	left: 20px;
+	top: -9px;
+}
+.settingDiv p{
+	font-size: 0.16rem;
+	color:#444;
+	text-indent: 20px;
+	margin-top: 8px;
+}
+.settingDiv p.firstP{
+	padding-top: 20px;
+}
+.settingBtnDiv{
+	width: 100%;
+	height:100%;
+	position: absolute;
+	left: 0;
+	top:0px;
+	color:#666;
+	text-align: center;
+	z-index:2;
+}
+.settingBtnDiv button{
+	width: 1.1rem;
+	line-height: 0.35rem;
+	height: 0.35rem;
+	background: #4065a9;
+	color:#fff;
+	font-size:0.16rem;
+	border-radius: 4px;
+}
+.settingBtnDiv button.tixianBtn{
+	background: #f9a32e;
+	margin-top: 40px;
+}
+.myArea,
+.tixianRec{
+	margin-top: 15px;
+}
+@media all and (min-width:700px){
+	.settingBtnDiv button{
+		width: 1.5rem;
+		height: 0.5rem;
+	}
+	.settingBtnDiv button.tixianBtn{
+		margin:80px 0 0; 
+	}
+}
+.tixianInp{
+	width: 80%;
+	height: 0.35rem;
+	background:#b5b5b5;
+	padding-left: 5px;
+	color: #fff;
+	font-size: 0.18rem;
+	margin-top: 15px;
+}
+input.tixianInp::-webkit-input-placeholder{
+	color: #fff;
+	font-size: 0.14rem;
+}

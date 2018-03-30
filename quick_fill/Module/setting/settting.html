@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设置</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/setting.css"/>
+	</head>
+	<body>
+		<div class="scanBg">
+			<img class="phoneBg" src="../charging/images/phone.png"/>
+		</div>
+		<div class="settingDiv">
+			<span class="shortSpan"></span>
+			<span class="longSpan"></span>
+			<strong class="settingTit"></strong>
+			<p class="firstP">累积收益：3500元</p>
+			<p>累计用户：1200</p>
+			<p>当前用户：299</p>
+		</div>
+		<div class="settingBtnDiv">
+			<div>
+				<button class="tixianBtn" onclick="showAlert($('.confirmDiv'))">收益提现</button>
+			</div>
+			<div>
+				<button class="myArea" onclick="goMyCommunity()">我的小区</button>
+			</div>
+			<div>
+				<button class="tixianRec" onclick="goWithDrawRec()">提现记录</button>
+			</div>
+		</div>
+		<div class="layer"></div>
+		<!-- confirm 提现 -->
+	    <div class="confirmDiv">
+	    	<p>每天只可提现一次</p>
+	    	<p>
+	    		<input class="tixianInp" type="text" placeholder="请输入提现金额"/>
+	    	</p>
+	    	<button class="comTwoBtn twoBtn_cancel" onclick="closeAlert($('.confirmDiv'))">取消</button>
+			<button class="comTwoBtn twoBtn_sure" onclick="getCash()">确定</button>
+	    </div>
+	    <!-- 提现成功 -->
+	    <div class="alertDiv_succ">
+        	<p style="margin-top: 70px;">提现成功</p>
+        	<div class="succBg"></div>
+        	<button ontouchend="closeAlert($('.alertDiv_succ'))">确定</button>
+        </div>
+        <!-- 提现失败toast -->
+        <div class="toast-wrap">
+        	<span class="toast-msg"></span>
+     	</div> 
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid active"><a class="setA" href="settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js"></script>
+		<script src="../../jsPlugin/tipInfo.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				calPosScanForm();
+				//toast("提现失败，超出可提现金额");
+			});
+			//动态定位扫一扫手机内部的表单
+			function calPosScanForm(){
+				var longWidth = $(".settingDiv").width() - $(".shortSpan").width() - $(".settingTit").width();
+				var leftPos = $(".settingTit").width() + $(".shortSpan").width();
+				$(".longSpan").width(longWidth).css({"left":leftPos});
+				
+				$(".settingBtnDiv").height($(".phoneBg").height())
+			}
+			//跳转提现记录
+			function goWithDrawRec(){
+				window.location.href = "withdrawRec.html";
+			}
+			//跳转我的小区
+			function goMyCommunity(){
+				window.location.href = "myCommunity.html";
+			}
+			function getCash(){
+				if($(".tixianInp").val() == ""){
+					toast("请输入提现金额");
+				}
+			}
+		</script>
+	</body>
+</html>

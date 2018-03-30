@@ -1,0 +1,153 @@
+@import url("../../../css/footer.css");
+@import url("../../../css/comTip.css");
+
+.recDecBg{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 56px;
+	text-align: center;
+	opacity: 0.5;
+	z-index: -1;
+}
+.recDecBg img{
+	width: 60%;
+	display: inline-block;
+}
+.equipment{
+	width:85%;
+	border-top:1px solid #333;
+	position: relative;
+	margin:40px auto 0;
+}
+.areaName{
+	color:#999;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 0.16rem;
+}
+.listChargingArea li,
+.listEquip li{
+	height: 0.3rem;
+	line-height: 0.3rem;
+	border-bottom:1px solid #666666;
+	position: relative;
+	margin-bottom:5px;
+	color:#777;
+	font-size: 0.16rem;
+}
+.listChargingArea li a{
+	width: 0.5rem;
+	height: 0.22rem;
+	line-height: 0.22rem;
+	background: #f9a32e;
+	color: #fff;
+	border-radius: 4px;
+	text-align: center;
+	position: absolute;
+	right: 0px;
+	top:4px;
+	font-size: 0.14rem;
+}
+.equipNote{
+	width: 100%;
+	position: relative;
+	font-size: 0.16rem;
+	color:#999;
+	position: relative;
+}
+.noteUl li{
+	margin-bottom: 3px;
+	position: relative;
+}
+.noteUl li p{
+	font-size: 0.14rem;
+	text-indent: 18px;
+}
+.noteUl li span,
+.listEquip li span{
+	position: absolute;
+	border-radius: 50%;
+}
+.connectNet span,
+.loseNet span,
+.listConnectLi span,
+.listLostNetLi span{
+	width: 10px;
+	height: 10px;
+	left: 0px;
+}
+.connectNet span,
+.loseNet span{
+	top: 3px;
+}
+.connectNet span,
+.listConnectLi span{
+	background: #3dd34f;
+}
+.loseNet span,
+.listLostNetLi span{
+	background: #e6421c;
+}
+.portFree span,
+.usePort span,
+.badPort span{
+	width: 6px;
+	height: 6px;
+	top: 6px;
+	left: 2px;
+}
+.portFree span{
+	background: #3dd34f;
+}
+.usePort span{
+	background: #cdcdcd;
+}
+.badPort span{
+	background: #e6421c;
+}
+.addChargeBtn{
+	width: 0.9rem;
+	height: 0.35rem;
+	background: #638ad1;
+	color: #fff;
+	position: absolute;
+	right: 0px;
+	text-align: center;
+	line-height: 0.35rem;
+	border-radius: 4px;
+	font-size:0.14rem;
+}
+.listEquip{
+	margin-top: 10px;
+}
+.listEquip li{
+	position: relative;
+}
+.listEquip li p{
+	text-indent: 15px;
+}
+.listEquip li em{
+	width: 18px;
+	height: 18px;
+	background: url(../images/delIcon.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	right: 0px;
+	top: 8px;
+}
+.listConnectLi span,
+.listLostNetLi span{
+	top: 8px;
+}
+.remarkInfo{
+	width: 80%;
+	height: 50px;
+	border:1px solid #999999;
+	border-radius: 4px;
+	background: #f1f1f1;
+	margin:10px auto 0;
+	text-align: left;
+	font-size: .14rem;
+	color: #666666;
+}

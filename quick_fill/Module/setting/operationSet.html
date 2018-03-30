@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>运营设置</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/operationSet.css"/>
+		<link href="../../css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body class="bodyPadBot">
+		<div class="operationDiv">
+			<strong class="comStrongTit">运营设置</strong>
+			<p class="areaName">誉山国际三区</p>
+			<div class="comAddDiv">
+				<p>所在城市：</p>
+				<p>
+					<input type="text" value="广州市" placeholder="请填写小区所在的地区名称" />
+				</p>
+			</div>
+			<div class="comAddDiv">
+				<p>小区名称：</p>
+				<p>
+					<input type="text" value="誉山国际三区" placeholder="请填写小区名称6个汉字以内" maxlength="6" />
+				</p>
+			</div>
+			<div class="comAddDiv">
+				<p>小区地址：</p>
+				<p>
+					<input type="text" value="开发区东区宏明路271号1号楼" placeholder="请填写小区所在地址"/>
+				</p>
+			</div>
+			<div class="comAddDiv">
+				<p>联系电话：</p>
+				<p>
+					<input type="text" value="15015015012" placeholder="请填写小区运营商电话"/>
+				</p>
+			</div>
+			<button class="chargeSet" onclick="goChargingSet()">充电区设置</button>
+			<p class="comSetP">
+				<span class="comSetTit">电费标准</span>
+				<input class="numInp" type="number" />
+				<span>元/KWh</span>
+			</p>
+			<p class="tipTxt">
+				<span>提示：</span>
+				<span>仅用于系统计算每次从点的实际收益,并无实际意义 ,请按实际电费收费标准填写</span>
+			</p>
+			<p class="comSetP">
+				<span class="comSetTit">充值优惠</span>
+				<label>
+					<input type="checkbox" />
+					<span class="checkSpan"><em></em></span>
+				</label>
+			</p>
+			<div class="timePart">
+				<div class="startDiv">
+					<span>起：</span>
+					 <input id="startTimeInp" name="startTime" type="text" placeholder="请选择起始时间">
+				</div>
+				<div class="endDiv">
+					<span>至：</span>
+					<input id="endTimeInp" name="endTime" type="text" placeholder="请选择截止时间">
+				</div>
+			</div>
+			<div class="comSetP">
+				<span class="comSetTit">和固定充值金额关联</span>
+				<button class="addDisLi">增加档位</button>
+				<ul>
+					<li>
+						充值<input class="numInp" type="number" />元<span></span>赠送<input class="numInp" type="number" />元
+						<em class="delIcon"></em>
+					</li>
+					<li>
+						充值<input class="numInp" type="number" />元<span></span>赠送<input class="numInp" type="number" />元
+						<em class="delIcon"></em>
+					</li>
+				</ul>
+			</div>
+			<div class="setInfo">分成及管理员设置</div>
+			<div class="percentDiv">
+				<p>厂商分成比例<input type="text"/></p>
+				<p>运营商分成比例<input type="text"/></p>
+			</div>
+			<div class="mainPercentSet clearfix">
+				<!-- nav -->
+				<div class="clearfix">
+					<div class="nameSet fl">姓名</div>
+					<div class="numSet fl">用户编号</div>
+					<div class="detailSet fl">
+						<ul class="clearfix">
+							<li>
+								<p>运营</p>
+								<p>设置</p>
+							</li>
+							<li>
+								<p>设备</p>
+								<p>管理</p>
+							</li>
+							<li>
+								<p>注册</p>
+								<p>账户</p>
+							</li>
+							<li>
+								<p>运营</p>
+								<p>统计</p>
+							</li>
+							<li>
+								<p>费率</p>
+								<p>查看</p>
+							</li>
+							<li>
+								<p>分成</p>
+								<p>比例</p>
+							</li>
+						</ul>
+					</div>
+					<div class="addSet onlyAdd fl"><b></b></div>
+				</div>
+				<div class="listSetDiv clearfix">
+					<ul>
+						<li class="clearfix">
+							<p class="nameSet fl">黄利峰</p>
+							<p class="numSet fl">20150232</p>
+							<p class="detailSet fl">
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" name="operInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox" name=""/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<input class="perInpTxt" type="text"/>
+								</label>
+							</p>
+							<p class="addSet fl"><span></span></p>
+						</li>
+						<li class="clearfix">
+							<p class="nameSet fl">黄利峰</p>
+							<p class="numSet fl">20150232</p>
+							<p class="detailSet fl">
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" name="operInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox" name=""/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<span><em></em></span>
+									<input class="checkInp" type="checkbox"/>
+								</label>
+								<label for="">
+									<input class="perInpTxt" type="text"/>
+								</label>
+							</p>
+							<p class="addSet fl"><span></span></p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="buttonDiv">
+				<button>取消</button>
+				<button>确认修改</button>
+			</div>
+		</div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid active"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js"></script>
+		<script src="../../jsPlugin/mobiscroll.core-2.5.2.js"></script>
+		<script src="../../jsPlugin/mobiscroll.core-2.5.2-zh.js"></script>
+	
+		<script src="../../jsPlugin/mobiscroll.datetime-2.5.1.js"></script>
+		<script src="../../jsPlugin/mobiscroll.datetime-2.5.1-zh.js"></script>
+		<!-- 可根据自己喜好引入样式风格文件 -->
+		<script src="../../jsPlugin/mobiscroll.android-ics-2.5.2.js"></script>
+		<script src="../../jsPlugin/initCalender.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				initDate("startTimeInp");
+				initDate("endTimeInp");
+				$(".mainPercentSet").width($(window).width())
+			});
+			//跳转充电区设置页面
+			function goChargingSet(){
+				window.location.href = "chargingAreaSet.html";
+			}
+		</script>
+	</body>
+</html>

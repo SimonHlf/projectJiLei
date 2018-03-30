@@ -1,0 +1,76 @@
+@charset "utf-8";
+@import url("../../../css/perInfo.css");
+@import url("../../../css/footer.css");
+@import url("../../../css/comTip.css");
+.myElcCardLists{
+	width: 85%;
+	margin:0 auto;
+}
+.tipTxtP{
+	width: 100%;
+	height: 0.3rem;
+	line-height: 0.3rem;
+	text-align: center;
+	color: #999999;
+	font-size:14px;
+	margin-top:-10px;
+}
+.listsCard{
+	width: 100%;
+	border-top:1px solid #333;
+	position:relative;
+	margin-top:15px;
+}
+.listsCard  ul{
+	margin-top:20px;
+}
+.listsCard li{
+	width: 100%;
+	height:0.3rem;
+	line-height: 0.3rem;
+	border-bottom:1px solid #444;
+	color:#444;	
+	font-size:0.14rem;
+	position: relative;
+}
+.listsCard li a{
+	width: 0.4rem;
+	height: 0.2rem;
+	line-height: 0.2rem;
+	text-align: center;
+	color: #fff;
+	background: #f9a32e;
+	position: absolute;
+	right: 0px;
+	top:5px;
+	font-size: 0.12rem;
+	border-radius: 3px;
+}
+.addElcCard{
+	width: 85%;
+	margin:20px auto 0;
+	height: 0.4rem;
+	text-align: center;
+}
+.addElcCard button{
+	display: inline-block;
+	width: 1.1rem;
+	height: 0.4rem;
+	color:#fff;
+	background: #f9a32e;
+	font-size: 0.18rem;
+	border-radius: 4px;
+}
+#addCardInp{
+	width:80%;
+	height:0.35rem;
+	line-height: 0.35rem;
+	color:#fff;
+	background:#b5b5b5;
+	font-size: 0.16rem;
+	padding-left:5px;
+	margin-top:40px;
+}
+input::-webkit-input-placeholder {
+    color: #fff;
+}

@@ -1,0 +1,22 @@
+@import url("../../reChargeRecord/css/myRechargeRec.css");
+@import url("../../../css/footer.css");
+
+.withDrawDiv{
+	width:85%;
+	border-top:1px solid #333;
+	position: relative;
+	margin:40px auto 0;
+}
+.recDecBg{
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 26px;
+	text-align: center;
+	opacity: 0.5;
+	z-index: -1;
+}
+.recDecBg img{
+	width: 80%;
+	display: inline-block;
+}

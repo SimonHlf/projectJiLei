@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>设备状态查看</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/checkDeviceStatus.css"/>
+		
+	</head>
+	<body>
+		<div class="equipment">
+			<strong class="comStrongTit">设备管理</strong>
+			<p class="areaName">誉山国际三区-电动自行车充电区</p>
+			<div class="equipNote clearfix">
+				<span class="fl">注：</span>
+				<ul class="noteUl fl">
+					<li class="connectNet">
+						<span></span>
+						<p>充电桩已联网</p>
+					</li>
+					<li class="loseNet">
+						<span></span>
+						<p>充电桩已断网</p>
+					</li>
+					<li class="portFree">
+						<span></span>
+						<p>端口空闲</p>
+					</li>
+					<li class="usePort">
+						<span></span>
+						<p>端口占用</p>
+					</li>
+				</ul>
+			</div>
+			<div class="listEquip">
+				<ul>
+					<li class="listConnectLi">
+						<span></span>
+						<p>10000102</p>
+					</li>
+					<li class="listLostNetLi">
+						<span></span>
+						<p>10000102</p>
+					</li>
+					<li class="listConnectLi">
+						<span></span>
+						<p>10000102</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="layer"></div>
+		<div class="confirmDiv remarkDiv">
+	    	<p>位置及其他备注信息</p>
+	    	<div class="remarkInfo">1号楼架空层出入口处</div>
+	    	<button class="comTwoBtn twoBtn_sure" onclick="closeAlert($('.remarkDiv'))" style="margin-top: 10px;">确定</button>
+	    </div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid active"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

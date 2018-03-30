@@ -1,0 +1,20 @@
+@import url("../../../css/footer.css");
+@import url("../../reChargeRecord/css/myRechargeRec.css");
+.helpList li{
+	border-left:none;
+	border-bottom:1px solid #cfcfcf;
+	position: relative;
+}
+.helpList li span.radiusSpan{
+	left:0px;
+	top: 12px;
+	background:#f9a32e;
+}
+.helpList li p:nth-of-type(1){
+	width: 90%;
+	text-indent: 25px;
+}
+.helpList li p:nth-of-type(2){
+	width: 10%;
+}
+

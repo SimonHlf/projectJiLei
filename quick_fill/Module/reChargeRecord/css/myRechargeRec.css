@@ -1,0 +1,96 @@
+@charset "utf-8";
+@import url("../../../css/perInfo.css");
+@import url("../../../css/footer.css");
+
+.comList{
+	width: 85%;
+	margin:30px auto 0;
+	border-top:1px solid #333;
+	position:relative;
+}
+.comList ul{
+	margin-top:20px;
+}
+.chargeRecList li{
+	width: 100%;
+	border-left:1px solid #dcdcdc;
+	position: relative;
+}
+.innerPar{
+	min-height: 0.35rem;
+}
+.comList li span.radiusSpan{
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	position:absolute;
+}
+.chargeRecList li span.radiusSpan{
+	background:#638ad1;
+	left:-4px;
+	top: 12px;
+}
+.comList li p{
+	float:left;
+	font-size: 0.12rem;
+	line-height: 0.35rem;
+}
+.comList li p span.triBg{
+	width: 17px;
+	height: 10px;
+	background: url(../../../images/triSpan.png) no-repeat;
+	display: inline-block;
+	background-size: cover;
+	-webkit-transition: 0.5s;
+	transition:0.5s;
+}
+.botTriBg{
+	-webkit-transform: rotate(180deg);
+}
+.comList li p em{
+	color: #f9a32e;
+	font-style: normal;
+}
+.chargeRecList li p:nth-of-type(1){
+	width: 50%;
+	text-align: left;
+	text-indent: 10px;
+}
+.chargeRecList li p:nth-of-type(2){
+	width: 40%;
+	text-align: left;
+}
+.chargeRecList li p:nth-of-type(3){
+	width: 10%;
+	text-align: center;
+}
+.detailDiv{
+	width: 100%;
+	color: #999;
+	float: left;
+	display: none;
+}
+.helpDiv{
+	color:#adadad;
+}
+.detailDiv span{
+	display: inline-block;
+	text-indent: 10px;
+	width: 100%;
+	line-height: 0.25rem;
+	font-size: 0.12rem;
+	position: relative;
+}
+.helpDiv span{
+	text-indent:26px;
+	margin-bottom: 5px;
+}
+.detailDiv span em{
+	width:5px;
+	height: 5px;
+	border-radius: 50%;
+	background:#999999;
+	position:absolute;
+	left:2px;
+	top:10px;
+}

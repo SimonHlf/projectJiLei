@@ -1,0 +1,204 @@
+@charset "utf-8";
+@import url("../../../css/perInfo.css");
+@import url("../../../css/footer.css");
+@import url("../../../css/comTip.css");
+
+.chargingList{
+	width:85%;
+	margin:20px auto 0;
+}
+/* 没有充电 二维码扫一扫 */
+.scanBg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background:url(../images/phoneBg.png) no-repeat;
+	background-size: cover;
+	z-index: -1;
+}
+.scanCon{
+	width:100%;
+	position: absolute;
+	left: 0px;
+	bottom: 56px;
+}
+.scanBg img{
+	width: 100%;
+	position:relative;
+	z-index:1;
+}
+.scanCharging{
+	width: 100%;
+	height:100%;
+	position: absolute;
+	left: 0;
+	top:0;
+	color:#666;
+	text-align: center;
+	z-index:2;
+}
+.scanTit,
+.bianhao{
+	font-size: 0.16rem;
+}
+.scanTit{
+	margin:30px 0 10px;
+}
+.bianhao{
+	margin:10px 0 10px;
+}
+.scanCharging input{
+	width: 1.3rem;
+	height: 30px;
+	padding-left: 5px;
+	border:3px solid #4065a9;
+	border-radius: 20px;
+	font-size: 0.16rem;
+	color: #666;
+	text-align: center;
+}
+.scanCharging button{
+	width: 1.1rem;
+	line-height: 0.35rem;
+	height: 0.35rem;
+	background: #4065a9;
+	color:#fff;
+	font-size:0.16rem;
+	border-radius: 4px;
+}
+.scanCharging .sureBtn{
+	margin-top: 10px;
+}
+@media all and (min-width:700px){
+	.scanTit{ 
+		margin-top:70px;
+	}
+	.scanCharging button{
+		width: 1.5rem;
+		height: 0.5rem;
+	}
+	.saoyisao{
+		margin:20px 0;
+	}
+	.scanCharging input{
+		width: 1.8rem;
+		height: 34px;
+		margin:20px 0;
+	}
+}
+/* 单个充电 */
+.detailCon_sing{
+	width: 100%;
+	border:1px solid #333333;
+	position: relative;
+	padding-bottom: 15px;
+	color: #444444;
+}
+.innerCharge_sing{
+	padding:0 15px;
+	font-size: 0.14rem;
+}
+.locSingPar{
+	margin-top: 20px;
+}
+.comSingPar{
+	height: 0.35rem;
+	line-height: 0.35rem;
+}
+.innerCharge_sing span em{
+	width: 28px;
+	display: inline-block;
+}
+.stopChargDiv{
+	height: 0.4rem;
+	text-align: center;
+	margin-top: 30px;
+}
+.stopChargDiv button{
+	width: 1.2rem;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	background:#f9a32e;
+	color:#fff;
+	border-radius: 4px;
+	font-size: 0.16rem;
+}
+/* 多个充电 */
+.innerCharge_multi{
+	margin-bottom: 20px;
+}
+.comLeft_multi{
+	width: 38%;
+	background: #f9a32e;
+	color:#fff;
+	border-radius: 4px;
+	float: left;
+}
+.comRight_multi{
+	width: 60%;
+	float: right;
+	font-size: 0.14rem;
+	color: #444444;
+}
+@media all and (min-width:700px){
+	.comLeft_multi{
+		width:22%;
+	}
+	.comRight_multi{
+		width: 74%;
+	}
+}
+.comLeft_multi p{
+	height: 30%;
+	font-size: 0.14rem;
+	text-align: center;
+	margin-top: 2px;
+	position: relative;
+}
+.comLeft_multi p:first-child,
+.comLeft_multi p:last-child{
+	opacity: 0.7;
+}
+.comLeft_multi p:last-child{
+	text-indent: 28px;
+}
+.comLeft_multi p span{
+	width: 29px;
+	height: 15px;
+	background: url(../images/charging.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	top:50%;
+	margin-top:-8px;
+	left: 50%;
+	margin-left:-46px;
+}
+.innerR_multi{
+	min-height: 50%;
+	position: relative;
+}
+.innerR_multi:last-child div{
+	position: absolute;
+	left: 0;
+	bottom: 3px;
+}
+.innerR_multi:last-child span{
+	margin-right: 5px;
+}
+.innerR_multi:last-child p{
+	margin-top: 2px;
+}
+.innerR_multi span.location{
+	width:0.25rem;
+	height: 0.25rem;
+	background: url(../images/location.png) no-repeat;
+	background-size: cover;
+}
+.innerR_multi span.time{
+	width:0.20rem;
+	height: 0.20rem;
+	background: url(../images/time.png) no-repeat;
+	background-size: cover;
+}

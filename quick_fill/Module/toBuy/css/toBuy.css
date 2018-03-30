@@ -1,0 +1,71 @@
+@import url("../../../css/comTip.css");
+@import url("../../feedBack/css/feedBack.css");
+
+.toBeYunying button{
+	background:#638ad1;
+	font-size: 0.16rem;
+	border-radius: 4px;
+	color: #fff;
+	display: inline-block;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	padding:0 15px;
+	margin:15px 0 0 20px;
+}
+.beYunyingDiv{
+	width:90%;
+	background: #fff;
+	border-radius: 4px;
+	position: fixed;
+	left: 50%;
+	margin-left:-45%;
+	top:200px;
+	z-index: 1000;
+	padding-bottom: 15px;
+	display: none;
+}
+.comInnerDiv{
+	width: 100%;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	margin-top: 15px;
+}
+.comInnerDiv span,
+.comInnerDiv input{
+	float:left;
+}
+.comInnerDiv span{
+	margin-left:15px;
+	color:#333;
+	font-size: 0.14rem;
+}
+.comInnerDiv span em{
+	display: inline-block;
+	width: 14px;
+}
+.comInnerDiv input{
+	width: 68%;
+	border:1px solid #b5b5b5;
+	height: 0.38rem;
+	line-height: 0.38rem;
+	border-radius: 4px;
+	background:#ececec;
+	color:#666;
+	padding-left: 5px;
+}
+
+input::-webkit-input-placeholder{
+	color:#999;
+}
+.beYunyingDiv p{
+	color: #adadad;
+	font-size: 0.14rem;
+	padding:0 15px;
+	margin-top: 3px;
+}
+.beYunyingDiv p:nth-of-type(1){
+	margin-top: 5px;
+}
+.btnDiv{
+	text-align: center;
+}

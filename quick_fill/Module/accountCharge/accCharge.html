@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>账户充值</title>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/accCharge.css"/>
+		
+	</head>
+	<body class="bodyPadBot">
+		<!-- 个人用户信息 -->
+		<div class="perInfos">
+			<div class="perImg fl"></div>
+			<div class="perInfoTxt fl">
+				<strong>XX小区</strong>
+				<p>用户编号：00075</p>
+				<p>赠送用户：20.00元</p>
+				<p>账户余额：100.00元</p>
+			</div>
+			<div class="batteryDiv"></div>
+		</div>
+		<!--账户充值层-->
+		<input type="hidden" id="selNowNumInp" />
+        <div class="accChargeDiv">
+        	<strong class="comStrongTit">账户充值</strong>
+        	<div class="chargeTxt">马上充值</div>
+        	<ul class="clearfix">
+        		<li class="thirtyLi">
+        			<label for="thirtyInp">
+        				<span></span>
+        				<input name="chargeNumInp" id="thirtyInp" type="radio" value="30" />
+        			</label>
+        		</li>
+        		<li class="fiftyLi">
+        			<label for="fiftyInp">
+        				<span></span>
+        				<input name="chargeNumInp" id="fiftyInp" type="radio" value="50" />
+        			</label>
+        		</li>
+        		<li class="hund_oneLi">
+        			<label for="hunredInp_one">
+        				<span></span>
+        				<input name="chargeNumInp" id="hunredInp_one" type="radio" value="100" />
+        			</label>
+        		</li>
+        		<li class="hund_twoLi">
+        			<label for="hunredInp_two">
+        				<span></span>
+        				<input name="chargeNumInp" id="hunredInp_two" type="radio" value="200" />
+        			</label>
+        		</li>
+        	</ul>
+        	<div class="btnDiv">
+        		<button class="comBtn cancelBtn">取消</button>
+        		<button class="comBtn sureBtn">确认支付</button>
+        	</div>
+        </div>
+        <div class="activityDiv">
+        	<p>充值优惠活动：</p>
+        	<p>充值<span>XX</span>元赠送<span>XX</span>元</p>
+        	<p>充值<span>XX</span>元赠送<span>XX</span>元</p>
+        	<p>2018-02-10至2018-03-10</p>
+        	<div class="actBg"></div>
+        </div>
+        <!-- 提示信息弹层 -->
+        <div class="layer"></div>
+        <div class="alertDiv_fail">
+        	<p>此次充值失败</p>
+        	<p>原因：<span>通讯失败</span></p>
+        	<div class="decImg"></div>
+        	<button ontouchend="closeAlert($('.alertDiv_fail'))">确定</button>
+        </div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid active">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid"><a class="chargeA" href="../charging/charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<div class="toast-wrap">
+            <span class="toast-msg"></span>
+         </div>
+		<script type="text/javascript" src="../../jsPlugin/jquery.min.js" ></script>
+		<script src="../../jsPlugin/tipInfo.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".accChargeDiv li").each(function(i){
+					$(".accChargeDiv li").height(Math.ceil($(".accChargeDiv li").width()))
+				});
+				selectNowNum();
+				//showAlert($(".alertDiv_fail"))
+			});
+			//选取当前金额
+			function selectNowNum(){
+				$(".accChargeDiv input").each(function(i){
+					$(this).click(function(){
+						$(".accChargeDiv span").hide();
+						$(".accChargeDiv span").eq(i).show();
+						$("#selNowNumInp").val($(this).val());
+						//toast('请选择要充值的金额');
+					});
+				});
+			}
+		</script>
+	</body>
+</html>

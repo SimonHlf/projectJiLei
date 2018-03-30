@@ -1,0 +1,77 @@
+@import url("../../reChargeRecord/css/myRechargeRec.css");
+@import url("../../../css/footer.css");
+
+.chargeRecList{
+	width:85%;
+	border-top:1px solid #333;
+	position: relative;
+	margin:40px auto 0;
+}
+#ulList li{
+	border-left: none;
+	border-bottom: 1px solid #cfcfcf;
+}
+#ulList li p:nth-of-type(1){
+	width:22%;
+}
+#ulList li p:nth-of-type(2){
+	width:68%;
+	max-width: 68%;
+}
+#ulList li p:nth-of-type(3){
+	width:10%;
+}
+.hasVerify{
+	color: #638ad1;
+}
+.noVerify{
+	color: #eb8c76;
+}
+.moduleUl{
+	margin-top: 0px !important;
+	margin-bottom: 5px;
+}
+.moduleUl dd{
+	width: 30%;
+	height: 0.25rem;
+	line-height: 0.25rem;
+	font-size: 0.14rem;
+	float: left;
+	margin-bottom: 8px;
+	border:none !important;
+}
+@media all and (min-width:700px){
+	.moduleUl dd{
+		height: 0.35rem;
+		line-height: 0.35rem;
+	}
+}
+.moduleUl dd a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color:#fff;
+	background:#638ad1;
+	border-radius: 4px;
+}
+.marglR{
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.addAreaDiv{
+	width: 100%;
+	height: 0.4rem;
+	text-align: center;
+	margin-top: 20px;
+}
+.addAreaDiv button{
+	width: 1.1rem;
+	display: inline-block;
+	background: #f9a32e;
+	border-radius: 4px;
+	color:#fff;
+	font-size: 0.16rem;
+	height: 0.4rem;
+	line-height: 0.4rem;
+}

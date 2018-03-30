@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>充电中</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/charging.css"/>
+	</head>
+	<body class="bodyPadBot">
+		<!-- 个人用户信息 -->
+		<div class="perInfos">
+			<div class="perImg fl"></div>
+			<div class="perInfoTxt fl">
+				<strong>XX小区</strong>
+				<p>用户编号：00075</p>
+				<p>赠送用户：20.00元</p>
+				<p>账户余额：100.00元</p>
+			</div>
+			<div class="batteryDiv"></div>
+		</div>
+		<!-- 用户充电 -->
+		<div class="chargingList">
+			<!-- 一个充电 -->
+			<div class="singleCharging">
+				<div class="detailCon_sing">
+					<strong class="comStrongTit">正在充电</strong>
+					<div class="innerCharge_sing locSingPar clearfix">
+						<span class="locSpan fl">位<em></em>置：</span>
+						<p class="loacP fl">广州市上威工业园 电动自行车充电区</p>
+					</div>
+					<div class="innerCharge_sing comSingPar clearfix">
+						<span class="fl">电桩编号：</span>
+						<p class="fl">000000016</p>
+					</div>
+					<div class="innerCharge_sing comSingPar clearfix">
+						<span class="fl">收费标准：</span>
+						<p class="fl">0.35元/小时/包月/计次/KWh</p>
+					</div>
+					<div class="innerCharge_sing comSingPar clearfix">
+						<span class="fl">起始时间：</span>
+						<p class="fl">2018-02-10 18:05:33</p>
+					</div>
+				</div>
+				<div class="stopChargDiv">
+					<button>停止充电</button>
+				</div>
+			</div>
+		</div>
+		<div class="layer"></div>
+		<!-- alertFail -->	
+		<div class="alertDiv_fail">
+        	<p style="margin-top: 50px;">手动停止充电操作失败</p>
+        	<div class="decImg"></div>
+        	<button ontouchend="closeAlert($('.alertDiv_fail'))">确定</button>
+        </div>
+		<!-- confirm -->
+	    <div class="confirmDiv">
+	    	<p style="margin-top: 50px;">请确认要停止充电？</p>
+	    	<div class="confirmImg"></div>
+	    	<button class="comTwoBtn twoBtn_cancel" onclick="closeAlert($('.confirmDiv'))">取消</button>
+			<button class="comTwoBtn twoBtn_sure">确定</button>
+	    </div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid active"><a class="chargeA" href="charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js" type="text/javascript"></script>
+		<script src="../../jsPlugin/tipInfo.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				calWidSing();
+			});
+			//计算单个充电下的位置宽度
+			function calWidSing(){
+				$(".loacP").each(function(){
+					$(".loacP").width($(".innerCharge_sing").width() - $(".locSpan").width()-5);
+				});
+			}
+		</script>
+	</body>
+</html>

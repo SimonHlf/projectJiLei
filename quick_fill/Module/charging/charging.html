@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>扫一扫充电</title>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/charging.css"/>
+	</head>
+	<body class="bodyPadBot">
+		<!-- 个人用户信息 -->
+		<div class="perInfos">
+			<div class="perImg fl"></div>
+			<div class="perInfoTxt fl">
+				<strong>XX小区</strong>
+				<p>用户编号：00075</p>
+				<p>赠送用户：20.00元</p>
+				<p>账户余额：100.00元</p>
+			</div>
+			<div class="batteryDiv"></div>
+		</div>
+		<!-- 用户充电 -->
+		<div class="chargingList">
+			<!-- 没有充电二维码扫一扫 -->
+			<div class="scanBg">
+				<img class="phoneBg" src="images/phone.png"/>
+			</div>
+			<div class="scanCharging">
+				<p class="scanTit">扫码充电</p>
+				<button class="saoyisao">扫一扫</button>
+				<p class="bianhao">充电桩编号充电</p>
+				<div>
+					<input type="text" />
+				</div>
+				<button class="sureBtn" onclick="goCharging()">确定</button>
+			</div>
+			<!-- 判断计费模式 -->
+			
+		</div>
+		<div class="layer"></div>
+		<!-- footer -->
+		<div class="footer">
+			<ul class="clearfix">
+				<li class="fourWid">
+					<a class="homeA" href="../../index.html">
+						<span></span>
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="fourWid active"><a class="chargeA" href="charging.html">
+					<span></span>
+					<p>充电中</p>
+				</a></li>
+				<li class="fourWid"><a class="scanA" href="../scan/scan.html">
+					<span></span>
+					<p>扫一扫</p>
+				</a></li>
+				<li class="fourWid"><a class="setA" href="../setting/settting.html">
+					<span></span>
+					<p>设置</p>
+				</a></li>
+			</ul>
+		</div>
+		<script src="../../jsPlugin/jquery.min.js" type="text/javascript"></script>
+		<script src="../../jsPlugin/tipInfo.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				calPosScanForm();
+			});
+			//动态定位扫一扫手机内部的表单
+			function calPosScanForm(){
+				$(".scanCharging").height($(".phoneBg").height())
+			}
+			function goCharging(){
+				window.location.href = "beginCharging.html";
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,54 @@
+@import url("../../../css/perInfo.css");
+@import url("../../../css/footer.css");
+@import url("../../../css/comTip.css");
+
+.buyMouth{
+	width: 85%;
+	margin:30px auto 0;
+	position: relative;
+	border:1px solid #333;
+	padding-bottom: 20px;
+}
+.buyCon{
+	margin-top: 20px;
+	color:#444;
+	text-indent: 25px;
+}
+.buyCon input{
+	width: 50px;
+	font-size: 0.16rem;
+	border-bottom: 1px solid #666;
+	color:#444;
+}
+.buyInfoTxt{
+	width: 85%;
+	margin:20px auto 0;
+}
+.buyInfoTxt p{
+	margin-top: 3px;
+}
+.buyInfoTxt .infoTxtP{
+	font-size: 0.14rem;
+	color: #666666;
+}
+.buyInfoTxt .noteTxtP{
+	font-size: 0.14rem;
+	color: #999999;
+}
+.buyInfoTxt p span{
+	color: #f9a32e;
+}
+.buyBtnDiv{
+	text-align: center;
+	margin-top: 10px;
+}
+.buyBtnDiv button{
+	width: 1.2rem;
+	height: 0.4rem;
+	line-height: 0.4rem;
+	background:#f9a32e;
+	color:#fff;
+	border-radius: 4px;
+	font-size: 0.16rem;
+}
+
