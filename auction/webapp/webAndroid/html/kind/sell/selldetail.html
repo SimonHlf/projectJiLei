@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>玉商通</title>
+		<link rel="stylesheet" type="text/css" href="../../../../dist/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../../../../dist/css/com/headercom4.css">
+		<link rel="stylesheet" type="text/css" href="../../../../dist/css/kind/sell/selldetail.css">
+		<link rel="stylesheet" type="text/css" href="../../../jslib/swiper/css/swiper-3.4.1.min.css" />
+		<script src="../../../js/jquery-1.11.0.js"></script>
+		<script src="../../../js/jquery.date.js"></script>
+		<script src="../../../js/jquery-2.2.4.min.js"></script>
+		<script src="../../../jslib/swiper/js/swiper-3.4.1.min.js"></script>
+		<script src="../../../js/kind/sell/selldetail.js"></script>
+		<script src="../../../js/com/com.js"></script>
+	</head>
+
+	<body>
+		<!---------------------------商品详情页---------------------------------->
+		<div id="container">
+			<header id="header">
+				<div class="aBack">
+					<a href="#"><em class="iconfont">&#xe600;</em></a>
+				</div>
+				<ul class="aUs">
+					<li class="active">商品</li>
+					<li>详情</li>
+					<li>评价</li>
+				</ul>
+				<div class="aMore">
+					<em class="iconfont">&#xe617;</em>
+				</div>
+			</header>
+			<!----------------------------morelistss--------------------------->
+			<ul id="moreCon">
+				<li class="active">
+					<a href="/src/html/home/index.html">
+						<em class="iconfont">&#xe6d9;</em><span>首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="/src/html/kind/prokind/kind.html">
+						<em class="iconfont">&#xe601;</em><span>分类搜索</span>
+					</a>
+				</li>
+				<li>
+					<a href="/src/html/cart/cart.html">
+						<em class="iconfont">&#xe636;</em><span>购物车</span>
+					</a>
+				</li>
+				<li>
+					<a href="/src/html/person/person.html">
+						<em class="iconfont">&#xe607;</em><span>个人中心</span>
+					</a>
+				</li>
+			</ul>
+			<!--------------------轮播图--------------->
+			<div id="bannerCon">
+				<div class="swiper-container bannerBox">
+					<div class="swiper-wrapper swiperBox">
+						<div class="swiper-slide slide">
+							<a href="detail.html"><img src="../../../image/kind/auctionImg.jpg" title='' alt='' /></a>
+						</div>
+						<div class="swiper-slide slide">
+							<a href="detail.html"><img src="../../../image/kind/auctionImg.jpg" title='' alt='' /></a>
+						</div>
+						<div class="swiper-slide slide">
+							<a href="detail.html"><img src="../../../image/kind/auctionImg.jpg" title='' alt='' /></a>
+						</div>
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination pageN"></div>
+				</div>
+			</div>
+			<!-------------------------------main区--------------------------->
+			<div id='main'>
+				<div class="proName">
+					天然橙黄玉玉石串
+				</div>
+				<div class="time">
+					<div class="img">
+						交易时间
+					</div>
+					<div class="startTime">
+						开始时间：<input type="text" placeholder="请选择拍卖开始时间" id="dateTime" data-options="{'type':'YYYY-MM-DD hh:mm','beginYear':2010,'endYear':2088}" /><span><em class="iconfont">&#xe665;</em>
+</span>
+					</div>
+					<div class="endTime">
+						结束时间：<span>2018/2/14<b>10:29</b></span>
+					</div>
+				</div>
+				<div class="kong"></div>
+				<div class="numPoint">
+					<p><span>最低积分</span><input placeholder="985" type="text" /></p>
+					<p><span>最高积分</span><input type="text" /></p>
+					<p><span>保证金</span><input type="text" /></p>
+				</div>
+				<div class="btm">
+					<a href="javascript:void(0);">确认</button>
+				</div>
+			</div>
+			<!--------------------------------------------------------->
+
+		</div>
+
+	</body>
+</html>

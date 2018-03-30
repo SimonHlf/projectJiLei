@@ -1,0 +1,197 @@
+.queryCategDiv{
+	height:30px;
+	line-height:30px;
+	margin-bottom:-10px;
+	margin-top:5px;
+	color:#666;
+	display:none;
+}
+.arrowI{
+	width:22px;
+	height:22px;
+	background:url(../images/arrow.png) no-repeat;
+	display:inline-block;
+	margin-top:4px;
+}
+.selQuery a{
+	display:inline-block;
+	height:22px;
+	line-height:22px;
+	border:1px solid #DDD;
+	background:#fff;
+	color:#666;
+	padding:0 0 0 15px;
+	margin-top:3px;
+	position:relative;
+	margin-right:5px;
+}
+.selQuery a:hover{
+	border:1px solid #e4393c;
+	color:#e4393c;
+}
+.selQuery a span{
+	float:left;
+}
+.selQuery a em{
+	width:24px;
+	height:24px;
+	background:url(../images/closeQuery.png) no-repeat;
+	float:left;
+}
+.categoryDiv{
+	background: #fff;
+	margin-top: 15px;
+}
+.categoryDiv dl{
+	border-bottom: 2px dashed #c1c1c1;
+	padding:10px 0;
+	position: relative;
+	padding-left: 100px;
+}
+.categoryDiv dl dt{
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	background: url(../images/categoryBg.jpg) repeat-x;
+	margin-left: 10px;
+	position: relative;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	position: absolute;
+	left: 0;
+	top: 7px;
+}
+.categoryDiv dl dt span{
+	width: 12px;
+	height: 14px;
+	background: url(../images/categTri.png) no-repeat;
+	position: absolute;
+	right: -12px;
+	top: 11px;
+}
+.categoryDiv dl dd{
+	padding:6px 0;	
+	margin-left: 25px;
+	position: relative;
+}
+.categoryDiv dl dd a{
+	color: #333333;
+	font-size: 14px;
+	padding:0 6px;
+	height: 22px;
+	line-height: 22px;
+	display: inline-block;
+}
+.categoryDiv dl dd a.active,
+.categoryDiv dl dd a:hover{
+	color: #ca1d00;
+}
+.diyPriceDiv{
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.diyPriceDiv input{
+	width: 60px;
+	height: 10px;
+	padding:9px 0;
+	border:1px solid #dfdfdf;
+	padding-left: 3px;
+	color: #666;
+}
+.surePrice{
+	width: 45px;
+	height: 30px;
+	line-height: 30px;
+	background: #ff4400;
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+	border-radius: 2px;
+	font-style: normal;
+	cursor: pointer;
+	font-size: 14px;
+}
+.surePrice:hover{
+	text-decoration: underline;
+}
+.queryDiv{
+	height: 58px;
+	border-top: 1px solid #bfbfbf;
+	border-bottom: 1px solid #bfbfbf;
+	border-right: 1px solid #bfbfbf;
+	margin-top: 30px;
+}
+.queryDiv li{
+	height: 58px;
+	line-height: 58px;
+	border-left: 1px solid #bfbfbf;
+	float: left;
+	font-size: 16px;
+}
+.queryDiv li a{
+	display: inline-block;
+	height: 100%;
+	padding:0 24px;
+	color: #363636;
+	position: relative;
+}
+.queryDiv li.active{
+	background:#fff;
+}
+.queryDiv li.active a{
+	color: #ca1d00;
+}
+.queryDiv li a .tirDiv{
+	width: 12px;
+	height: 30px;
+	position: absolute;
+	right: 9px;
+	top: 16px;
+}
+.queryDiv li a .tirDiv .comTri{
+	width: 0px;
+	height: 0px;
+	border-width: 6px;
+	left: 0;
+	position: absolute;
+}
+.queryDiv li a .tirDiv .topTri{
+	border-style: dashed dashed solid dashed;
+	top: -2px;
+}
+.queryDiv li a .tirDiv .colTri_top{
+	border-color:transparent transparent #cdcdcd transparent;
+}
+.actTri_t{
+	border-color:transparent transparent #ca1d00 transparent;
+}
+.botTri{
+	border-style: solid dashed dashed dashed;
+	bottom: 0px;
+}
+.colTri_bot{
+	border-color:#cdcdcd transparent transparent transparent;
+}
+.actTri_b{
+	border-color:#ca1d00 transparent transparent transparent;
+}
+.queryDiv li a .tirDiv .radiusSpan{
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: #cdcdcd;
+	position: absolute;
+	left: 4px;
+	top: 12px;
+}
+.queryDiv li a label{
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	display: inline-block;
+}

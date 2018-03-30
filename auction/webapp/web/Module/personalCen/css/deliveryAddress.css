@@ -1,0 +1,233 @@
+@import url("commonPersonal.css");
+
+.deliAddWrap{
+	width: 890px;
+	margin:0 auto -15px;
+}
+.addAdd{
+	height: 40px;
+	line-height: 40px;
+}
+.addAdd a{
+	width: 110px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	display: inline-block;
+	background: #ca1d00;
+	border:1px solid #a51902;
+	color: #fff;
+	font-size: 14px;
+	border-radius: 4px;
+}
+.addAdd a:hover{
+	background: #a51902;
+}
+.addAdd span{
+	color: #666;
+	margin-left: 15px;
+	font-size: 14px;
+}
+.addAdd span em{
+	font-style: normal;
+	color: #ca1d00;
+}
+.listAddress{
+	margin-top: 15px;
+}
+.listAddress li{
+	width: 888px;
+	border:1px solid #ddd;
+	padding:15px 0 0 0;
+	position: relative;
+	margin-bottom: 15px;
+}
+.listAddress li:hover{
+	box-shadow: 0 0 5px #ccc;
+}
+.comAddressDiv,
+.setFunDiv{
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	color: #666;
+}
+.comAddressDiv span.addTit{
+	float: left;
+	margin-left: 20px;
+}
+.comAddressDiv p{
+	float: left;
+	color: #333;
+}
+.defaultAdd{
+	height: 25px;
+	line-height: 25px;
+	padding:0 10px;
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	background: #f49068;
+	color: #fff;
+}
+.setFunDiv{
+	text-align: right;
+}
+.setFunDiv a{
+	color:#317db8;
+}
+.setFunDiv a:hover,
+.setFunDiv a.delAddBtn{
+	color: #ca1d00;
+}
+.setFunDiv a.delAddBtn{
+	margin-right: 20px;
+}
+.setFunDiv a.delAddBtn:hover{
+	color: #a51902;
+}
+.editAddBtn{
+	margin:0 10px;
+}
+
+
+/* 修改增加地址 */
+.setFixAddBox{
+	width:592px;
+	height:280px;
+	position:fixed;
+	left:-50%;
+	margin-left:-317px;
+	background:#fff;
+	z-index:1000;
+	border:1px solid #eee;
+	padding:20px;
+	display:none;
+}
+.setFixTit{
+	font-size:18px;
+	color:#fff;
+	font-weight:normal;
+}
+.closeAddWin{
+	width:45px;
+	height:45px;
+	position:absolute;
+	background:url(../images/excClose.png) no-repeat;
+	cursor:pointer;
+	right:-1px;
+	top:-1px;
+}
+.closeAddWin:hover{
+	background:url(../images/excClose.png) no-repeat 0 -45px;
+}
+.comEditFixBox{
+	padding:10px 0px;
+	color:#666;
+	position:relative;
+}
+.comEditFixBox em{
+	font-style:normal;
+	width:100px;
+	text-align:right;
+}
+.comEditFixBox em i{
+	color:#FF0000;
+	font-style:normal;
+}
+.comInpTxt{
+	vertical-align:middle;
+	height:33px;
+	line-height:33px;
+	padding-left:5px;
+	border:1px solid #ccc;
+	color:#666;
+	font-family:"Microsoft YaHei";
+}
+.inpWid1{
+	width:290px;
+}
+.inpWid2{
+	width:338px;
+}
+.addFixInfos{
+	color:#666;
+	padding-left:18px;
+	background:url(../images/icon.gif) no-repeat -116px 0px;
+	display:none;
+}
+.comRightIcon{
+	width:15px;
+	height:15px;
+	background:url(../images/icon.gif) no-repeat -99px 0px;
+	display:none;
+	position:absolute;
+	top:17px;
+}
+#succDistrict{
+	right:182px;
+	top: 12px;
+}
+#succWriteNa{
+	right:191px;
+	top:17px;
+}
+#succAddress{
+	right:143px;
+}
+#succPhone{
+	right:191px;
+}
+.saveInfo{
+	width:120px;
+	margin:5px 0 0 215px;
+	background:#f49068;
+	height:35px;
+	line-height:35px;
+	font-size:16px;
+	color:#fff;
+	display:inline-block;
+	text-align:center;
+	border-radius:3px;
+}
+.saveInfo:hover{
+	background:#de5722;
+}
+#cancelUpdate{
+	margin-left:15px;
+	color:#666;
+	font-size:16px;
+}
+#cancelUpdate:hover{
+	text-decoration:underline;
+}
+.addInfoHead{
+	width:634px;
+	background:#f49068;
+	height:45px;
+	line-height:45px;
+	position:absolute;
+	left:-1px;
+	top:-1px;
+	text-indent:15px;
+}
+.fixAddForm{
+	margin-top:30px;
+}
+.blank{
+	width:4px;
+	display:inline-block;
+}
+.blankMl{
+	margin-left:8px;
+}
+.ml2{
+	margin-left:5px;
+}
+#province,
+#city,
+#district{
+	width:100px;
+	color:#666;
+}

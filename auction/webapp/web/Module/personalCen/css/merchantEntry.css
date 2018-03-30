@@ -1,0 +1,180 @@
+@import url("commonPersonal.css");
+
+.merchantWrap{
+	width: 890px;
+	margin:0 auto;
+}
+.refundNav{
+	width: 888px;
+	height: 34px;
+	background: #ccc;
+	border:1px solid #dedede;
+	margin-bottom:15px;
+}
+.refundNav li{
+	width: 296px;
+	height: 34px;
+	line-height: 34px;
+	float: left;
+	background: #ccc;
+	position: relative;
+	font-size: 14px;
+	color: #fff;
+	text-align: center;
+}
+.refundNav li.active{
+	background: #ca1d00;
+}
+.refundNav li:nth-of-type(3n-2){
+	z-index: 3;
+}
+.refundNav li:nth-of-type(3n-1){
+	z-index: 2;
+}
+.refundNav li span.triSpanL,
+.refundNav li span.triSpanR{
+	width: 0px;
+	height: 0px;
+	border-width: 17px;
+	position: absolute;
+	top: 0;
+}
+.refundNav li.active span.triSpanR{
+	border-color:transparent transparent transparent #ca1d00;
+	border-style:dashed dashed dashed solid;
+}
+.refundNav li span.triSpanL{
+	border-color:transparent transparent transparent #fff;
+	border-style:dashed dashed dashed solid;
+	left: 2px;
+}
+.refundNav li span.triSpanR{
+	border-color:transparent transparent transparent #ccc;
+	border-style:dashed dashed dashed solid;
+	right: -34px;
+}
+.stepNum{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 50%;
+	background: #fff;
+	position: absolute;
+	top: 7px;
+	left: 50%;
+	text-align: center;
+	color: #cccccc;
+	font-size: 12px;
+}
+.posL1{
+	margin-left: -68px;
+}
+.posL2{
+	margin-left: -80px;
+}
+.posL3{
+	margin-left: -52px;
+}
+.refundNav li.active .stepNum{
+	color: #ca1d00;
+}
+.comTit{
+	font-size: 20px;
+	color: #666;
+	font-weight: 700;
+	display: inline-block;
+	margin-left: 20px;
+}
+.marginTitT{
+	margin-top: 45px;
+}
+.comMerchantCon{
+	width: 750px;
+	position: relative;
+	margin-top: 30px;
+	padding-left: 140px;
+}
+.comMerchantCon span.titSpan{
+	position: absolute;
+	left: 40px;
+	top: 0;
+	font-size: 14px;
+	color: #666;
+	text-align: right;
+}
+.comMerchantCon span.titSpan em{
+	color:#f00;
+	font-style: normal;
+	padding-top: 2px;
+}
+.comMerchantCon input{
+	width: 260px;
+	height: 10px;
+	padding:10px 0 10px 5px;
+	font-size: 14px;
+	color: #666;
+	border:1px solid #ccc;
+}
+.comMerchantCon input::-webkit-input-placeholder{
+	color: #999;
+}
+.comMerchantCon a{
+	width: 133px;
+	height: 90px;
+	border:1px solid #ccc;
+	display: inline-block;
+	position: relative;
+	background: url(../images/add.png) no-repeat center;
+}
+.comMerchantCon a span{
+	position: absolute;
+	left: 32px;
+	bottom: 2px;
+	color: #666;
+}
+.comPreview,
+.comPreviewShow{
+	width: 133px;
+	height: 90px;
+	border:1px solid #ccc;
+	position: absolute;
+	left: 140px;
+	top: 0px;
+	cursor: pointer;
+	z-index: 5;
+}
+.comPreview{
+	display: none;
+}
+.comPreview img,
+.comPreviewShow img{
+	width:133px;
+	height:90px;
+}
+.tipInfo{
+	margin-left: 25px;
+	font-size: 14px;
+	color: #999;
+}
+.tipInfo p.margTp{
+	margin-top: 10px;
+}
+.exampleDiv{
+	margin-left: 25px;
+	font-size: 14px;
+	color: #999;
+}
+.subBtn{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	border:none;
+	background: #ca1d00;
+	color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+	margin:30px 0 0 320px;
+}
+.subBtn:hover{
+	background: #a51902;
+}

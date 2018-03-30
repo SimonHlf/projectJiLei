@@ -1,0 +1,29 @@
+﻿.dqld_div{
+	width:100%;
+    position:fixed;
+    margin:0 auto;
+    background:rgba(255,255,255,1);
+    left:0px;
+    bottom:-50px;
+    z-index:997;
+    overflow: auto;
+    height:300px;
+    max-width:pxToRem(640px);
+    
+    
+}
+
+.dqld_div ul{
+	width:80%;
+    background:#FFFFFF;
+    margin:0 auto;
+}
+
+.dqld_div ul li{
+	height:35px;
+	line-height:35px;
+	border-bottom:1px solid #cccccc;
+	padding-left:10px;
+	font-size:14px;
+	
+}

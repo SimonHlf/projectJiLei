@@ -1,0 +1,370 @@
+@import url("commonPersonal.css");
+
+.yongjinListNav{
+	width: 100%;
+	height: 38px;
+	line-height: 38px;
+	border-bottom: 2px solid #ccc;
+}
+.yongjinListNav li{
+	height: 40px;
+	float: left;
+	width: 110px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 10px;
+}
+.yongjinListNav li a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	color: #666;
+}
+.yongjinListNav li.active a,
+.yongjinListNav li a:hover{
+	color: #ca1d00;
+}
+.yongjinListNav li.active{
+	height: 38px;
+	border-bottom: 2px solid #ca1d00;
+}
+.innerCartCon{
+	margin-bottom: 20px;
+}
+.orderListNav{
+	width: 100%;
+	height: 38px;
+	line-height: 38px;
+	border-bottom: 2px solid #ccc;
+}
+.orderListNav li{
+	height: 40px;
+	float: left;
+	width: 100px;
+	font-size: 16px;
+	color: #666;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 10px;
+}
+.orderListNav li span{
+	font-size: 14px;
+	color: #ca1d00;
+	margin-left: 3px;
+	font-weight: 600;
+}
+.orderListNav li.active,
+.orderListNav li:hover{
+	color: #ca1d00;
+}
+.orderListNav li.active{
+	height: 38px;
+	border-bottom: 2px solid #ca1d00;
+}
+.cartConNav{
+	width: 880px;
+	height: 30px;
+	line-height: 30px;
+	margin:15px auto 0;
+	background: #f1f1f1;
+}
+.cartConNav li{
+	float: left;
+	font-size: 14px;
+	color: #666;
+	text-align: center;
+}
+.oneCartWid{
+	width: 500px;
+}
+.oneCartWid1{
+	width: 390px;
+	padding-left: 110px;
+	position: relative;
+}
+.twoCartWid{
+	width: 95px;
+	text-align: center;
+	font-size: 14px;
+	color: #333;
+	position: relative;
+}
+.oneAutiontWid{
+	width:415px;
+}
+.oneAutiontWid1{
+	width: 305px;
+	padding-left: 110px;
+	position: relative;
+}
+.twoAuctionWid{
+	width:180px;
+	text-align:center;
+}
+.threeAuctionWid{
+	width:140px;
+	text-align:center;
+}
+.innerCartCon li{
+	width: 880px;
+	min-height: 96px;
+	border:1px solid #dedede;
+	margin:15px auto 0;
+	position: relative;
+}
+.cartThumb{
+	width: 65px;
+	height: 65px;
+	position: absolute;
+	left: 30px;
+	top: 15px;
+}
+.cartThumb img{
+	width: 100%;
+	height: 100%;
+}
+.oneCartWid1 label{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	left: 10px;
+	top: 15px;
+}
+.oneCartWid1 label input{
+	cursor: pointer;
+}
+.cartProTit{
+	width: 230px;
+}
+.cartProTit1{
+	width:300px;
+}
+.cartProTit,
+.cartProTit1{
+	padding-top: 15px;
+}
+.cartProTit a,
+.cartProTit1 a{
+	color: #666;
+}
+.cartProTit a:hover,
+.cartProTit1 a:hover{
+	color: #ca1d00;
+}
+.comInnerCart{
+	float: left;
+}
+.shopImg{
+	height: 41px;
+	margin: 5px 0;
+}
+.shopImg a{
+	display: inline-block;
+	height: 100%;
+	line-height: 41px;
+	color: #999;
+}
+.shopImg a img{
+	width: 41px;
+	height: 41px;
+	margin-right: 5px;
+}
+.shopImg a:hover{
+	color: #ca1d00;
+}
+.cartCateg{
+	width: 140px;
+	position: absolute;
+	right: 0px;
+	top: 15px;
+	color: #999;
+}
+.oldPrice{
+	color: #999;
+	text-decoration: line-through;
+	padding-top: 15px;
+}
+.buyNum{
+	width: 85px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #bfbfbf;
+	position: relative;
+	margin-left: 8px;
+	margin-top: 15px;
+}
+.buyNum span{
+	width: 20px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background:#f2f2f2;
+	position: absolute;
+	top: 0;
+	color: #848383;
+	cursor: pointer;
+	font-size: 14px;
+}
+.leftSp{
+	left: 0;
+	border-right:1px solid #bfbfbf;
+}
+.rightSp{
+	right:0px;
+	border-left:1px solid #bfbfbf;
+}
+.buyNum p{
+	width: 43px;
+	height: 100%;
+	margin-left: 21px;
+}
+.buyNum p input{
+	width: 100%;
+	border:none;
+	font-size: 14px;
+	text-align: center;
+	height: 14px;
+	padding:7px 0;
+	color: #666;
+}
+.totalPrice{
+	color: #ca1d00;
+	font-weight: 700;
+	padding-top: 15px;
+}
+.statusP,
+.timeP{
+	padding-top:15px;
+	color:#666;
+	font-size:14px;
+}
+.delOrder{
+	width: 20px;
+	height: 20px;
+	background: url("../images/del.png") no-repeat;
+	display: inline-block;
+	margin-top: 15px;
+}
+.delOrder:hover{
+	background: url("../images/delHover.png") no-repeat;
+}
+.loseEfficacy{
+	background: #efefef;
+}
+.loseEfficacy a,
+.loseEfficacy p{
+	color: #999 !important;
+}
+.loseEfficacy a:hover{
+	text-decoration: underline;
+}
+.loseTag{
+	position: absolute;
+	width: 30px;
+	height: 20px;
+	line-height: 20px;
+	left: 0px;
+	top: 35px;
+	background: #e0e0e0;
+	text-align: center;
+	font-size: 12px;
+	color: #999;
+}
+.loseEfficacy a.findSame{
+	color: #ca1d00 !important;
+	position: absolute;
+	left: 28px;
+	top: 40px;
+	font-weight: 700;
+}
+.botPay{
+	width: 882px;
+	height: 45px;
+	margin:15px auto 0;
+	background: #e5e5e5;
+	position: relative;
+}
+.botPay label{
+	height: 100%;
+	display: inline-block;
+	line-height: 45px;
+	cursor: pointer;
+	font-size: 14px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.botPay a{
+	color: #333;
+}
+.botPay a:hover{
+	color: #ca1d00;
+}
+.botPayDel{
+	margin-right: 15px;
+}
+.hasSelSpan{
+	margin-left: 260px;
+	color: #333;
+}
+.totalSpan{
+	color: #333;
+	margin-left: 35px;
+}
+.hasSelSpan em,
+.totalSpan em{
+	font-style: normal;
+	font-weight: 700;
+	color: #ca1d00;
+	margin:0 2px;
+	font-size: 14px;
+}
+.goPayA{
+	width: 110px;
+	height: 100%;
+	line-height: 45px;
+	font-size: 16px;
+	text-align: center;
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #fff !important;
+}
+.noSelA{
+	background: #b1b1b1;
+	cursor: default;
+}
+.hasSelA{
+	background: #ca1d00;
+}
+.hasSelA:hover,
+.auctionBtn:hover{
+	background: #a51902;
+}
+.auctionBtn{
+	width: 46px;
+	height: 20px;
+	line-height: 20px;
+	background: #ca1d00;
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+	margin-top: 15px;
+	font-size: 12px;
+}
+.getGoods{
+	color: #ca1d00;
+	position: absolute;
+	left: 21px;
+	top: 40px;
+}
+.getGoods:hover{
+	color:#a51902; ;
+}
+.tradeTime{
+	color: #999;
+	position: absolute;
+	left: 10px;
+	top: 60px;
+	font-size: 12px;
+}

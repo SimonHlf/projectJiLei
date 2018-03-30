@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" http-equiv="Content-Type">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="format-detection" content="email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<title>玉商通</title>
+		<link rel="stylesheet" type="text/css" href="../../../dist/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="../../../dist/css/com/headercom1.css">
+		<link rel="stylesheet"  href="../../../dist/css/person/addnewaddress.css">
+		<link rel="stylesheet" type="text/css"  href="../../jslib/swiper/css/swiper-3.4.1.min.css" />
+		<link href="../../jslib/jqueryarea/area.css" rel="stylesheet" type="text/css"/>
+		<script src="../../jslib/swiper/js/swiper-3.4.1.min.js" ></script>
+		<script src="../../js/jquery-1.11.0.js" ></script>
+		<script src="../../jslib/jqueryarea/jquery-1.9.1.js" ></script>
+    	<script type="text/javascript" src="../../jslib/jqueryarea/area.js"></script>
+		<script src="../../js/com/com.js" ></script>
+		<script src="../../js/person/addnewaddress.js" ></script>
+	</head>
+	<body>
+		<div id="container">
+			<header id="aboutHeader">
+				<div class="aBack">
+					<a href="javascript:void(0);"><em class="iconfont">&#xe600;</em></a>
+				</div>
+				<div class="aUs">新增收货地址</div>
+				<div class="aMore">
+					<em class="iconfont">&#xe617;</em>
+				</div>
+			</header>
+				<!----------------------------morelistss--------------------------->
+			<ul id="moreCon">
+				<li class="active">
+					<a href="/src/html/home/index.html">
+						<em class="iconfont">&#xe6d9;</em><span>首页</span>
+					</a>
+				</li>
+				<li>
+					<a href="/src/html/kind/prokind/kind.html">
+						<em class="iconfont">&#xe601;</em><span>分类搜索</span>
+					</a>
+				</li>
+				<li>
+					<a href="index.html">
+						<em class="iconfont">&#xe636;</em><span>购物车</span>
+					</a>
+				</li>
+				<li>
+					<a href="person.html">
+						<em class="iconfont">&#xe607;</em><span>个人中心</span>
+					</a>
+				</li>
+			</ul>
+			<!-------------------------------main区--------------------------->
+			<div id="main">
+				<form class="addrMsg">
+					<p> 
+					   <label for="person">收货人:</label>
+				       <input type="text"  name="收货人" id="person" />
+					</p>
+				     <p>
+				     	<label for="phone">联系电话:</label>
+				        <input type="text" name="联系电话" id="phone" />
+				     </p>
+				     <p>
+				     	<label for="tel">固定电话:</label>
+				        <input type="text" name="固定电话" id="tel" />
+				     </p>
+				     <p id="selectArea">
+				     	所在区域 
+					    <input class="address_input1" onclick="getProvinceBuy()"  type="text"  placeholder="请选择地区" id="shengshi"readonly="readonly"><b>></b>
+							     	
+				     </p>
+				      <p>
+				      	<label for="dec">详细地址</label></br>
+				        <input class="inpt" type="text" id="dec" />
+				     </p>
+				     <p>
+				     	<label for="default">设置默认地址</label>
+				        <input type="radio" id="default" />
+				     </p>
+				     
+				</form>
+				
+				<div class="btn">
+					<p><a href="javascript:void(0);">保存收货地址</a></p>
+				</div>
+			</div>
+			<div class="transparent-bg"></div>
+		</div>
+	</body>
+</html>

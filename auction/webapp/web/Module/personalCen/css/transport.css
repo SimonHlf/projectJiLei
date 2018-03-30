@@ -1,0 +1,65 @@
+@import url("../../../css/reset.css");
+@import url("../../../css/topFootPart.css");
+
+body{
+	background: #f4f4f6;
+}
+.transportDiv{
+	margin-top: 30px;
+}
+.titSt{
+	font-size: 20px;
+	color: #333;
+}
+.detailTransport{
+	padding:15px 0;
+	background: #fae2e2;
+	font-size: 14px;
+	color: #333;
+	margin-top: 15px;
+}
+.innerTrans{
+	width: 970px;
+	position: relative;
+	text-indent: 15px;
+	padding-left: 130px;
+}
+.innerTrans span.titTrans{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.innerTrans p{
+	margin-bottom: 10px;
+}
+.orderDetail{
+	width: 1098px;
+	border:1px solid #dedede;
+	margin:20px auto 0;
+}
+.topDetail{
+	height: 42px;
+	line-height: 42px;
+	background: #fae2e2;
+	color: #333;
+	font-size: 20px;
+	text-indent: 15px;
+	border-bottom: 1px solid #dedede;
+}
+.botDetail{
+	padding:15px 0;
+}
+.botDetail p{
+	font-size: 16px;
+	color: #666;
+	text-indent: 15px;
+	margin-bottom: 10px;
+}
+.oneBlank{
+	width: 32px;
+	display: inline-block;
+}
+.twoBlank{
+	width: 8px;
+	display: inline-block;
+}

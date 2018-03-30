@@ -1,0 +1,521 @@
+@import url("../../../css/reset.css");
+@import url("../../../css/topFootPart.css");
+@import url("../../../css/zoomImg.css");
+
+.proDetailCon{
+	border-top: 2px solid #a31000;
+	margin-top:20px;
+}
+.smNavP{
+	height: 30px;
+	line-height: 30px;
+	margin:10px 0;
+}
+.smNavP a{
+	color: #444;
+	margin-right: 5px;
+	font-size: 14px;
+}
+.smNavP a:hover{
+	color: #a31000;
+}
+.detialPro{
+	border:1px solid #b6b6b6;
+	padding-bottom: 15px;
+}
+.leftProImg{
+	width:350px;
+	height: 406px;	
+	margin:15px 0 0 15px;
+	float: left;
+}
+.rightProInfo{
+	width: 690px;
+	float: left;
+	margin:15px 0 0 30px;
+}
+.rightProInfo .productName{
+	font-size: 18px;
+	font-weight: normal;
+	color: #363636;
+	font-weight: 700;
+}
+.proIntro{
+	font-size: 14px;
+	color: #4c4c4c;
+	margin-top:5px;
+}
+.prodPrice{
+	height: 35px;
+	line-height: 35px;
+	margin-top: 15px;
+}
+.prodPrice .priceDec{
+	font-size: 12px;
+	color: #a31000;
+	font-weight: bold;
+}
+.prodPrice .priceSpan{
+	font-size: 22px;
+	color: #a31000;
+	font-weight: bold;
+	position: relative;
+}
+.prodPrice .oldPricSP{
+	font-size: 12px;
+	color: #999;
+	text-decoration: line-through;
+	margin-left: 5px;
+}
+.prodPrice .discrot{
+	width: 35px;
+	height: 20px;
+	line-height: 20px;
+	border:1px solid #a31000;
+	color: #a31000;
+	text-align: center;
+	position: absolute;
+	right: -45px;
+	top: -14px;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+}
+.discortInfo{
+	height: 30px;
+	line-height: 30px;
+	color: #363636;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.disDecSp{
+	width: 40px;
+	height: 18px;
+	line-height: 18px;
+	background: #f3b241;
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+	margin-right: 8px;
+	font-weight: normal;
+}
+.propertyTit,
+.propertyTit1,
+.propertyTit2{
+	color: #848383;
+	margin-right: 10px;
+}
+.propertyTit{
+	padding-top: 3px;
+}
+.comPorperty{
+	height: 35px;
+	line-height: 35px;
+	margin-top: 10px;
+	color: #363636;
+	position: relative;
+}
+.paddR{
+	padding-left: 33px;
+}
+.propertyTit2{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.comPorperty label{
+	height: 28px;
+	line-height: 28px;
+	border:1px solid #bfbfbf;
+	color: #848383;
+	padding:0 12px;
+	display: inline-block;
+	margin-right: 10px;
+	position: relative;
+	margin-bottom: 10px;
+}
+.comPorperty label.active,
+.comPorperty label:hover{
+	border:1px solid #a31000;
+	color: #a31000;
+}
+.comPorperty label input{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer;
+}
+.buyNum{
+	width: 85px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #bfbfbf;
+	position: relative;
+}
+.buyNum span{
+	width: 20px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background:#f2f2f2;
+	position: absolute;
+	top: 0;
+	color: #848383;
+	cursor: pointer;
+	font-size: 14px;
+}
+.leftSp{
+	left: 0;
+	border-right:1px solid #bfbfbf;
+}
+.rightSp{
+	right:0px;
+	border-left:1px solid #bfbfbf;
+}
+.buyNum p{
+	width: 43px;
+	height: 100%;
+	margin-left: 21px;
+	background: red;
+}
+.buyNum p input{
+	width: 100%;
+	border:none;
+	font-size: 14px;
+	text-align: center;
+	height: 14px;
+	padding:7px 0;
+	color: #666;
+}
+.btnWrap{
+	width:100%;
+	height:50px;
+	margin:20px 0 10px 0px;
+}
+.paimaiBtn,
+.goBuyBtn{
+	width: 180px;
+	height: 100%;
+	position: relative;
+}
+.paimaiBtn button,
+.goBuyBtn button{
+	width: 100%;
+	height: 100%;
+	font-size: 20px;
+	border-radius: 4px;
+	border:none;
+	cursor: pointer;
+	outline: none;
+}
+.paimaiBtn button{
+	background: #e4393c;
+	color: #fff;
+	text-indent:18px;
+}
+.goBuyBtn button:hover{
+	background:#fff;
+}
+.paimaiBtn{
+	margin-left:20px;
+}
+.goBuyBtn button{
+	border:1px solid #e4393c;
+	color:#e4393c;
+	background:#ffeded;
+}
+.paiMaiIcon{
+	width: 18px;
+	height: 25px;
+	background: url(../images/buyIcon.png) no-repeat;
+	position: absolute;
+	left: 16px;
+	top: 13px;
+}
+.paimaiBtn button:hover{
+	background: #d4373a;
+}
+.memberP{
+	color: #999;
+	margin:5px 0 0 0px;
+}
+.memberP span{
+	color: #a31000;
+}
+.topRightPro{
+	border-bottom: 1px dashed #d1d0d0;
+	padding-bottom: 10px;
+}
+.favPro{
+	margin-top: 5px;
+}
+.favPro p{
+	color: #999;
+}
+.serveP{
+	color:#363636;
+	margin-top: 10px;
+}
+.serveP span{
+	color: #999;
+	margin-right: 15px;
+}
+.serveUl{
+	height: 40px;
+	line-height: 40px;
+	margin-top: 10px;
+}
+.serveUl li{
+	width: 150px;
+	height: 40px;
+	float: left;
+	position: relative;
+	text-indent: 45px;
+	margin-right: 20px;
+	color: #999;
+}
+.serveUl li .comServIcon{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.serveUl li .zhengpinIcon{
+	background: url(../images/zhengpin.jpg) no-repeat;
+}
+.serveUl li .qitianIcon{
+	background: url(../images/qitian.jpg) no-repeat;
+}
+.serveUl li .tuihuanIcon{
+	background: url(../images/tuihuan.jpg) no-repeat;
+}
+.lineSpan{
+	width: 2px;
+	height: 20px;
+	overflow: hidden;
+	background: #d6cfd1;
+	position: absolute;
+	right: 5px;
+	top: 10px;
+}
+.rightSpec{
+	right: -5px;
+}
+.details{
+	margin-top: 15px;
+}
+.detailTabNav{
+	width: 1100px;
+	height: 40px;
+	background: #f7f7f7;
+	border-top: 1px solid #f1f1f1;
+	border-bottom: 1px solid #e4393c;
+}
+.smBuyBtn{
+	display:none;
+}
+.posRel{
+	position: relative;
+}
+.posFixed{
+	position: fixed;
+	left: 50%;
+	margin-left: -550px;
+	top: 0px;
+}
+.detailTabNav a{
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	background: #e4393c;
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.detailTabNav li{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	color: #666;
+	font-size: 14px;
+	text-align: center;
+	cursor: pointer;
+}
+.detailTabNav li.active{
+	background: #e4393c;
+	color: #fff;	
+}
+.detailsCon{
+	display: none;
+}
+.introTxtPro{
+	color: #999;
+	margin:15px 0 0 40px;
+}
+.introTxtPro span{
+	color: #5e69ad;
+}
+.proInfoUl{
+	margin:15px 0 15px 40px;
+	color: #999;
+}
+.proInfoUl li{
+	width:260px;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+}
+.proImgCon{
+	width: 100%;
+	text-align: center;
+}
+.proImgCon img{
+	display: inline-block;
+	max-width:100%;
+}
+.tagDiv{
+	width: 1078px;
+	border:1px solid #dedede;
+	margin-top: 20px;
+	padding:10px;
+	background: #f7f7f7;
+}
+.leftTagTit{
+	width: 100px;
+	text-align: center;
+	color: #333;
+	border-right: 1px dotted #ccc;
+	float: left;
+}
+.leftTagTit p{
+	font-size: 14px;
+	color: #333;
+}
+.leftTagTit strong{
+	font-size: 32px;
+	line-height: 32px;
+	color: #e4393c;
+}
+.rightTagList{
+	width: 965px;
+	float: left;
+	margin-left: 10px;
+}
+.rightTagList li{
+	height: 22px;
+	line-height: 22px;
+	border:1px solid #ca1d00;
+	padding:0 10px;
+	float: left;
+	border-radius: 4px;
+	margin-right: 10px;
+	cursor: pointer;
+	color: #ca1d00;
+	margin-bottom: 10px;
+}
+.rightTagList li label{
+	width: 100%;
+	height:100%;
+	display: inline-block;
+	cursor: pointer;
+}
+table.commentTab tr td{
+	border-bottom: 1px solid #ccc;
+	padding:16px 7px;
+}
+.contentPart p{
+	font-size: 12px;
+	color: #333;
+}
+.tdWid1{
+	width:700px;
+}
+.tdWid2{
+	width:193px;
+}
+.imgPart{
+	margin-top: 10px;
+}
+.imgPart li{
+	float: left;
+	padding:2px;
+	margin-right: 8px;
+	border:2px solid #f2f2f2;
+	-webkit-transition: border-color .2s ease-out;
+	transition: border-color .2s ease-out;
+	position: relative;
+	cursor: pointer;
+}
+.imgPart li.active{
+	border:2px solid #f23d6a;
+	border-radius: 2px;
+}
+.photosArrow{
+	width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    border: 6px dashed transparent;
+    border-top: 6px solid #f23d6a;
+    position: absolute;
+    left: 15px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    bottom: -8px;
+    background: 0 0;
+}
+.imgPart li.active b.photosArrow{
+	filter: alpha(opacity=100);
+    opacity: 1;
+    bottom: -12px;
+}
+.imgPart li img{
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+}
+.photoViewer{
+	position: relative;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 2px;
+    float: left;
+    overflow: hidden;
+    display: none;
+    position: relative;
+}
+.photoViewer span{
+	width: 30px;
+	height: 30px;
+	background: #e4393c url(../images/closeBig.png) no-repeat;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	cursor: pointer;
+}
+.timePart p,
+.rateSku{
+	color: #999;
+}
+.rateSku p{
+	margin-bottom: 5px;
+}
+.rateSku span{
+	color: #666;
+}
+.rate-user-info{
+    color: #666;
+}
+.rate-user-info span{
+	color: #999;
+}

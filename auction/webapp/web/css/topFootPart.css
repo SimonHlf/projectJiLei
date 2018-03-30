@@ -1,0 +1,320 @@
+.topSmNav{
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	background: #e9e9e9;
+}
+.innerSmNav{
+	height: 100%;
+}
+.helloTxt{
+	color: #ca1d00;
+}
+.regLogin a,
+.exitBtn,
+.hotSearch a{
+	color: #ca1d00 !important;
+}
+.regLogin a:hover,
+.perInfo a:hover,
+.hotSearch a:hover{
+	text-decoration: underline;
+}
+.loginBtn{
+	margin-right: 10px;
+}
+.perInfo,
+.perInfo a{
+	color: #666666;
+}
+.cartBtn{
+	margin: 0 10px;
+}
+.exitBtn{
+	margin-left: 10px;
+}
+.perInfo span{
+	margin-right: 15px;
+}
+.searchPart{
+	height: 118px;
+}
+.logo{
+	margin-top: 6px;
+}
+.locationA{
+	border:1px solid #ca1d00;
+	margin:38px 0 0 60px;
+	height: 28px;
+	line-height: 28px;
+	background: #f15339;
+	color: #fff;
+	padding: 0 10px;
+	display: inline-block;
+}
+.logoTxt{
+	margin:26px 0 0 18px;
+}
+.innerSearch{
+	width: 478px;
+	height: 70px;
+	margin:26px 26px 0 0;
+}
+.inpTxtPart{
+	width: 385px;
+	height: 36px;
+	border:2px solid #ca1d00;
+	border-radius: 4px 0 0 4px;
+	background: #fff;
+}
+.inpTxtPart .iconSear{
+	width: 31px;
+	height: 24px;
+	display: inline-block;
+	background: url(../images/searchIcon.png) no-repeat;
+	margin:8px 0 0 10px;
+}
+.inpTxtPart .searInp{
+	width: 336px;
+	border:none;
+	height:36px;
+	font-size: 14px;
+	color: #666;
+	padding-left:8px;
+}
+.inpTxtPart .searInp::-webkit-input-placeholder,
+.inpTxtPart .searInp::-ms-input-placeholder{
+	color: #999;
+}
+.buttonPart{
+	width: 87px;
+	height: 40px;
+	line-height: 40px;
+	background: url(../images/searBtnBg.png) repeat-x;
+	border-radius: 0 4px 4px 0;
+	border-right: 2px solid #ca1d00;
+	text-align: center;
+	color: #fff;
+	font-size: 16px;
+}
+.hotSearch{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	color:#ca1d00 ;
+}
+.hotSearch span{
+	float:left;
+}
+.hotSearch #hot_search{
+	margin-right: 10px;
+	float:left;
+	width:400px;
+}
+.hotSearch #hot_search a{margin-right:10px;}
+.navPart{
+	width: 100%;
+	height: 38px;
+	background: #ca1d00;
+}
+.innerNav{
+	height: 100%;
+	position: relative;
+}
+.innerNav p{
+	width: 120px;
+	height: 38px;
+	float: left;
+	margin-right: 5px;
+}
+.innerNav p a{
+	width: 100%;
+	height: 100%;
+	line-height: 38px;
+	display: inline-block;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+}
+.innerNav p.active a,
+.innerNav p a:hover{
+	background: #ffcc00;
+	color: #1d0c05;
+}
+.footer{
+	width: 100%;
+	height: 370px;
+	margin-top: 30px;
+}
+.topFootPart{
+	height: 242px;
+	background: #f6f2e4;
+	position: relative;
+}
+.topDec{
+	width: 100%;
+	height: 30px;
+	background: url(../images/footDec.png) repeat-x;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+}
+.leftDec,
+.rightDec{
+	width: 30px;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+}
+.leftDec{
+	background: url(../images/footDecXL.png) repeat-y;
+	left: 0;
+}
+.rightDec{
+	background: url(../images/footDecXR.png) repeat-y;
+	right: 0;
+}
+.tianchongL,
+.tianchongR{
+	width: 15px;
+	height: 25px;
+	position: absolute;
+	top: 12px;
+	z-index: 5;
+	background: url(../images/tianchongDec.png) repeat-y;
+}
+.tianchongL{
+	left: 0;
+}
+.tianchongR{
+	right: 0;
+}
+.botFootPart{
+	height: 128px;
+	background: #b8982e;
+}
+.comFootDl{
+	float: left;
+	margin-top: 45px;
+}
+.telDl{
+	margin-left: 30px;
+}
+.telDl dt{
+	position: relative;
+	text-indent: 50px;
+}
+.xinshouDl dt{
+	position: relative;
+	text-indent: 40px;
+}
+.margLOne,
+.margLTwo,
+.margLThree{
+	margin-left: 100px;
+}
+.telDl dt span,
+.xinshouDl dt span{
+	position: absolute;
+	left: 0px;
+	top: 2px;
+}
+.telDl dt span{
+	width: 44px;
+	height: 43px;
+	background: url(../images/tel.png) no-repeat;
+}
+.xinshouDl dt span{
+	width: 32px;
+	height: 32px;
+	background: url(../images/xinshou.png) no-repeat;
+}
+.telDl dt strong{
+	font-size: 24px;
+	color: #9d7e17;
+}
+.xinshouDl dt strong{
+	font-size: 18px;
+	color: #9d7e17;
+}
+.telDl dt p{
+	font-size: 16px;
+	color: #9d7e17;
+}
+.telDl dd{
+	color: #9d7e17;
+	font-size: 16px;
+	text-indent: 50px;
+}
+.telDl dd.margTdd{
+	margin-top: 30px;
+	
+}
+.xinshouDl dd.margTdd{
+	margin-top: 10px;
+}
+.xinshouDl dd{
+	text-indent: 40px;
+}
+.xinshouDl dd a{
+	color: #705b15;
+	font-size: 16px;
+}
+.xinshouDl dd a:hover{
+	color: #9d7e17;
+}
+.botFootPart p{
+	font-size: 16px;
+	text-align: center;
+	color: #fff;
+}
+.paddTp{
+	padding-top: 20px;
+}
+.botFootPart p a{
+	color: #fff;
+}
+.botFootPart p a:hover{
+	text-decoration: underline;
+}
+.absoPos{
+	position: absolute;
+}
+.fixedPos{
+	position: fixed;
+	top: 30px !important;
+}
+.fixedPos_kefu{
+	position: fixed;
+	top: 210px !important;
+}
+.kefuDiv{
+	width: 172px;
+	height: 240px;
+	border:2px solid #b61123;
+	border-radius: 2px;
+	background: #fff;
+}
+.kefuDec{
+	width: 182px;
+	height: 189px;
+	background: url(../images/kefuDec_03.jpg) no-repeat;
+	position: absolute;
+	left: 0;
+	top:-195px
+}
+.kefuCon{
+	width: 148px;
+	border-bottom:1px dashed #aaaaaa;
+	text-align: center;
+	margin:0 auto;
+	padding-bottom: 10px;
+}
+.kefuCon a.qqA,
+.kefuCon a.weixinA{
+	width: 137px;
+	height: 39px;
+	display: inline-block;
+	margin-top: 10px;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>确认订单</title>
+		<link rel="stylesheet" type="text/css" href="css/confirmOrder.css"/>
+	</head>
+	<body>
+		<!-- 顶部副导航 -->
+		<div class="topSmNav">
+			<div class="innerSmNav w1100">
+				<p class="helloTxt fl">您好，欢迎来到西藏锦绣!</p>
+				<div class="regLogin fr">
+					<a class="loginBtn" href="javascript:void(0)">登录</a>
+					<a href="javascript:void(0)">注册</a>
+				</div>
+				<!-- 登录进去后的个人信息 -->
+				<div class="perInfo fr" style="display: none;">
+					<span>你好，疯狂心跳最后一秒</span>
+					<a href="javascript:void(0)">会员中心</a>
+					<a class="cartBtn" href="javascript:void(0)">购物车</a>
+					<a href="javascript:void(0)">我的订单</a>
+					<a class="exitBtn" href="javascript:void(0)">退出</a>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索部分 -->
+		<div class="searchPart w1100">
+			<div class="fl">
+				<img class="logo" src="../../images/logo.jpg" alt="玉商通竞拍"/>
+				<a class="locationA" href="javascript:void(0)">郑州</a>
+				<img class="logoTxt" src="../../images/logoTxt .png" alt="近在咫尺的西藏锦绣"/>
+			</div>
+			<div class="innerSearch fr">
+				<div class="topSearch clearfix">
+					<div class="inpTxtPart fl">
+						<span class="iconSear fl"></span>
+						<input type="text fl" class="searInp" placeholder="请输入您要搜索商品的名字"/>
+					</div>
+					<a class="buttonPart fl" href="javascript:void(0)">搜索</a>
+				</div>
+				<div class="hotSearch">
+					<span>热门搜索：</span>
+					<a href="javascript:void(0)">当代油画</a>
+					<a href="javascript:void(0)">当代书法</a>
+					<a href="javascript:void(0)">珠宝宝石</a>
+				</div>
+			</div>
+		</div>
+		<!-- 导航部分 -->
+		<div class="navPart">
+			<div class="innerNav w1100">
+				<p><a href="../../index.html">首页</a></p>
+				<p><a href="../proCategory/proCategory.html">商品类别</a></p>
+				<p><a href="../youleBuy/youleBuy.html">优乐购</a></p>
+				<p><a href="../jifenBuy/jifenBuy.html">积分专区</a></p>
+				<p><a href="../auctionArea/auctionArea.html">竞拍专区</a></p>
+				<p><a href="../cultural/cultural.html">文化荟萃</a></p>
+				<p><a href="../aboutUs/aboutUs.html">关于我们</a></p>
+			</div>
+		</div>
+		<div class="confirmDivCon clearfix w1100">
+			<!-- 收货地址 -->
+			<div class="addressDiv">
+				<strong class="addressTit">确认收货地址</strong>
+				<div class="addressList">
+					<span class="listSpTit">邮寄到</span>
+					<!-- 存在收货地址 -->
+					<ul>
+						<li>
+							<label for="addInp1">
+								<p>濮阳市濮东产业集聚区新东路北段华龙科技创业园濮阳亮宇实业有限公司(<span>黄利峰</span>&nbsp;收) 18790958172</p>
+								<span class="radiusSpan selActSpan"><em></em></span>
+								<input type="radio" id="addInp1" class="addressInp" name="addressInp" />
+							</label>
+							<div class="setAdd fl">
+								<span class="defaultAdd">默认地址</span>
+								<a class="setAddBtn" href="">修改地址</a>
+							</div>
+						</li>
+						<li>
+							<label for="addInp1">
+								<p>濮阳市濮东产业集聚区新东路北段华龙科技创业园濮阳亮宇实业有限公司(<span>黄利峰</span>&nbsp;收) 18790958172</p>
+								<span class="radiusSpan"><em></em></span>
+								<input type="radio" id="addInp1" class="addressInp" name="addressInp" />
+							</label>
+							<div class="setAdd noDefaultAdd fl">
+								<a class="setAddBtn" href="">设置为默认地址</a>
+							</div>
+						</li>
+						<li>
+							<label for="addInp1">
+								<p>濮阳市濮东产业集聚区新东路北段华龙科技创业园濮阳亮宇实业有限公司(<span>黄利峰</span>&nbsp;收) 18790958172</p>
+								<span class="radiusSpan"><em></em></span>
+								<input type="radio" id="addInp1" class="addressInp" name="addressInp" />
+							</label>
+							<div class="setAdd noDefaultAdd fl">
+								<a class="setAddBtn" href="">设置为默认地址</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 确认订单 -->
+			<div class="confirmOrderDiv">
+				<strong class="addressTit">确认订单</strong>
+				<ul class="confirmNav">
+					<li class="confirWid1">商品</li>
+					<li class="confirWid2">商品属性</li>
+					<li class="confirWid2">单价</li>
+					<li class="confirWid2">数量</li>
+					<li class="confirWid2">总价</li>
+				</ul>
+				<div class="confirmDetail">
+					<ul>
+						<li class="clearfix">
+							<div class="comInnerCon confirWid3 detailCon">
+								<div class="topProDetail">
+									<div class="thumbnailImg">
+										<img src="images/thumbnail.jpg" />
+									</div>
+									<a href="">包邮 Phil利浦 SHE2000/SH包邮 Philips/飞利浦 SHE2000/SH</a>
+									<p>
+										<a href="">
+											<img src="images/shopThumb.jpg"/>
+											<span>西藏锦绣</span>
+										</a>
+									</p>
+								</div>
+								<div class="botMarkNote">
+									<div><span>给卖家留言:</span><textarea placeholder="选填:填写内容已和卖家协商确认"></textarea></div>
+									<div><span>发票信息：</span><input type="text" placeholder="选填:填写发票抬头" /></div>
+								</div>
+							</div>
+							<div class="comInnerCon confirWid4">类型：耳机</div>
+							<div class="comInnerCon confirWid4">单价：¥2300.00</div>
+							<div class="comInnerCon confirWid4 clearfix">
+								<div class="buyNum fl">
+									<span class="leftSp reduce">-</span>
+									<p><input type="text" value="1"></p>
+									<span class="rightSp plus">+</span>
+								</div>
+							</div>
+							<div class="comInnerCon confirWid4">总价：<span class="totalPrice">¥2300</span></div>
+						</li>
+					</ul>
+				</div>
+				<!-- 付款 -->
+				<div class="payDiv fr">
+					<div class="topPayDiv">
+						<h2><span>实收：</span><em>¥2300.00</em></h2>
+						<p><span>邮寄至：</span>濮阳市濮东产业集聚区新东路北段华龙科技创业园濮阳亮宇实业有限公司</p>
+						<p><span>收件人：</span>黄利峰</p>
+					</div>
+					<a href="">提交订单</a>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="topFootPart">
+				<div class="topDec"></div>
+				<div class="tianchongL"></div>
+				<div class="tianchongR"></div>
+				<div class="leftDec"></div>
+				<div class="rightDec"></div>
+				<div class="innerTopFoot w1100 clearfix">
+					<dl class="comFootDl telDl">
+						<dt>
+							<span></span>
+							<strong>037188888888</strong>	
+							<p>Tel:15093397465</p>
+						</dt>
+						<dd class="margTdd">郑州市台商大厦23楼</dd>
+						<dd>客服邮箱：56410674@qq.com</dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLOne">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">用户协议</a></dd>
+						<dd><a href="">常见问题</a></dd>
+						<dd><a href="">网站购物流程</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLTwo">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">配送收费标准</a></dd>
+						<dd><a href="">配送时间</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLThree">
+						<dt>
+							<span></span>
+							<strong>关于我们</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">了解西藏锦绣</a></dd>
+						<dd><a href="">联系我们</a></dd>
+						<dd><a href="">隐私声明</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="botFootPart">
+				<div class="w1100">
+					<p class="paddTp">友情链接：<a href="">西藏锦绣官网</a></p>
+					<p>CopyrightR 2009-2018 xizangguanwang,All rights Reserved 中国西藏锦绣有限公司 版权所有</p>
+					<p style="margin-top: 15px;">
+						<a href="">
+							<img src="../../images/shengming.png"/>
+						</a>
+						<a href="" style="margin-left: 15px;">
+							<img src="../../images/shengming1.png"/>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

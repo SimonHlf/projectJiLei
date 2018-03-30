@@ -1,0 +1,155 @@
+@import url("categoryFilter.css");
+body{
+	background: #f4f4f6;
+}
+.listProDiv{
+	margin-top: 20px;
+}
+.listProDiv li{
+	width: 260px;
+	height: 430px;
+	float:left;
+	background: #fff;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+}
+.listProDiv li:hover{
+	box-shadow: 0 0 20px #666;;
+}
+.listProDiv li:nth-of-type(4n){
+	float: right;
+}
+.listProDiv li:nth-of-type(4n-1),
+.listProDiv li:nth-of-type(4n-2){
+	margin-left: 20px;
+}
+.proImg{
+	width: 260px;
+	height: 350px;
+}
+.proImg img,
+.maylikeImg img{
+	width: 100%;
+	height: 100%;
+}
+.proPrice{
+	height: 40px;
+	line-height: 40px;
+	position: relative;
+}
+.proPrice .priceDec{
+	font-size: 12px;
+	color: #a31000;
+	margin-left: 6px;
+}
+.proPrice .nowPriceSp{
+	font-size: 22px;
+	color: #a31000;
+}
+.oldPriceSp{
+	margin-left: 5px;
+	text-decoration: line-through;
+	color: #999;
+}
+.discortSp{
+	border:1px solid #ff6b5a;
+	border-radius: 2px;
+	width: 48px;
+	height: 22px;
+	line-height: 22px;
+	position: absolute;
+	right: 10px;
+	top: 8px;
+	color: #fd6959;
+	text-align: center;
+	font-size: 14px;
+}
+.proInfoTxt{
+	padding:0 6px;
+}
+.proInfoTxt a{
+	height: 40px;
+	font-size: 12px;
+	color: #999;
+}
+.proInfoTxt a:hover{
+	color: #ff563a;
+}
+.maybeLikeTit{
+	background: #f33617;
+	height: 40px;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+	text-indent: 15px;
+	margin-bottom: 20px;
+	position: relative;
+}
+.maybeLikeTit a{
+	height: 100%;
+	position: absolute;
+	right: 10px;
+	color: #fff;
+	width: 50px;
+	cursor: default;
+}
+.maybeLikeTit a em.leftTri,
+.maybeLikeTit a em.rightTri{
+	width: 9px;
+	height: 14px;
+	position: absolute;
+	cursor: pointer;
+	top: 13px;
+}
+.maybeLikeTit a em.leftTri{
+	background: url(../images/leftTri.png) no-repeat;
+	left: 0px;
+}
+.maybeLikeTit a em.rightTri{
+	background: url(../images/rightTri.png) no-repeat;
+	right: 0px;
+}
+.mayLikeList li{
+	width: 340px;
+	height: 260px;
+	float: left;
+	background: #fff;
+}
+.mayLikeList li:nth-of-type(3n){
+	float: right;
+}
+.mayLikeList li:nth-of-type(3n-1){
+	margin-left:45px;
+}
+.mayLikeList li a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+.maylikeImg{
+	width: 340px;
+	height: 230px;
+}
+.mayLikeTxt{
+	height: 30px;
+	line-height: 30px;
+}
+.mayLikeTxt p{
+	width: 270px;
+	max-width: 270px;
+	font-size: 14px;
+	color: #848383;
+	text-indent: 10px;
+}
+.mayLikeTxt span{
+	margin-right:10px;
+	color: #848383;
+}
+.mayLikeTxt span em{
+	font-style: normal;
+	font-size: 16px;
+	color: #ff563a;
+}
+.mayLikeList li a:hover p{
+	color: #ff563a;
+}

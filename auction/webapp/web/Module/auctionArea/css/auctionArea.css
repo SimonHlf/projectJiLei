@@ -1,0 +1,226 @@
+@import url("../../../css/reset.css");
+@import url("../../../css/topFootPart.css");
+@import url("../../../css/auctionRecom.css");
+
+body{
+	background: #f4f4f6;
+}
+.auctionArea{
+	background: #fff;
+	padding-bottom: 15px;
+}
+.auctionMod{
+	width: 1010px;
+	height: 50px;
+	margin:0px auto 0;
+	text-align: center;
+	border-bottom: 2px solid #ca1d00;
+	position: relative;
+}
+.auctionMod p{
+	background: #fff;
+	position: absolute;
+	left: 426px;
+	top: 28px;
+	padding:0 30px;
+}
+.auctionMod p .jingPaiTit{
+	font-size: 20px;
+	color: #ca1d00;
+}
+.auctionMod p .newPro{
+	font-size: 26px;
+	color: #414040;
+}
+.listAuction{
+	width: 816px;
+	margin-top: 40px;
+	margin-left: 15px;
+}
+.listAuction li{
+	width: 816px;
+	height: 203px;
+	background: #f6f6f6;
+	position: relative;
+	margin-bottom: 15px;
+}
+.leftAuctionImg{
+	width: 480px;
+	height: 203px;
+}
+.leftAuctionImg a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+.rightActionInfo{
+	width: 240px;
+	height: 100%;
+	margin-left: 10px;
+	position: relative;
+}
+.rightActionInfo strong{
+	font-size: 20px;
+	color: #333;
+	font-weight: 600;
+	display: inline-block;
+	margin-top: 15px;
+}
+.jingpaiP{
+	width: 75px;
+	height: 96px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+}
+.bgColor{
+	background: #ca1d00;
+}
+.bgColor1{
+	background: #19a71c;
+}
+.jingpaiP span{
+	width: 100%;
+	height: 20px;
+	display: inline-block;
+	font-weight: bold;
+}
+.auctionTimes{
+	margin-top: 20px;
+}
+.auctionComp{
+	color: #333;
+	margin-top: 35px;
+}
+.auctionComp span,
+.countDown span{
+	color: #999;
+}
+.countDown{
+	position: absolute;
+	left: 0px;
+	bottom: 10px;
+	color: #999;
+}
+.oneBlank{
+	width: 8px;
+	display: inline-block;
+}
+.countDown em{
+	font-style: normal;
+	font-size: 20px;
+	font-weight: bold;
+	color: #80001a;
+}
+.sideAuction{
+	width: 246px;
+	border: 1px solid #cfcfcf;
+	margin:40px 2px 0 0;
+	background: #f6f6f6;
+	padding-bottom: 15px;
+}
+.innerSide{
+	width: 220px;
+	margin:15px auto 0;
+}
+.useHelpTxt{
+	width: 100%;
+	border:1px solid #cfcfcf;
+}
+.helpNav{
+	width: 100%;
+	height: 30px;
+	background: #f6f6f6;
+}
+.helpNav li{
+	width: 55px;
+	height: 100%;
+	line-height: 30px;
+	float: left;
+	text-align: center;
+	color: #666;
+	margin:0 7px;
+	cursor: pointer;
+}
+.helpNav li.active{
+	height: 28px;
+	border-bottom: 2px solid #7a001b;
+	color: #7a001b;
+}
+.helpNav li:hover,
+.comHelpCon p a:hover{
+	color: #7a001b;
+}
+.comHelpCon{
+	background: #fff;
+	padding:5px 0;
+	display: none;
+}
+.comHelpCon p{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	text-indent: 10px;
+	margin-top: 5px;
+}
+.comHelpCon p a{
+	color:#666;
+}
+.smMod{
+	width: 212px;
+	height: 30px;
+	border-bottom:2px solid #2b2b2b;
+	margin:0 auto;
+	position: relative;
+}
+.smMod strong{
+	position: absolute;
+	height: 100%;
+	padding:0 20px;
+	background: #f6f6f6;
+	left: 42px;
+	top: 14px;
+	font-size: 20px;
+	color: #2b2b2b;
+}
+.goodProList{
+	width: 220px;
+	background: #fff;
+	margin:25px auto 0;
+}
+.proImg{
+	height: 220px;
+	position: relative;
+}
+.proTit{
+	width:100%;
+	height: 35px;
+	line-height: 35px;
+	background:rgba(0,0,0,.5);
+	text-align: center;
+	font-size: 14px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.proTit a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	color: #fff;
+}
+.proTit a:hover{
+	text-decoration: underline;
+}
+.nowPrice{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	text-indent: 10px;
+}
+.nowPrice span{
+	color: #ca1d00;
+}

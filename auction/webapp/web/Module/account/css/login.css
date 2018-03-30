@@ -1,0 +1,162 @@
+@import url("../../../css/reset.css");
+@import url("../../../css/topFootPart.css");
+
+body{
+	background: #f1f1f1;
+}
+.midLogin{
+	height: 506px;
+	background: #e93854;
+	margin-bottom: -30px;
+}
+.loginDivWrap{
+	position: relative;
+	height: 100%;
+	background: url(../images/banner.jpg) no-repeat;
+}
+.loginDiv{
+	width: 336px;
+	height: 320px;
+	background: #fff;
+	position: absolute;
+	right: 0px;
+	top: 93px;
+}
+.titStrong{
+	font-size: 20px;
+	color: #ff4d43;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	width: 100%;
+	margin:15px 0 0 15px;
+}
+.comInpDiv{
+	width: 304px;
+	height: 38px;
+	line-height: 38px;
+	border:1px solid #bdbdbd;
+	margin:20px 0 0 15px;
+}
+.comInpDiv span.titSpan{
+	height: 100%;
+	width: 38px;
+	border-right: 1px solid #bdbdbd;
+	display: inline-block;
+	float: left;
+}
+.comInpDiv span.userIcon{
+	background: #f2f2f2 url(../images/user.png) no-repeat center;
+}
+.comInpDiv span.lockIcon{
+	background: #f2f2f2 url(../images/lock.png) no-repeat center;
+}
+.comInpDiv input{
+	height: 10px;
+	padding:14px 0;
+	width: 250px;
+	border:none;
+	float: left;
+	padding-left: 5px;
+	color: #666;
+	font-size: 14px;
+	font-weight: 700;
+}
+.comInpDiv input::-webkit-input-placeholder{
+	color: #999;
+	font-weight: normal;
+}
+.smFuncP{
+	height: 30px;
+	line-height: 30px;
+	margin-top: 10px;
+}
+.smFuncP a{
+	color:#666;
+}
+.smFuncP a:hover{
+	color: #ca1d00;
+}
+.smFuncP a.regBtn{
+	float: left;
+	margin-left: 15px;
+}
+.smFuncP a.forgPasBtn{
+	float: right;
+	margin-right: 15px;
+}
+.goLoginBtn{
+	width: 304px;
+	border:1px solid #ca2b2f;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	cursor:pointer;
+	background: #e43a3d;
+	margin:10px 0 0 15px;
+	outline: none;
+}
+.goLoginBtn:hover{
+	background: #bf1f21;
+}
+.authorLogin{
+	height: 40px;
+	line-height: 40px;
+	border-top: 1px solid #f4f4f4;
+	margin-top: 20px;
+}
+.authorCon{
+	height: 100%;
+}
+.authorCon a{
+	height: 100%;
+	position: relative;
+	text-indent: 23px;
+	margin-left: 15px;
+	color: #666;
+	float: left;
+}
+.authorCon a:hover{
+	color: #ca1d00;
+}
+.authorCon a.margL{
+	margin-left: 30px;
+}
+.authorCon a.regA{
+	float: right;
+	margin-right: 20px;
+}
+.authorCon a span{
+	width: 19px;
+	height: 18px;
+	position: absolute;
+	left: 0;
+	top: 12px;
+}
+.authorCon a span.qqIcon{
+	background: url(../images/QQ-weixin.png) no-repeat 0 0;
+}
+.authorCon a span.weixinIcon{
+	background: url(../images/QQ-weixin.png) no-repeat -19px 0;
+}
+.authorCon a em{
+	width: 1px;
+	height: 18px;
+	position: absolute;
+	background: #d5ccd5;
+	overflow: hidden;
+	right: -15px;
+	top: 12px;
+}
+
+
+.authorCon a span.weiboIcon{
+	width: 23px;
+	height: 18px;
+	position: absolute;
+	left: -3px;
+	top: 12px;
+	background: url(../images/weibo.png) no-repeat;
+}

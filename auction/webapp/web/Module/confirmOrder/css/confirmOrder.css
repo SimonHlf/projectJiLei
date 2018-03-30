@@ -1,0 +1,376 @@
+@import url("../../../css/reset.css");
+@import url("../../personalCen/css/deliveryAddress.css");
+
+
+body{
+	background: #f4f4f6;
+}
+.addressTit{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	font-size: 16px;
+	color: #cc1a00;
+	margin:30px 0 10px 0;
+}
+.addressList{
+	width: 1030px;
+	padding-left: 70px;
+	position: relative;
+}
+.noAddressDiv{
+	width: 1030px;
+	height:100px;
+	margin-top:30px;
+	position: relative;
+	text-align:center;
+}
+.noAddressDiv p{
+	font-size:18px;
+	color:#999;
+}
+.noAddressDiv p a{
+	color:#ca1d00;
+}
+.noAddressDiv p a:hover{
+	text-decoration:underline;
+}
+.addressList span.listSpTit{
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	color: #333;
+	font-weight: 700;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.addressList li{
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 5px;
+}
+.addressList li label{
+	display: inline-block;
+	height: 100%;
+	position: relative;
+	text-indent: 28px;
+	float: left;
+	margin-right: 15px;
+}
+.addressList li label input{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.addressList li label span.radiusSpan{
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	border:1px solid #333;
+	position: absolute;
+	left: 0;
+	top: 8px;
+}
+.addressList li label span.radiusSpan em{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	left: 2px;
+	top: 2px;
+}
+.addressList li label span.selActSpan{
+	border:1px solid #cc1a00;
+}
+.addressList li label span.selActSpan em{
+	background: url(../images/selIcon.png) no-repeat;
+}
+.setAdd a{
+	color: #36c;
+	margin-left: 10px;
+}
+.setAdd a:hover{
+	color: #cc1a00;
+}
+.noDefaultAdd a{
+	display: none;
+}
+.addressList li:hover .noDefaultAdd a{
+	display: block;
+}
+.confirmOrderDiv{
+	margin-top: 20px;
+}
+.confirmNav{
+	height: 35px;
+	line-height: 35px;
+}
+.confirmNav li{
+	float: left;
+	font-size: 16px;
+	font-weight: 700;
+	color: #666;
+	text-align: center;
+}
+.confirWid1{
+	width: 500px;
+}
+.confirWid2{
+	width: 150px;
+	text-align: center;
+}
+.confirWid4{
+	width: 149px;
+	text-align: center;
+	padding-top: 20px;
+}
+.confirWid5{
+	width: 145px;
+}
+.confirmDetail{
+	width: 1098px;
+	border:1px solid #dfdfdf;
+	background: #efefef;
+}
+.confirWid3{
+	padding: 20px;
+	width: 350px;
+}
+.detailCon{
+	position: relative;
+	min-height: 100px;
+	padding-left: 130px;
+}
+.botMarkNote{
+	margin:15px 0 0 -110px;
+}
+.botMarkNote div{
+	position: relative;
+	padding-left: 90px;
+	margin-bottom: 10px;
+}
+.botMarkNote div span{
+	position: absolute;
+	left: 0;
+	top: 2px;
+	font-size: 14px;
+}
+.botMarkNote div textarea,
+.botMarkNote div input{
+	width: 200px;
+	outline: #A31000;
+}
+.botMarkNote div textarea{
+	min-height: 30px;
+}
+.botMarkNote div input{
+	height: 8px;
+	padding:10px 0;
+}
+.botMarkNote div textarea::-webkit-input-placeholder,
+.botMarkNote div input::-webkit-input-placeholder{
+	color: #999;
+}
+.thumbnailImg{
+	width: 98px;
+	height: 98px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+.thumbnailImg img{
+	width: 100%;
+	height: 100%;
+}
+.comInnerCon{
+	float: left;
+	font-size: 14px;
+	color: #666;
+}
+.detailCon a{
+	font-size: 14px;
+	color: #666;
+}
+.detailCon a:hover,
+.totalPrice{
+	color: #cc1a00;	
+}
+.detailCon p{
+	height: 41px;
+	line-height: 41px;
+	margin-top: 10px;
+}
+.detailCon p img{
+	width: 41px;
+	height: 41px;
+	margin-right: 10px;
+}
+.buyNum{
+	width: 85px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #bfbfbf;
+	position: relative;
+	margin-left: 35px;
+}
+.buyNum span{
+	width: 20px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background:#f2f2f2;
+	position: absolute;
+	top: 0;
+	color: #848383;
+	cursor: pointer;
+	font-size: 14px;
+}
+.leftSp{
+	left: 0;
+	border-right:1px solid #bfbfbf;
+}
+.rightSp{
+	right:0px;
+	border-left:1px solid #bfbfbf;
+}
+.buyNum p{
+	width: 43px;
+	height: 100%;
+	margin-left: 21px;
+	background: red;
+}
+.buyNum p input{
+	width: 100%;
+	border:none;
+	font-size: 14px;
+	text-align: center;
+	height: 14px;
+	padding:7px 0;
+	color: #666;
+}
+.payDiv{
+	text-align: right;
+}
+.topPayDiv{
+	width: 610px;
+	height: 110px;
+	border:1px solid #cc1a00;
+	padding:20px;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+.topPayDiv h2 span{
+	font-size: 16px;
+	color: #333;
+}
+.topPayDiv h2 em{
+	color: #cc1a00;
+	font-size: 24px;
+	font-style: normal;
+}
+.topPayDiv p{
+	font-size: 16px;
+	color: #666;
+	margin:10px 0;
+}
+.topPayDiv p span{
+	font-weight: 700;
+	color: #333;
+}
+.payDiv a{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	background: #cc1a00;
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+}
+.payDiv a:hover{
+	background: #ec2204;
+}
+.payWay li{
+	width: 180px;
+	height: 50px;
+	line-height: 50px;
+	background: #fff;
+	font-size: 16px;
+	color: #333;
+	float: left;
+	border:1px solid #ccc;
+	margin-right: 15px;
+}
+.payWay li label{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+}
+.payWay li label input{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 5;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.payWay li label img,
+.payWay li label p{
+	float: left;
+}
+.payWay li label.active p{
+	color: #cc1a00;
+}
+.payWay li label img{
+	margin:8px 10px 0 15px;
+}
+.payWay li label span.selNowSp{
+	width: 24px;
+	height: 24px;
+	border:1px solid #ccc;
+	border-radius: 50%;
+	display: inline-block;
+	float: left;
+	margin:12px 0 0 5px;
+	position: relative;
+}
+.payWay li label span.current em{
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	position: absolute;
+	left: 7px;
+	top: 7px;
+	background: #cc1a00;
+}
+#newPayCode{
+	width:300px;
+	height:300px;
+	position:absolute;
+	left:-50%;
+	margin-left:-155px;
+	background:#fff;
+	z-index:1000;
+	display:none;
+}
+#newPayCode a{
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:40px;
+	height:40px;
+	background:red;
+	background:url(../images/close.png) no-repeat;
+}

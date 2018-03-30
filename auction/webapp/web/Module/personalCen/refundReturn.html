@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>申请退款退货</title>
+		<link rel="stylesheet" type="text/css" href="css/refundReturn.css"/>
+	</head>
+	<body>
+		<!-- 顶部副导航 -->
+		<div class="topSmNav">
+			<div class="innerSmNav w1100">
+				<p class="helloTxt fl">您好，欢迎来到西藏锦绣!</p>
+				<div class="regLogin fr">
+					<a class="loginBtn" href="../account/login.html">登录</a>
+					<a href="../account/register.html">注册</a>
+				</div>
+				<!-- 登录进去后的个人信息 -->
+				<div class="perInfo fr" style="display: none;">
+					<span>你好，疯狂心跳最后一秒</span>
+					<a href="javascript:void(0)">会员中心</a>
+					<a class="cartBtn" href="javascript:void(0)">购物车</a>
+					<a href="javascript:void(0)">我的订单</a>
+					<a class="exitBtn" href="javascript:void(0)">退出</a>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索部分 -->
+		<div class="searchPart w1100">
+			<div class="fl">
+				<img class="logo" src="../../images/logo.jpg" alt="玉商通竞拍"/>
+				<a class="locationA" href="javascript:void(0)">郑州</a>
+				<img class="logoTxt" src="../../images/logoTxt .png" alt="近在咫尺的西藏锦绣"/>
+			</div>
+			<div class="innerSearch fr">
+				<div class="topSearch clearfix">
+					<div class="inpTxtPart fl">
+						<span class="iconSear fl"></span>
+						<input type="text fl" class="searInp" placeholder="请输入您要搜索商品的名字"/>
+					</div>
+					<a class="buttonPart fl" href="javascript:void(0)">搜索</a>
+				</div>
+				<div class="hotSearch">
+					<span>热门搜索：</span>
+					<a href="javascript:void(0)">当代油画</a>
+					<a href="javascript:void(0)">当代书法</a>
+					<a href="javascript:void(0)">珠宝宝石</a>
+				</div>
+			</div>
+		</div>
+		<!-- 导航部分 -->
+		<div class="navPart">
+			<div class="innerNav w1100">
+				<p><a href="../../index.html">首页</a></p>
+				<p><a href="../proCategory/proCategory.html">商品类别</a></p>
+				<p><a href="../youleBuy/youleBuy.html">优乐购</a></p>
+				<p><a href="../jifenBuy/jifenBuy.html">积分专区</a></p>
+				<p><a href="../auctionArea/auctionArea.html">竞拍专区</a></p>
+				<p><a href="../cultural/cultural.html">文化荟萃</a></p>
+				<p><a href="../aboutUs/aboutUs.html">关于我们</a></p>
+			</div>
+		</div>
+		<!-- 退款退货内容区 -->
+		<div class="refundCon w1100">
+			<div class="refundNav">
+				<ul class="clearfix">
+					<li class="active">
+						<span class="triSpanR"></span>
+						<span class="stepNum posL1">01</span>
+						<p>买家申请退款</p>
+					</li>
+					<li>
+						<span class="triSpanL"></span>
+						<span class="triSpanR"></span>
+						<span class="stepNum posL2">02</span>
+						<p>卖家处理退款申请</p>
+					</li>
+					<li>
+						<span class="triSpanL"></span>
+						<span class="stepNum posL3">03</span>
+						<p>退款成功</p>
+					</li>
+				</ul>
+			</div>
+			<div class="refundConDiv clearfix">
+				<div class="leftRefund fl">
+					<div class="comLRefund">
+						<span class="titSpan">退款商品：</span>
+						<div class="refundPro clearfix">
+							<img src="images/refundImg.jpg" />
+							<div class="proTxt">
+								<p class="proTit">羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉</p>
+								<p class="proType">类型：羊脂玉200g</p>
+							</div>
+						</div>
+					</div>
+					<div class="comLRefund">
+						<span class="titSpan"><em>*</em>服务类型：</span>
+						<div class="comSelLabel">
+							<input type="hidden" id="serTypeInp" />
+							<p>
+								<label>
+									<span class="radiusSpan"><em></em></span>
+									<input type="radio" name="serviceType" onclick="getRadioVal(this,'radiusSpan','serTypeInp')" value="0"/>
+									<span>仅退款</span>
+								</label>
+							</p>
+							<p>
+								<label>
+									<span class="radiusSpan"><em></em></span>
+									<input type="radio" name="serviceType" onclick="getRadioVal(this,'radiusSpan','serTypeInp')" value="1"/>
+									<span>退货退款</span>
+								</label>
+							</p>
+						</div>
+					</div>
+					<div class="comLRefund">
+						<span class="titSpan"><em>*</em>货物状态：</span>
+						<div class="comSelLabel">
+							<input type="hidden" id="goodsStInp" />
+							<p>
+								<label>
+									<span class="radiusSpans"><em></em></span>
+									<input type="radio" name="goodsStatus" onclick="getRadioVal(this,'radiusSpans','goodsStInp')" value="0"/>
+									<span>未收到货</span>
+								</label>
+							</p>
+							<p>
+								<label>
+									<span class="radiusSpans"><em></em></span>
+									<input type="radio" name="goodsStatus" onclick="getRadioVal(this,'radiusSpans','goodsStInp')" value="1"/>
+									<span>已收到货</span>
+								</label>
+							</p>
+						</div>
+					</div>
+					<div class="comLRefund">
+						<span class="titSpan"><em>*</em>退款原因：</span>
+						<select class="refundReson" name="refundReson">
+							<option value="0">请选择退款原因</option>
+							<option value="1">多拍/拍错/不想要</option>
+							<option value="2">快递一直未送到</option>
+							<option value="3">未按约定时间发货</option>
+							<option value="4">快递无跟踪记录</option>
+							<option value="5">空包裹/少货</option>
+							<option value="6">其他</option>
+						</select>
+					</div>
+					<div class="comLRefund">
+						<span class="titSpan"><em>*</em>退款金额：</span>
+						<p><input class="refundNumInp" type="text" value="￥23.00" readonly /></p>
+						<p class="refundNumMark">最多￥2330.00，含发货运费￥0.00</p>
+					</div>
+					<div class="comLRefund">
+						<span class="titSpan posT"><em style="visibility: hidden;">*</em>退款说明：</span>
+						<textarea class="refundInfo" maxlength="200" placeholder="请输入退款说明，最多200字"></textarea>
+					</div>
+					<div class="comLRefund">
+						<span class="titSpan posT"><em style="visibility: hidden;">*</em>上传图片：</span>
+						<div id="upRefundImgDiv" class="upImgDiv clearfix">
+							<input type="file" name="upRefundImg" style="display: none;" />
+							<!--div class="itemImg">
+								<img src=""/>
+								<a class="delUpImg" href="javascript:void(0)" title="删除"></a>
+							</div-->
+							<a class="addImg" href="javascript:void(0)">
+								<span class="botPos1">上传凭证</span>
+								<span class="botPos2">（最多10张）</span>
+							</a>
+						</div>
+					</div>	
+					<div class="comLRefund">
+						<a class="subBtn" href="javascript:void(0)">提交</a>
+					</div>
+				</div>
+				<div class="rightRefund">
+					<div class="innerRefund">
+						<strong class="titRefund">订单详情</strong>
+						<div class="innerDiv clearfix">
+							<img src="images/refundImg.jpg"/>
+							<div class="innerDivCon">
+								<p>羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉羊脂玉</p>
+								<p class="proType">类型：羊脂玉200g</p>
+							</div>
+						</div>
+					</div>
+					<div class="sellerInfo">
+						<p>卖家：<a href="">西藏锦绣</a></p>
+						<p>联系电话：13585471820</p>
+						<p>订单编号：<a href="">136958583518609916</a></p>
+						<p>单价：￥23.00*1(数量)</p>
+						<p>邮费：￥0.00</p>
+						<p>商品总价：￥23.00</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="topFootPart">
+				<div class="topDec"></div>
+				<div class="tianchongL"></div>
+				<div class="tianchongR"></div>
+				<div class="leftDec"></div>
+				<div class="rightDec"></div>
+				<div class="innerTopFoot w1100 clearfix">
+					<dl class="comFootDl telDl">
+						<dt>
+							<span></span>
+							<strong>037188888888</strong>	
+							<p>Tel:15093397465</p>
+						</dt>
+						<dd class="margTdd">郑州市台商大厦23楼</dd>
+						<dd>客服邮箱：56410674@qq.com</dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLOne">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">用户协议</a></dd>
+						<dd><a href="">常见问题</a></dd>
+						<dd><a href="">网站购物流程</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLTwo">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">配送收费标准</a></dd>
+						<dd><a href="">配送时间</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLThree">
+						<dt>
+							<span></span>
+							<strong>关于我们</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">了解西藏锦绣</a></dd>
+						<dd><a href="">联系我们</a></dd>
+						<dd><a href="">隐私声明</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="botFootPart">
+				<div class="w1100">
+					<p class="paddTp">友情链接：<a href="">西藏锦绣官网</a></p>
+					<p>CopyrightR 2009-2018 xizangguanwang,All rights Reserved 中国西藏锦绣有限公司 版权所有</p>
+					<p style="margin-top: 15px;">
+						<a href="">
+							<img src="../../images/shengming.png"/>
+						</a>
+						<a href="" style="margin-left: 15px;">
+							<img src="../../images/shengming1.png"/>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function getRadioVal(obj,className,inpHidden){
+				$("." + className).removeClass("selActSpan");
+				$(obj).prev().addClass("selActSpan");
+				$("#" + inpHidden).val($(obj).val());
+			}
+		</script>
+	</body>
+</html>

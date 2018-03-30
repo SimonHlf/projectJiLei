@@ -1,0 +1,281 @@
+@import url("../../../css/reset.css");
+@import url("../../../css/topFootPart.css");
+
+body{
+	background: #f1f1f1;
+}
+.aboutUsCon{
+	margin-top: 30px;
+}
+.leftAbout{
+	width: 172px;
+}
+.rightAbout{
+	width: 886px;
+	padding-top: 50px;
+	position: relative;
+}
+.leftTopPart,
+.usualQues{
+	background: #fff;
+	padding-bottom: 15px;
+	box-shadow: 0 0 15px #ccc;
+}
+.usualQues{
+	margin-top: 40px;
+}
+.leftTopPart strong,
+.usualQues strong{
+	width: 100%;
+	font-size: 18px;
+	display: inline-block;
+	position: relative;
+	margin-top: 10px;
+	text-indent: 15px;
+}
+.leftTopPart strong{
+	color: #ca1d00;
+}
+.usualQues strong{
+	color: #333;
+}
+.leftTopPart strong span{
+	color: #9c9c9c;
+	position: absolute;
+	left: 73px;
+	top: 7px;
+	font-weight: normal;
+	font-size: 12px;
+}
+.leftTopPart ul,
+.usualQues ul{
+	width: 136px;
+	margin:15px auto 0px;
+}
+.leftTopPart ul li{
+	width: 136px;
+	height: 35px;
+	margin-bottom: 10px;
+}
+.leftTopPart ul li:last-child{
+	margin-bottom: 0px;
+}
+.leftTopPart ul li a,
+.usualQues li a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	font-size: 14px;
+	position: relative;
+}
+.leftTopPart ul li a{
+	color: #ca1d00;
+	text-align: center;
+	line-height: 35px;	
+}
+.usualQues li a{
+	color: #666666;
+	text-indent: 10px;
+}
+.usualQues li a:hover{
+	color: #ca1d00;
+}
+.leftTopPart ul li.active a,
+.leftTopPart ul li:hover a{
+	background: #ca1d00;
+	color: #fff;
+	border-radius: 4px;
+}
+.usualQues{
+	width: 100%;
+}
+.usualQues li{
+	width: 136px;
+	height: 25px;
+	line-height: 25px;
+	margin-bottom: 10px;
+}
+.usualQues li a span{
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: 10px;
+	background: #ca1d00;
+}
+.comRightAbout{
+	display: none;
+}
+.rightTit{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	color: #ca1d00;
+	font-size: 16px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-indent: 22px;
+	border-bottom: 1px solid #e3e3e3;
+	padding-bottom: 10px;
+}
+.rightTit span{
+	width: 15px;
+	height: 15px;
+	background: url(../images/dec.jpg) no-repeat;
+	position: absolute;
+	left: 0;
+	top: 2px;
+}
+.rightCon{
+	width: 100%;
+	background: #fff;
+	padding-bottom: 15px;
+}
+.smTitP{
+	text-indent: 2em;
+	font-size: 16px;
+	color: #666;
+	margin-top: 15px;
+	padding:0 15px;
+}
+.innerTit{
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	font-size: 18px;
+	color: #ca1d00;
+	font-weight: normal;
+	display: inline-block;
+	margin:15px 0 0px;
+}
+/* 历史事件 */
+.treeDiv{
+	width: 700px;
+	margin:0 auto;
+	position: relative;
+}
+.treeDiv .lineSpan{
+	width: 2px;
+	height: 100%;
+	background: #ca1d00;
+	position: absolute;
+	left: 50%;
+	margin-left: -1px;
+}
+.treeDiv div.treePar{
+	width: 100%;
+	padding:15px 0;
+}
+.treeDiv .listDiv{
+	width: 320px;
+	border:1px solid #f1f1f1;
+	/*float: left;*/
+	position: relative;
+	background: #fff;
+	border-radius: 4px;
+}
+.treeDiv .listDiv:nth-of-type(2n){
+	float: right;
+	margin-top: 30px;
+}
+.treeDiv .listDiv:nth-of-type(2n-1){
+	float: left;
+	/*margin-bottom: 30px;*/
+}
+.treeDiv .listDiv span{
+	width: 8px;
+	height: 13px;
+	position: absolute;
+	top: 20px;
+}
+.treeDiv .listDiv span.RigTriSpan{
+	background: url(../images/rightTri.jpg) no-repeat;
+}
+.treeDiv .listDiv span.leftTriSpan{
+	background: url(../images/leftTri.jpg) no-repeat;
+}
+.treeDiv .listDiv:nth-of-type(2n) span.comTriSpan{
+	left: -8px;
+}
+.treeDiv .listDiv:nth-of-type(2n-1) span.comTriSpan{
+	right: -8px;
+}
+.treeDiv .listDiv em{
+	width: 10px;
+	height: 10px;
+	border:1px solid #ca1d00;
+	background: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 20px;
+}
+.treeDiv .listDiv:nth-of-type(2n) em{
+	left: -35px;
+}
+.treeDiv .listDiv:nth-of-type(2n-1) em{
+	right: -35px;
+}
+.treeDiv .listDiv em b{
+	width: 6px;
+	height: 6px;
+	background: #ca1d00;
+	border-radius: 50%;
+	position: absolute;
+	left: 2px;
+	top: 2px;
+}
+.treeDiv .listDiv div{
+	padding:10px;
+}
+.treeDiv .listDiv div strong{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	display: inline-block;
+	color: #333;
+	margin-bottom: 5px;
+}
+.treeDiv .listDiv:nth-of-type(2n) div strong{
+	text-align: left;
+}
+.treeDiv .listDiv:nth-of-type(2n-1) div strong{
+	text-align: right;
+}
+.treeDiv .listDiv div p{
+	color: #666;
+}
+/* 合作伙伴 */
+.cooperation{
+	width: 777px;
+	margin:0 auto;
+	border:1px solid #eeeeee;
+	border-bottom: none;
+	border-top: none;
+}
+.cooperation ul{
+	width: 100%;
+}
+.cooperation li{
+	width: 100%;
+	height: 56px;
+	border-bottom: 1px solid #eee;
+}
+.cooperation li span{
+	width: 110px;
+	height: 55px;
+	display: inline-block;
+	float: left;
+	border-right: 1px solid #eee;
+	border-top: 1px solid #eee;
+}
+.cooperation li span:nth-of-type(7n){
+	border-right: none;
+}
+.contractP{
+	font-size: 16px;
+	line-height: 30px;
+	color: #666;
+	text-indent: 15px;
+}

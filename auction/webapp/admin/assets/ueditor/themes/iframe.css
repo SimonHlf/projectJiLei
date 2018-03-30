@@ -1,0 +1,20 @@
+/*鍙互鍦ㄨ繖閲屾坊鍔犱綘鑷繁鐨刢ss*/
+img {  
+ max-width: 30%; /*图片自适应宽度*/
+ max-height:30%; /*图片自适应高度*/ 
+}  
+body {  
+ overflow-y: scroll !important;  
+}  
+.view {  
+ word-break: break-all;  
+}  
+.vote_area {  
+ display: block;  
+}  
+.vote_iframe {  
+ background-color: transparent;  
+ border: 0 none;  
+ height: 100%;  
+}  
+#edui1_imagescale{display:none !important;} 

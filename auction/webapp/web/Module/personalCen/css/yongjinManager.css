@@ -1,0 +1,370 @@
+@import url("commonPersonal.css");
+
+.yongjinWrap{
+	width: 890px;
+	margin:0 auto;
+}
+.yongjinListNav{
+	width: 100%;
+	height: 38px;
+	line-height: 38px;
+	border-bottom: 2px solid #ccc;
+}
+.yongjinListNav li{
+	height: 40px;
+	float: left;
+	width: 100px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 10px;
+}
+.yongjinListNav li a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	color: #666;
+}
+.yongjinListNav li.active a,
+.yongjinListNav li a:hover{
+	color: #ca1d00;
+}
+.yongjinListNav li.active{
+	height: 38px;
+	border-bottom: 2px solid #ca1d00;
+}
+.incomeDiv{
+	width: 700px;
+	margin:20px auto 0;
+	position: relative;
+}
+.incomeDiv li{
+	width: 350px;
+	height: 70px;
+	line-height: 70px;
+	float: left;
+	position: relative;
+}
+.incomeDiv li.borBotLi{
+	border-bottom: 1px solid #e7e7e7;
+}
+.cenLineSpan{
+	width: 1px;
+	height: 121px;
+	background: #e7e7e7;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+	margin-left: -0.5px;
+	top: 10px;
+}
+.incomeDiv li span.totalIcon,
+.incomeDiv li span.todayIcon,
+.incomeDiv li span.yongzhuIcon1,
+.incomeDiv li span.yongzhuIcon3{
+	position: absolute;
+	left: 15px;
+}
+.incomeDiv li span.totalIcon{
+	width: 45px;
+	height: 43px;
+	background: url(../images/yongjinIcon.jpg) no-repeat;
+	top: 13px;
+}
+.incomeDiv li span.todayIcon{
+	width: 48px;
+	height: 54px;
+	background: url(../images/yongjinIcon1.jpg) no-repeat;
+	top: 7px;
+}
+.incomeDiv li span.yongzhuIcon1{
+	width: 52px;
+	height: 50px;
+	background: url(../images/yongzhuIcon2.jpg) no-repeat;
+	top: 12px;
+}
+.incomeDiv li span.yongzhuIcon3{
+	width: 63px;
+	height: 36px;
+	background: url(../images/yongzhuIcon3.jpg) no-repeat;
+	left: 2px;
+	top: 17px;
+}
+.incomeDiv li:nth-of-type(2n) p{
+	float: right;
+}
+.incomeDiv li span.daiIcon,
+.incomeDiv li span.weekIcon,
+.incomeDiv li span.yongzhuIcon2,
+.incomeDiv li span.yongzhuIcon4{
+	float: right;
+}
+.incomeDiv li span.daiIcon{
+	width: 48px;
+	height: 54px;
+	background: url(../images/yongjinIcon2.jpg) no-repeat;
+	margin-top: 5px;
+}
+.incomeDiv li span.weekIcon{
+	width: 45px;
+	height: 41px;
+	background: url(../images/yongjinIcon3.jpg) no-repeat;
+	margin:17px 5px 0 0;
+}
+.incomeDiv li span.yongzhuIcon2{
+	width: 50px;
+	height: 50px;
+	background: url(../images/yongzhuIcon1.jpg) no-repeat;
+	margin:12px 5px 0 0;
+}
+.incomeDiv li span.yongzhuIcon4{
+	width: 49px;
+	height: 49px;
+	background: url(../images/yongzhuIcon4.jpg) no-repeat;
+	margin:12px 5px 0 0;
+}
+.incomeDiv li p{
+	font-size: 18px;
+	color: #666;
+}
+.incomeDiv li:nth-of-type(2n-1) p.totalP{
+	text-indent: 70px;
+}
+.incomeDiv li p span{
+	font-weight: 700;
+	color: #ca1d00;
+	font-size: 24px;
+	margin:0 3px
+}
+.echartsDiv{
+	width: 888px;
+	border:1px solid #b4b4b4;
+	margin-top: 30px;
+	text-align: center;
+}
+.navTit{
+	height: 40px;
+	line-height: 40px;
+	background: #ff6147;
+	text-indent: 15px;
+	margin-top: 15px;
+}
+.navTit strong{
+	color: #fff;
+	font-weight: 700;
+	font-size: 18px;
+}
+.newIncomeListNav ul{
+	height: 40px;
+	background: #e7e7e7;
+	margin-top: 15px;
+}
+.newIncomeListNav ul li{
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	text-align: center;
+	font-size: 14px;
+	color: #979797;
+}
+.incomeWid1{
+	width:160px;
+	max-width: 160px;
+}
+.incomeWid2{
+	width:220px;
+	max-width: 220px;
+}
+.incomeWid3{
+	width:130px;
+}
+.incomeWid4{
+	width:221px;
+}
+.newIncomeListCon li{
+	vertical-align: middle;
+	min-height: 40px;
+	border-bottom: 1px solid #e7e7e7;
+}
+.newIncomeListCon li .floatDiv p{
+	line-height: 40px;
+	float: left;
+	text-align: center;
+	font-size: 14px;
+	color: #666;
+}
+.newIncomeListCon li .floatDiv p strong{
+	color: #ca1d00;
+}
+.newIncomeListCon li .floatDiv p a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+	color: #666;
+}
+.newIncomeListCon li .floatDiv p a span.arrow{
+	width: 14px;
+	height: 8px;
+	background: url(../images/arrow.png) no-repeat;
+	position: absolute;
+	right: 10px;
+	top: 16px;
+}
+.newIncomeListCon li .innerDetailCon{
+	width: 100%;
+	background: #f0f0f0;
+	text-indent: 15px;
+	padding:10px 0;
+	color: #666;
+	display: none;
+}
+.newIncomeListCon li .innerDetailCon p{
+	font-size: 12px;
+	line-height: 25px;
+}
+.newIncomeListCon li .innerDetailCon p strong{
+	color: #ca1d00;
+}
+/* queryDiv */
+.queryDiv{
+	width: 700px;
+	margin:20px auto 0;
+}
+.comInnerQuery{
+	width: 350px;
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	font-size: 16px;
+	color: #383838;
+	margin-bottom: 15px;
+}
+.comInnerQuery input{
+	width: 240px;
+	height: 19px;
+	padding:10px 0;
+	border:none;
+	border-bottom: 1px solid #cccc;
+	color: #383838;
+	font-size: 16px;
+	padding-left: 5px;
+}
+.comInnerQuery input::-webkit-input-placeholder,
+.comInnerQuery input::-ms-input-placeholder{
+	color: #999;
+}
+.comInnerQuery select{
+	width: 240px;
+	height: 40px;
+	border:none;
+	border-bottom: 1px solid #ccc;
+	outline: none;
+	color: #383838;
+	font-size: 16px;
+}
+.queryBtn{
+	width: 110px;
+	height: 35px;
+	line-height: 35px;
+	background: #ff6147;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	display: inline-block;
+	margin:0px 0 0 295px;
+}
+.queryBtn:hover{
+	background: #e2553d;
+}
+.queryWid1{
+	width: 150px;
+	max-width: 150px;
+}
+.queryWid2{
+	width: 90px;
+}
+.queryWid3{
+	width: 200px;
+}
+.queryType{
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 20px;
+}
+.queryType label{
+	display: inline-block;
+	width: 100px;
+	height: 100%;
+	font-size: 16px;
+	color: #666;
+	position: relative;
+	text-indent: 30px;
+	margin-right: 15px;
+}
+.queryType label input{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.queryType label .radiusSpan{
+	width: 22px;
+	height: 22px;
+	border:1px solid #ccc;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: 3px;
+}
+.queryType label .selActSpan{
+	border:1px solid #ca1d00;
+}
+.queryType label .radiusSpan em{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	left: 4px;
+	top: 4px;
+}
+.queryType label .selActSpan em{
+	background: url(../../confirmOrder/images/selIcon.png) no-repeat;
+}
+.queryType label .selActSpan + p{
+	color: #ca1d00;
+}
+.queryType label:hover p{
+	color: #ca1d00;
+}
+.imgWrap{
+	margin-top: 10px;
+	text-align: center;
+	position: relative;
+	margin-bottom: -10px;
+}
+.erweiCode{
+	width: 262px;
+	height: 290px;
+	background: pink;
+	position: absolute;
+	left: 160px;
+	top: 120px;
+}
+.erweiCode img{
+	width: 262px;
+	height: 260px;
+}
+.erweiCode a{
+	display: inline-block;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #df5062;
+	font-size: 14px;
+	text-decoration: underline;
+}

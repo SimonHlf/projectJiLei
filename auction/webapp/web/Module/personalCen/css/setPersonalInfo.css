@@ -1,0 +1,453 @@
+@import url("commonPersonal.css");
+
+.setInfoNav{
+	width: 100%;
+	height: 39px;
+	line-height: 39px;
+	border-bottom: 1px solid #ccc;
+}
+.setInfoNav li{
+	height: 40px;
+	float: left;
+	width: 100px;
+	font-size: 16px;
+	color: #666;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 10px;
+}
+.setInfoNav li.active,
+.setInfoNav li:hover{
+	color: #ca1d00;
+}
+.setInfoNav li.active{
+	height: 39px;
+	border-bottom: 1px solid #ca1d00;
+}
+.setInfoCon{
+	width: 890px;
+	margin:20px auto 0;
+	display: none;
+}
+.leftTopInfo{
+	height: 100%;
+	color: #666;
+	border-bottom: 1px solid #edebeb;
+	padding-bottom: 10px;
+}
+.headImg,
+.showHeadImg{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	box-shadow: 3px 3px 6px #ccc;
+	overflow: hidden;
+}
+.headImg{
+	position: relative;
+	background: #eee;
+}
+.showHeadImg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+	display: none;
+}
+.headImg img,
+.showHeadImg img{
+	width: 100%;
+	height: 100%;
+}
+.headImg a{
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	font-size: 12px;
+	color: #fff;
+	text-align: center;
+	background: rgba(0,0,0,.5);
+	z-index: 3;
+}
+.perInfoLeft{
+	margin-left: 10px;
+}
+.perInfoLeft p.phoneP{
+	height: 25px;
+	line-height: 25px;
+	color: #666;
+	position: relative;
+	font-size: 14px;
+	margin:5px 0;
+}
+.perInfoLeft p.phoneP strong{
+	color: #333;
+	font-size: 16px;
+	margin-right: 10px;
+}
+.infoComp{
+	width: 88px;
+	height:14px;
+	line-height: 14px;
+	background: #dddddd;
+	margin-top: 3px;
+	position: relative;
+	color: #fff;
+	text-align: center;
+}
+.nowPerBg{
+	display: inline-block;
+	width: 0px;
+	height: 14px;
+	background: #f19410;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+}
+.infoComp em{
+	font-style: normal;
+	position: relative;
+	height: 14px;
+	z-index: 2;
+}
+.setInfoConInner{
+	width: 800px;
+	margin:20px auto 0;
+}
+.comInnercon{
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	color: #666;
+	position: relative;
+}
+.comInnercon span em{
+	font-style: normal;
+	color: #f00;
+	margin-right: 3px;
+}
+.comInnercon input.txtInp{
+	width: 200px;
+	height: 16px;
+	padding:7px 0;
+	color: #666;
+	font-size: 14px;
+	padding-left: 5px;
+	margin-left: 6px;
+	border:1px solid #ccc;
+	border-radius: 2px;
+}
+.comInnercon input.txtInp::-webkit-input-placeholder{
+	color: #999;
+}
+.comInnercon label{
+	width: 50px;
+	height: 100%;
+	display: inline-block;
+	position: relative;
+	text-indent: 28px;
+	margin-left: 5px;
+}
+.comInnercon label input{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer;
+}
+.comInnercon label .radiusSpan{
+	width: 20px;
+	height: 20px;
+	border:1px solid #ccc;
+	border-radius: 50%;
+	position: absolute;
+	left: 0;
+	top: 4px;
+}
+.comInnercon label .radiusSpan em{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	left: 3px;
+	top: 3px;
+}
+.comInnercon label .selActSpan{
+	border:1px solid #ca1d00;
+}
+.comInnercon label:hover,
+.comInnercon label .selActSpan + p{
+	color: #ca1d00;	
+}
+.comInnercon label .selActSpan em{
+	background: url(../../confirmOrder/images/selIcon.png) no-repeat;
+}
+.oneBlank{
+	width: 28px;
+	display: inline-block;
+}
+.oneBlank1{
+	width: 7px;
+	display: inline-block;
+}
+.editBtn{
+	width: 20px;
+	height: 20px;
+	background: url(../images/edit.png) no-repeat;
+	position: absolute;
+	left: 305px;
+	top: 6px;
+}
+.saveBtn,
+.saveBtn1{
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	background: #ca1d00;
+	color: #fff;
+	display: inline-block;
+	text-align: center;
+	font-size: 18px;
+}
+.saveBtn{
+	margin:5px 0 0 180px;
+}
+.saveBtn1{
+	margin:5px 0 0 150px;
+}
+.saveBtn:hover,
+.saveBtn1:hover{
+	background: #a51902;
+}
+.setEmPhWin{
+	width: 420px;
+	height: 276px;
+	background: #fff;
+	position: fixed;
+	left: 50%;
+	margin-left: -210px;
+	top: 50%;
+	margin-top: -138px;
+	z-index: 1000;
+	display: none;
+}
+.titleP{
+	background:#f49068;
+	height:45px;
+	line-height:45px;
+	text-indent:15px;
+	color: #fff;
+	font-size: 18px;
+	position: relative;
+}
+.iconEdit{
+	width: 20px;
+	height: 20px;
+	background: url(../images/edit1.png) no-repeat;
+	position: absolute;
+	top: 13px;
+}
+.posLeft{
+	left: 92px;
+}
+.posLeft1{
+	left: 108px;
+}
+.closeAddWin{
+	width:45px;
+	height:45px;
+	position:absolute;
+	background:url(../images/excClose.png) no-repeat;
+	cursor:pointer;
+	right:-1px;
+	top:-1px;
+}
+.closeAddWin:hover{
+	background:url(../images/excClose.png) no-repeat 0 -45px;
+}
+.setInnerCon{
+	width: 350px;
+	height: 35px;
+	line-height: 35px;
+	color: #666;
+	font-size: 14px;
+	margin:20px auto 0;
+	position: relative;
+}
+.setInnerCon input.txtInp{
+	width: 220px;
+	height: 17px;
+	padding: 9px 0;
+	border:1px solid #ccc;
+	padding-left: 5px;
+	font-size: 14px;
+	color: #666;
+}
+.setInnerCon input.vercodeInp{
+	width: 100px;
+	height: 35px;
+	position: absolute;
+	right: 50px;
+	top: 1px;
+	cursor: pointer;
+	border:none;
+	background:#999;
+	color: #fff;
+}
+.setInnerCon input::-webkit-input-placeholder,
+.setInnerCon input::-ms-input-placeholder{
+	color: #999;
+}
+.twoBlank{
+	width: 7px;
+	display: inline-block;
+}
+.twoBlank1{
+	width: 14px;
+	display: inline-block;
+}
+.setInnerCon img{
+	margin-left: 73px;
+}
+.setInnerCon a.change{
+	color: #666;
+}
+.setInnerCon a.change:hover{
+	color: #ca1d00;
+}
+.saveInfo{
+	width:120px;
+	margin:0px 0 0 155px;
+	background:#f49068;
+	height:35px;
+	line-height:35px;
+	font-size:16px;
+	color:#fff;
+	display:inline-block;
+	text-align:center;
+	border-radius:3px;
+}
+.saveInfo:hover{
+	background:#de5722;
+}
+.pasStrongWeak{
+	width:249px;
+	margin-left:103px;
+	float:left;
+}
+.pasBox{
+	width:64px;
+	float:left;
+	padding-right:2px;
+}
+.pasBox span{
+	width:64px;
+	height:22px;
+	color:#818181;
+	display:block;
+	overflow:hidden;
+	text-align:center;
+}
+.pasBox p{
+	width:64px;
+	height:5px;
+	overflow:hidden;
+}
+.pasBox p#red{
+	background:#ff0000;
+}
+.pasBox p#orange{
+	background:#ff9c00;
+}
+.pasBox p#green{
+	background:#00b300;
+}
+.pasBox p.gray1{
+	background:#cccccc;
+}
+.pasBox p.gray2{
+	background:#adadae;
+}
+.pasBox p.gray3{
+	background:#8d8d8d;
+}
+.tipInfos{
+	width: 350px;
+	height: 20px;
+	line-height: 15px;
+	margin:6px auto 0;
+	position: relative;
+}
+.errInfo{
+	color:#ff836e;
+	padding-left:18px;
+	background:url(../images/icon.gif) no-repeat -116px 0px;
+	display:none;
+	margin-left: 73px;
+}
+.errInfoTip,
+.focusTip{
+	position: absolute;
+	height: 20px;
+	line-height: 15px;
+	position: absolute;
+	left: 315px;
+	top: 8px;
+	text-indent: 18px;
+	display: none;
+}
+.errInfoTip{
+	color:#ff836e;
+}
+.focusTip{
+	color: #666;
+}
+.errInfoTip span,
+.focusTip span{
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	left: 0;
+	top: 0px;
+}
+.errInfoTip span{
+	background:url(../images/icon.gif) no-repeat -116px 0px;
+}
+.focusTip span{
+	background:url(../images/icon.gif) no-repeat -82px 0px;
+}
+.comRightIcon,
+.comRightIcon2,
+.succInfoTip{
+	width:15px;
+	height:15px;
+	background:url(../images/icon.gif) no-repeat -99px 0px;
+	position:absolute;
+}
+.comRightIcon{
+	top:0px;
+	left: 73px;
+}
+.comRightIcon2{
+	right:26px;
+	top:14px;
+	display: none;
+}
+.succInfoTip{
+	left: 315px;
+	top: 10px;
+	display: none;
+}
+.succP{
+	display: none;
+	text-indent: 20px;
+	margin-left: 73px;
+	color: #5bc92e;
+}

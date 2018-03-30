@@ -1,0 +1,99 @@
+@import url("commonPersonal.css");
+
+.jifenWrap{
+	width: 890px;
+	margin:0 auto;
+}
+.myJifen{
+	height: 50px;
+	line-height: 50px;
+	border:1px solid #ddd;
+	background: #F1F1F1;
+	font-size: 16px;
+	color: #333;
+}
+.myJifen span{
+	margin-left: 15px;
+}
+.jifenNum{
+	color: #278b27;
+	font-size: 18px;
+}
+.myJifen a{
+	width: 70px;
+	height: 28px;
+	line-height: 28px;
+	background: #ca1d00;
+	text-align: center;
+	display: inline-block;
+	color: #fff;
+	font-size: 14px;
+	margin-left: 15px;
+}
+.myJifen a:hover{
+	background: #a51902;
+}
+.listJifenNav{
+	height: 30px;
+	line-height: 30px;
+	border:1px solid #ddd;
+	background: #F1F1F1;
+	margin-top: 20px;
+}
+.listJifenNav li{
+	float: left;
+	text-align: center;
+	font-size:14px;
+	color: #666;
+}
+.jifenWid1{
+	width: 440px;
+}
+.jifenWid3{
+	width: 360px;
+	padding-left: 80px;
+	position: relative;
+}
+.jifenWid2{
+	width: 149px;
+	text-align: center;
+}
+.listJifenCon li{
+	min-height: 90px;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+}
+.comInnerJifen{
+	float: left;
+}
+.jifenImg{
+	width: 46px;
+	height: 46px;
+	position: absolute;
+	left: 15px;
+	top: 15px;
+}
+.jifenImg img{
+	width: 100%;
+	height: 100%;
+}
+.titJifen{
+	margin-top: 15px;
+	color: #666;
+}
+.bianhao{
+	font-size: 12px;
+	color: #999;
+	margin-top: 5px;
+}
+.jifenChange{
+	font-size: 20px;
+	color:#ca1d00;
+	padding-top: 15px;
+	display: inline-block;
+}
+.timeP,
+.noteP{
+	padding-top: 15px;
+	color: #666;
+}

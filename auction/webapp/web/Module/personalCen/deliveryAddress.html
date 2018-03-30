@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>收货地址</title>
+		<link rel="stylesheet" type="text/css" href="css/deliveryAddress.css"/>
+	</head>
+	<body>
+		<!-- 顶部副导航 -->
+		<div class="topSmNav">
+			<div class="innerSmNav w1100">
+				<p class="helloTxt fl">您好，欢迎来到西藏锦绣!</p>
+				<div class="regLogin fr">
+					<a class="loginBtn" href="../account/login.html">登录</a>
+					<a href="../account/register.html">注册</a>
+				</div>
+				<!-- 登录进去后的个人信息 -->
+				<div class="perInfo fr" style="display: none;">
+					<span>你好，疯狂心跳最后一秒</span>
+					<a href="javascript:void(0)">会员中心</a>
+					<a class="cartBtn" href="javascript:void(0)">购物车</a>
+					<a href="javascript:void(0)">我的订单</a>
+					<a class="exitBtn" href="javascript:void(0)">退出</a>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索部分 -->
+		<div class="searchPart w1100">
+			<div class="fl">
+				<img class="logo" src="../../images/logo.jpg" alt="玉商通竞拍"/>
+				<a class="locationA" href="javascript:void(0)">郑州</a>
+				<img class="logoTxt" src="../../images/logoTxt .png" alt="近在咫尺的西藏锦绣"/>
+			</div>
+			<div class="innerSearch fr">
+				<div class="topSearch clearfix">
+					<div class="inpTxtPart fl">
+						<span class="iconSear fl"></span>
+						<input type="text fl" class="searInp" placeholder="请输入您要搜索商品的名字"/>
+					</div>
+					<a class="buttonPart fl" href="javascript:void(0)">搜索</a>
+				</div>
+				<div class="hotSearch">
+					<span>热门搜索：</span>
+					<a href="javascript:void(0)">当代油画</a>
+					<a href="javascript:void(0)">当代书法</a>
+					<a href="javascript:void(0)">珠宝宝石</a>
+				</div>
+			</div>
+		</div>
+		<!-- 导航部分 -->
+		<div class="navPart">
+			<div class="innerNav w1100">
+				<p><a href="../../index.html">首页</a></p>
+				<p><a href="../proCategory/proCategory.html">商品类别</a></p>
+				<p><a href="../youleBuy/youleBuy.html">优乐购</a></p>
+				<p><a href="../jifenBuy/jifenBuy.html">积分专区</a></p>
+				<p><a href="../auctionArea/auctionArea.html">竞拍专区</a></p>
+				<p><a href="../cultural/cultural.html">文化荟萃</a></p>
+				<p><a href="../aboutUs/aboutUs.html">关于我们</a></p>
+			</div>
+		</div>
+		<!-- 个人中心内容 -->
+		<div class="personalCenCon clearfix w1100">
+			<div class="leftPersonal fl">
+				<div class="leftTopPart">
+					<strong>会员中心<span>/personalCen</span></strong>
+					<ul>
+						<li><a href="personalCen.html">个人资料</a></li>
+						<li><a href="myOrderList.html">我的订单</a></li>
+						<li><a href="myShopCart.html">我的购物车</a></li>
+						<li><a href="myAuction.html">我的拍卖</a></li>
+						<li><a href="myJifen.html">我的积分</a></li>
+						<li class="active"><a href="deliveryAddress.html">收货地址</a></li>
+						<li><a href="merchantEntry.html">商家入驻</a></li>
+						<li><a href="yongjinManager.html">佣金管理</a></li>
+					</ul>
+				</div>
+				<!-- 推荐好货 -->
+				<div class="leftRecommed">
+					<div class="smMod">
+						<strong>推荐好货</strong>
+					</div>
+					<div class="goodProList">
+						<ul>
+							<li>
+								<div class="proImg">
+									<img src="images/recommendImg.jpg">
+									<p class="proTit">
+										<a class="ellip" href="">金玉满堂金玉满堂</a>
+									</p>
+								</div>
+								<p class="nowPrice">当前价：<span>¥2500</span></p>
+							</li>
+							<li>
+								<div class="proImg">
+									<img src="images/recommendImg.jpg">
+									<p class="proTit">
+										<a class="ellip" href="">金玉满堂金玉满堂</a>
+									</p>
+								</div>
+								<p class="nowPrice">当前价：<span>¥2500</span></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="rightPersonal fr">
+				<strong class="rightTit"><span></span>收货地址</strong>
+				<div class="rightCon">
+					<div class="deliAddWrap">
+						<div class="addAdd">
+							<a href="javascript:void(0)" onclick="addNewAddress()">新增收货地址</a>
+							<span>您已创建<em>5</em>个地址，最多可以创建<em>10</em>个</span>
+						</div>
+						<div class="listAddress">
+							<ul>
+								<li>
+									<!-- 默认tag -->
+									<span class="defaultAdd">默认地址</span>
+									<div class="comAddressDiv">
+										<span class="addTit">收货人：</span>
+										<p>黄利峰</p>
+									</div>
+									<!-- 引入地区插件 -->
+									<div class="comAddressDiv">
+										<span class="addTit">所在地区：</span>
+										<p>河南郑州惠济区</p>
+									</div>
+									<div class="comAddressDiv">
+										<span class="addTit">收货地址：</span>
+										<p>徐庄街莲湖路交叉口商都嘉园一号楼1302</p>
+									</div>
+									<div class="comAddressDiv">
+										<span class="addTit">手机号码：</span>
+										<p>18790958171</p>
+									</div>
+									<div class="comAddressDiv">
+										<span class="addTit">固定电话：</span>
+										<p>0371-6650866</p>
+									</div>
+									<div class="setFunDiv">
+										<a class="editAddBtn" href="javascript:void(0)" onclick="modifyAddress('13','黄利峰','河南省','郑州市','新郑市','徐庄街莲湖路交叉口','18790958171')">编辑</a>
+										<a class="delAddBtn" href="javascript:void(0)">删除</a>
+									</div>
+								</li>
+								<li>
+									<div class="comAddressDiv">
+										<span class="addTit">收货人：</span>
+										<p>黄利峰</p>
+									</div>
+									<!-- 引入地区插件 -->
+									<div class="comAddressDiv">
+										<span class="addTit">所在地区：</span>
+										<p>河南郑州惠济区</p>
+									</div>
+									<div class="comAddressDiv">
+										<span class="addTit">收货地址：</span>
+										<p>徐庄街莲湖路交叉口商都嘉园一号楼1302</p>
+									</div>
+									<div class="comAddressDiv">
+										<span class="addTit">手机号码：</span>
+										<p>18790958171</p>
+									</div>
+									<div class="comAddressDiv">
+										<span class="addTit">固定电话：</span>
+										<p>0371-6650866</p>
+									</div>
+									<div class="setFunDiv">
+										<a href="javascript:void(0)">设为默认</a>
+										<a class="editAddBtn" href="javascript:void(0)">编辑</a>
+										<a class="delAddBtn" href="javascript:void(0)">删除</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layer"></div>
+		<!-- 新增收货地址 -->
+		<div class="setFixAddBox">
+			<div class="addInfoHead">
+				<strong class="setFixTit">新增收货地址</strong>
+				<span class="closeAddWin" onclick="closeFixWin()"></span>
+			</div>
+			<form class="fixAddForm">
+				<div class="fixEditBox">
+					<!-- 新增为空 修改为当前地址id -->
+					<input type="hidden" id="usaId">
+					<div class="comEditFixBox">
+						<em>
+							<i>*</i>
+							收货人姓名：
+						</em>
+						<input type="text" id="buyer_Name" class="comInpTxt inpWid1" placeholder="请填写收货人姓名" value="">
+						<span id="writeNames" class="addFixInfos">请输入收货人姓名</span>
+						<span id="succWriteNa" class="comRightIcon"></span>
+					</div>
+					<div class="comEditFixBox">
+						<em>
+							<i>*</i>
+						</em>
+						<div id="distpicker" style="display: inline-block;">
+							所<span class="blank"></span>在<span class="blank"></span>地<span class="blank"></span>区：
+							<select id="province"></select>
+							<select id="city"></select>
+							<select id="district"></select>
+						</div>
+						<span id="districtSpan" class="addFixInfos"></span>
+						<span id="succDistrict" class="comRightIcon"></span>
+					</div>
+					<div class="comEditFixBox">
+						<em>
+							<i>*</i>
+							详<span class="blank"></span>细<span class="blank"></span>地<span class="blank"></span>址：
+						</em>																
+						<input type="text" id="detailAddress" class="comInpTxt inpWid2" placeholder="建议您如实填写详细收货地址，例如街道名称、门牌号码" value="">
+						<span id="addressTip" class="addFixInfos">请输入您的详细地址</span>
+						<span id="succAddress" class="comRightIcon"></span>
+					</div>
+					<div class="comEditFixBox">
+						<em>
+							<i>*</i>
+							联<span class="blank"></span>系<span class="blank"></span>电<span class="blank"></span>话：
+						</em>
+						<input type="text" id="telPhone" class="comInpTxt inpWid1" maxlength="11" placeholder="请填写您的手机号码" value="">
+						<span id="phoneTips" class="addFixInfos">请填写您的手机号码</span>
+						<span id="succPhone" class="comRightIcon"></span>
+					</div>
+					<a href="javascript:void(0)" class="saveInfo" onclick="saveAddress()">保存收货地址</a>
+					<a id="cancelUpdate" href="javascript:void(0);" onclick="closeFixWin()">取消</a>
+				</div>
+			</form>
+		</div>
+		<div class="footer">
+			<div class="topFootPart">
+				<div class="topDec"></div>
+				<div class="tianchongL"></div>
+				<div class="tianchongR"></div>
+				<div class="leftDec"></div>
+				<div class="rightDec"></div>
+				<div class="innerTopFoot w1100 clearfix">
+					<dl class="comFootDl telDl">
+						<dt>
+							<span></span>
+							<strong>037188888888</strong>	
+							<p>Tel:15093397465</p>
+						</dt>
+						<dd class="margTdd">郑州市台商大厦23楼</dd>
+						<dd>客服邮箱：56410674@qq.com</dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLOne">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">用户协议</a></dd>
+						<dd><a href="">常见问题</a></dd>
+						<dd><a href="">网站购物流程</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLTwo">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">配送收费标准</a></dd>
+						<dd><a href="">配送时间</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLThree">
+						<dt>
+							<span></span>
+							<strong>关于我们</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">了解西藏锦绣</a></dd>
+						<dd><a href="">联系我们</a></dd>
+						<dd><a href="">隐私声明</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="botFootPart">
+				<div class="w1100">
+					<p class="paddTp">友情链接：<a href="">西藏锦绣官网</a></p>
+					<p>CopyrightR 2009-2018 xizangguanwang,All rights Reserved 中国西藏锦绣有限公司 版权所有</p>
+					<p style="margin-top: 15px;">
+						<a href="">
+							<img src="../../images/shengming.png"/>
+						</a>
+						<a href="" style="margin-left: 15px;">
+							<img src="../../images/shengming1.png"/>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/distpicker.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/distpicker.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+			});
+			
+			function getId(id){
+				return document.getElementById(id);
+			}
+			//新增收货地址
+			function addNewAddress(){
+				//新增地址时清空usaId的value
+				$("#usaId").val("");
+				$(".layer").show();
+				$(".setFixTit").html("新增收货地址");
+				$(".setFixAddBox").show().css({"top":parseInt(($(window).height() - $(".setFixAddBox").height())/2)}).animate({left:"50%"});
+				$('#distpicker').distpicker('destroy');
+				$('#distpicker').distpicker('reset', true);
+				saveFixInfoCheck();
+				/*$.ajax({
+					type:"post",
+					async:false,
+					dataType:"json",
+					url:"shopManager.do?action=checkUSA",
+					success:function(json){
+						if(json){
+							
+							//showPC();
+						}else{
+							alert("收货地址最多可以添加三条!");
+						}
+					}
+				});*/
+			}
+			//修改地址
+			function modifyAddress(usaId,messrs,province,city,areaVal,addressDetail,mobile){
+				$(".layer").show();
+				$(".setFixAddBox").show().css({"top":parseInt(($(window).height() - $(".setFixAddBox").height())/2)}).animate({left:"50%"});
+				$(".setFixTit").html("修改收货地址");
+				$("#usaId").val(usaId);
+				$('#distpicker').distpicker('destroy');
+				$('#distpicker').distpicker({
+				    province: province,
+				    city: city,
+				    district: areaVal
+				});
+				$("#buyer_Name").val(messrs);
+				$("#detailAddress").val(addressDetail);
+				$("#telPhone").val(mobile);
+				saveFixInfoCheck();
+			}
+			//关闭新增收货地址和修改收货地址的弹窗
+			function closeFixWin(){
+				$(".setFixAddBox").animate({left:"-50%"},function(){
+					$(".setFixAddBox").hide();
+					$("#usaId").val("");
+					$(".layer").hide();
+					$("#buyer_Name").val("");
+					$("#province").val("");
+					$("#city").val("");
+					$("#district").val("");
+					$("#detailAddress").val("");
+					$("#telPhone").val("");
+					$(".addFixInfos").hide().html("");
+					$(".comRightIcon").hide();
+				});
+			}
+			//保存用户的收货地址
+			function saveAddress(){
+				var usaId = getId("usaId").value;
+				var buyerName = getId("buyer_Name").value;
+				var province = getId("province").value;
+				var city = getId("city").value;
+				var areaVal = getId("district").value;
+				var detailAddress = getId("detailAddress").value;
+				var mobile = getId("telPhone").value;
+				console.log(province)
+			 	if(buyerName == ""){
+					$("#buyer_Name").focus();
+					$("#writeNames").show().html("收货人姓名不能为空");
+					return false;
+				}else if(buyerName.length > 8){
+					$("#buyer_Name").focus();
+					$("#writeNames").show().html("收货人姓名长度不能超过8个字符");
+					return false;
+				}else if(!(/^[\u4E00-\u9FA5]+$/).test(buyerName)){
+					$("#buyer_Name").focus();
+					$("#writeNames").show().html("收货人姓名是应为中文姓名");
+					return false;
+				}else if(province == ""){
+					$("#districtSpan").show().html("请选择地区");
+					return false;
+				}else if(detailAddress==""){
+					$("#detailAddress").focus();
+					$("#addressTip").show().html("请填写您的详细收货地址");
+					return false;
+				}else if(mobile == ""){
+					$("#telPhone").focus();
+					$("#phoneTips").show().html("请填写您的手机号码");
+					return false;
+				}else if(!(/^1[3|4|5|7|8][0-9]\d{4,8}$/).test(mobile)){
+					$("#telPhone").focus();
+					$("#phoneTips").show().html("手机号码格式不正确，请从新填写");
+					return false;
+				}else if(mobile.length != 11){
+					$("#telPhone").focus();
+					$("#phoneTips").show().html("手机号码应为11位，请从新填写");
+					return false;
+				}else{
+					//console.log(usaId + "————" + buyerName + "--" + province + "--" + city + "--" + areaVal + "--" + detailAddress + "--" + mobile)
+					if(usaId == ""){//新增收货地址
+						$.ajax({
+							type:"post",
+							async:false,
+							dataType:"json",
+							//url:"shopManager.do?action=checkUSA",
+							success:function(json){
+								if(json){
+									//新增收货地址下的保存成功
+									saveAddr(usaId,buyerName,province,city,areaVal,detailAddress,mobile);
+									return true;
+								}else{
+									alert("收货地址最多可以添加三条!");
+									return false;
+								}
+							}
+						});
+					}else{//执行对已保存收货地址的编辑和修改
+						saveAddr(usaId,buyerName,province,city,areaVal,detailAddress,mobile);
+						return true;
+					}
+				}
+			}
+			//保存收货地址
+			function saveAddr(usaId,buyerName,province,city,areaVal,detailAddress,mobile){
+				$.ajax({
+					type:"post",
+					async:false,
+					dataType:"json",
+					//url:"shopManager.do?action=saveUserShipAddress&usaId="+usaId+"&buyerName="+buyerName+"&province="+province+"&city="+city
+					            //+"&detailAddress="+detailAddress+"&zip="+zip+"&mobile="+mobile,
+					success:function(json){
+						if(json){
+							alert("收货地址保存成功！");
+							window.location.reload(true);
+						}else{
+							alert("收货地址保存失败，请重新填写！");
+						}
+					}
+				});
+			}
+			//新增或者修改收货地址弹窗下的各个input的blur事件
+			function saveFixInfoCheck(){
+				$("#buyer_Name").blur(function(){
+					var buyerName = getId("buyer_Name").value;
+					
+					if(buyerName == ""){
+						$("#writeNames").show().html("收货人姓名不能为空");
+						$("#succWriteNa").hide();
+					}else if(buyerName.length > 8){
+						$("#writeNames").show().html("收货人姓名长度不能超过8个字符");
+						$("#succWriteNa").hide();
+					}else if(!(/^[\u4E00-\u9FA5]+$/).test(buyerName)){
+						$("#writeNames").show().html("收货人姓名是应为中文姓名");
+						$("#succWriteNa").hide();
+					}else{
+						$("#succWriteNa").show();
+						$("#writeNames").hide().html("");
+					}
+				});
+				$("#province").on("change",function(){
+					if($(this).val() != ""){
+						console.log($(this).val())
+						$("#succDistrict").show();
+						$("#districtSpan").hide().html("");
+					}
+				});
+				$("#detailAddress").blur(function(){
+					var detailAddress = getId("detailAddress").value;
+					
+					if(detailAddress==""){
+						$("#addressTip").show().html("请填写您的详细收货地址");
+						$("#succAddress").hide();
+					}else{
+						$("#succAddress").show();
+						$("#addressTip").hide().html("");
+					}
+				});
+				
+				$("#telPhone").blur(function(){
+					var mobile = getId("telPhone").value;
+					
+					if(mobile == ""){
+						$("#phoneTips").show().html("请填写您的手机号码");
+						$("#succPhone").hide();
+					}else if(!(/^1[3|4|5|7|8][0-9]\d{4,8}$/).test(mobile)){
+						$("#phoneTips").show().html("手机号码格式不正确，请从新填写");
+						$("#succPhone").hide();
+					}else if(mobile.length != 11){
+						$("#phoneTips").show().html("手机号码应为11位，请从新填写");
+						$("#succPhone").hide();
+					}else{
+						$("#phoneTips").hide().html("");
+						$("#succPhone").show();
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>积分购专区</title>
+		<link rel="stylesheet" type="text/css" href="css/jifenBuy.css"/>
+	</head>
+	<body>
+		<!-- 顶部副导航 -->
+		<div class="topSmNav">
+			<div class="innerSmNav w1100">
+				<p class="helloTxt fl">您好，欢迎来到西藏锦绣!</p>
+				<div class="regLogin fr">
+					<a class="loginBtn" href="javascript:void(0)">登录</a>
+					<a href="javascript:void(0)">注册</a>
+				</div>
+				<!-- 登录进去后的个人信息 -->
+				<div class="perInfo fr" style="display: none;">
+					<span>你好，疯狂心跳最后一秒</span>
+					<a href="javascript:void(0)">会员中心</a>
+					<a class="cartBtn" href="javascript:void(0)">购物车</a>
+					<a href="javascript:void(0)">我的订单</a>
+					<a class="exitBtn" href="javascript:void(0)">退出</a>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索部分 -->
+		<div class="searchPart w1100">
+			<div class="fl">
+				<img class="logo" src="../../images/logo.jpg" alt="玉商通竞拍"/>
+				<a class="locationA" href="javascript:void(0)">郑州</a>
+				<img class="logoTxt" src="../../images/logoTxt .png" alt="近在咫尺的西藏锦绣"/>
+			</div>
+			<div class="innerSearch fr">
+				<div class="topSearch clearfix">
+					<div class="inpTxtPart fl">
+						<span class="iconSear fl"></span>
+						<input type="text fl" class="searInp" placeholder="请输入您要搜索商品的名字"/>
+					</div>
+					<a class="buttonPart fl" href="javascript:void(0)">搜索</a>
+				</div>
+				<div class="hotSearch">
+					<span>热门搜索：</span>
+					<a href="javascript:void(0)">当代油画</a>
+					<a href="javascript:void(0)">当代书法</a>
+					<a href="javascript:void(0)">珠宝宝石</a>
+				</div>
+			</div>
+		</div>
+		<!-- 导航部分 -->
+		<div class="navPart">
+			<div class="innerNav w1100">
+				<p><a href="../../index.html">首页</a></p>
+				<p><a href="../proCategory/proCategory.html">商品类别</a></p>
+				<p><a href="../youleBuy/youleBuy.html">优乐购</a></p>
+				<p class="active"><a href="jifenBuy.html">积分专区</a></p>
+				<p><a href="../auctionArea/auctionArea.html">竞拍专区</a></p>
+				<p><a href="../cultural/cultural.html">文化荟萃</a></p>
+				<p><a href="../aboutUs/aboutUs.html">关于我们</a></p>
+			</div>
+		</div>
+		<div class="categoryDiv w1100">
+			<dl class="clearfix">
+				<dt>
+					<span></span>
+					热门导航
+				</dt>
+				<dd>
+					<a href="">优乐购</a>
+					<a href="">金币兑换区</a>
+					<a href="">竞拍品</a>
+					<a href="">积分兑换</a>
+				</dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>
+					<span></span>
+					配件玉器
+				</dt>
+				<dd>
+					<a href="">优乐购</a>
+					<a href="">金币兑换区</a>
+					<a href="">竞拍品</a>
+					<a href="">积分兑换</a>
+				</dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>
+					<span></span>
+					积分范围
+				</dt>
+				<dd>
+					<a href="">0-500</a>
+					<a href="">500-1000</a>
+					<a href="">1000-1500</a>
+					<a href="">1500-2000</a>
+					<div class="diyPriceDiv">
+						<input id="stPrice" type="text" placeholder="¥" />
+						<span>-</span>
+						<input id="endPrice" type="text" placeholder="¥"/>
+						<em class="surePrice">确定</em>
+					</div>
+				</dd>
+			</dl>
+			<dl class="clearfix">
+				<dt>
+					<span></span>
+					积分方式
+				</dt>
+				<dd>
+					<a href="">不限</a>
+					<a href="">全积分</a>
+				</dd>
+			</dl>
+		</div>
+		<!-- 条件查询 -->
+		<div class="queryDiv w1100">
+			<ul>
+				<li class="active"><a href="javascript:void(0)">综合</a></li>
+				<li><a href="javascript:void(0)">
+					<span>价格</span>
+					<div class="tirDiv">
+						<span class="comTri topTri colTri_top"></span>
+						<span class="radiusSpan"></span>
+						<span class="comTri botTri colTri_bot"></span>
+					</div>
+				</a></li>
+				<li><a href="javascript:void(0)">
+					<span>折扣</span>
+					<div class="tirDiv">
+						<span class="comTri topTri colTri_top"></span>
+						<span class="radiusSpan"></span>
+						<span class="comTri botTri colTri_bot"></span>
+					</div>
+				</a></li>
+				<li>
+					<a href="javascript:void(0)">
+						<label>
+							<input type="checkbox" />
+							<span>只看有货商品</span>
+						</label>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 积分list -->
+		<div class="jifenList w1100">
+			<ul class="clearfix">
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+				<li>
+					<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+					<div class="jifenProImg">
+						<img src="images/jifenPro.jpg"/>
+					</div>
+					<div class="botJifenList">
+						<p class="useJifen">可使用积分：1800</p>
+						<p class="priceP">相当于省1800元</p>
+						<a href="javascript:void(0)">点击购买</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!-- 积分兑换区 -->
+		<div class="jifenduihuan w1100">
+			<p class="duihuanTit">积分兑换区</p>
+			<div class="listDuihuan">
+				<ul class="clearfix">
+					<li>
+						<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+						<div class="jifenProImg">
+							<img src="images/jifenPro.jpg">
+						</div>
+						<em class="ellip">¥2500</em>
+						<div class="botJifenList1">
+							<p class="useJifen">换购所需积分</p>
+							<p class="priceP">900积分</p>
+							<a href="javascript:void(0)">立即兑换</a>
+						</div>
+					</li>
+					<li>
+						<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+						<div class="jifenProImg">
+							<img src="images/jifenPro.jpg">
+						</div>
+						<em class="ellip">¥2500</em>
+						<div class="botJifenList1">
+							<p class="useJifen">换购所需积分</p>
+							<p class="priceP">900积分</p>
+							<a href="javascript:void(0)">立即兑换</a>
+						</div>
+					</li>
+					<li>
+						<strong class="ellip">和田羊脂白玉平安扣吊坠11</strong>
+						<div class="jifenProImg">
+							<img src="images/jifenPro.jpg">
+						</div>
+						<em class="ellip">¥2500</em>
+						<div class="botJifenList1">
+							<p class="useJifen">换购所需积分</p>
+							<p class="priceP">900积分</p>
+							<a href="javascript:void(0)">立即兑换</a>
+						</div>
+					</li>
+					<li>
+						<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+						<div class="jifenProImg">
+							<img src="images/jifenPro.jpg">
+						</div>
+						<em class="ellip">¥2500</em>
+						<div class="botJifenList1">
+							<p class="useJifen">换购所需积分</p>
+							<p class="priceP">900积分</p>
+							<a href="javascript:void(0)">立即兑换</a>
+						</div>
+					</li>
+					<li>
+						<strong class="ellip">和田羊脂白玉平安扣吊坠11</strong>
+						<div class="jifenProImg">
+							<img src="images/jifenPro.jpg">
+						</div>
+						<em class="ellip">¥2500</em>
+						<div class="botJifenList1">
+							<p class="useJifen">换购所需积分</p>
+							<p class="priceP">900积分</p>
+							<a href="javascript:void(0)">立即兑换</a>
+						</div>
+					</li>
+					<li>
+						<strong class="ellip">和田羊脂白玉平安扣吊坠</strong>
+						<div class="jifenProImg">
+							<img src="images/jifenPro.jpg">
+						</div>
+						<em class="ellip">¥2500</em>
+						<div class="botJifenList1">
+							<p class="useJifen">换购所需积分</p>
+							<p class="priceP">900积分</p>
+							<a href="javascript:void(0)">立即兑换</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="topFootPart">
+				<div class="topDec"></div>
+				<div class="tianchongL"></div>
+				<div class="tianchongR"></div>
+				<div class="leftDec"></div>
+				<div class="rightDec"></div>
+				<div class="innerTopFoot w1100 clearfix">
+					<dl class="comFootDl telDl">
+						<dt>
+							<span></span>
+							<strong>037188888888</strong>	
+							<p>Tel:15093397465</p>
+						</dt>
+						<dd class="margTdd">郑州市台商大厦23楼</dd>
+						<dd>客服邮箱：56410674@qq.com</dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLOne">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">用户协议</a></dd>
+						<dd><a href="">常见问题</a></dd>
+						<dd><a href="">网站购物流程</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLTwo">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">配送收费标准</a></dd>
+						<dd><a href="">配送时间</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLThree">
+						<dt>
+							<span></span>
+							<strong>关于我们</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">了解西藏锦绣</a></dd>
+						<dd><a href="">联系我们</a></dd>
+						<dd><a href="">隐私声明</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="botFootPart">
+				<div class="w1100">
+					<p class="paddTp">友情链接：<a href="">西藏锦绣官网</a></p>
+					<p>CopyrightR 2009-2018 xizangguanwang,All rights Reserved 中国西藏锦绣有限公司 版权所有</p>
+					<p style="margin-top: 15px;">
+						<a href="">
+							<img src="../../images/shengming.png"/>
+						</a>
+						<a href="" style="margin-left: 15px;">
+							<img src="../../images/shengming1.png"/>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

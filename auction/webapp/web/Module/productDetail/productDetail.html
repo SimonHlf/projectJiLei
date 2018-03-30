@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>xxx商品详情</title>
+		<link rel="stylesheet" type="text/css" href="css/productDetail.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/location.css"/>
+	</head>
+	<body>
+		<!-- 顶部副导航 -->
+		<div class="topSmNav">
+			<div class="innerSmNav w1100">
+				<p class="helloTxt fl">您好，欢迎来到西藏锦绣!</p>
+				<div class="regLogin fr">
+					<a class="loginBtn" href="javascript:void(0)">登录</a>
+					<a href="javascript:void(0)">注册</a>
+				</div>
+				<!-- 登录进去后的个人信息 -->
+				<div class="perInfo fr" style="display: none;">
+					<span>你好，疯狂心跳最后一秒</span>
+					<a href="javascript:void(0)">会员中心</a>
+					<a class="cartBtn" href="javascript:void(0)">购物车</a>
+					<a href="javascript:void(0)">我的订单</a>
+					<a class="exitBtn" href="javascript:void(0)">退出</a>
+				</div>
+			</div>
+		</div>
+		<!-- 搜索部分 -->
+		<div class="searchPart w1100">
+			<div class="fl">
+				<img class="logo" src="../../images/logo.jpg" alt="玉商通竞拍"/>
+				<a class="locationA" href="javascript:void(0)">郑州</a>
+				<img class="logoTxt" src="../../images/logoTxt .png" alt="近在咫尺的西藏锦绣"/>
+			</div>
+			<div class="innerSearch fr">
+				<div class="topSearch clearfix">
+					<div class="inpTxtPart fl">
+						<span class="iconSear fl"></span>
+						<input type="text fl" class="searInp" placeholder="请输入您要搜索商品的名字"/>
+					</div>
+					<a class="buttonPart fl" href="javascript:void(0)">搜索</a>
+				</div>
+				<div class="hotSearch">
+					<span>热门搜索：</span>
+					<a href="javascript:void(0)">当代油画</a>
+					<a href="javascript:void(0)">当代书法</a>
+					<a href="javascript:void(0)">珠宝宝石</a>
+				</div>
+			</div>
+		</div>
+		<div class="proDetailCon w1100">
+			<!-- 面包屑 -->
+			<p class="smNavP"><a href="">首页</a>&gt;<a href="">官方推荐</a>&gt;<a href="">竞拍</a>&gt;<a href="">红色石榴石</a></p>
+			<div class="detialPro clearfix">
+				<!-- 左侧产品图 -->
+				<div class="leftProImg">
+					<div id="preview" class="spec-preview"> 
+						<span class="jqzoom">
+							<img jqimg="images/big1.jpg" src="images/small1.jpg" alt="">
+						</span> 
+					</div>
+					<!-- 缩略图 -->
+					<div class="spec-scroll"> 
+						<a class="prev">&lt;</a> 
+						<a class="next">&gt;</a>
+				      	<div class="items">
+				      		<ul>
+			      				<li><img bimg="images/big1.jpg" src="images/small1.jpg" onmousemove="preview(this);"></li>
+      							<li><img bimg="images/big2.jpg" src="images/small2.jpg" onmousemove="preview(this);"></li>
+      							<li><img bimg="images/big3.jpg" src="images/small3.jpg" onmousemove="preview(this);"></li>
+      							<li><img bimg="images/big1.jpg" src="images/small1.jpg" onmousemove="preview(this);"></li>
+      							<li><img bimg="images/big2.jpg" src="images/small2.jpg" onmousemove="preview(this);"></li>
+      							<li><img bimg="images/big3.jpg" src="images/small3.jpg" onmousemove="preview(this);"></li>
+				      		</ul>
+				      	</div>
+				    </div>
+				    <div class="favPro">
+				    	<p>商品编码：10020127953213</p>
+				    </div>
+				</div>
+				<!-- 产品名称以及属性类别 -->
+				<div class="rightProInfo">
+					<div class="topRightPro">
+						<h2 class="productName">红色石榴石</h2>
+						<p class="proIntro">这是基本的商品介绍这是基本的商品介绍商品介绍介 这是基本的商品介绍</p>
+						<p class="prodPrice">
+							<span class="priceDec">¥</span>
+							<span class="priceSpan">1988.00<em class="discrot">4折</em></span>
+							<span class="oldPricSP">¥4988.00</span>
+						</p>
+						<p class="discortInfo">
+							<span class="disDecSp">折扣</span>
+							<span>购物既享受八折，满两件即享七折(您的特价优惠)</span>
+						</p>
+						<div class="proProperty">
+							<div class="clearfix">
+								<span class="propertyTit fl">配送</span>
+								<div class="dd fl clearfix">
+									<div id="store-selector">
+										<div class="text"><div></div><b></b></div>                   
+										<div onclick="$('#store-selector').removeClass('hover')" class="close"></div>
+									</div><!--store-selector end-->
+									<div id="store-prompt"><strong></strong></div><!--store-prompt end--->
+								</div>
+							</div>
+						</div>
+						<div class="comPorperty clearfix">
+							<span class="propertyTit1 fl">运费</span>
+							<p class="fl">
+								<span>¥<b>10</b></span>
+								<span>(单笔满288免邮费)</span>
+							</p>
+						</div>
+						<div class="comPorperty paddR clearfix">
+							<span class="propertyTit2 fl">型号</span>
+							<div class="xinghao">
+								<input type="hidden" id="xinghaoInp"/>
+								<label class="active" for="">
+									<span>款式一</span>
+									<input type="radio" class="xinghaoRad" name="xinghaoRad" />
+								</label>
+								<label for="">
+									<span>款式二</span>
+									<input type="radio" class="xinghaoRad" name="xinghaoRad" />
+								</label>
+								<label for="">
+									<span>款式三</span>
+									<input type="radio" class="xinghaoRad" name="xinghaoRad" />
+								</label>
+								<label for="">
+									<span>款式款式款式</span>
+									<input type="radio" class="xinghaoRad" name="xinghaoRad" />
+								</label>
+							</div>
+						</div>
+						<div class="comPorperty clearfix">
+							<span class="propertyTit1 fl">数量</span>
+							<div class="buyNum fl">
+								<span class="leftSp reduce">-</span>
+								<p><input type="text" value="1" /></p>
+								<span class="rightSp plus">+</span>
+							</div>
+						</div>
+						<div class="paimaiBtn">
+							<span class="paiMaiIcon"></span>
+							<button>拍卖</button>
+						</div>
+						<p class="memberP">您是 <span>铁牌</span> 会员，购买最多可获得 <span>1988</span> 个积分(会员等级越高兑换礼品不同)</p>
+					</div>
+					<p class="serveP"><span>服务</span>该商品支持换货，订单签收7天内可申请换货</p>
+					<ul class="serveUl">
+						<li>
+							<span class="comServIcon zhengpinIcon"></span>
+							<span>100%正品</span>
+							<span class="lineSpan"></span>
+						</li>
+						<li>
+							<span class="comServIcon qitianIcon"></span>
+							<span>7天无理由放心退</span>
+							<span class="lineSpan rightSpec"></span>
+						</li>
+						<li>
+							<span class="comServIcon tuihuanIcon"></span>
+							<span>支持退换货</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 商品介绍 规格包装 售后保障 -->
+			<div class="details clearfix">
+				<div class="detailTabNav posRel">
+					<ul>
+						<li class="active">商品介绍</li>
+						<li>规格与包装</li>
+						<li>售后保障</li>
+					</ul>
+					<a href="javascript:void(0)">拍卖</a>
+				</div>
+				<!-- 商品介绍 -->
+				<div class="detailsCon" style="display: block;">
+					<p class="introTxtPro">品牌：<span>凤喜</span></p>
+					<ul class="proInfoUl clearfix">
+						<li>商品名称：凤喜和田玉平安系列</li>
+						<li>商品编号：1025871312</li>
+						<li>商品毛重：150g</li>
+						<li>商品产地：中国广东</li>
+						<li>商品货号：DH210879413171</li>
+						<li>商品证书：其他</li>
+						<li>用途：生日礼物</li>
+						<li>图案造型：其他</li>
+						<li>商品材质：和田玉</li>
+						<li>适用人群：情侣</li>
+					</ul>
+					<div class="proImgCon">
+						<img src="images/1.jpg"/>
+					</div>
+				</div>
+				<!-- 规格与吧包装 -->
+				<div class="detailsCon">
+					规格与包装
+				</div>
+				<!-- 售后保障 -->
+				<div class="detailsCon">
+					售后保障
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="topFootPart">
+				<div class="topDec"></div>
+				<div class="tianchongL"></div>
+				<div class="tianchongR"></div>
+				<div class="leftDec"></div>
+				<div class="rightDec"></div>
+				<div class="innerTopFoot w1100 clearfix">
+					<dl class="comFootDl telDl">
+						<dt>
+							<span></span>
+							<strong>037188888888</strong>	
+							<p>Tel:15093397465</p>
+						</dt>
+						<dd class="margTdd">郑州市台商大厦23楼</dd>
+						<dd>客服邮箱：56410674@qq.com</dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLOne">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">用户协议</a></dd>
+						<dd><a href="">常见问题</a></dd>
+						<dd><a href="">网站购物流程</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLTwo">
+						<dt>
+							<span></span>
+							<strong>新手指南</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">配送收费标准</a></dd>
+						<dd><a href="">配送时间</a></dd>
+					</dl>
+					<dl class="comFootDl xinshouDl margLThree">
+						<dt>
+							<span></span>
+							<strong>关于我们</strong>	
+						</dt>
+						<dd class="margTdd"><a href="">了解西藏锦绣</a></dd>
+						<dd><a href="">联系我们</a></dd>
+						<dd><a href="">隐私声明</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="botFootPart">
+				<div class="w1100">
+					<p class="paddTp">友情链接：<a href="">西藏锦绣官网</a></p>
+					<p>CopyrightR 2009-2018 xizangguanwang,All rights Reserved 中国西藏锦绣有限公司 版权所有</p>
+					<p style="margin-top: 15px;">
+						<a href="">
+							<img src="../../images/shengming.png"/>
+						</a>
+						<a href="" style="margin-left: 15px;">
+							<img src="../../images/shengming1.png"/>
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery.jqzoom.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/location.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				switchTabPro();
+				selModel();
+			})
+			function switchTabPro(){
+				$(".detailTabNav li").each(function(i){
+					$(this).click(function(){
+						$(".detailsCon").hide();
+						$(this).addClass("active").siblings().removeClass("active");
+						$(".detailsCon").eq(i).show();
+					});
+				});
+			}
+			//选择型号
+			function selModel(){
+				$(".xinghaoRad").each(function(){
+					$(this).click(function(){
+						$(this).parent().addClass("active").siblings().removeClass("active");
+						$("#xinghaoInp").val($(this).val());
+					});
+				});
+			}
+			$(window).scroll(function(){
+				var scrollTop = $(window).scrollTop();
+				if(scrollTop >= 787){
+					$(".detailTabNav ").removeClass("posRel").addClass('posFixed');
+				}else{
+					$(".detailTabNav ").removeClass("posFixed").addClass('posRel');
+				}
+			});
+		</script>
+	</body>
+</html>

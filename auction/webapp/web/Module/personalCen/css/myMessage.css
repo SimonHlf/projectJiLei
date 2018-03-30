@@ -1,0 +1,171 @@
+@import url("commonPersonal.css");
+
+.messageWrap{
+	width: 890px;
+	margin:0 auto;
+}
+.rightTit a{
+	position: absolute;
+	right: 0px;
+	top:0px;
+	color: #666;
+	font-size: 14px;
+	font-weight: normal;
+}
+.rightTit a:hover{
+	color: #ca1d00;
+}
+.yongjinListNav{
+	width: 100%;
+	height: 38px;
+	line-height: 38px;
+	border-bottom: 2px solid #ccc;
+}
+.yongjinListNav li{
+	height: 40px;
+	float: left;
+	width: 120px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 10px;
+}
+.yongjinListNav li a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	color: #666;
+}
+.yongjinListNav li.active a,
+.yongjinListNav li a:hover{
+	color: #ca1d00;
+}
+.yongjinListNav li.active{
+	height: 38px;
+	border-bottom: 2px solid #ca1d00;
+}
+.comMessageWrap{
+	display: none;
+}
+.messageNav{
+	height: 35px;
+	background: #e7e7e7;
+	color: #999;
+	margin-top: 15px;
+}
+.hisListCon li{
+	min-height: 40px;
+	border-bottom:1px solid #ccc;
+}
+.hisListCon li .floatDiv{
+	line-height: 40px;
+}
+.messageNav li,
+.hisListCon li .floatDiv p{
+	float:left;
+	text-align: center;
+	font-size: 14px;
+}
+.hisListCon li .floatDiv p.txtLeft{
+	text-align: left;
+	text-indent: 10px;
+}
+.messageNav li{
+	line-height: 35px;
+}
+.hisWid1{
+	width: 600px;
+	max-width: 600px;
+}
+.hisWid2{
+	width: 160px;
+}
+.hisWid3{
+	width: 130px;
+	position: relative;
+}
+.hisListCon li p,
+.hisListCon li .floatDiv p a{
+	color: #666;
+}
+.hisListCon li .floatDiv p span{
+	color: green;
+}
+.hisListCon li .floatDiv p span.failed{
+	color: #999;
+}
+.hisListCon li .floatDiv p a:hover{
+	color: #ca1d00;
+}
+.innerDetailCon,
+.innerDetailConTwo{
+	width: 850px;
+	padding:10px 20px;
+	background: #f1f1f1;
+	position: relative;
+	display: none;
+}
+.innerDetailCon strong,
+.innerDetailConTwo strong{
+	font-size: 18px;
+	color: #333;
+	font-weight: normal;
+	display: inline-block;
+}
+.innerDetailCon p,
+.innerDetailConTwo p{
+	color: #333 !important;
+	font-size: 14px;
+}
+.innerDetailCon p.detailCon,
+.innerDetailConTwo p.detailCon{
+	text-indent: 2em;
+	margin-top: 5px;
+	line-height: 25px;
+}
+.innerDetailCon p.detailConTime,
+.innerDetailConTwo p.detailConTime{
+	text-align: right;
+}
+.triTop{
+	width: 0;
+	height: 0;
+	border-width: 8px;
+	border-color: transparent transparent #f1f1f1 transparent;
+	border-style: dashed dashed solid dashed;
+	position: absolute;
+	right: 66px;
+	top: -16px;
+}
+.status{
+	position: absolute;
+	right: 20px;
+	top: 15px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+}
+.noReadSt{
+	background: #ca1d00;
+}
+.messageWrap h3{
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: normal;
+	color: #333;
+}
+.detailMsgCon p{
+	font-size: 14px;
+	color: #333;
+	margin-top: 10px;
+	text-indent: 2em;
+}
+.detailMsgCon span{
+	width: 100%;
+	display: inline-block;
+	text-align: right;
+	font-size: 14px;
+	color:#333;
+}

@@ -1,0 +1,668 @@
+﻿@import url("../../../css/reset.css");
+@import url("../../../css/topFootPart.css");
+@import url("../../../css/zoomImg.css");
+@import url("../../../css/auctionRecom.css");
+
+body{
+	background: #f4f4f6;
+}
+.topAcution {
+	margin-bottom: 15px;
+}
+.auctionDetail{
+	background: #fff;
+	padding:15px 0;
+}
+.smNavP{
+	height: 30px;
+	line-height: 30px;
+	text-indent: 15px;
+}
+.smNavP a{
+	color: #444;
+	margin-right: 5px;
+	font-size: 14px;
+}
+.smNavP a:hover{
+	color: #a31000;
+}
+.detailAuc_left{
+	width: 814px;
+	border:1px solid #CFCFCF;
+	margin:5px 0 0 15px;	
+	padding-bottom: 15px;
+}
+.leftProImg{
+	width:350px;
+	height: 406px;	
+	margin:15px 0 0 15px;
+	float: left;
+}
+.rightProInfo{
+	width: 426px;
+	margin-top: 15px;
+}
+.leftProTit{
+	width: 355px;
+}
+.leftProTit p.tiitP{
+	font-size: 16px;
+	font-weight: 700;
+	color: #333;
+}
+.auctingTxt{
+	width: 60px;
+	height: 25px;
+	line-height: 25px;
+	background: #ca1d00;
+	text-align: center;
+	position: relative;
+	font-size: 12px;
+	color: #fff;
+	margin-top: 15px;
+}
+.auctingTxt span{
+	width: 6px;
+	height: 25px;
+	background: url(../images/aucTri.jpg) no-repeat;
+	position: absolute;
+	right: -6px;
+	top: 0px;
+}
+.countDown{
+	height: 25px;
+	line-height: 25px;
+	margin:15px 0 0 15px;
+}
+.countDown span{
+	font-size: 12px;
+}
+.countDown em{
+	font-style: normal;
+	font-size: 14px;
+	color: #ca1d00;
+	font-weight: bold;
+}
+.setClock{
+	width: 60px;
+	height: 60px;
+	margin-right: 10px;
+	text-align: center;
+	border-left:1px solid #CFCFCF;
+}
+.setClock a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	color: #666;
+}
+.setClock a span{
+	display: inline-block;
+	margin-top: 5px;
+}
+.paimaiCon{
+	width: 100%;
+	background: #eeeeee;
+	margin-top: 20px;
+	padding-bottom: 15px;
+	position: relative;
+}
+.paimaiCon p{
+	color: #2b2b2b;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	margin-left:40px;
+}
+.oneBlank{
+	width: 13px;
+	display: inline-block;
+}
+.nowPricP{
+	padding-top: 15px;
+	margin-bottom: 10px;
+}
+.paimaiCon p strong{
+	margin-left: 6px;
+	margin-right: 6px;
+	color: #2b2b2b;
+	font-size: 18px;
+}
+.paimaiCon p span{
+	color: #ca1d00;
+}
+.nowPricP strong{
+	color: #ca1d00 !important;
+}
+.applyAcu{
+	width: 100%;
+	height: 45px;
+	margin-top: 15px;
+}
+.applyAcu a{
+	width: 180px;
+	height: 45px;
+	line-height: 45px;
+	display: inline-block;
+	margin-left: 40px;
+	background:#e22404;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+	font-size: 16px;
+	position: relative;
+}
+.applyAcu a:hover{
+	background: #ca1d00;
+}
+.applyAcu a span{
+	width: 30px;
+	height: 30px;
+	background: url(../images/aucIcon.png) no-repeat;
+	position: absolute;
+	left: 20px;
+	top: 7px;
+}
+.buyHis{
+	position: absolute;
+	left: 238px;
+	bottom: 15px;
+	font-size: 14px;
+	color: #2b2b2b;
+}
+.buyHis:hover{
+	text-decoration: underline;
+	color: #ca1d00;
+}
+.tipInfo,
+.detailInfo{
+	border-bottom: 1px solid #F2F2F2;
+}
+.tipInfo{
+	height: 40px;
+	line-height: 40px;
+	margin-top: 15px;
+}
+.tipInfo li{
+	width: 90px;
+	float: left;
+	color: #666;
+	position:relative
+}
+.tipInfo li.setClockLi{
+	width: 120px;
+}
+.tipInfo li span{
+	color: #ae720b;
+}
+.tipInfo li em{
+	width: 1px;
+	height: 15px;
+	background: #ccc;
+	position: absolute;
+	right: 27px;
+	top: 13px;
+}
+.detailInfo{
+	padding:5px 0;
+}
+.detailInfo li{
+	width: 140px;
+	height: 25px;
+	line-height: 25px;
+	float: left;
+	color: #666;
+}
+.oneBlanks{
+	width: 12px;
+	display: inline-block;
+}
+.sendAucComp{
+	color: #666;
+	margin:5px 0;
+}
+.specServe{
+	margin-top: 5px;
+	color: #666;
+}
+.specServe span{
+	margin-left: 28px;
+	color: #ae720b;
+	position: relative;
+}
+.specServe em{
+	width: 20px;
+	height: 20px;
+	background: url(../images/right.png) no-repeat;
+	position: absolute;
+	top: -1px;
+	left: -21px
+}
+.echartsDiv{
+	margin-top: 15px;
+}
+.hisEchart{
+	margin-left: 15px;
+}
+.nowEchart{
+	margin-right: 15px;
+}
+.detailAuctionCon{
+	width: 100%;
+	margin-top: 20px;
+}
+.topAucDetailNav{
+	width: 814px;
+	height: 50px;
+	border-top: 1px solid #ebebeb;
+	border-bottom: 1px solid #ebebeb;
+	background: #f6f6f6;
+}
+.posRel{
+	position: relative
+}
+.posFixed{
+	position: fixed;
+	left: 50%;
+	margin-left: -534px;
+	top: 0px;
+}
+.topAucDetailNav li{
+	float: left;
+	height: 100%;
+	line-height: 50px;
+	width: 120px;
+	text-align: center;
+	font-size: 14px;
+	cursor: pointer;
+}
+.topAucDetailNav li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	color: #666;
+	border-right: 1px solid #ebebeb;
+}
+.topAucDetailNav li.active a{
+	border-top: 2px solid #630100;
+	background: #fff;
+	height: 49px;
+	line-height: 47px;
+	color:#630100;
+}
+.topAucDetailNav li a:hover{
+	color:#630100;
+}
+.botAucDetailCon{
+	width: 788px;
+	margin:15px auto 0;
+}
+.wenxinTip{
+	width: 766px;
+	border:1px solid #dfd3ad;
+	background: #ede4d2;
+	padding:10px;
+	color: #ae8d30;
+}
+.wenxinTip strong{
+	
+}
+.wenxinTip p{
+	margin-top: 10px;
+}
+.aucBanner{
+	width: 768px;
+	margin:15px auto 0;
+}
+.aucBanner a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+.comBigAucTit{
+	text-align: center;
+	height: 50px;
+	padding:25px 0 0px 0;
+}
+.bigTitTxt,
+.smTitTxt{
+	color: #c7171e;
+	text-align: center;
+	display: inline-block;
+	background: #fff;
+}
+.bigTitTxt{
+	font-size: 32px;
+	padding:0 65px;
+}
+.bigTitLine{
+	border-bottom: 2px solid #eee;
+	margin-top: -24px;
+}
+.comInnerAucDetail{
+	width: 768px;
+	margin:0 auto;
+}
+.comSmAucTit{
+	width: 300px;
+	margin:22px auto;
+	text-align: center;
+}
+.smTitTxt{
+	font-size: 22px;
+	padding:0 15px;
+}
+.smTitLine{
+	border-bottom: 1px solid #c7171e;
+	margin-top: -16px;
+}
+.innerPaiPinDesc p{
+	text-align: center;
+	font-size: 16px;
+	color: #666;
+}
+.innerPaiPinInfo table{
+	width: 100%;
+	font-size: 14px;
+	color: #666;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.innerPaiPinInfo table td{
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+}
+.innerPaiPinInfo table tr{
+	height: 45px;
+}
+.conTd{
+	padding-left: 10px;
+	color: #333;
+}
+.titTd{
+	background: #ececec;
+}
+.paiPinImg{
+	width: 100%;
+	text-align: center;
+}
+.paiPinImg img{
+	width: 100%;
+	display: inline-block;
+}
+.listHisRecord{
+	width: 100%;
+	margin-top: 15px;
+}
+.hisRecordNav{
+	height: 35px;
+	line-height: 35px;
+	background: #f5f5f5;
+}
+.hisRecordNav li,
+.hisRecordCon li p{
+	float: left;
+	font-size: 14px;
+	color: #666;
+	text-align: center;
+}
+.hisRecordNav li{
+	height: 100%;
+	line-height: 35px;
+}
+.hisRecordCon li{
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #eee;
+	vertical-align: middle;
+}
+.hisRecordCon li p{
+	line-height: 40px;
+}
+.comRecWid1{
+	width: 120px;
+}
+.comRecWid2{
+	width: 200px;
+}
+.comRecWid3{
+	width: 200px;
+}
+.comRecWid4{
+	width: 148px;
+}
+.comRecWid4 a{
+	color:#666;
+}
+.comRecWid4 a:hover{
+	color: #c7171e;
+}
+.comRecWid1 span{
+	color: #d23030;
+}
+.serviceCon{
+	width: 100%;
+	color: #666;
+}
+.bigServiceTit{
+	font-size: 14px;
+}
+.smServiceTit{
+	font-size: 12px;
+	margin:5px 0 10px 0px;
+	font-weight: bold;
+}
+.serviceConP{
+	width: 100%;
+	margin-top: 5px;
+}
+.serviceConP img{
+	width: 788px;
+}
+.margTit{
+	margin-top: 15px;
+	display: inline-block;
+}
+.sideAuction{
+	width: 246px;
+	border: 1px solid #cfcfcf;
+	margin:5px 2px 0 0;
+	background: #f6f6f6;
+	padding-bottom: 15px;
+}
+.innerSide{
+	width: 220px;
+	margin:15px auto 0;
+}
+.smMod{
+	width: 212px;
+	height: 30px;
+	border-bottom:2px solid #2b2b2b;
+	margin:0 auto;
+	position: relative;
+}
+.smMod strong{
+	position: absolute;
+	height: 100%;
+	padding:0 20px;
+	background: #f6f6f6;
+	left: 42px;
+	top: 14px;
+	font-size: 20px;
+	color: #2b2b2b;
+}
+.goodProList{
+	width: 220px;
+	background: #fff;
+	margin:25px auto 0;
+}
+.proImg{
+	height: 220px;
+	position: relative;
+}
+.proTit1{
+	width:100%;
+	height: 35px;
+	line-height: 35px;
+	background:rgba(0,0,0,.5);
+	text-align: center;
+	font-size: 14px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.proTit1 a{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	color: #fff;
+}
+.proTit1 a:hover{
+	text-decoration: underline;
+}
+.nowPrice{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	text-indent: 10px;
+}
+.nowPrice span{
+	color: #ca1d00;
+}
+/* 设置提醒弹窗 */
+.setTipWin{
+	width: 498px;
+	height: 360px;
+	border:3px solid #b9b9b9;
+	position: fixed;
+	left: 50%;
+	margin-left: -252px;
+	top:50%;
+	margin-top: -180px;
+	background: #fff;
+	z-index: 1000;
+	border-radius: 4px;
+	display: none;
+}
+.tipTit{
+	height: 30px;
+	line-height: 30px;
+	background: #f3f3f3;
+	color: #666;
+	font-size: 14px;
+	text-indent: 15px;
+	position: relative;
+}
+.closeSp{
+	width: 9px;
+	height: 9px;
+	position: absolute;
+	right: 10px;
+	top:10px;
+	background: url(../images/remind-dialog.jpg) no-repeat 0 0;
+	cursor: pointer;
+}
+.innerSetTitCon{
+	width:470px;
+	height:95px;
+	border-bottom:1px solid #b9b9b9;
+	margin:20px 0 0 28px;
+}
+.noBorBot{
+	border-bottom: none;
+}
+.innerTit{
+	height: 28px;
+	line-height: 28px;
+	position: relative;
+	text-indent: 28px;
+	font-size: 14px;
+	color: #666;
+}
+.tipIcon,
+.tipIcon1{
+	position: absolute;
+	left: 0;
+	top: 2px;
+}
+.tipIcon{
+	width: 23px;
+	height: 23px;
+	background: url(../images/remind-dialog.jpg) no-repeat 0 -20px;
+}
+.tipIcon1{
+	width: 24px;
+	height: 24px;
+	background: url(../images/remind-dialog.jpg) no-repeat 0 -50px;
+}
+.setLabel{
+	width: 170px;
+	height: 30px;
+	line-height: 30px;
+	display: inline-block;
+	float: left;
+	font-size: 16px;
+	color: #666;
+	margin-left: 26px;
+	cursor: pointer;
+	position: relative;
+}
+.phoneTxt{
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #666;
+	margin-left: 26px;
+}
+.timeP{
+	font-size: 12px;
+	position: absolute;
+	left: 10px;
+	top: 23px;
+	color: #999;
+}
+.margLr{
+	margin:0 5px;
+}
+.phoneTxt a{
+	color: #666;
+}
+.phoneTxt a:hover{
+	color: #a41616;
+}
+.margT{
+	margin-top: 20px;
+	color: #999;
+	font-size: 12px;
+}
+.margT a{
+	color: #999;
+}
+.btnDiv{
+	height: 40px;
+	text-align: center;
+	margin-top: 30px;
+}
+.btnDiv button{
+	width: 100px;
+	height: 40px;
+	font-size: 16px;
+	border:none;
+	outline: none;
+	cursor: pointer;
+}
+.sureBtn{
+	background: #a41616;
+	color: #fff;
+	margin-right: 10px;
+}
+.sureBtn:hover{
+	background:#d01313 ;
+}
+.cancelBtn{
+	background: #e0e0e0;
+	color: #666;
+}
+.cancelBtn:hover{
+	text-decoration: underline;
+}
