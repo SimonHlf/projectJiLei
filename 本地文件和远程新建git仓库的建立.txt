@@ -1,7 +1,14 @@
-01£ºgit init
-02:git remote add origin url Ô¶³ÌµÄgithubµÄsshµØÖ·   ->°Ñµ±Ç°µÄÎÄ¼ş¼ĞºÍÔ¶³ÌµÄgithubµØÖ·¶ÔÓ¦ÆğÀ´
-03£ºÀ­È¡Ò»ÏÂ´úÂë git pull origin master ½«Ô¶³Ì´úÂëÀ­È¡µ½±¾µØ
-04£ºgit status ²é¿´µ±Ç°µÄ×´Ì¬
-05£ºgit add .
+01ï¼šgit init
+02:git remote add origin url è¿œç¨‹çš„githubçš„sshåœ°å€   ->æŠŠå½“å‰çš„æ–‡ä»¶å¤¹å’Œè¿œç¨‹çš„githubåœ°å€å¯¹åº”èµ·æ¥
+03ï¼šæ‹‰å–ä¸€ä¸‹ä»£ç  git pull origin master å°†è¿œç¨‹ä»£ç æ‹‰å–åˆ°æœ¬åœ°
+04ï¼šgit status æŸ¥çœ‹å½“å‰çš„çŠ¶æ€
+05ï¼šgit add .
 06:git commit -m "note"
 07:git push 
+
+
+æ‰“tag:
+git tag tag-version1.0
+
+å°†tag push åˆ°è¿œç¨‹
+git push origin tag tag-version1.0
