@@ -1,0 +1,249 @@
+/* 头部 */
+.singUpHead{
+	width: 100%;
+	height: 40px;
+	background: url(../images/singUpHeadBg.png) repeat-x;
+	background-size: 100% 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 5;
+}
+.singUpHead a{
+	width: 10%;
+	height: 100%;
+	display: block;
+	position: relative;
+	text-align: center;
+}
+.singUpHead a i{
+	color: #000;
+	font-size: 24px;
+	display: inline-block;
+	margin-top: 8px;
+}
+.topPartCon{
+	width: 100%;
+	background: #f1f1f1;
+	overflow-y:auto;
+	margin-top: 40px;
+}
+.topPartCon h2{
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+	color: #d0486b;
+	margin-bottom: 5px;
+}
+/* 活动介绍 */
+.activeIntro{
+	width: 90%;
+	border:1px dashed #898989;
+	margin:0px auto;
+	height: 120px;
+	position:relative;
+	overflow: hidden;
+}
+.activeIntro p{
+	font-size: 12px;
+	color: #666;
+	line-height: 20px;
+	padding: 10px;
+}
+.activeIntro p strong{
+	width: 100%;
+	display: inline-block;
+	color: #eb5b5b;
+	font-size: 16px;
+	font-weight: normal;
+}
+.activeIntro p span{
+	display: inline-block;
+	text-indent: 2em;
+}
+.scrollDiv{
+	width:100% !important;
+	position:absolute !important;
+	left:0px;
+	top:0px;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+/* 报名表单 */
+.signUpForm{
+	width: 88%;
+	margin:15px auto 0px;
+}
+/* 报名类型选择 */
+.signUpHead{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background: #0198ff;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 18px 18px 0 0;
+}
+.signUpHead strong{
+	height: 100%;
+	font-weight: normal;
+	margin-left: 15px;
+}
+.signUpHead div{
+	margin-left: 30px;
+}
+.enterpriLabel{
+	display: inline-block;
+	height: 100%;
+	position: relative;
+	font-size: 14px;
+}
+.enterpriLabel:last-child{
+	margin-left: 10px;
+}
+.enterpriLabel span{
+	width: 16px;
+	height: 16px;
+	border:1px solid #fff;
+	position: absolute;
+	left: 0;
+	top: 11px;
+}
+.enterpriLabel span .icon-duihao{
+	position: absolute;
+	left: 2px;
+	top: -11px;
+	font-size: 14px;
+	opacity: 0;
+}
+.selectNow{
+	opacity: 1 !important;
+}
+.enterpriLabel p{
+	text-indent: 24px;
+}
+/* 报名表单 */
+.singUpMidCon{
+	width: 100%;
+	background: #fff;
+	padding:10px 0;
+}
+.comFormInpDiv{
+	width: 90%;
+	margin:0px auto 10px;
+}
+.comFormInpDiv:last-child{
+	margin-bottom: 0px;
+}
+.hasHei{
+	height: 35px;
+	line-height: 35px;
+}
+.comFormInpDiv span{
+	font-size: 14px;
+	/*height: 100%;*/
+	float: left;
+	width: 25%;
+	color: #666;
+	text-align: right;
+}
+.comFormInpDiv input,
+.comFormInpDiv textarea{
+	width: 66%;
+	border:1px solid #e4e4e4;
+	border-radius: 6px;
+	float: left;
+	padding-left: 3px;
+	color: #666;
+	font-size: 14px;
+	margin-left: 10px;
+}
+.comFormInpDiv input{
+	height: 33px;
+}
+.comFormInpDiv textarea{
+	height: 60px;
+}
+.comFormInpDiv input::-webkit-input-placeholder,
+.comFormInpDiv textarea::-webkit-input-placeholder{
+	color: #bbb;
+	font-size: 12px;
+}
+.comUpLoadDiv{
+	width: 1.5rem;
+	float: left;
+	margin-left: 10px;
+}
+.comUpLoadBtn{
+	width: 1.6rem;
+	height: 1.6rem;
+	border:1px solid #ccc;
+	position: relative;
+	text-align: center;
+}
+.comUpLoadBtn i{
+	width: 100%;
+	display: inline-block;
+	font-size: .22rem;
+	font-style: normal;
+	float: left;
+	color: #bbb;
+	
+}
+.comUpLoadBtn em.icon-add{
+	font-style: normal;
+	display: inline-block;
+	color: #bbb;
+	font-size: .6rem;
+	margin-top: .2rem;
+}
+.comUpLoadBtn a{
+	display: block;
+	width: 100%;
+	height:100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	padding:0px;
+	margin:0px;
+	border-radius: 0px;
+	font-weight: normal;
+	opacity: 0;
+	border:none;
+}
+@media all and (min-width:700px) and (max-width:1024px){
+	.comUpLoadBtn{
+		width: 1.2rem;
+		height: 1.2rem;
+	}
+}
+.hasUpLoadDiv{
+	width: 100%;
+	text-align: center;
+	display: none;
+	margin-top: 5px;
+}
+.hasUpLoadDiv img{
+	max-width: 100%;
+	display: inline-block;
+}
+.hasUpLoadDiv video{
+	width: 100%;
+}
+.tipInfo{
+	font-size: 12px;
+	color:#9c0a0a;
+	text-align: center;
+	margin:10px auto;
+}
+.singUpBtn{
+	width: 80%;
+	height: 40px;
+	line-height: 40px;
+	background:#0198ff;
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	display: block;
+	margin:0 auto 60px;
+	border-radius: 6px;
+}

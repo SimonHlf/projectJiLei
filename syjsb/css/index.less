@@ -1,0 +1,214 @@
+.fs(@px) {
+  font-size: unit(@px / 75, rem);
+}
+.w(@px) {
+  width: unit(@px / 75, rem);
+}
+
+.h(@px) {
+  height: unit(@px / 75, rem);
+}
+
+.lh(@px) {
+  line-height: unit(@px / 75, rem);
+}
+.mt(@px) {
+  margin-top: unit(@px / 75, rem);
+}
+.ml(@px) {
+  margin-top: unit(@px / 75, rem);
+}
+.mr(@px) {
+  margin-top: unit(@px / 75, rem);
+}
+.mb(@px) {
+  margin-top: unit(@px / 75, rem);
+}
+.pt(@px) {
+  padding-top: unit(@px / 75, rem);
+}
+.pl(@px) {
+  padding-left: unit(@px / 75, rem);
+}
+.pr(@px) {
+  padding-right: unit(@px / 75, rem);
+}
+.pb(@px) {
+  padding-bottom: unit(@px / 75, rem);
+}
+.bot(@px){
+    bottom:unit(@px / 75, rem);
+}
+.top(@px){
+    top:unit(@px / 75, rem);
+}
+body{
+    background: #f0eff4;
+}
+/* 背景装饰 */
+.bodyBg_top,
+.bodyBg_bot,
+.bodyBg_cen{
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+.bodyBg_top{
+    background:#fff url(../images/index_bj_header.png) no-repeat;
+    background-size: cover;
+    height: 1.533rem;
+    top: 0px;
+    z-index: 2;
+}
+.bodyBg_bot{
+    height: 0.5866rem;
+    background:#fff url(../images/index_bj_footer.png) no-repeat;
+    background-size: cover;
+    bottom:0;
+    z-index: 2;
+}
+.bodyBg_cen{
+    top: 0px;
+    background:url(../images/index_bj_center.png) repeat-y;
+    background-size: 100% 100%;
+    z-index: 1;
+}
+/* bigTitle */
+.bigTitle{
+    width:100%;
+    position: absolute;
+    left: 0px;
+    top:1.533rem;
+    background:#fff;
+    padding-top: 0.4rem;
+}
+.bigTitle h1{
+    width: 8.2rem;
+    height: 1.893333rem;
+    background:url(../images/bigTitle.jpg) no-repeat;
+    background-size: cover;
+    display: block;
+    margin:0 auto;
+}
+/* mainCon */
+.bigTabCon{
+    display: none;
+}
+.mainCon{
+    width: 93.5%;
+    height: 70%;
+    background: pink;
+    position: absolute;
+    left: 50%;
+    margin-left: -46.5%;
+    top: 3.8263rem;
+    z-index: 2;
+    .navTab{
+        font-size: .38rem;
+        background:#fff;
+        .swiper-slide span {
+            margin:0 5px;
+            text-align:center;
+            display:block;
+            line-height:2.5;
+            color:#000000;
+        }
+        .bar,.subNavBar{
+            height:6px;
+            position:absolute;
+            left: 0;
+            bottom:0px;
+            z-index:3;
+            .color,
+            .subColor {
+                margin:0 auto;
+                height:6px;
+                background:url(../images/tabNaBg.png) repeat-x;
+                
+            }
+        }
+        .bar{
+            display: none;
+        }
+        .bar .color{
+            width:50px;
+            border-radius: 20px;
+        }
+        .subNavBar .subColor{
+            width:110px;
+            border-radius: 30px;
+        }
+    }
+}
+/* innerMainCon */
+.innerMainCon{
+    font-size: .35rem;
+//  overflow-y:auto;
+}
+.slidepage {
+    height:100%;
+}
+.scroll{
+    height: 100%;
+}
+.slidescroll {
+    height:auto; 
+}
+/* footer */
+.footerCon{
+    width: 93.5%;
+    .h(90);
+    background:#fff;
+    position: absolute;
+    left: 50%;
+    margin-left: -46.5%;
+    .bot(24);
+    z-index: 3;
+    
+    li{
+        width: 33.3%;
+        .h(86);
+        float: left;
+        font-size: 0.4rem;
+        text-align: center;
+        position: relative;
+    }
+    li.active{
+        color: #9c0a0a;
+    }
+    li i{
+        .fs(50);
+        position: relative;
+        z-index: 2;
+    }
+    li i.homeIcon{
+         .fs(51);
+    }
+    li i.minIcon{
+        .fs(55);
+        display: inline-block;
+        margin-top: -5px;
+    }
+    li span{
+        .w(140);
+        .h(84);
+        position: absolute;
+        background:url(../images/mineBg.png) no-repeat;
+        background-size: cover;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        margin-left: -0.9333rem;
+        top:-0.4rem;
+    }
+    li em{
+        position: absolute;
+        bottom: -3px;
+        left: 0px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-style: normal;
+         z-index: 2;
+    }
+}

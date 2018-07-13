@@ -1,0 +1,341 @@
+@charset "utf-8";
+.mineNav{
+	width:100%;
+	height: 0.853333rem;
+	background: url(../images/head_bj.png);
+	background-size:contain;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:100;
+}
+.share{
+	width: 0.5333rem;
+	height: 0.4666rem;
+	background:url(../images/share.png) no-repeat;
+	background-size:contain;
+	float: right;
+  	margin-right: 0.3733rem;
+  	margin-top: 0.28rem;
+}
+.midMineCon{
+	width:100%;
+	overflow-y: auto;
+}
+/*------视频信息-----*/
+.videoImg{
+	position: relative;
+}
+
+.vidImgBox{
+	display: none;
+}
+.innerVideo video{
+	max-width: 100%;
+}
+.innerImg{
+	width: 100%;
+	text-align: center;
+}
+.innerImg img{
+	display: inline-block;
+}
+.videoBj{
+    position: absolute;
+    width: 3.626rem;
+    top: 50%;
+    margin-top: -1.9rem;
+    left: 50%;
+    height: 3.2rem;
+    background-size: cover;
+    margin-left: -1.813rem;
+}
+.videoBj .btn{
+	width: 1.2933rem;
+	height: 1.2933rem;
+	background:url(../images/playBtn.png) no-repeat;
+	background-size: cover ;
+	position: absolute;
+	top: 50%;
+	bottom: 50%;
+  left: 50%;
+  right: 50%;  
+  margin-left: -0.64665rem;
+  margin-top: -0.64655rem;
+}
+.shop_liuYan{
+	margin-bottom: 30px;
+}
+/*------排名信息-----*/
+.paiMing{
+	width: 9.1733rem;
+	height: 1.533rem;
+	position: relative;
+	z-index: 1;
+	border-radius: 0.28rem;
+	margin: -30px auto 0;
+	background: -webkit-linear-gradient(top,#e3e7ea, #e3e7ea,#fff 142%); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#e3e7ea,#fff); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#e3e7ea,#fff); /* Firefox 3.6 - 15 */
+  background: linear-gradient(top,#e3e7ea, #e3e7ea;,#fff); /* 标准的语法 */
+ 	box-shadow:0rem 0rem 0.24rem 0.1rem rgba(180,178,178,0.5) ;
+}
+
+.beginTime{
+	height: 0.6rem;
+    border-bottom: 0.02rem dashed #fff;
+    background: url(../images/naoZhong.png) no-repeat 1.8rem;
+    background-size: 0.32rem 0.306rem;
+    color: #5c5f61;
+    font-size: 0.35rem;
+    padding-left: 2.4rem;
+    line-height: 0.6rem;
+}
+.beginTime i{
+	font-style: normal;
+}
+.paiMingNum{
+	width: 29%;
+	float: left;
+	height: 0.893rem;
+}
+.piaoNum{
+	width: 40%;
+	float: left;
+	border-right: 0.02rem dashed #fff;
+	border-left: 0.02rem  dashed  #fff;
+	height: 0.893rem;
+}
+.paiMingMessage i{
+    height: 0.453rem;
+    display: block;
+    color: #5c5f61;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    line-height: 0.453rem;
+    font-size: 0.35rem;
+    font-style: normal;
+}
+.paiMingMessage span{
+	text-align: center;
+	color: #ff0202;
+	display: block;
+    font-size: 0.35rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-weight: bold;
+}
+/*------商家具体信息-----*/
+.shopMessageCon{
+	width:8.5633rem;
+	border:0.01rem solid #e3e7ea ;
+	border-radius: 0 0 0.29rem 0.29rem;
+	margin: 0 auto;
+	margin-top: -0.33rem;
+	padding-left: 0.613rem;
+}
+.top_left{
+	width: 5.85rem;
+	float: left;
+	margin-top: 0.2rem;
+}
+
+.erWeiMa{
+    width: 2.7rem;
+    position: relative;
+    float: right;
+    margin-top: 0.2rem;
+} 
+
+.erWeiMa img{
+	width: 2.7rem;
+    height: 2.5rem;
+    margin: 0 auto;
+}
+
+.erWeiMa i{
+    font-size: 0.173rem;
+    text-align: center;
+    color: #ff0909;
+    display: inline-block;
+    position: absolute;
+    line-height: 0.44rem;
+    float: left;
+    width: 100%;
+    text-align: center;
+    bottom: -0.45rem;
+    font-style: normal;
+}
+
+.shopMessageCon span{
+  font-size: 0.37rem;
+  height: 0.41rem;
+  float: left;
+  line-height: 0.41rem;
+  font-weight: bold;
+}
+.shopMessageCon p{
+  float: left;
+  font-size: 0.35rem;
+  line-height: 0.4rem;
+  width: 3.9rem;
+  margin-left: 0.173rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.top_left>div{
+	height: 0.56rem;
+	line-height: 0.56rem;
+	margin-top: 5px;
+}
+.xuanYan{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.xuanYan i{
+ 	font-size: 0.35rem;
+ 	line-height: 0.526rem;
+	display: -webkit-box;
+	padding-left: 0.173rem;
+	font-style: normal;
+}
+.touPiaobtn{
+	margin-top: 0.426rem;
+}
+.touPiaobtn>div{
+	width: 1.68rem;
+	margin-bottom:0.266rem;
+    height: 0.61rem;
+    padding-left: 0.8rem;
+    font-size: 0.35rem;
+    line-height: 0.61rem;
+    border-radius: 0.09rem;
+    border: 0.02rem solid #000000;
+}
+.touPiaobtn .btnLeft{
+	background: url(../images/xin.png) no-repeat 0.146rem center;
+	float: left;
+	margin-left: 1.733rem;
+	background-size:0.466rem 0.44rem;
+}
+.touPiaobtn .btnRight{
+	float: right;
+	background: url(../images/liuYan.png) no-repeat 0.146rem center;
+	background-size:0.466rem 0.44rem;
+	margin-right: 1.733rem;
+}
+/*------商家简介-----*/
+.intro_title{
+	border-top: 0.02rem dashed #b1b1b2;
+}
+
+.introduceCon{
+	width: 9.1733rem;
+	margin: 0 auto;
+}
+
+.intro_title {
+	font-size: 0.38rem;
+    color: #8d8d96;
+    height: 0.68rem;
+    line-height: 0.68rem;
+    text-align: center;
+}
+.shiMing{
+	height: 1.286rem;
+    font-size: 0.38rem;
+    line-height: 0.52rem;
+    color:#8d8d96;
+    padding-top: 0.106rem;
+    border-bottom: 0.02rem dashed #b1b1b2;
+}
+.shiMing span{
+	display: block;
+	text-align: center;
+} 
+.shiMing p{
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+/*------banner-----*/
+.intro_text{
+	color: #042461;;
+	position: absolute;
+    font-size: 0.38rem;
+    text-indent: 2em;
+    margin-top: 0.2rem;
+    overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.banner{
+	position: relative;
+}
+
+/*------留言列表-----*/
+.liuyanTitle{
+    font-size: 0.293rem;
+    text-align: center;
+    width: 1.56rem;
+    color: #46affd;
+    margin: -0.21rem auto;
+    background: #fff;
+    height: 0.3933rem;
+}
+
+.shop_liuYan ul{
+	padding:0 0.77rem;
+}
+.shop_liuYan ul li{
+	padding-top: 0.33rem;
+	border-bottom: 0.02rem solid #d2d0d0;
+}
+.user_message .touXiang{
+	width: 0.826rem;
+	height: 0.826rem;
+	float: left;
+}
+.user_message .userName{
+	font-size: 0.33rem;
+	padding-left: 0.16rem;
+	float: left;
+}
+.user_message time{
+	font-size: 0.293rem;
+	color: #b1b1b2;
+	float: right;
+}
+
+.shop_liuYan ul li p{
+	line-height: 0.54rem;
+	font-size: 0.293rem;
+	padding-bottom: 0.09rem;
+}
+.showMoreBtn{
+	display: block;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: #666;
+}
+/* 留言 */
+.leaveMsg{
+	width: 90%;
+	height: 300px;
+	background: #fff;
+	border-radius: 6px;
+	position: absolute;
+	left: 50%;
+	margin-left: -45%;
+	top:100px;
+	z-index: 1000;
+}

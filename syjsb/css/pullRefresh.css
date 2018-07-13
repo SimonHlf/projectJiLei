@@ -1,0 +1,123 @@
+.comListDiv,
+.comListNav{
+	width:100%;
+	position:relative;
+}
+.comScroller,
+.comScroller1{
+	width: 100%;
+	position:absolute !important;
+	left:0px;
+	top:0px;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.comScroller{
+	width:100% !important;
+}
+/* iscroll下拉刷新公共样式 */
+#pullUpAll,
+#pullUpAllMed,
+#pullUpSq,
+#pullUpSqMed,
+#pullUpPyx,
+#pullUpPyxMed,
+#pullUpQf,
+#pullUpQfMed,
+#pullUpFx,
+#pullUpFxMed,
+#pullUpNl,
+#pullUpNlMed,
+#pullUpTq,
+#pullUpTqMed{
+	width:100%;
+	height:35px;
+	line-height:35px;
+	position:relative;
+	text-align:center;
+	color:#666;
+	background:#f5f5f5;
+	display: none;
+}
+#pullUpAll .pullup-icon,
+#pullUpAllMed .pullup-icon,
+#pullUpSq .pullup-icon,
+#pullUpSqMed .pullup-icon,
+#pullUpPyx .pullup-icon,
+#pullUpPyxMed .pullup-icon,
+#pullUpQf .pullup-icon,
+#pullUpQfMed .pullup-icon,
+#pullUpFx .pullup-icon,
+#pullUpFxMed .pullup-icon,
+#pullUpNl .pullup-icon,
+#pullUpNlMed .pullup-icon,
+#pullUpTq .pullup-icon,
+#pullUpTqMed .pullup-icon{
+	width:25px;
+	height:25px;
+	position:absolute;
+	left:50%;
+	margin-left:-85.5px;
+	top:5px;
+	background:url(../images/groupIcon.png) no-repeat 0 0px;
+	background-size:cover;
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration:250ms;	
+	-webkit-transform:rotate(-180deg) translateZ(0);
+	transform:rotate(-180deg) translateZ(0);
+}
+#pullUpAll.flip .pullup-icon,
+#pullUpAllMed.flip .pullup-icon,
+#pullUpSq.flip .pullup-icon,
+#pullUpSqMed.flip .pullup-icon,
+#pullUpPyx.flip .pullup-icon,
+#pullUpPyxMed.flip .pullup-icon,
+#pullUpQf.flip .pullup-icon,
+#pullUpQfMed.flip .pullup-icon,
+#pullUpFx.flip .pullup-icon,
+#pullUpFxMed.flip .pullup-icon,
+#pullUpNl.flip .pullup-icon,
+#pullUpNlMed.flip .pullup-icon,
+#pullUpTq.flip .pullup-icon,
+#pullUpTqMed.flip .pullup-icon{
+	-webkit-transform:rotate(0deg) translateZ(0);
+}
+#pullUpAll.loading .pullup-icon,
+#pullUpAllMed.loading .pullup-icon,
+#pullUpSq.loading .pullup-icon,
+#pullUpSqMed.loading .pullup-icon,
+#pullUpPyx.loading .pullup-icon,
+#pullUpPyxMed.loading .pullup-icon,
+#pullUpQf.loading .pullup-icon,
+#pullUpQfMed.loading .pullup-icon,
+#pullUpFx.loading .pullup-icon,
+#pullUpFxMed.loading .pullup-icon,
+#pullUpNl.loading .pullup-icon,
+#pullUpNlMed.loading .pullup-icon,
+#pullUpTq.loading .pullup-icon,
+#pullUpTqMed.loading .pullup-icon{
+	background:url(../images/groupIcon.png) no-repeat 0 -25px;
+	background-size:cover;
+	-webkit-transform:rotate(0deg) translateZ(0);
+	-webkit-transition-duration:0ms;
+	-webkit-animation:2s loading linear infinite;
+}
+@-webkit-keyframes loading {
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}
+.loadingIcon{
+	width:30px;
+	height:30px;
+	background:url(../images/groupIcon.png) no-repeat 0 -60px;
+	background-size:cover;
+	position:absolute;
+	left:50%;
+	margin-left:-15px;
+	top:50%;
+	margin-top:-22px;
+	-webkit-animation:2s loadingIcon linear infinite;
+}
+@-webkit-keyframes loadingIcon{
+	from { -webkit-transform:rotate(0deg) translateZ(0); }
+	to { -webkit-transform:rotate(360deg) translateZ(0); }
+}

@@ -1,0 +1,142 @@
+/*
+* @Author: lenovo
+* @Date:   2018-06-27 08:53:53
+* @Last Modified by:   lenovo
+* @Last Modified time: 2018-06-27 09:20:05
+*/
+/* 搜索头部 */
+.queryHead{
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  background:#fff;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+.backBtn{
+  width: 10%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #666;
+}
+.backBtn i{
+  font-size: 20px;
+}
+/* 搜索结果 */
+.tabContent{
+  position: relative;
+  background:#fff;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  z-index: 2;
+}
+.comScroller{
+  font-size: .35rem;
+}
+.comScroller ul{
+   width:100%; 
+}
+.comScroller ul.waterFullUl li{ 
+  width: 49%;
+  margin-top: 5px;
+    float: left;
+} 
+.comScroller ul.waterFullUl li:nth-of-type(2n){ 
+    margin-left:2%; 
+} 
+.comScroller ul.waterFullUl li .tipInfoTxt{
+  background: #fff;
+  padding: 5px;
+  color: #cea662;
+  margin-bottom: 5px;
+} 
+.comScroller ul.waterFullUl li .tipInfoTxt strong{
+  font-size: 0.4rem;
+  font-weight: normal;
+  display: inline-block;
+}
+.comScroller ul.waterFullUl li .tipInfoTxt span{
+  font-size: 0.30rem;
+  display: inline-block;
+}
+.comScroller img{ 
+    display: block; 
+    width:100%; 
+    line-height: 0px;
+} 
+.product_picture{
+  margin-bottom: 5px;
+}
+.product_ie{
+  background: #fff;
+  padding: 0 5px 5px;
+}
+.product_ie strong{
+  width: 100%;
+  max-width: 100%;
+  font-size: 0.45rem;
+  color: #333;
+  font-weight: 600;
+  display: inline-block;
+  margin:2px 0;
+}
+.product_ie span{
+  font-size: 0.3rem;
+  color: #666;
+}
+.product_ie .botDivFun{
+  margin-top: 3px;
+}
+.product_ie .botDivFun p{
+  float: left;
+  font-size: 0.4rem;
+  color: #666;
+}
+.product_ie .botDivFun p em{
+  font-style: normal;
+  color:#cea662;
+}
+.product_ie .botDivFun a{
+  float: right;
+  display: inline-block;
+  width: 1.533rem;
+  height: 0.65rem;
+  line-height: 0.65rem;
+  border-radius: 2px;
+  background: #d9022c;
+  color: #fff;
+  font-size: 0.4rem;
+  text-align: center;
+}
+.product_np{ 
+    overflow: hidden; 
+    line-height:20px; 
+} 
+.noDataInfo{
+  width:100%;
+  text-align:center;
+  margin-top: 3rem;
+}
+.noDataInfo i{
+  font-size:1.2rem;
+  color:#999;
+  display:inline-block;
+  width:100%;
+}
+.noDataInfo span{
+  font-size:.4rem;
+  color:#999;
+  display:block;
+  width:100%;
+  text-align:center;
+  padding-left:.1rem;
+}

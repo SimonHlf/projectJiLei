@@ -1,0 +1,366 @@
+body {
+  background: #f0eff4;
+}
+/* 背景装饰 */
+.bodyBg_top,
+.bodyBg_bot,
+.bodyBg_cen {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+.bodyBg_top {
+  background: #ffffff url(../images/index_bj_header.png) no-repeat;
+  background-size: cover;
+  height: 1.533rem;
+  top: 0px;
+  z-index: 2;
+}
+.bodyBg_bot {
+  height: 0.5866rem;
+  background: #ffffff url(../images/index_bj_footer.png) no-repeat;
+  background-size: cover;
+  bottom: 0;
+  z-index: 2;
+}
+.bodyBg_cen {
+  top: 0px;
+  background: url(../images/index_bj_center.png) repeat-y;
+  background-size: 100% 100%;
+  z-index: 1;
+}
+/* bigTitle */
+.bigTitle {
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 1.533rem;
+  background: #fff;
+  padding-top: 0.4rem;
+}
+.bigTitle h1 {
+  width: 8.2rem;
+  height: 1.893333rem;
+  background: url(../images/bigTitle.jpg) no-repeat;
+  background-size: cover;
+  display: block;
+  margin: 0 auto;
+}
+/* mainCon */
+.tabConParent,
+.tabConDis{
+	height:100%;
+	-webkit-transition:0.5s;
+	transition:.5s;
+	-webkit-transform:translateX(0px);
+	transform:translateX(0px);
+}
+.mainCon {
+  width: 93.5%;
+  height: 70%;
+  background:#f5f5f5;
+  position: absolute;
+  left: 50%;
+  margin-left: -46.5%;
+  top: 3.8263rem;
+  z-index: 2;
+  overflow:hidden;
+}
+.bigTabCon{
+	width: 100%;
+	height: 100%;
+	float: left;
+}
+.mainCon .navTab {
+  width: 100%;
+  height:35px;
+  line-height: 35px;
+  font-size: .38rem;
+  background: #fff;
+}
+.mainCon .navTab ul{
+	height: 100%;
+	float: left;
+}
+.mainCon .navTab ul li{
+	float: left;
+	width: 56px;
+	height: 100%;
+	text-align: center;
+	color: #333;
+	position: relative;
+}
+.mainCon .navTab ul li.active{
+	color: #fe4040;
+}
+.mainCon .navTab ul li.active .navBar{
+	display: block;
+}
+.mainCon .navTab .navBar,
+.subNavBar{
+	height: 4px;
+	position: absolute;
+	left: 0;
+	bottom:0;
+	display: none;
+}
+.mainCon .navTab .navBar{
+	width: 56px;
+}
+.subNavBar{
+	width: 100%;
+}
+.mainCon .navTab .navBar .barSpan,
+.subNavBar .subBarSpan{
+  	height: 4px;
+  	background: url(../images/tabNaBg.png) repeat-x;
+  	display: block;
+  	border-radius: 20px;
+  	margin:0 auto;
+}
+.mainCon .navTab .navBar .barSpan{
+	width: 100%;
+}
+.subNavBar .subBarSpan{
+	width: 60%;
+}
+.subNavPar{
+	width: 100%;
+	height: 35px;
+	line-height: 35px;
+	font-size: .38rem;
+	background: #fff;
+}
+.subNavPar ul{
+	width: 90%;
+}
+.subNavPar li{
+	height: 100%;
+	float: left;
+	width: 50%;
+	position: relative;
+	text-align: center;
+	color: #333;
+}
+.subNavPar li.active{
+	color: #cea662;
+}
+.subNavPar li.active .subNavBar{
+	display: block;
+}
+.subNavPar a{
+	width: 10%;
+	height: 100%;
+	float: left;
+	position: relative;
+}
+.subNavPar a i.fenleiIcon,
+.subNavPar a i.liebiaoIcon{
+	font-size: 0.7rem;
+	position:absolute;
+	left: 0px;
+	top: 1px;
+	color: #fe4040;
+}
+.subNavPar a i.fenleiIcon{
+	-webkit-transform: rotate(90deg);
+}
+@media all and (min-width:700px) and (max-width:1024px){
+	.mainCon .navTab,
+	.subNavPar {
+		font-size: 16px;
+	}
+	.mainCon .navTab ul li{
+		width: 12%;
+	}
+	.mainCon .navTab .navBar{
+		width: 100%;
+	}
+	.subNavBar .subBarSpan{
+		width: 40%;
+	}
+	.mainCon .navTab .navBar .barSpan{
+		width: 80%;
+	}
+}
+/* 搜索层 */
+.queryDiv{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background: #fff;
+	padding:5px 0;
+}
+.queryDiv input{
+	width: 70%;
+	height: 28px;
+	border:1px solid #ccc;
+	border-right: none;
+	float: left;
+	color: #666;
+	margin-left: 10px;
+}
+.queryDiv input::-webkit-input-placeholder{
+	color: #bbb;
+}
+.queryDiv button{
+	width: 60px;
+	height: 100%;
+	text-align: center;
+	float: left;
+	border:none;
+	background:#0198ff;
+	color: #fff;
+	font-size: 12px;
+}
+/* 主体内容 */
+.tabContent{
+	position: relative;
+	float: left;
+	background:#fff;
+}
+.comScroller{
+	font-size: .35rem;
+}
+.comScroller ul{
+	 width:100%; 
+}
+.comScroller ul.waterFullUl li{ 
+	width: 49%;
+ 	margin-top: 5px;
+    float: left;
+} 
+.comScroller ul.waterFullUl li:nth-of-type(2n){ 
+    margin-left:2%; 
+} 
+.comScroller ul.waterFullUl li .tipInfoTxt{
+	background: #fff;
+	padding: 5px;
+	color: #cea662;
+	margin-bottom: 5px;
+} 
+.comScroller ul.waterFullUl li .tipInfoTxt strong{
+	font-size: 0.4rem;
+	font-weight: normal;
+	display: inline-block;
+}
+.comScroller ul.waterFullUl li .tipInfoTxt span{
+	font-size: 0.30rem;
+	display: inline-block;
+}
+.comScroller img{ 
+    display: block; 
+    width:100%; 
+    line-height: 0px;
+} 
+.product_picture{
+	margin-bottom: 5px;
+}
+.product_ie{
+	background: #fff;
+	padding: 0 5px 5px;
+}
+.product_ie strong{
+	width: 100%;
+	max-width: 100%;
+	font-size: 0.45rem;
+	color: #333;
+	font-weight: 600;
+	display: inline-block;
+	margin:2px 0;
+}
+.product_ie span{
+	font-size: 0.3rem;
+	color: #666;
+}
+.product_ie .botDivFun{
+	margin-top: 3px;
+}
+.product_ie .botDivFun p{
+	float: left;
+	font-size: 0.4rem;
+	color: #666;
+}
+.product_ie .botDivFun p em{
+	font-style: normal;
+	color:#cea662;
+}
+.product_ie .botDivFun a{
+	float: right;
+	display: inline-block;
+	width: 1.533rem;
+	height: 0.65rem;
+	line-height: 0.65rem;
+	border-radius: 2px;
+	background: #d9022c;
+	color: #fff;
+	font-size: 0.4rem;
+	text-align: center;
+}
+.product_np{ 
+    overflow: hidden; 
+    line-height:20px; 
+} 
+
+/*listTitle*/
+.listTitle{
+	width: 100%;
+	height: 0.786rem;
+	line-height: 0.786rem;
+	background: url(../images/listTitleBg.png) repeat-x;
+	background-size: 100% 100%;
+	font-size: 0.38rem;
+}
+.listUl li{
+	height: 0.786rem;
+	text-align: center;
+	float: left;
+	color: #8d8d8d;
+}
+.oneWidLi{
+	width: 20%;
+}
+.twoWidLi{
+	width: 40%;
+	max-width: 40%;
+}
+.listConUl li{
+	height: 35px;
+	line-height: 35px;
+	background: #fff;
+	color: #333;
+	border-bottom: 1px solid #eee;
+}
+.listConUl li p{
+	float: left;
+	text-align: center;
+	font-size: 0.35rem;
+}
+.listConUl li p span.rankSpan{
+	width: 0.533rem;
+	height: 0.533rem;
+	line-height: 0.533rem;
+	display: inline-block;
+	background: #fa4d0a;
+	color: #fff;
+	text-align: center;
+}
+.noDataInfo{
+	width:100%;
+	text-align:center;
+	margin-top: 3rem;
+}
+.noDataInfo i{
+	font-size:1.2rem;
+	color:#999;
+	display:inline-block;
+	width:100%;
+}
+.noDataInfo span{
+	font-size:.4rem;
+	color:#999;
+	display:block;
+	width:100%;
+	text-align:center;
+	padding-left:.1rem;
+}
